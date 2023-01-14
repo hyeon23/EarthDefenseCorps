@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-
-using UnityEngine.EventSystems;
-
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -89,7 +83,7 @@ public class PlayerController : MonoBehaviour
                     }
                     else if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
                     {
-                        
+
                         if (isJump)//Spetial Move
                         {
                             textText.text = "Spetial Move";
@@ -97,7 +91,7 @@ public class PlayerController : MonoBehaviour
                         else//Jump
                         {
                             isJump = true;
-                            anime.SetTrigger("doJump");
+                            anime.SetBool("isJump", isJump);
                             textText.text = "JUMP";
                             rigid.AddForce(new Vector2(0, 1000f));
                         }
@@ -107,7 +101,6 @@ public class PlayerController : MonoBehaviour
                         //Sheld
                         textText.text = "Sheld";
                         anime.SetTrigger("doSheld");
-
                     }
                 }
                 //ÅÍÄ¡.
@@ -123,9 +116,9 @@ public class PlayerController : MonoBehaviour
 
     public void Moving(bool dir)
     {
-        anime.SetTrigger("doSideWalk");
         spriteRenderer.flipX = !dir;
         transform.position = playerPos[positionIndex].position;
+        anime.SetTrigger("doSideStep");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -133,37 +126,16 @@ public class PlayerController : MonoBehaviour
         if(collision.collider.tag == "Background")
         {
             isJump = false;
-            textText.text = "Attack";
-            anime.SetTrigger("doLand");
+            textText.text = "Land";
+            anime.SetBool("isJump", isJump);
         }
     }
 
-    //public IEnumerator Moving(Vector3 targetPos, float targetTime)
-    //{
-    //    float curTime = 0f;
-
-    //    Vector2 curPos = transform.position;
-
-    //    while (curTime < targetTime)
-    //    {
-    //        yield return null;
-    //        float percent = curTime / targetTime;
-    //        transform.position = Vector2.Lerp(curPos, targetPos, percent);
-    //        curTime += Time.deltaTime;
-    //    }
-    //}
-
-    //public void Moving(Vector3 targetPos, float targetTime)
-    //{
-    //    float curTime = 0f;
-
-    //    Vector2 curPos = transform.position;
-
-    //    while (curTime < targetTime)
-    //    {
-    //        float percent = curTime / targetTime;
-    //        transform.position = Vector2.Lerp(curPos, targetPos, percent);    
-    //        curTime += Time.deltaTime;
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "LandMark")
+        {
+            anime.SetTrigger("doLand");
+        }
+    }
 }
