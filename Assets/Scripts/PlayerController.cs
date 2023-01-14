@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-
-using UnityEngine.EventSystems;
-
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,10 +14,11 @@ public class PlayerController : MonoBehaviour
     private float swipeSensitivity = 12;
 
     private int positionIndex = 1;
-    
+
     private Vector2 touchDif;
     private Vector2 touchBeganPos;
     private Vector2 touchEndedPos;
+
 
     //Player Variables
     private bool isJump = false;
@@ -64,30 +59,7 @@ public class PlayerController : MonoBehaviour
                 //스와이프. 터치의 x이동거리나 y이동거리가 민감도보다 크면
                 if (Mathf.Abs(touchDif.y) > swipeSensitivity || Mathf.Abs(touchDif.x) > swipeSensitivity)
                 {
-                    if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
-                    {
-                        
-                        if (isJump)//Spetial Move
-                        {
-                            textText.text = "Spetial Move";
-                        }
-                        else//Jump
-                        {
-                            isJump = true;
-                            anime.SetTrigger("doJump");
-                            anime.SetBool("isJump", true);
-                            textText.text = "JUMP";
-                            rigid.AddForce(new Vector2(0, 1000f));
-                        }
-                    }
-                    else if (touchDif.y < 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
-                    {
-                        //Sheld
-                        textText.text = "Sheld";
-                        anime.SetTrigger("doSheld");
-                        
-                    }
-                    else if (touchDif.x > 0 && Mathf.Abs(touchDif.y) < Mathf.Abs(touchDif.x))
+                    if (touchDif.x > 0 && Mathf.Abs(touchDif.y) < Mathf.Abs(touchDif.x))
                     {
                         //Right Move
                         if (positionIndex >= 2 || isJump) return;
@@ -109,6 +81,27 @@ public class PlayerController : MonoBehaviour
                         //Moving(playerPos[positionIndex].position, 3f);
                         //StartCoroutine(Moving(playerPos[positionIndex].position, 0.5f));
                     }
+                    else if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
+                    {
+
+                        if (isJump)//Spetial Move
+                        {
+                            textText.text = "Spetial Move";
+                        }
+                        else//Jump
+                        {
+                            isJump = true;
+                            anime.SetBool("isJump", isJump);
+                            textText.text = "JUMP";
+                            rigid.AddForce(new Vector2(0, 1000f));
+                        }
+                    }
+                    else if (touchDif.y < 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
+                    {
+                        //Sheld
+                        textText.text = "Sheld";
+                        anime.SetTrigger("doSheld");
+                    }
                 }
                 //터치.
                 else
@@ -123,9 +116,9 @@ public class PlayerController : MonoBehaviour
 
     public void Moving(bool dir)
     {
-        anime.SetTrigger("doSideWalk");
         spriteRenderer.flipX = !dir;
         transform.position = playerPos[positionIndex].position;
+        anime.SetTrigger("doSideStep");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -133,37 +126,16 @@ public class PlayerController : MonoBehaviour
         if(collision.collider.tag == "Background")
         {
             isJump = false;
-            anime.SetTrigger("doLand");
-            anime.SetBool("isJump", false);
+            textText.text = "Land";
+            anime.SetBool("isJump", isJump);
         }
     }
 
-    //public IEnumerator Moving(Vector3 targetPos, float targetTime)
-    //{
-    //    float curTime = 0f;
-
-    //    Vector2 curPos = transform.position;
-
-    //    while (curTime < targetTime)
-    //    {
-    //        yield return null;
-    //        float percent = curTime / targetTime;
-    //        transform.position = Vector2.Lerp(curPos, targetPos, percent);
-    //        curTime += Time.deltaTime;
-    //    }
-    //}
-
-    //public void Moving(Vector3 targetPos, float targetTime)
-    //{
-    //    float curTime = 0f;
-
-    //    Vector2 curPos = transform.position;
-
-    //    while (curTime < targetTime)
-    //    {
-    //        float percent = curTime / targetTime;
-    //        transform.position = Vector2.Lerp(curPos, targetPos, percent);    
-    //        curTime += Time.deltaTime;
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "LandMark")
+        {
+            anime.SetTrigger("doLand");
+        }
+    }
 }
