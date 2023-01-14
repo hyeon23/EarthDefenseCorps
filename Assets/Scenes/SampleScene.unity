@@ -1528,12 +1528,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2843fcd32593b9d40a26f01518b790c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swipeSensitivity: 12
-  textText: {fileID: 286024706}
   playerPos:
   - {fileID: 1016671058}
   - {fileID: 1558899180}
   - {fileID: 493942527}
+  textText: {fileID: 286024706}
+  swipeSensitivity: 12
 --- !u!1 &1953659166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,7 +1587,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 1
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

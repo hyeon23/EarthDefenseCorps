@@ -9,22 +9,29 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float swipeSensitivity = 12;
-    [SerializeField]
-    private TextMeshProUGUI textText;
+
     [SerializeField]
     private Transform[] playerPos;
 
-    private Animator anime;
-    private Rigidbody2D rigid;
-    private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private TextMeshProUGUI textText;
 
-    private Vector2 touchBeganPos;
-    private Vector2 touchEndedPos;
-    private Vector2 touchDif;
+    [SerializeField]
+    private float swipeSensitivity = 12;
 
     private int positionIndex = 1;
+    
+    private Vector2 touchDif;
+    private Vector2 touchBeganPos;
+    private Vector2 touchEndedPos;
+
+    //Player Variables
+    private bool isJump = false;
+
+    private Animator anime;
+    private Rigidbody2D rigid;
+
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
@@ -59,41 +66,48 @@ public class PlayerController : MonoBehaviour
                 {
                     if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
                     {
-                        //Jump
-                        anime.SetTrigger("doJump");
-                        anime.SetBool("isJump", true);
-                        textText.text = "JUMP";
-                        rigid.AddForce(new Vector2(0, 1000f));
                         
+                        if (isJump)//Spetial Move
+                        {
+                            textText.text = "Spetial Move";
+                        }
+                        else//Jump
+                        {
+                            isJump = true;
+                            anime.SetTrigger("doJump");
+                            anime.SetBool("isJump", true);
+                            textText.text = "JUMP";
+                            rigid.AddForce(new Vector2(0, 1000f));
+                        }
                     }
                     else if (touchDif.y < 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
                     {
                         //Sheld
-                        anime.SetTrigger("doSheld");
                         textText.text = "Sheld";
+                        anime.SetTrigger("doSheld");
+                        
                     }
                     else if (touchDif.x > 0 && Mathf.Abs(touchDif.y) < Mathf.Abs(touchDif.x))
                     {
                         //Right Move
-                        if (positionIndex >= 2) return;
+                        if (positionIndex >= 2 || isJump) return;
+
                         textText.text = "Right Move";
                         positionIndex += 1;
                         Moving(true);
                         //Moving(playerPos[positionIndex].position, 3f);
                         //StartCoroutine(Moving(playerPos[positionIndex].position, 0.5f));
-                        Debug.Log(positionIndex);
                     }
                     else if (touchDif.x < 0 && Mathf.Abs(touchDif.y) < Mathf.Abs(touchDif.x))
                     {
                         //Left Move
-                        if (positionIndex <= 0) return;
+                        if (positionIndex <= 0 || isJump) return;
+
                         textText.text = "Left Move";
                         positionIndex -= 1;
                         Moving(false);
                         //Moving(playerPos[positionIndex].position, 3f);
                         //StartCoroutine(Moving(playerPos[positionIndex].position, 0.5f));
-                        
-                        Debug.Log(positionIndex);
                     }
                 }
                 //ÅÍÄ¡.
@@ -111,13 +125,14 @@ public class PlayerController : MonoBehaviour
     {
         anime.SetTrigger("doSideWalk");
         spriteRenderer.flipX = !dir;
-        transform.position = new Vector2(playerPos[positionIndex].position.x, transform.position.y);
+        transform.position = playerPos[positionIndex].position;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.tag == "Background")
         {
+            isJump = false;
             anime.SetTrigger("doLand");
             anime.SetBool("isJump", false);
         }
