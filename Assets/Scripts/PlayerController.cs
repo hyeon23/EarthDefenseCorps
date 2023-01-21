@@ -1,17 +1,34 @@
 using TMPro;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public enum PlayerState { Idle, SideStepLeft, SideStepRight, Jump, Sheld, Attack, SpecialMove, Count }
 
 public class PlayerController : MonoBehaviour
 {
+    private PlayerState playerState;
 
     [SerializeField]
     private Transform[] playerPos;
-
     [SerializeField]
     private TextMeshProUGUI textText;
 
     [SerializeField]
-    private float swipeSensitivity = 12;
+    private float swipeSensitivity = 10;
+
+    //Player Variables
+    public bool isSheld = false;
+    public bool parryingSheld = false;
+    [SerializeField]
+    private bool isJump = false;
+    [SerializeField]
+    private bool isCrushed = false;
+
+    [SerializeField]
+    private Animator anime;
+    [SerializeField]
+    private Animator weaponAnime;
 
     private int positionIndex = 1;
 
@@ -19,20 +36,47 @@ public class PlayerController : MonoBehaviour
     private Vector2 touchBeganPos;
     private Vector2 touchEndedPos;
 
-
-    //Player Variables
-    private bool isJump = false;
-
-    private Animator anime;
+    
     private Rigidbody2D rigid;
-
     private SpriteRenderer spriteRenderer;
 
-    private void Awake()
+    private static PlayerController instance = null;
+
+    void Awake()
     {
-        anime = gameObject.GetComponent<Animator>();
+        if (null == instance)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
         rigid = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+        ChangeState(PlayerState.Idle);
+    }
+
+    public static PlayerController Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
+
+    private void ChangeState(PlayerState newState)
+    {
+        StopCoroutine(playerState.ToString());
+        playerState = newState;
+        StartCoroutine(playerState.ToString());
     }
 
     private void FixedUpdate()
@@ -55,87 +99,272 @@ public class PlayerController : MonoBehaviour
             {
                 touchEndedPos = touch.position;
                 touchDif = (touchEndedPos - touchBeganPos);
-
-                //스와이프. 터치의 x이동거리나 y이동거리가 민감도보다 크면
                 if (Mathf.Abs(touchDif.y) > swipeSensitivity || Mathf.Abs(touchDif.x) > swipeSensitivity)
                 {
                     if (touchDif.x > 0 && Mathf.Abs(touchDif.y) < Mathf.Abs(touchDif.x))
                     {
                         //Right Move
-                        if (positionIndex >= 2 || isJump) return;
+                        if (positionIndex >= 2 || isJump || isCrushed) return;
 
-                        textText.text = "Right Move";
-                        positionIndex += 1;
-                        Moving(true);
-                        //Moving(playerPos[positionIndex].position, 3f);
-                        //StartCoroutine(Moving(playerPos[positionIndex].position, 0.5f));
+                        ChangeState(PlayerState.SideStepRight);
                     }
                     else if (touchDif.x < 0 && Mathf.Abs(touchDif.y) < Mathf.Abs(touchDif.x))
                     {
                         //Left Move
-                        if (positionIndex <= 0 || isJump) return;
+                        if (positionIndex <= 0 || isJump || isCrushed) return;
 
-                        textText.text = "Left Move";
-                        positionIndex -= 1;
-                        Moving(false);
-                        //Moving(playerPos[positionIndex].position, 3f);
-                        //StartCoroutine(Moving(playerPos[positionIndex].position, 0.5f));
+                        ChangeState(PlayerState.SideStepLeft);
                     }
                     else if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
                     {
-
-                        if (isJump)//Spetial Move
+                        if (isJump)
                         {
-                            textText.text = "Spetial Move";
+                            //Spetial Move
+                            ChangeState(PlayerState.SpecialMove);
                         }
-                        else//Jump
+                        else
                         {
-                            isJump = true;
-                            anime.SetBool("isJump", isJump);
-                            textText.text = "JUMP";
-                            rigid.AddForce(new Vector2(0, 1000f));
+                            //Jump
+                            if (isSheld || isCrushed) return;
+
+                            ChangeState(PlayerState.Jump);
                         }
                     }
                     else if (touchDif.y < 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
                     {
                         //Sheld
-                        textText.text = "Sheld";
-                        anime.SetTrigger("doSheld");
+                        ChangeState(PlayerState.Sheld);
                     }
                 }
-                //터치.
                 else
                 {
                     //Attack
-                    anime.SetTrigger("doAttack");
-                    textText.text = "Attack";
+                    ChangeState(PlayerState.Attack);
                 }
             }
         }
-    }
+        else
+        {
+            if (isJump || isSheld) return;
 
-    public void Moving(bool dir)
-    {
-        spriteRenderer.flipX = !dir;
-        transform.position = playerPos[positionIndex].position;
-        anime.SetTrigger("doSideStep");
+            ChangeState(PlayerState.Idle);
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Background")
+        if (collision.gameObject.tag == "Floor")
         {
             isJump = false;
-            textText.text = "Land";
             anime.SetBool("isJump", isJump);
+            gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "LandMark")
+        if (collision.transform.tag == "Block")
         {
-            anime.SetTrigger("doLand");
+            isCrushed = true;
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Block")
+        {
+            isCrushed = false;
+        }
+    }
+
+    public void OnCrushed()
+    {
+        isCrushed = true;
+    }
+
+    public void OffCrushed()
+    {
+        isCrushed = false;
+    }
+
+    private IEnumerator Idle()
+    {
+        while (true)
+        {
+            yield return null;
+        }
+    }
+
+    public void Moving(bool dir)
+    {
+        positionIndex = dir == true ? positionIndex + 1 : positionIndex - 1;
+        spriteRenderer.flipX = !dir;
+        transform.position = playerPos[positionIndex].position;
+        anime.SetTrigger("doSideStep");
+    }
+
+    private IEnumerator SideStepLeft()
+    {
+        isSheld = false;
+        textText.text = "Left Move";
+        Moving(false);
+        yield return null;
+    }
+
+    private IEnumerator SideStepRight()
+    {
+        isSheld = false;
+        textText.text = "Right Move";
+        Moving(true);
+        yield return null;
+    }
+
+    private IEnumerator Jump()
+    {
+        isJump = true;
+        textText.text = "JUMP";
+        anime.SetBool("isJump", isJump);
+        rigid.AddForce(new Vector2(0, 10f), ForceMode2D.Impulse);
+        gameObject.layer = LayerMask.NameToLayer("Player");
+
+        yield return null;
+    }
+
+    private IEnumerator Sheld()
+    {
+        anime.SetBool("isSheld", isSheld);
+
+        if (isSheld)
+        {
+            //Sheld Off
+            Debug.Log("1");
+            textText.text = "SheldOff";
+            anime.SetTrigger("offSheld");
+
+            isSheld = false;
+        }
+        else
+        {
+            //Sheld On
+            Debug.Log("2");
+            textText.text = "SheldOn";
+            anime.SetTrigger("onSheld");
+            //anime.SetBool("isSheld", !isSheld);
+
+            isSheld = true;
+
+            float timer = 0f;
+
+            while (true)
+            {
+                Debug.Log("3");
+                timer += Time.deltaTime;
+
+                if (timer >= 1)
+                {
+                    //SheldOff!
+                    Debug.Log("4");
+                    anime.SetBool("isSheld", true);
+                    textText.text = "SheldOff";
+                    anime.SetTrigger("offSheld");
+
+                    isSheld = false;
+                    parryingSheld = false;
+                    yield break;
+                }
+                else if (parryingSheld)
+                {
+                    //Parrying!
+                    Debug.Log("5");
+                    anime.SetTrigger("doParrying");
+
+                    if (isJump && !isSheld)
+                    {
+                        rigid.AddForce(new Vector2(0f, -10f), ForceMode2D.Impulse);
+                    }
+
+                    anime.SetBool("isSheld", false);
+                    isSheld = false;
+                    parryingSheld = false;
+                    yield break;
+                }
+
+                yield return null;
+            }
+        }
+
+        //Ver#1
+        //anime.SetBool("isSheld", isSheld);
+
+        //if (isSheld)
+        //{
+        //    //Sheld Off
+        //    textText.text = "SheldOff";
+        //    anime.SetTrigger("offSheld");
+        //}
+        //else
+        //{
+        //    //Sheld On
+        //    textText.text = "SheldOn";
+        //    anime.SetTrigger("onSheld");
+
+        //    //float timer = 0f;
+
+        //    //while (true)
+        //    //{
+        //    //    timer += Time.deltaTime;
+        //    //    if (isSheld && timer >= 1)
+        //    //    {
+        //    //        //SheldOff!
+        //    //        anime.SetTrigger("offSheld");
+
+        //    //        anime.SetBool("isSheld", false);
+
+        //    //        isSheld = false;
+        //    //        parryingSheld = false;
+        //    //        yield break;
+        //    //    }
+        //    //    else if (isSheld && parryingSheld)
+        //    //    {
+        //    //        //Parrying!
+        //    //        anime.SetTrigger("doParrying");
+
+        //    //        if (isJump && !isSheld)
+        //    //        {
+        //    //            rigid.AddForce(new Vector2(0f, -10f), ForceMode2D.Impulse);
+        //    //        }
+
+        //    //        anime.SetBool("isSheld", false);
+        //    //        isSheld = false;
+        //    //        parryingSheld = false;
+        //    //        yield break;
+        //    //    }
+        //    //    yield return null;
+        //    //}
+        //}
+
+        //isSheld = !isSheld;
+
+        //yield return null;
+    }
+
+
+    private IEnumerator Attack()
+    {
+        isSheld = false;
+
+        textText.text = "Attack";
+        anime.SetTrigger("doAttack");
+        weaponAnime.SetTrigger("doAttack");
+
+        yield return null;
+    }
+
+    private IEnumerator SpecialMove()
+    {
+        textText.text = "Spetial Move";
+
+        yield return null;
     }
 }

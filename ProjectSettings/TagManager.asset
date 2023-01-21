@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Background
   - LandMark
+  - Floor
+  - Block
+  - Weapon
+  - Sheld
+  - BlockBullet
   layers:
   - Default
   - TransparentFX
@@ -13,13 +18,13 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Floor
+  - Player
+  - PlayerGrounded
+  - BlockBullet
+  - Block
+  - Weapon
+  - Sheld
   - 
   - 
   - 
