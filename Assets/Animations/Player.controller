@@ -254,12 +254,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: isSheld
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   - m_Name: onSheld
     m_Type: 9
     m_DefaultFloat: 0
@@ -570,7 +564,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 240, y: 510, z: 0}
-  m_EntryPosition: {x: 10, y: 340, z: 0}
+  m_EntryPosition: {x: 240, y: 270, z: 0}
   m_ExitPosition: {x: 240, y: 850, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 4012442003618912203}

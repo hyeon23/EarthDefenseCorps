@@ -25,7 +25,7 @@ public class SpawnManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        StartCoroutine(SpawnEnemies(3f));
+        StartCoroutine(SpawnEnemies(0.5f));
     }
     public static SpawnManager Instance
     {

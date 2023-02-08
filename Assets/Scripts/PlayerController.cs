@@ -13,32 +13,30 @@ public class PlayerController : MonoBehaviour
     private Transform[] playerPos;
     [SerializeField]
     private TextMeshProUGUI textText;
-
     [SerializeField]
     private float swipeSensitivity = 10;
 
     //Player Variables
+    public bool isJump = false;
     public bool isSheld = false;
+    public bool offSheld = false;
+    public bool isCrushed = false;
+    public bool isOverlapped = false;
     public bool parryingSheld = false;
-    [SerializeField]
-    private bool isJump = false;
-    [SerializeField]
-    private bool isCrushed = false;
 
     [SerializeField]
     private Animator anime;
-    [SerializeField]
-    private Animator weaponAnime;
-
     private int positionIndex = 1;
 
     private Vector2 touchDif;
     private Vector2 touchBeganPos;
     private Vector2 touchEndedPos;
 
-    
-    private Rigidbody2D rigid;
-    private SpriteRenderer spriteRenderer;
+    [Header("Parents")]
+    [SerializeField]
+    private Rigidbody2D parentRigid;
+    [SerializeField]
+    private Transform parentTransform;
 
     private static PlayerController instance = null;
 
@@ -47,16 +45,11 @@ public class PlayerController : MonoBehaviour
         if (null == instance)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
             Destroy(this.gameObject);
         }
-
-        rigid = gameObject.GetComponent<Rigidbody2D>();
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-
         ChangeState(PlayerState.Idle);
     }
 
@@ -104,19 +97,20 @@ public class PlayerController : MonoBehaviour
                     if (touchDif.x > 0 && Mathf.Abs(touchDif.y) < Mathf.Abs(touchDif.x))
                     {
                         //Right Move
-                        if (positionIndex >= 2 || isJump || isCrushed) return;
+                        if (positionIndex >= 2 || isJump || isOverlapped) return;
 
                         ChangeState(PlayerState.SideStepRight);
                     }
                     else if (touchDif.x < 0 && Mathf.Abs(touchDif.y) < Mathf.Abs(touchDif.x))
                     {
                         //Left Move
-                        if (positionIndex <= 0 || isJump || isCrushed) return;
+                        if (positionIndex <= 0 || isJump || isOverlapped) return;
 
                         ChangeState(PlayerState.SideStepLeft);
                     }
                     else if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
                     {
+
                         if (isJump)
                         {
                             //Spetial Move
@@ -125,7 +119,7 @@ public class PlayerController : MonoBehaviour
                         else
                         {
                             //Jump
-                            if (isSheld || isCrushed) return;
+                            if (isSheld || isOverlapped) return;
 
                             ChangeState(PlayerState.Jump);
                         }
@@ -133,7 +127,23 @@ public class PlayerController : MonoBehaviour
                     else if (touchDif.y < 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
                     {
                         //Sheld
-                        ChangeState(PlayerState.Sheld);
+                        if (!isSheld)
+                        {
+                            if (PlayerData.Instance.curSheldGage < 33.3f) { return; }
+                            
+                            offSheld = false;
+                            anime.ResetTrigger("onSheld");
+                            anime.ResetTrigger("offSheld");
+                            anime.ResetTrigger("parryingSheld");
+                            ChangeState(PlayerState.Sheld);
+                        }
+                        else
+                        {
+                            offSheld = true;
+                            anime.ResetTrigger("onSheld");
+                            anime.ResetTrigger("offSheld");
+                            anime.ResetTrigger("parryingSheld");
+                        }
                     }
                 }
                 else
@@ -149,64 +159,26 @@ public class PlayerController : MonoBehaviour
 
             ChangeState(PlayerState.Idle);
         }
-        
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            isJump = false;
-            anime.SetBool("isJump", isJump);
-            gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "Block")
-        {
-            isCrushed = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "Block")
-        {
-            isCrushed = false;
-        }
-    }
-
-    public void OnCrushed()
-    {
-        isCrushed = true;
-    }
-
-    public void OffCrushed()
-    {
-        isCrushed = false;
     }
 
     private IEnumerator Idle()
     {
-        while (true)
-        {
-            yield return null;
-        }
+        yield return null;
     }
 
     public void Moving(bool dir)
     {
         positionIndex = dir == true ? positionIndex + 1 : positionIndex - 1;
-        spriteRenderer.flipX = !dir;
-        transform.position = playerPos[positionIndex].position;
+        parentTransform.localScale = (dir == true ? Vector3.one : new Vector3(-1, 1, 1));
+        parentTransform.position = playerPos[positionIndex].position;
         anime.SetTrigger("doSideStep");
+
+        SheldToX();
     }
 
     private IEnumerator SideStepLeft()
     {
-        isSheld = false;
         textText.text = "Left Move";
         Moving(false);
         yield return null;
@@ -214,7 +186,6 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator SideStepRight()
     {
-        isSheld = false;
         textText.text = "Right Move";
         Moving(true);
         yield return null;
@@ -225,146 +196,108 @@ public class PlayerController : MonoBehaviour
         isJump = true;
         textText.text = "JUMP";
         anime.SetBool("isJump", isJump);
-        rigid.AddForce(new Vector2(0, 10f), ForceMode2D.Impulse);
+        parentRigid.AddForce(new Vector2(0, 20f), ForceMode2D.Impulse);
         gameObject.layer = LayerMask.NameToLayer("Player");
 
         yield return null;
     }
 
+    //Ver1
     private IEnumerator Sheld()
     {
-        anime.SetBool("isSheld", isSheld);
+        //Sheld On
+        isSheld = !isSheld;
+        textText.text = "SheldOn";
+        anime.ResetTrigger("offSheld");//순서 중요
+        anime.SetTrigger("onSheld");
 
-        if (isSheld)
+        float timer = 0f;
+        offSheld = false;
+
+        while (true)
         {
-            //Sheld Off
-            Debug.Log("1");
-            textText.text = "SheldOff";
-            anime.SetTrigger("offSheld");
-
-            isSheld = false;
-        }
-        else
-        {
-            //Sheld On
-            Debug.Log("2");
-            textText.text = "SheldOn";
-            anime.SetTrigger("onSheld");
-            //anime.SetBool("isSheld", !isSheld);
-
-            isSheld = true;
-
-            float timer = 0f;
-
-            while (true)
+            Debug.Log("While");
+            timer += Time.deltaTime;
+            if (timer >= 1)
             {
-                Debug.Log("3");
-                timer += Time.deltaTime;
-
-                if (timer >= 1)
-                {
-                    //SheldOff!
-                    Debug.Log("4");
-                    anime.SetBool("isSheld", true);
-                    textText.text = "SheldOff";
-                    anime.SetTrigger("offSheld");
-
-                    isSheld = false;
-                    parryingSheld = false;
-                    yield break;
-                }
-                else if (parryingSheld)
-                {
-                    //Parrying!
-                    Debug.Log("5");
-                    anime.SetTrigger("doParrying");
-
-                    if (isJump && !isSheld)
-                    {
-                        rigid.AddForce(new Vector2(0f, -10f), ForceMode2D.Impulse);
-                    }
-
-                    anime.SetBool("isSheld", false);
-                    isSheld = false;
-                    parryingSheld = false;
-                    yield break;
-                }
-
-                yield return null;
+                //SheldOff!
+                SheldOff();
+                yield break;
             }
+            else if (parryingSheld)
+            {
+                //Parrying!
+                Parrying();
+                yield break;
+            }
+            else if (offSheld == true)
+            {
+                //SheldOff!
+                SheldOff();
+                yield break;
+            }
+
+            yield return null;
         }
-
-        //Ver#1
-        //anime.SetBool("isSheld", isSheld);
-
-        //if (isSheld)
-        //{
-        //    //Sheld Off
-        //    textText.text = "SheldOff";
-        //    anime.SetTrigger("offSheld");
-        //}
-        //else
-        //{
-        //    //Sheld On
-        //    textText.text = "SheldOn";
-        //    anime.SetTrigger("onSheld");
-
-        //    //float timer = 0f;
-
-        //    //while (true)
-        //    //{
-        //    //    timer += Time.deltaTime;
-        //    //    if (isSheld && timer >= 1)
-        //    //    {
-        //    //        //SheldOff!
-        //    //        anime.SetTrigger("offSheld");
-
-        //    //        anime.SetBool("isSheld", false);
-
-        //    //        isSheld = false;
-        //    //        parryingSheld = false;
-        //    //        yield break;
-        //    //    }
-        //    //    else if (isSheld && parryingSheld)
-        //    //    {
-        //    //        //Parrying!
-        //    //        anime.SetTrigger("doParrying");
-
-        //    //        if (isJump && !isSheld)
-        //    //        {
-        //    //            rigid.AddForce(new Vector2(0f, -10f), ForceMode2D.Impulse);
-        //    //        }
-
-        //    //        anime.SetBool("isSheld", false);
-        //    //        isSheld = false;
-        //    //        parryingSheld = false;
-        //    //        yield break;
-        //    //    }
-        //    //    yield return null;
-        //    //}
-        //}
-
-        //isSheld = !isSheld;
-
-        //yield return null;
     }
 
+    private void SheldOff()
+    {
+        textText.text = "SheldOff";
+        anime.SetTrigger("offSheld");
+
+        SheldToX();
+    }
+
+    private void Parrying()
+    {
+        //Parrying!
+        textText.text = "Parrying!";
+        anime.ResetTrigger("onSheld");
+        anime.SetTrigger("doParrying");
+
+        if (isJump)
+        {
+            parentRigid.velocity = Vector2.zero;
+            parentRigid.AddForce(new Vector2(0f, -20f), ForceMode2D.Impulse);
+        }
+
+        SheldToX();
+        anime.ResetTrigger("offSheld");
+    }
 
     private IEnumerator Attack()
     {
-        isSheld = false;
-
+        SheldToX();
         textText.text = "Attack";
         anime.SetTrigger("doAttack");
-        weaponAnime.SetTrigger("doAttack");
 
         yield return null;
     }
 
     private IEnumerator SpecialMove()
     {
+        SheldToX();
         textText.text = "Spetial Move";
 
         yield return null;
+
+    }
+
+    private void SheldToX()
+    {
+        isSheld = false;
+        offSheld = false;
+        parryingSheld = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            isJump = false;
+            anime.SetBool("isJump", isJump);
+            gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
+        }
     }
 }

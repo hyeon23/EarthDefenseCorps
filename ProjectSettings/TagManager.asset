@@ -11,6 +11,8 @@ TagManager:
   - Weapon
   - Sheld
   - BlockBullet
+  - PlayerTrigger
+  - BlockTrigger
   layers:
   - Default
   - TransparentFX
