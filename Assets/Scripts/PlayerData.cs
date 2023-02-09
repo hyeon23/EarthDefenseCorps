@@ -43,7 +43,7 @@ public class PlayerData : MonoBehaviour
         }
 
         curHp = maxHp;
-        curSheldGage = /*maxSheldGage;*/ maxSheldGage;
+        curSheldGage = maxSheldGage;/*maxSheldGage;*/
         curSpecialMoveGage = 0;
     }
 

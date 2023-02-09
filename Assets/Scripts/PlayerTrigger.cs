@@ -7,7 +7,6 @@ public class PlayerTrigger : MonoBehaviour
     {
         if (collision.tag == "Block")
         {
-            Debug.Log("OnPlayer");
             PlayerController.Instance.isOverlapped = true;
         }
         else if (collision.transform.tag == "BlockBullet")

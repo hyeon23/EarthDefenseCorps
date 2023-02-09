@@ -5,7 +5,6 @@ public class OneToOneHBlock : Block
     {
         if(collision.tag == "PlayerTrigger")
         {
-            Debug.Log("PlayerHitted");
             Destroy(gameObject);
         }
         else if(collision.tag == "Sheld")
@@ -14,13 +13,11 @@ public class OneToOneHBlock : Block
         }
         else if(collision.tag == "Floor")
         {
-            Debug.Log("OnFloor");
             Destroy(gameObject);
         }
         else if(collision.tag == "Weapon")
         {  
             //Hit
-            Debug.Log("Smashed");
             StartCoroutine(OnHit(1, collision.transform.position));
         }
     }

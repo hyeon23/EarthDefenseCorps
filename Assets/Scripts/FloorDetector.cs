@@ -8,7 +8,6 @@ public class FloorDetector : PlayerTrigger
     {
         if (collision.tag == "BlockTrigger")
         {
-            Debug.Log("바닥충돌 시작");
             PlayerController.Instance.isCrushed = true;
             collisionBlock = collision;
 
@@ -20,7 +19,6 @@ public class FloorDetector : PlayerTrigger
     {
         if (collision.tag == "BlockTrigger")
         {
-            Debug.Log("바닥충돌 끝");
             PlayerController.Instance.isCrushed = false; 
             collisionBlock = null;
         }

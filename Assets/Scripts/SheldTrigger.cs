@@ -8,7 +8,6 @@ public class SheldTrigger : MonoBehaviour
     {
         if (collision.transform.tag == "Block" || collision.transform.tag == "BlockBullet")
         {
-            Debug.Log("SheldGetTouched");
             PlayerController.Instance.parryingSheld = true;
         }
     }

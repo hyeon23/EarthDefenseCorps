@@ -10,7 +10,6 @@ public class OneToOneBlock : Block
         }
         else if (collision.tag == "Sheld")
         {
-            Debug.Log("OnSheld");
             parentRigid.velocity = Vector2.zero;
             parentRigid.AddForce(new Vector2(0, PlayerController.Instance.isCrushed ? 10 : 5), ForceMode2D.Impulse);
         }
