@@ -253,7 +253,6 @@ public class PlayerController : MonoBehaviour
     {
         //Parrying!
         textText.text = "Parrying!";
-        anime.ResetTrigger("onSheld");
         anime.SetTrigger("doParrying");
 
         if (isJump)
