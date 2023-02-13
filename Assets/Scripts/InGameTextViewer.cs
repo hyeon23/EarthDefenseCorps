@@ -33,6 +33,21 @@ public class InGameTextViewer : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI curAndMaxEnemyHpText;
 
+    [SerializeField]
+    private Image enemyImage;
+    [SerializeField]
+    private Sprite monsterBossImage;
+    [SerializeField]
+    private Sprite monsterEliteImage;
+    [SerializeField]
+    private Sprite monsterImage;
+    [SerializeField]
+    private Sprite block1X1Image;
+    [SerializeField]
+    private Sprite block1X2Image;
+    [SerializeField]
+    private Sprite block1X3Image;
+
     public float curEnemyHp;
     public float maxEnemyHp;
 
@@ -188,5 +203,34 @@ public class InGameTextViewer : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         backGageHit[index] = true;
+    }
+
+    public void SetEnemyImage(bool Shown, float curHP, float maxHP, EnemyType enemeyType)
+    {
+        enemyGageShown = Shown;
+        maxEnemyHp = maxHP;
+        curEnemyHp = curHP;
+
+        switch (enemeyType)
+        {
+            case EnemyType.Monster:
+                enemyImage.sprite = monsterImage;
+                break;
+            case EnemyType.MonsterElite:
+            case EnemyType.MonsterBoss:
+                enemyImage.sprite = monsterBossImage;
+                break;
+            case EnemyType.Block1X1:
+                enemyImage.sprite = block1X1Image;
+                break;
+            case EnemyType.Block1X3:
+                enemyImage.sprite = block1X2Image;
+                break;
+            case EnemyType.Block1X3M:
+                enemyImage.sprite = block1X3Image;
+                break;
+            default:
+                break;
+        }
     }
 }

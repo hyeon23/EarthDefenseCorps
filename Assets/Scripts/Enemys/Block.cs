@@ -17,11 +17,8 @@ public class Block : Enemy
 
         curHp -= damage;
 
-        InGameTextViewer.Instance.enemyGageShown = true;
-        InGameTextViewer.Instance.maxEnemyHp = maxHp;
-        InGameTextViewer.Instance.curEnemyHp = curHp;
-
-        InGameTextViewer.Instance.SpawnHUDText(damage.ToString()/*GameManager.Instance.combo + "Combo"*/, isCritical ? Color.red : Color.white, onHitPosition);
+        InGameTextViewer.Instance.SetEnemyImage(true, curHp, maxHp, enemyType);
+        InGameTextViewer.Instance.SpawnHUDText(damage.ToString(), isCritical ? Color.red : Color.white, onHitPosition);
 
         if (curHp <= 0)
         {
@@ -52,6 +49,30 @@ public class Block : Enemy
     public void OnDead()
     {
         InGameTextViewer.Instance.enemyGageShown = false;
-        Destroy(parentGameObject);
+        //이러면 번개 잡을때도 스폰될듯?
+
+        //Name or Type에 따라 분류 가능
+        switch (enemyType)
+        {
+            case EnemyType.Block1X1H:
+                break;
+            case EnemyType.Block1X1:
+                EffectManager.Instance.SpawnEffect(new int[] { 7, 8, 9, 10, 11, 12, 13 }, transform.position);
+                break;
+            case EnemyType.Block1X3:
+            case EnemyType.Block1X3M:
+                EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 4, 5, 6 }, transform.parent.position);
+                break;
+        }
+
+        if(ancestorGameObject.transform.childCount == 1)
+        {
+            Destroy(ancestorGameObject);
+        }
+        else
+        {
+            Destroy(parentGameObject);
+        }
+
     }
 }

@@ -154,7 +154,6 @@ Library: lib_burst_generated
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Unity.Services.Core.Threading.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Unity.2D.Tilemap.Extras.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Unity.Services.Core.Networking.dll
---root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Assembly-CSharp-firstpass.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Unity.InternalAPIEngineBridge.001.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Unity.Services.Core.Configuration.dll
 --assembly-folder=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\

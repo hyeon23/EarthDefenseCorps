@@ -1,5 +1,11 @@
 using UnityEngine;
 
+//Layering
+//BackGround: -4 ~
+//Player: 1 ~
+//Enemy(Block + Alien): 6 ~
+//Effect: 11 ~
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;

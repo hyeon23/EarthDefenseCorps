@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7962452878796204040}
-  - component: {fileID: 5953259753942419849}
-  - component: {fileID: 4190059624084875486}
   - component: {fileID: 8099040961032350581}
   - component: {fileID: 7553097700872988785}
+  - component: {fileID: 7585011799205147292}
   m_Layer: 9
   m_Name: Thunder
   m_TagString: BlockBullet
@@ -35,47 +34,6 @@ Transform:
   m_Father: {fileID: 4917451574274028300}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5953259753942419849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2390596016032982297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaf79c4c11bbd484bbe86dd44861ced1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockName: 
-  curHp: 0
-  maxHp: 1
-  dmg: 10
-  mass: 0
-  gravity: 0
-  parentRigid: {fileID: 0}
-  parentGameObject: {fileID: 4917451574274028336}
---- !u!50 &4190059624084875486
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2390596016032982297}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0.1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 5
 --- !u!61 &8099040961032350581
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -154,6 +112,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7585011799205147292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390596016032982297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26d400f3219950489fa926cc889297c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 4
+  enemyName: 
+  curHp: 0
+  maxHp: 1
+  dmg: 1
+  ancestorGameObject: {fileID: 4917451574274028336}
+  parentRigid: {fileID: 7693869186719529618}
+  mass: 0
+  gravity: 0
+  isOverlappedPlayer: 0
+  isCrushedPlayer: 0
 --- !u!1 &4917451574274028336
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4917451574274028300}
+  - component: {fileID: 7693869186719529618}
   m_Layer: 9
   m_Name: OneToOneHBlock
   m_TagString: BlockBullet
@@ -186,3 +168,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &7693869186719529618
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4917451574274028336}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

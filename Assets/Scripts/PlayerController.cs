@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     //Player Variables
     public bool isJump = false;
     public bool isSheld = false;
-    public bool isCrushed = false;
     public bool isOverlapped = false;
     public bool parryingSheld = false;
 

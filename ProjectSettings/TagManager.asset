@@ -13,6 +13,8 @@ TagManager:
   - BlockBullet
   - PlayerTrigger
   - BlockTrigger
+  - AssembleTip
+  - FloorTrigger
   layers:
   - Default
   - TransparentFX

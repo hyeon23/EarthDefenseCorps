@@ -3,23 +3,47 @@ using UnityEngine;
 
 public class PlayerTrigger : MonoBehaviour
 {
+    private static PlayerTrigger instance = null;
+
+    void Awake()
+    {
+        if (null == instance)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public static PlayerTrigger Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Block")
+        if (collision.tag == "BlockTrigger")
         {
-            PlayerController.Instance.isOverlapped = true;
         }
         else if (collision.transform.tag == "BlockBullet")
         {
-            StartCoroutine(OnHit(collision.GetComponent<OneToOneHBlock>().dmg));
+            StartCoroutine(OnHit(collision.GetComponent<OneToOneBlock>().dmg));
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Block")
+        if (collision.transform.tag == "BlockTrigger")
         {
-            PlayerController.Instance.isOverlapped = false;
         }
     }
 

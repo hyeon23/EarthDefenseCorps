@@ -504,10 +504,12 @@ struct PreventReadOnlyInstanceModificationAttribute_t7FBCFCBA855C80F9E87486C8A6B
 // UnityEngine.Scripting.RequiredByNativeCodeAttribute
 struct RequiredByNativeCodeAttribute_t86B11F2BA12BB463CE3258E64E16B43484014FCA  : public Attribute_tFDA8EFEFB0711976D22474794576DAF28F7440AA
 {
+	// System.String UnityEngine.Scripting.RequiredByNativeCodeAttribute::<Name>k__BackingField
+	String_t* ___U3CNameU3Ek__BackingField_0;
 	// System.Boolean UnityEngine.Scripting.RequiredByNativeCodeAttribute::<Optional>k__BackingField
-	bool ___U3COptionalU3Ek__BackingField_0;
+	bool ___U3COptionalU3Ek__BackingField_1;
 	// System.Boolean UnityEngine.Scripting.RequiredByNativeCodeAttribute::<GenerateProxy>k__BackingField
-	bool ___U3CGenerateProxyU3Ek__BackingField_1;
+	bool ___U3CGenerateProxyU3Ek__BackingField_2;
 };
 
 // UnityEngine.Bindings.StaticAccessorAttribute
@@ -959,6 +961,8 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void NativeClassAttribute_set_Dec
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR CultureInfo_t9BA817D41AD55AC8BD07480DD8AC22F8FFA378E0* CultureInfo_get_InvariantCulture_mD1E96DC845E34B10F78CB744B0CB5D7D63CEB1E6 (const RuntimeMethod* method) ;
 // System.String System.String::Format(System.IFormatProvider,System.String,System.Object[])
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Format_m447B585713E5EB3EBF5D9D0710706D01E8A56D75 (RuntimeObject* ___0_provider, String_t* ___1_format, ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___2_args, const RuntimeMethod* method) ;
+// System.Void UnityEngine.Scripting.RequiredByNativeCodeAttribute::set_Name(System.String)
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void RequiredByNativeCodeAttribute_set_Name_mF218FB9A613487B6377AF13FA3531E5D581F487B_inline (RequiredByNativeCodeAttribute_t86B11F2BA12BB463CE3258E64E16B43484014FCA* __this, String_t* ___0_value, const RuntimeMethod* method) ;
 // System.Void UnityEngine.Bindings.NativeConditionalAttribute::set_Condition(System.String)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void NativeConditionalAttribute_set_Condition_m96107E75DC095D9B4A9A7CCE0EB0C3EFAA2F0053_inline (NativeConditionalAttribute_tB722B3ED350E82853F8CEFF672A6CDC4B6B362CA* __this, String_t* ___0_value, const RuntimeMethod* method) ;
 // System.Void UnityEngine.Bindings.NativeConditionalAttribute::set_Enabled(System.Boolean)
@@ -989,8 +993,6 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void NativeMethodAttribute_set_Is
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeMethodAttribute__ctor_mEA2A3B247A134B4453743CCF55655D16C63C741E (NativeMethodAttribute_tDE40C2DA59999D4870D672D8EDACC3504D2FA270* __this, const RuntimeMethod* method) ;
 // System.Void UnityEngine.Bindings.NativePropertyAttribute::set_TargetType(UnityEngine.Bindings.TargetType)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void NativePropertyAttribute_set_TargetType_m858E4E653A2F81F5313EF4F5D69740D945B19ED7_inline (NativePropertyAttribute_tAF7FB03BF7FFE9E8AB0E75B0F842FC0AA22AE607* __this, int32_t ___0_value, const RuntimeMethod* method) ;
-// System.Void UnityEngine.Bindings.NativeMethodAttribute::.ctor(System.String,System.Boolean,System.Boolean)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeMethodAttribute__ctor_m0B32894B3BD625410703207C7DBF61098BAEE973 (NativeMethodAttribute_tDE40C2DA59999D4870D672D8EDACC3504D2FA270* __this, String_t* ___0_name, bool ___1_isFreeFunction, bool ___2_isThreadSafe, const RuntimeMethod* method) ;
 // System.Void UnityEngine.Bindings.NativeTypeAttribute::set_CodegenOptions(UnityEngine.Bindings.CodegenOptions)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void NativeTypeAttribute_set_CodegenOptions_mEECF2309A52F63B6258608EFF56AEAEF5E5572FC_inline (NativeTypeAttribute_tB60F1675F1F20B6CB1B871FDDD067D672F75B8D1* __this, int32_t ___0_value, const RuntimeMethod* method) ;
 // System.Void UnityEngine.Bindings.NativeTypeAttribute::set_Header(System.String)
@@ -1001,6 +1003,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeTypeAttribute__ctor_m42A2C59E33BA5
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void NativeTypeAttribute_set_IntermediateScriptingStructName_mA5791DC59CA4C7572D8B5C80D28176559E2BC907_inline (NativeTypeAttribute_tB60F1675F1F20B6CB1B871FDDD067D672F75B8D1* __this, String_t* ___0_value, const RuntimeMethod* method) ;
 // System.Void UnityEngine.Bindings.NotNullAttribute::set_Exception(System.String)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void NotNullAttribute_set_Exception_m04F458FD91F138C58DC3A11E7C8E945701ECA528_inline (NotNullAttribute_t2E29B7802E8ED55CEA04EC4A6C254C6B60272DF7* __this, String_t* ___0_value, const RuntimeMethod* method) ;
+// System.Void UnityEngine.Bindings.NativeMethodAttribute::.ctor(System.String,System.Boolean,System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeMethodAttribute__ctor_m0B32894B3BD625410703207C7DBF61098BAEE973 (NativeMethodAttribute_tDE40C2DA59999D4870D672D8EDACC3504D2FA270* __this, String_t* ___0_name, bool ___1_isFreeFunction, bool ___2_isThreadSafe, const RuntimeMethod* method) ;
 // System.Void UnityEngine.Bindings.StaticAccessorAttribute::set_Name(System.String)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void StaticAccessorAttribute_set_Name_m922EC8831D7A1DDE802D33204B88715EEC7B121B_inline (StaticAccessorAttribute_tDE194716AED7A414D473DC570B2E0035A5CE130A* __this, String_t* ___0_value, const RuntimeMethod* method) ;
 // System.Void UnityEngine.Bindings.StaticAccessorAttribute::set_Type(UnityEngine.Bindings.StaticAccessorType)
@@ -1213,12 +1217,32 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RequiredByNativeCodeAttribute__ctor_mBCF
 		return;
 	}
 }
+// System.Void UnityEngine.Scripting.RequiredByNativeCodeAttribute::.ctor(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RequiredByNativeCodeAttribute__ctor_m255C8498736E931A7FBB4ABC292F08AE43D3B7BF (RequiredByNativeCodeAttribute_t86B11F2BA12BB463CE3258E64E16B43484014FCA* __this, String_t* ___0_name, const RuntimeMethod* method) 
+{
+	{
+		Attribute__ctor_m79ED1BF1EE36D1E417BA89A0D9F91F8AAD8D19E2(__this, NULL);
+		String_t* L_0 = ___0_name;
+		RequiredByNativeCodeAttribute_set_Name_mF218FB9A613487B6377AF13FA3531E5D581F487B_inline(__this, L_0, NULL);
+		return;
+	}
+}
+// System.Void UnityEngine.Scripting.RequiredByNativeCodeAttribute::set_Name(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RequiredByNativeCodeAttribute_set_Name_mF218FB9A613487B6377AF13FA3531E5D581F487B (RequiredByNativeCodeAttribute_t86B11F2BA12BB463CE3258E64E16B43484014FCA* __this, String_t* ___0_value, const RuntimeMethod* method) 
+{
+	{
+		String_t* L_0 = ___0_value;
+		__this->___U3CNameU3Ek__BackingField_0 = L_0;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CNameU3Ek__BackingField_0), (void*)L_0);
+		return;
+	}
+}
 // System.Void UnityEngine.Scripting.RequiredByNativeCodeAttribute::set_Optional(System.Boolean)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RequiredByNativeCodeAttribute_set_Optional_m009CBA1D24E7F6EDAE1411CB6A7A01CB2A13B541 (RequiredByNativeCodeAttribute_t86B11F2BA12BB463CE3258E64E16B43484014FCA* __this, bool ___0_value, const RuntimeMethod* method) 
 {
 	{
 		bool L_0 = ___0_value;
-		__this->___U3COptionalU3Ek__BackingField_0 = L_0;
+		__this->___U3COptionalU3Ek__BackingField_1 = L_0;
 		return;
 	}
 }
@@ -1227,7 +1251,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RequiredByNativeCodeAttribute_set_Genera
 {
 	{
 		bool L_0 = ___0_value;
-		__this->___U3CGenerateProxyU3Ek__BackingField_1 = L_0;
+		__this->___U3CGenerateProxyU3Ek__BackingField_2 = L_0;
 		return;
 	}
 }
@@ -1648,19 +1672,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativePropertyAttribute__ctor_m61A6A85F4
 		return;
 	}
 }
-// System.Void UnityEngine.Bindings.NativePropertyAttribute::.ctor(System.String,System.Boolean,UnityEngine.Bindings.TargetType,System.Boolean)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativePropertyAttribute__ctor_m6FD4C499DD1D0AD75668B6D860FACB837DFB6095 (NativePropertyAttribute_tAF7FB03BF7FFE9E8AB0E75B0F842FC0AA22AE607* __this, String_t* ___0_name, bool ___1_isFree, int32_t ___2_targetType, bool ___3_isThreadSafe, const RuntimeMethod* method) 
-{
-	{
-		String_t* L_0 = ___0_name;
-		bool L_1 = ___1_isFree;
-		bool L_2 = ___3_isThreadSafe;
-		NativeMethodAttribute__ctor_m0B32894B3BD625410703207C7DBF61098BAEE973(__this, L_0, L_1, L_2, NULL);
-		int32_t L_3 = ___2_targetType;
-		NativePropertyAttribute_set_TargetType_m858E4E653A2F81F5313EF4F5D69740D945B19ED7_inline(__this, L_3, NULL);
-		return;
-	}
-}
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
@@ -2030,6 +2041,15 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void NativeClassAttribute_set_Dec
 		String_t* L_0 = ___0_value;
 		__this->___U3CDeclarationU3Ek__BackingField_1 = L_0;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CDeclarationU3Ek__BackingField_1), (void*)L_0);
+		return;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void RequiredByNativeCodeAttribute_set_Name_mF218FB9A613487B6377AF13FA3531E5D581F487B_inline (RequiredByNativeCodeAttribute_t86B11F2BA12BB463CE3258E64E16B43484014FCA* __this, String_t* ___0_value, const RuntimeMethod* method) 
+{
+	{
+		String_t* L_0 = ___0_value;
+		__this->___U3CNameU3Ek__BackingField_0 = L_0;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CNameU3Ek__BackingField_0), (void*)L_0);
 		return;
 	}
 }
