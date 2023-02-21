@@ -15,6 +15,9 @@ TagManager:
   - BlockTrigger
   - AssembleTip
   - FloorTrigger
+  - EnemyBullet
+  - EnemyTrigger
+  - Enemy
   layers:
   - Default
   - TransparentFX

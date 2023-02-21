@@ -7,6 +7,8 @@ public class InGameTextViewer : MonoBehaviour
 {
     private static InGameTextViewer instance = null;
 
+    public bool[] backGageHit = new bool[3] { false, false, false };
+
     [Header("PlayerGageText")]
     [SerializeField]
     private Slider hpBar;
@@ -65,7 +67,25 @@ public class InGameTextViewer : MonoBehaviour
     [SerializeField]
     private Animator comboTextAnimator;
 
-    public bool[] backGageHit = new bool[3] { false, false, false };
+    [Header("TopPanelGroup")]
+    [SerializeField]
+    private TextMeshProUGUI curDeadEnemyCountText;
+    [SerializeField]
+    private TextMeshProUGUI curGetGoldText;
+
+    [Header("PhaseGroup")]
+    [SerializeField]
+    private Image leftPhaseImage;
+    [SerializeField]
+    private Image middlePhaseImage;
+    [SerializeField]
+    private Image rightPhaseImage;
+    [SerializeField]
+    private Slider phaseBar;
+
+    private bool leftPhaseImageTrigger;
+    private bool middlePhaseImageTrigger;
+    private bool rightPhaseImageTrigger;
 
     void Awake()
     {
@@ -77,7 +97,15 @@ public class InGameTextViewer : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        curEnemyHp = 1;
+        maxEnemyHp = 1;
+
+        leftPhaseImageTrigger = false;
+        middlePhaseImageTrigger = false;
+        rightPhaseImageTrigger = false;
     }
+
     public static InGameTextViewer Instance
     {
         get
@@ -94,11 +122,17 @@ public class InGameTextViewer : MonoBehaviour
     {
         //Combo Text
         StartCoroutine(Count(comboCountText, GameManager.Instance.combo, GameManager.Instance.combo + 1));
+        //CurDeadEnemyCountText
+        StartCoroutine(Count(curDeadEnemyCountText, GameManager.Instance.curDeadEnemyCount, GameManager.Instance.curDeadEnemyCount + 1));
+        //CurGetGoldCountText
+        StartCoroutine(Count(curGetGoldText, GameManager.Instance.curDeadEnemyCount, GameManager.Instance.curDeadEnemyCount + 1));
 
         //Player Gage bar
         StartCoroutine(SliderInit(hpBar, hpBarShadow, PlayerData.Instance.curHp, PlayerData.Instance.maxHp, 0));
         StartCoroutine(SliderInit(sheldBar, sheldBarShadow, PlayerData.Instance.curSheldGage, PlayerData.Instance.maxSheldGage, 1));
         StartCoroutine(SliderInit(specialMoveBar, specialMoveBarShadow, PlayerData.Instance.curSpecialMoveGage, PlayerData.Instance.maxSpecialMoveGage, 2));
+
+        StartCoroutine(PhaseSliderInit(phaseBar, GameManager.Instance.curDeadEnemyCount, SpawnManager.Instance.curStageTotalNum - 1));
 
         if (enemyGageShown)
         {
@@ -173,17 +207,82 @@ public class InGameTextViewer : MonoBehaviour
     {
         slider.value = Mathf.Lerp(slider.value, curValue / maxValue, Time.deltaTime * 5f);
 
-        if (backGageHit[index])
+        if(sliderShadow != null)
         {
-            sliderShadow.value = Mathf.Lerp(sliderShadow.value, slider.value, Time.deltaTime * 10f);
-            if(slider.value >= sliderShadow.value - 0.01f)
+            if (backGageHit[index])
             {
-                backGageHit[index] = false;
-                sliderShadow.value = slider.value;
+                sliderShadow.value = Mathf.Lerp(sliderShadow.value, slider.value, Time.deltaTime * 10f);
+                if (slider.value >= sliderShadow.value - 0.01f)
+                {
+                    backGageHit[index] = false;
+                    sliderShadow.value = slider.value;
+                }
             }
         }
 
         yield return null;
+    }
+
+    public IEnumerator PhaseSliderInit(Slider slider, float curValue, float maxValue)
+    {
+        float percent = curValue / maxValue;
+        
+        slider.value = Mathf.Lerp(slider.value, percent, Time.deltaTime * 5f);
+
+        //수정 필요
+        if (percent >= 0)
+        {
+            //Planet1 Trigger
+            if (!leftPhaseImageTrigger)
+            {
+                EffectManager.Instance.SpawnEffectNoDestroy(new int[] { 14 }, Camera.main.ScreenToWorldPoint(leftPhaseImage.transform.position));
+                leftPhaseImageTrigger = true;
+            }
+                
+            StartCoroutine(FadeInImage(leftPhaseImage));
+        }
+        if (percent >= 0.5)
+        {
+            //Planet2 Trigger
+            if (!middlePhaseImageTrigger)
+            {
+                EffectManager.Instance.SpawnEffectNoDestroy(new int[] { 14 }, Camera.main.ScreenToWorldPoint(middlePhaseImage.transform.position));
+                middlePhaseImageTrigger= true;
+            }
+                
+            StartCoroutine(FadeInImage(middlePhaseImage));
+        }
+        if(percent >= 1)
+        {
+            //Planet3 Trigger
+            if (!rightPhaseImageTrigger)
+            {
+                EffectManager.Instance.SpawnEffectNoDestroy(new int[] { 14 }, Camera.main.ScreenToWorldPoint(rightPhaseImage.transform.position));
+                rightPhaseImageTrigger = true;
+            }
+                
+            StartCoroutine(FadeInImage(rightPhaseImage));
+        }
+
+        yield return null;
+    }
+
+    public IEnumerator FadeInImage(Image image)
+    {
+        float curPos = 0.4f;
+        float maxPos = 1f;
+        float percent = curPos / maxPos;
+
+        while (percent <= 2f)
+        {
+            curPos += Time.deltaTime;
+            percent = curPos / maxPos;
+            image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(0, 1, percent));
+
+            //Effect 소환
+
+            yield return null;
+        }
     }
 
     public void EnemySliderInitReady(bool boolean)

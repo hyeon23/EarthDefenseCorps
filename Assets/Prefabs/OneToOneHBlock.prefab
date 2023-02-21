@@ -129,7 +129,7 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 1
-  ancestorGameObject: {fileID: 4917451574274028336}
+  ancestorGameObject: {fileID: 0}
   parentRigid: {fileID: 7693869186719529618}
   mass: 0
   gravity: 0

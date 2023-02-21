@@ -73,6 +73,5 @@ public class Block : Enemy
         {
             Destroy(parentGameObject);
         }
-
     }
 }

@@ -49,4 +49,10 @@ public class Enemy : MonoBehaviour
         parentGameObject = gameObject.transform.parent.gameObject;
         curHp = maxHp;
     }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.curDeadEnemyCount++;
+        GameManager.Instance.curLiveEnemyCount--;
+    }
 }
