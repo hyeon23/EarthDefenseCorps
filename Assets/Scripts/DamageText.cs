@@ -4,12 +4,10 @@ using TMPro;
 
 public class DamageText : MonoBehaviour
 {
-    private RectTransform rectTransform;
     private TextMeshProUGUI damageTextHUD;
 
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
         damageTextHUD = GetComponent<TextMeshProUGUI>();
     }
 
@@ -23,9 +21,8 @@ public class DamageText : MonoBehaviour
 
     private IEnumerator OndamageTextHUD(Vector2 onHitPosition)
     {
-        Vector2 start = /*onHitPosition;*/Camera.main.WorldToScreenPoint(onHitPosition);
-        rectTransform.position = start + Vector2.up * 100;
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-150f, 150f), 1000f)/*Random.Range(-1f, 1f), 5f)*/, ForceMode2D.Impulse);
+        transform.position = onHitPosition + new Vector2(Random.Range(-0.5f, 0.5f), 2f);
+        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1f, 1f) * 3, 10f), ForceMode2D.Impulse);
         yield return null;
         Destroy(gameObject, 2);
     }

@@ -21,6 +21,4 @@ public class MovingCamera : MonoBehaviour
             this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, cameraSpeed * Time.deltaTime);
         }
     }
-
-    void OnPreCull() => GL.Clear(true, true, Color.black);
 }

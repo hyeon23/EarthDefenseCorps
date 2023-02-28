@@ -5,12 +5,6 @@ using UnityEngine;
 public class FloorDetector : MonoBehaviour
 {
     [SerializeField]
-    private BoxCollider2D leftBoxCollider;
-    [SerializeField]
-    private BoxCollider2D centerBoxCollider;
-    [SerializeField]
-    private BoxCollider2D rightBoxCollider;
-    [SerializeField]
     private OneToOneBlock curBlock = null;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,6 +15,23 @@ public class FloorDetector : MonoBehaviour
             {
                 curBlock = collision.GetComponent<OneToOneBlock>();
                 StartCoroutine(PlayerTrigger.Instance.OnHit(curBlock.dmg * 100));
+
+                switch (curBlock.enemyType)
+                {
+                    case EnemyType.Block1X1H:
+                        break;
+                    case EnemyType.Block1X1:
+                        Debug.Log("Block1X1");
+                        EffectManager.Instance.SpawnEffect(new int[] { 21 }, collision.transform.position + new Vector3(0, -1f, 0));
+                        StartCoroutine(GameManager.Instance.CameraShake(0.3f, 1, 2));
+                        break;
+                    case EnemyType.Block1X3:
+                    case EnemyType.Block1X3M:
+                        Debug.Log("Block1X3");
+                        EffectManager.Instance.SpawnEffect(new int[] { 22 }, collision.transform.position + new Vector3(0, -1f, 0));
+                        StartCoroutine(GameManager.Instance.CameraShake(0.6f, 2, 3));
+                        break;
+                }
             }
         }
     }

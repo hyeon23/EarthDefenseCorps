@@ -50,9 +50,15 @@ public class Enemy : MonoBehaviour
         curHp = maxHp;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         GameManager.Instance.curDeadEnemyCount++;
         GameManager.Instance.curLiveEnemyCount--;
     }
+
+    //private void OnDestroy()
+    //{
+    //    GameManager.Instance.curDeadEnemyCount++;
+    //    GameManager.Instance.curLiveEnemyCount--;
+    //}
 }

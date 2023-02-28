@@ -11,6 +11,8 @@ public class Block : Enemy
 
     public IEnumerator OnHit(int damage, Vector2 onHitPosition)
     {
+        GameManager.Instance.curHitEnemy = gameObject;
+
         bool isCritical = CriticalCheck(damage, 33f);
 
         if (isCritical) damage *= Mathf.RoundToInt(damage * 1.5f);
@@ -22,7 +24,7 @@ public class Block : Enemy
 
         if (curHp <= 0)
         {
-            OnDead();
+            OnDead(true);
         }
         else
         {
@@ -46,24 +48,99 @@ public class Block : Enemy
         }
     }
 
-    public void OnDead()
+    public void OnDead(bool isAttacked = false)
     {
-        InGameTextViewer.Instance.enemyGageShown = false;
-        //이러면 번개 잡을때도 스폰될듯?
+        gameObject.SetActive(false);
+
+        if (GameManager.Instance.curHitEnemy == gameObject)
+        {
+            InGameTextViewer.Instance.enemyGageShown = false;
+        }
+
+        if (isAttacked)
+        {
+            switch (enemyName)
+            {
+                //0: B_Bronze, 1: B_Silver, 2: B_Gold, 3: B_Zam
+                //4: MoaiGrayOne, 5: MoaiGrayTwo, 6: MoaiGrayThree
+                //7: MoaiRedOne, 8: MoaiRedTwo, 9: MoaiRedThree
+                //10: MoaiBlueOne, 11: MoaiBlueTwo, 12: MoaiBlueThree
+                //13; Cube
+                //14: S_Bronze, 15: S_Silver, 16: S_Gold, 17: S_Zam
+                //18: S_TotemOne, 19: S_TotemTwo, 20: S_TotemThree
+
+                //Block 1X3 -> transform.position
+                //Block 1X3M -> transform.parent.position
+
+                case "MoaiBlue":
+                    EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 10, 11, 12 }, transform.position);
+                    break;
+                case "MoaiRed":
+                    EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 7, 8, 9 }, transform.position);
+                    break;
+                case "MoaiGray":
+                case "StoneTower":
+                    EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 4, 5, 6 }, transform.position);
+                    break;
+                case "Totem1":
+                case "Totem2":
+                case "Totem3":
+                case "Totem4":
+                case "Totem5":
+                case "Totem6":
+                    EffectManager.Instance.SpawnEffect(new int[] { 14, 15, 16, 17, 18, 19, 20 }, transform.position);
+                    break;
+                case "Cube":
+                    EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 13 }, transform.parent.position);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            switch (enemyName)
+            {
+                //0: B_Bronze, 1: B_Silver, 2: B_Gold, 3: B_Zam
+                //4: MoaiGrayOne, 5: MoaiGrayTwo, 6: MoaiGrayThree
+                //7: MoaiRedOne, 8: MoaiRedTwo, 9: MoaiRedThree
+                //10: MoaiBlueOne, 11: MoaiBlueTwo, 12: MoaiBlueThree
+                //13; Cube
+                //14: S_Bronze, 15: S_Silver, 16: S_Gold, 17: S_Zam
+                //18: S_TotemOne, 19: S_TotemTwo, 20: S_TotemThree
+
+                //Block 1X3 -> transform.position
+                //Block 1X3M -> transform.parent.position
+
+                case "MoaiBlue":
+                    EffectManager.Instance.SpawnEffect(new int[] { 10, 11, 12 }, transform.position);
+                    break;
+                case "MoaiRed":
+                    EffectManager.Instance.SpawnEffect(new int[] { 7, 8, 9 }, transform.position);
+                    break;
+                case "MoaiGray":
+                case "StoneTower":
+                    EffectManager.Instance.SpawnEffect(new int[] { 4, 5, 6 }, transform.position);
+                    break;
+                case "Totem1":
+                case "Totem2":
+                case "Totem3":
+                case "Totem4":
+                case "Totem5":
+                case "Totem6":
+                    EffectManager.Instance.SpawnEffect(new int[] { 18, 19, 20 }, transform.position);
+                    break;
+                case "Cube":
+                    EffectManager.Instance.SpawnEffect(new int[] { 13 }, transform.parent.position);
+                    break;
+                default:
+                    break;
+            }
+        }
 
         //Name or Type에 따라 분류 가능
-        switch (enemyType)
-        {
-            case EnemyType.Block1X1H:
-                break;
-            case EnemyType.Block1X1:
-                EffectManager.Instance.SpawnEffect(new int[] { 7, 8, 9, 10, 11, 12, 13 }, transform.position);
-                break;
-            case EnemyType.Block1X3:
-            case EnemyType.Block1X3M:
-                EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 4, 5, 6 }, transform.parent.position);
-                break;
-        }
+        
+        
 
         if(ancestorGameObject.transform.childCount == 1)
         {

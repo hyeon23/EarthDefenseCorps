@@ -12,23 +12,25 @@ public class AssembleTip : MonoBehaviour
 
     private void Awake()
     {
-        curMass = curMass = curBlockRigid.mass;
+        curMass = curBlockRigid.mass;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Block")
+        if (collision.tag == "BlockTrigger")
         {
-            curBlockRigid.velocity = Vector2.zero;
+            //curBlockRigid.velocity = Vector2.zero;
             curBlockRigid.mass = 0;
+            Debug.Log("enter");
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Block")
+        if (collision.tag == "BlockTrigger")
         {
             curBlockRigid.mass = curMass;
+            Debug.Log("exit");
         }
     }
 }

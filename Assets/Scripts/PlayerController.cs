@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
         textText.text = "JUMP";
         anime.SetTrigger("doJump");
         anime.SetBool("isJump", isJump);
-        parentRigid.AddForce(new Vector2(0, 20f), ForceMode2D.Impulse);
+        parentRigid.AddForce(new Vector2(0, 30f), ForceMode2D.Impulse);
         gameObject.layer = LayerMask.NameToLayer("Player");
 
         yield return null;

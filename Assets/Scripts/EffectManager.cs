@@ -50,20 +50,6 @@ public class EffectManager : MonoBehaviour
         }
     }
 
-    public void SpawnEffectNoDestroy(int[] goNums, Vector2 spawnPos)
-    {
-        GameObject effectObject;
-
-        foreach (int num in goNums)
-        {
-            effectObject = intToEffectType(num);
-
-            if (effectObject == null) return;
-
-            GameObject clone = Instantiate(effectObject, spawnPos, Quaternion.identity, gameObject.transform);
-        }
-    }
-
     public GameObject intToEffectType(int num)
     {
         switch (num)
@@ -98,6 +84,22 @@ public class EffectManager : MonoBehaviour
                 return Effects[13];
             case 14:
                 return Effects[14];
+            case 15:
+                return Effects[15];
+            case 16:
+                return Effects[16];
+            case 17:
+                return Effects[17];
+            case 18:
+                return Effects[18];
+            case 19:
+                return Effects[19];
+            case 20:
+                return Effects[20];
+            case 21:
+                return Effects[21];
+            case 22:
+                return Effects[22];
             default:
                 return null;
         }

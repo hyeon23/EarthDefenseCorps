@@ -27,13 +27,14 @@ public class OneToOneBlock : Block
             switch (enemyType)
             {
                 case EnemyType.Block1X1H:
-                    Destroy(gameObject);
+                    OnDead();
                     break;
                 case EnemyType.Block1X1:
                     if (!isOverlappedPlayer)
                     {
-                        EffectManager.Instance.SpawnEffect(new int[] { 11, 12, 13 }, transform.position);
-                        Destroy(parentGameObject);
+                        //깔려있지 않은 상태에서 블록 파괴시
+                        Debug.Log("OnDead");
+                        OnDead();
                     }
                     else if (isOverlappedPlayer)
                     {

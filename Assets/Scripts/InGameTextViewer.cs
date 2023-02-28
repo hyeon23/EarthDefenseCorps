@@ -73,15 +73,31 @@ public class InGameTextViewer : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI curGetGoldText;
 
-    [Header("PhaseGroup")]
+    [Header("PhaseGuideGroup")]
+    [SerializeField]
+    private Animator PhaseGuideGroupAnime;
+    [SerializeField]
+    private TextMeshProUGUI PhaseGuideText;
+
+    [Header("PhaseProgressBarGroup")]
     [SerializeField]
     private Image leftPhaseImage;
     [SerializeField]
     private Image middlePhaseImage;
     [SerializeField]
     private Image rightPhaseImage;
+
     [SerializeField]
-    private Slider phaseBar;
+    private Image leftPhaseChaineseImage;
+    [SerializeField]
+    private Image middlePhaseChaineseImage;
+    [SerializeField]
+    private Image rightPhaseChaineseImage;
+
+    [SerializeField]
+    private Slider phase1ProgressBar;
+    [SerializeField]
+    private Slider phase2ProgressBar;
 
     private bool leftPhaseImageTrigger;
     private bool middlePhaseImageTrigger;
@@ -132,7 +148,8 @@ public class InGameTextViewer : MonoBehaviour
         StartCoroutine(SliderInit(sheldBar, sheldBarShadow, PlayerData.Instance.curSheldGage, PlayerData.Instance.maxSheldGage, 1));
         StartCoroutine(SliderInit(specialMoveBar, specialMoveBarShadow, PlayerData.Instance.curSpecialMoveGage, PlayerData.Instance.maxSpecialMoveGage, 2));
 
-        StartCoroutine(PhaseSliderInit(phaseBar, GameManager.Instance.curDeadEnemyCount, SpawnManager.Instance.curStageTotalNum - 1));
+        StartCoroutine(PhaseSliderInit(phase1ProgressBar, GameManager.Instance.curDeadEnemyCount, SpawnManager.Instance.phase1Num));
+        StartCoroutine(PhaseSliderInit(phase2ProgressBar, GameManager.Instance.curDeadEnemyCount - SpawnManager.Instance.phase1Num, SpawnManager.Instance.phase2Num));
 
         if (enemyGageShown)
         {
@@ -229,47 +246,71 @@ public class InGameTextViewer : MonoBehaviour
         
         slider.value = Mathf.Lerp(slider.value, percent, Time.deltaTime * 5f);
 
-        //수정 필요
-        if (percent >= 0)
+        if(slider == phase1ProgressBar)
         {
-            //Planet1 Trigger
-            if (!leftPhaseImageTrigger)
+            if (percent >= 0)
             {
-                EffectManager.Instance.SpawnEffectNoDestroy(new int[] { 14 }, Camera.main.ScreenToWorldPoint(leftPhaseImage.transform.position));
-                leftPhaseImageTrigger = true;
+                //Planet1 Trigger
+                if (!leftPhaseImageTrigger)
+                {
+                    StartCoroutine(FadeInImage(leftPhaseImage));
+                    StartCoroutine(FadeInImage2(leftPhaseChaineseImage));
+                    leftPhaseImageTrigger = true;
+                    //Phase1 Clear
+                }
             }
-                
-            StartCoroutine(FadeInImage(leftPhaseImage));
+            if (percent >= 1)
+            {
+                //Planet2 Trigger
+                if (!middlePhaseImageTrigger)
+                {
+                    StartCoroutine(FadeInImage(middlePhaseImage));
+                    StartCoroutine(FadeInImage2(middlePhaseChaineseImage));
+                    middlePhaseImageTrigger = true;
+                    //Phase2 Clear
+                }
+            }
         }
-        if (percent >= 0.5)
+        else if(slider == phase2ProgressBar)
         {
-            //Planet2 Trigger
-            if (!middlePhaseImageTrigger)
+            if (percent >= 1)
             {
-                EffectManager.Instance.SpawnEffectNoDestroy(new int[] { 14 }, Camera.main.ScreenToWorldPoint(middlePhaseImage.transform.position));
-                middlePhaseImageTrigger= true;
+                //Planet3 Trigger
+                if (!rightPhaseImageTrigger)
+                {
+                    StartCoroutine(FadeInImage(rightPhaseImage));
+                    StartCoroutine(FadeInImage2(rightPhaseChaineseImage));
+                    rightPhaseImageTrigger = true;
+                    //Phase3 Clear
+                }
             }
-                
-            StartCoroutine(FadeInImage(middlePhaseImage));
         }
-        if(percent >= 1)
-        {
-            //Planet3 Trigger
-            if (!rightPhaseImageTrigger)
-            {
-                EffectManager.Instance.SpawnEffectNoDestroy(new int[] { 14 }, Camera.main.ScreenToWorldPoint(rightPhaseImage.transform.position));
-                rightPhaseImageTrigger = true;
-            }
-                
-            StartCoroutine(FadeInImage(rightPhaseImage));
-        }
-
         yield return null;
     }
 
     public IEnumerator FadeInImage(Image image)
     {
         float curPos = 0.4f;
+        float maxPos = 1f;
+        float percent = curPos / maxPos;
+        
+        //Effect 소환
+        image.GetComponent<ParticleSystem>().Play();
+
+        while (percent <= 2f)
+        {
+            curPos += Time.deltaTime;
+            percent = curPos / maxPos;
+            image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(0, 1, percent));
+
+            yield return null;
+        }
+            yield return null;
+    }
+
+    public IEnumerator FadeInImage2(Image image)
+    {
+        float curPos = 0f;
         float maxPos = 1f;
         float percent = curPos / maxPos;
 
@@ -279,10 +320,9 @@ public class InGameTextViewer : MonoBehaviour
             percent = curPos / maxPos;
             image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(0, 1, percent));
 
-            //Effect 소환
-
             yield return null;
         }
+        yield return null;
     }
 
     public void EnemySliderInitReady(bool boolean)
@@ -331,5 +371,11 @@ public class InGameTextViewer : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void PhaseStart(string text)
+    {
+        PhaseGuideText.text = text;
+        PhaseGuideGroupAnime.SetTrigger("doPhaseStart");
     }
 }

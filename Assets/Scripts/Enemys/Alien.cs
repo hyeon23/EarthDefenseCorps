@@ -259,16 +259,26 @@ public class Alien : Enemy
         InGameTextViewer.Instance.enemyGageShown = false;
 
         //Name or Type에 따라 분류 가능
-        switch (enemyType)
+        switch (enemyName)
         {
-            case EnemyType.Monster:
-                EffectManager.Instance.SpawnEffect(new int[] { 7, 8, 9, 10, 11, 12, 13 }, transform.position);
+            //0: B_Bronze, 1: B_Silver, 2: B_Gold, 3: B_Zam
+            //4: MoaiGrayOne, 5: MoaiGrayTwo, 6: MoaiGrayThree
+            //7: MoaiRedOne, 8: MoaiRedTwo, 9: MoaiRedThree
+            //10: MoaiBlueOne, 11: MoaiBlueTwo, 12: MoaiBlueThree
+            //13; Cube
+            //14: S_Bronze, 15: S_Silver, 16: S_Gold, 17: S_Zam
+            //18: S_TotemOne, 19: S_TotemTwo, 20: S_TotemThree
+            
+            case "MoaiBlue":
+                EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 10, 11, 12 }, transform.position);
                 break;
-            case EnemyType.MonsterElite:
-                EffectManager.Instance.SpawnEffect(new int[] { 7, 8, 9, 10, 11, 12, 13 }, transform.position);
+            case "MoaiRed":
+                EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 7, 8, 9 }, transform.position);
                 break;
-            case EnemyType.MonsterBoss:
-                EffectManager.Instance.SpawnEffect(new int[] { 7, 8, 9, 10, 11, 12, 13 }, transform.position);
+            case "MoaiGray":
+                EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 4, 5, 6 }, transform.position);
+                break;
+            default:
                 break;
         }
 

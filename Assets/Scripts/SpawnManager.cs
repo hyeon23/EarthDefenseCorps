@@ -12,7 +12,9 @@ public class Spawn
     public float delay;
     public int enemyType;
     public int spawnPoint;
+    public int phaseNumber;
     public int phaseMileStone;
+    public int count;
 }
 
 public class SpawnManager : MonoBehaviour
@@ -48,6 +50,10 @@ public class SpawnManager : MonoBehaviour
     private int spawnIndex;
     [SerializeField]
     private bool spawnEnd;
+
+    public int phase1Num = 0;
+    public int phase2Num = 0;
+    public int phase3Num = 0;
 
     public int curStageTotalNum = 0;
 
@@ -90,13 +96,19 @@ public class SpawnManager : MonoBehaviour
             //GameManager.Instance.curLiveEnemyCount == 0
             switch (spawnList[spawnIndex].phaseMileStone)
             {
+                case -1:
+                    if (GameManager.Instance.curLiveEnemyCount != 0) return;
+
+                    SpawnEnemy();
+                    curSpawnDelay = 0;
+                    break;
                 case 1:
                 case 2:
                 case 3:
                     //스테이지 시작 문구 띄우기
                     if (GameManager.Instance.curLiveEnemyCount != 0) return;
-                    
-                    Debug.Log("페이즈" + spawnList[spawnIndex].phaseMileStone + "시작");
+
+                    InGameTextViewer.Instance.PhaseStart($"Phase{spawnList[spawnIndex].phaseMileStone}");
 
                     spawnIndex++;
 
@@ -105,7 +117,6 @@ public class SpawnManager : MonoBehaviour
                         spawnEnd = true;
                         return;
                     }
-
                     curSpawnDelay = 0;
                     break;
                 default:
@@ -143,15 +154,53 @@ public class SpawnManager : MonoBehaviour
             spawnData.delay = float.Parse(lineDatas[0]);
             spawnData.enemyType = int.Parse(lineDatas[1]);
             spawnData.spawnPoint = int.Parse(lineDatas[2]);
-            spawnData.phaseMileStone = int.Parse(lineDatas[3]);
+            spawnData.phaseNumber = int.Parse(lineDatas[3]);
+            spawnData.phaseMileStone= int.Parse(lineDatas[4]);
 
-            if(spawnData.phaseMileStone == 0)
+            int pluser = 0;
+
+            switch (spawnData.enemyType)
             {
-                curStageTotalNum++;
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    pluser = 1;
+                    break;
+                case 6:
+                    pluser = 9;
+                    break;
+                case 7:
+                case 8:
+                case 9:
+                    pluser = 3;
+                    break;
+                case 10:
+                    //현재 5층 보류
+                    pluser = 5;
+                    break;
+            }
+            
+
+            if(spawnData.phaseNumber == 1)
+            {
+                phase1Num += pluser;
+            }
+            else if(spawnData.phaseNumber == 2)
+            {
+                phase2Num += pluser;
+            }
+            else if(spawnData.phaseNumber==3)
+            {
+                phase3Num += pluser;
             }
 
             spawnList.Add(spawnData);
         }
+
+        curStageTotalNum = phase1Num + phase2Num + phase3Num;
 
         //텍스트 파일 닫기
         stringReader.Close();
@@ -178,6 +227,27 @@ public class SpawnManager : MonoBehaviour
                 break;
             case 3:
                 enemyIndex = 3;
+                break;
+            case 4:
+                enemyIndex = 4;
+                break;
+            case 5:
+                enemyIndex = 5;
+                break;
+            case 6:
+                enemyIndex = 6;
+                break;
+            case 7:
+                enemyIndex = 7;
+                break;
+            case 8:
+                enemyIndex = 8;
+                break;
+            case 9:
+                enemyIndex = 9;
+                break;
+            case 10:
+                enemyIndex = 10;
                 break;
         }
 

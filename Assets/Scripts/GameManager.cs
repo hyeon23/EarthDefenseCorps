@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 //Layering
 //BackGround: -4 ~
 //Player: 1 ~
@@ -9,6 +9,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
+
+    public GameObject curHitEnemy = null;
 
     //현재 총 죽은 Enemy Count
     public int curDeadEnemyCount;
@@ -21,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public int score;
     public int combo;
+
+    private Transform cam;
 
     void Awake()
     {
@@ -39,9 +43,12 @@ public class GameManager : MonoBehaviour
         //화면 보호기 제거
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
+        cam = Camera.main.transform;
+
         curDeadEnemyCount = 0;
         curLiveEnemyCount = 0;
         curKillEnemyCount = 0;
+
         combo = 0;
         score = 0;
     }
@@ -55,5 +62,22 @@ public class GameManager : MonoBehaviour
             }
             return instance;
         }
+    }
+
+    public IEnumerator CameraShake(float shakeTime, float shakeSpeed, float shakeAmount)
+    {
+        Vector3 originPosition = cam.localPosition;
+        float elapsedTime = 0f;
+
+        while(elapsedTime < shakeTime)
+        {
+            Vector3 randomPoint = originPosition + Random.insideUnitSphere * shakeAmount;
+            cam.localPosition = Vector3.Lerp(cam.localPosition, randomPoint, Time.deltaTime * shakeSpeed);
+
+            yield return null;
+
+            elapsedTime += Time.deltaTime;
+        }
+        cam.localPosition = originPosition;
     }
 }
