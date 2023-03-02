@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Animator anime;
+    [SerializeField]
     private int positionIndex = 1;
 
     private Vector2 touchDif;
@@ -36,7 +37,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform parentTransform;
 
+    [Header("Parents")]
+    [SerializeField]
+    private ParticleSystem swordSlashEffectLeft;
+    [SerializeField]
+    private ParticleSystem swordSlashEffectRight;
+    private int atkOrder = 0;
+
     private static PlayerController instance = null;
+
+    
 
     void Awake()
     {
@@ -70,7 +80,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(playerState.ToString());
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Swipe();
     }
@@ -78,7 +88,7 @@ public class PlayerController : MonoBehaviour
     //스와이프와 터치
     public void Swipe()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
 
@@ -130,7 +140,6 @@ public class PlayerController : MonoBehaviour
                             if (PlayerData.Instance.curSheldGage < 33.3f) { return; }
 
                             PlayerData.Instance.curSheldGage -= 40f;
-
                             timer = 0;
                             anime.ResetTrigger("onSheld");
                             ChangeState(PlayerState.Sheld);
@@ -144,13 +153,12 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else
+        else if(Input.touchCount == 0)
         {
             if (isJump || isSheld) return;
 
             ChangeState(PlayerState.Idle);
         }
-
     }
 
     private IEnumerator Idle()
@@ -160,16 +168,43 @@ public class PlayerController : MonoBehaviour
 
     public void Moving(bool dir)
     {
-        positionIndex = dir == true ? positionIndex + 1 : positionIndex - 1;
-        parentTransform.localScale = (dir == true ? Vector3.one : new Vector3(-1, 1, 1));
+        positionIndex += dir ? 1 : -1;
         parentTransform.position = playerPos[positionIndex].position;
+        parentTransform.localScale = new Vector3(dir ? 1 : -1, 1, 1);
         anime.SetTrigger("doSideStep");
-
         SheldToX();
     }
+    //private void SideStepLeft()
+    //{
+    //    Debug.Log("SideLeft");
+    //    textText.text = "Left Move";
+    //    positionIndex += -1;
+    //    parentTransform.position = playerPos[positionIndex].position;
+    //    parentTransform.localScale = new Vector3(-1, 1, 1);
+    //    Moving(false);
+    //}
+
+    //private void SideStepRight()
+    //{
+    //    Debug.Log("SideRight");
+    //    textText.text = "Right Move";
+    //    positionIndex += 1;
+    //    parentTransform.position = playerPos[positionIndex].position;
+    //    parentTransform.localScale = Vector3.one;
+    //    Moving(true);
+    //}
+
+    //private void Attack()
+    //{
+    //    Debug.Log("Attack");
+    //    textText.text = "Attack";
+    //    SheldToX();
+    //    anime.SetTrigger("doAttack");
+    //}
 
     private IEnumerator SideStepLeft()
     {
+        Debug.Log("SideLeft");
         textText.text = "Left Move";
         Moving(false);
         yield return null;
@@ -177,8 +212,20 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator SideStepRight()
     {
+        Debug.Log("SideRight");
         textText.text = "Right Move";
         Moving(true);
+        yield return null;
+    }
+
+    private IEnumerator Attack()
+    {
+        Debug.Log("Attack");
+        textText.text = "Attack";
+        SheldToX();
+        atkOrder++;
+        EffectManager.Instance.SpawnSwordEffect(gameObject, atkOrder);
+        anime.SetTrigger("doAttack");
         yield return null;
     }
 
@@ -246,15 +293,6 @@ public class PlayerController : MonoBehaviour
 
         SheldToX();
         anime.ResetTrigger("offSheld");
-    }
-
-    private IEnumerator Attack()
-    {
-        SheldToX();
-        textText.text = "Attack";
-        anime.SetTrigger("doAttack");
-
-        yield return null;
     }
 
     private IEnumerator SpecialMove()

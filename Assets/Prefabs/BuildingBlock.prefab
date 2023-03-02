@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26d400f3219950489fa926cc889297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 5
+  enemyType: 2
   enemyName: 
   curHp: 0
   maxHp: 5
@@ -743,7 +743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26d400f3219950489fa926cc889297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 5
+  enemyType: 2
   enemyName: 
   curHp: 0
   maxHp: 5
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26d400f3219950489fa926cc889297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 5
+  enemyType: 2
   enemyName: 
   curHp: 0
   maxHp: 5
@@ -1178,7 +1178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26d400f3219950489fa926cc889297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 5
+  enemyType: 2
   enemyName: 
   curHp: 0
   maxHp: 5

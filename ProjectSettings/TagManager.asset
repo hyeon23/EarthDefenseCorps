@@ -15,9 +15,9 @@ TagManager:
   - BlockTrigger
   - AssembleTip
   - FloorTrigger
-  - EnemyBullet
-  - EnemyTrigger
-  - Enemy
+  - AlienBullet
+  - AlienTrigger
+  - Alien
   layers:
   - Default
   - TransparentFX
@@ -32,8 +32,8 @@ TagManager:
   - Block
   - Weapon
   - Sheld
-  - 
-  - 
+  - Alien
+  - AlienBullet
   - 
   - 
   - 

@@ -50,6 +50,30 @@ public class EffectManager : MonoBehaviour
         }
     }
 
+    private Vector3 offset;
+
+    public void SpawnSwordEffect(GameObject gameObject, int order)
+    {
+        GameObject effectObject;
+
+        
+        if(order % 2 == 0)
+        {
+            effectObject = intToEffectType(23);
+            offset = new Vector3(-0.5f, 0.25f, 0);
+        }
+        else
+        {
+            effectObject = intToEffectType(24);
+            offset = new Vector3(0.5f, 0.5f, 0);
+        }
+
+        if (effectObject == null) return;
+
+        GameObject clone = Instantiate(effectObject, gameObject.transform.position + offset, Quaternion.identity, gameObject.transform);
+        Destroy(clone, 1f);
+    }
+
     public GameObject intToEffectType(int num)
     {
         switch (num)
@@ -100,6 +124,10 @@ public class EffectManager : MonoBehaviour
                 return Effects[21];
             case 22:
                 return Effects[22];
+            case 23:
+                return Effects[23];
+            case 24:
+                return Effects[24];
             default:
                 return null;
         }

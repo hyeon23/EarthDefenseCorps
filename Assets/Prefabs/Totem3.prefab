@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26d400f3219950489fa926cc889297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 3
+  enemyType: 0
   enemyName: Totem3
   curHp: 0
   maxHp: 3

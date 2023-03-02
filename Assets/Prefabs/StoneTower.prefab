@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3688804659089448245
 Transform:
   m_ObjectHideFlags: 0
@@ -182,7 +182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1224327620876646287
 Transform:
   m_ObjectHideFlags: 0
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26d400f3219950489fa926cc889297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 5
+  enemyType: 2
   enemyName: StoneTower
   curHp: 0
   maxHp: 20
@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26d400f3219950489fa926cc889297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 5
+  enemyType: 2
   enemyName: StoneTower
   curHp: 0
   maxHp: 1
@@ -864,7 +864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4723582450186091280
 Transform:
   m_ObjectHideFlags: 0
@@ -937,7 +937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8721274683449845177
 Transform:
   m_ObjectHideFlags: 0
@@ -1209,7 +1209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26d400f3219950489fa926cc889297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 5
+  enemyType: 2
   enemyName: StoneTower
   curHp: 0
   maxHp: 1
@@ -1344,7 +1344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26d400f3219950489fa926cc889297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 5
+  enemyType: 2
   enemyName: StoneTower
   curHp: 0
   maxHp: 1
@@ -1651,7 +1651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26d400f3219950489fa926cc889297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 5
+  enemyType: 2
   enemyName: StoneTower
   curHp: 0
   maxHp: 1

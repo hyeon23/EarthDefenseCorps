@@ -627,6 +627,8 @@ MonoBehaviour:
   - {fileID: 8992880035128553730, guid: cbfac8e3f5182b64987102f44b6091a1, type: 3}
   - {fileID: 2446244597748097120, guid: 9d34402b2dd3ed74f834ae828d4163ec, type: 3}
   - {fileID: 2446244597748097120, guid: ba9311c4fb0d3414181ecbd32e8d5dff, type: 3}
+  - {fileID: 5558603679657683853, guid: 0a43ac0d15e34f34ea966a152139cae3, type: 3}
+  - {fileID: 5558603679657683853, guid: 206c22673c5048041913a1793c5958fd, type: 3}
 --- !u!1 &77913954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,6 +1425,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &273019601
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8518472417129103473, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518472417129103473, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518472417129103473, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518472417129103473, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518472417129103473, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518472417129103473, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518472417129103473, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518472417129103473, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518472417129103473, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518472417129103473, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518472417129103473, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518472417129103474, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
+      propertyPath: m_Name
+      value: Alien
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
 --- !u!1 &273040132
 GameObject:
   m_ObjectHideFlags: 0
@@ -7948,7 +8007,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 8151
+    m_Bits: 32727
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -8047,6 +8106,7 @@ MonoBehaviour:
   - {fileID: 1765067381508701715, guid: 0d6e7befbaa5bad469ee3fa4bf6abb2d, type: 3}
   - {fileID: 1765067381508701715, guid: 30b0a82f708c5ad40a053aeb29443cf2, type: 3}
   - {fileID: 1765067381508701715, guid: 64c253917f23ede45acd93d452ddddb1, type: 3}
+  - {fileID: 8518472417129103474, guid: a990b9748b0ef364aa3ca54ab066eed9, type: 3}
   spawnPoints:
   - {fileID: 715189091}
   - {fileID: 640887845}
@@ -18142,8 +18202,11 @@ MonoBehaviour:
   isOverlapped: 0
   parryingSheld: 0
   anime: {fileID: 103986032}
+  positionIndex: 1
   parentRigid: {fileID: 103986033}
   parentTransform: {fileID: 103986031}
+  swordSlashEffectLeft: {fileID: 0}
+  swordSlashEffectRight: {fileID: 0}
 --- !u!61 &1786370216
 BoxCollider2D:
   m_ObjectHideFlags: 0

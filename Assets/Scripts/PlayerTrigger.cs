@@ -38,6 +38,10 @@ public class PlayerTrigger : MonoBehaviour
         {
             StartCoroutine(OnHit(collision.GetComponent<OneToOneBlock>().dmg));
         }
+        else if (collision.transform.tag == "AlienBullet")
+        {
+            StartCoroutine(OnHit(collision.GetComponent<AlienBullet>().dmg));
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

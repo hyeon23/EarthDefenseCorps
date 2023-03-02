@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 8925411724918164948}
   - component: {fileID: 8925411724918164951}
   - component: {fileID: 8925411724918164950}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: AlienBullet
-  m_TagString: EnemyBullet
+  m_TagString: AlienBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 7
   m_Sprite: {fileID: 608747428, guid: 75eea58c82670a842a558a443bdc7c95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -167,5 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f580ede511e91c447982430bf3bbe518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBulletObj_1: {fileID: 0}
+  enemyBulletObj_2: {fileID: 0}
   dmg: 3
   isRotate: 0

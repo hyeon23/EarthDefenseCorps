@@ -50,7 +50,7 @@ AnimationClip:
     - time: 1.1666666
       value: {fileID: 1597612488, guid: 75eea58c82670a842a558a443bdc7c95, type: 3}
     attribute: m_Sprite
-    path: AlienBody
+    path: AlienTrigger
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 12
@@ -61,7 +61,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2456785789
+      path: 1006668136
       attribute: 0
       script: {fileID: 0}
       typeID: 212

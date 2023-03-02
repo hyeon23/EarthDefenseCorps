@@ -352,11 +352,11 @@ public class InGameTextViewer : MonoBehaviour
 
         switch (enemeyType)
         {
-            case EnemyType.Monster:
+            case EnemyType.AlienNormal:
                 enemyImage.sprite = monsterImage;
                 break;
-            case EnemyType.MonsterElite:
-            case EnemyType.MonsterBoss:
+            case EnemyType.AlienElite:
+            case EnemyType.AlienBoss:
                 enemyImage.sprite = monsterBossImage;
                 break;
             case EnemyType.Block1X1:
