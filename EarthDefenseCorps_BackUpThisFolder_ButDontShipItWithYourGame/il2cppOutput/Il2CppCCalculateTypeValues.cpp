@@ -1500,6 +1500,8 @@ struct Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07;
 struct AggregateException_t51B6205846DFB356B94452702201DD239D44422F;
 // Alien
 struct Alien_tF4F79D2F83C641B3FC81240FA0BC943A1D1191A9;
+// AlienNormal
+struct AlienNormal_tEAE36124318F739E085DF07814FA7C52DB2C8FAF;
 // UnityEngine.UIElements.UIR.Allocator2D
 struct Allocator2D_t5B53CF899C3FABD99F29602424924ACAB9E2A157;
 // UnityEngine.AndroidJavaClass
@@ -29985,30 +29987,32 @@ struct U3CDodgeMoveU3Ed__9_t3B4FBFA5ECA4F16C7FEB6BFD9FC6068AF86C2A9D  : public R
 	RuntimeObject* ___U3CU3E2__current_1;
 	// Alien Alien/<DodgeMove>d__9::<>4__this
 	Alien_tF4F79D2F83C641B3FC81240FA0BC943A1D1191A9* ___U3CU3E4__this_2;
+	// System.Single Alien/<DodgeMove>d__9::dodgePos
+	float ___dodgePos_3;
 	// System.Single Alien/<DodgeMove>d__9::<start>5__2
-	float ___U3CstartU3E5__2_3;
+	float ___U3CstartU3E5__2_4;
 	// System.Single Alien/<DodgeMove>d__9::<end>5__3
-	float ___U3CendU3E5__3_4;
+	float ___U3CendU3E5__3_5;
 	// System.Single Alien/<DodgeMove>d__9::<percent>5__4
-	float ___U3CpercentU3E5__4_5;
+	float ___U3CpercentU3E5__4_6;
 	// UnityEngine.Vector3 Alien/<DodgeMove>d__9::<startPos>5__5
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___U3CstartPosU3E5__5_6;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___U3CstartPosU3E5__5_7;
 	// UnityEngine.Vector3 Alien/<DodgeMove>d__9::<targetPos>5__6
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___U3CtargetPosU3E5__6_7;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___U3CtargetPosU3E5__6_8;
 };
 
-// Alien/<OnHit>d__10
-struct U3COnHitU3Ed__10_t1A2A1BC31944BF32666F259371CBA9F91B4D6AAE  : public RuntimeObject
+// AlienNormal/<OnHit>d__11
+struct U3COnHitU3Ed__11_t68CA993AF60216BA6DD8DAA745E5380790D502DA  : public RuntimeObject
 {
-	// System.Int32 Alien/<OnHit>d__10::<>1__state
+	// System.Int32 AlienNormal/<OnHit>d__11::<>1__state
 	int32_t ___U3CU3E1__state_0;
-	// System.Object Alien/<OnHit>d__10::<>2__current
+	// System.Object AlienNormal/<OnHit>d__11::<>2__current
 	RuntimeObject* ___U3CU3E2__current_1;
-	// Alien Alien/<OnHit>d__10::<>4__this
-	Alien_tF4F79D2F83C641B3FC81240FA0BC943A1D1191A9* ___U3CU3E4__this_2;
-	// System.Int32 Alien/<OnHit>d__10::damage
+	// AlienNormal AlienNormal/<OnHit>d__11::<>4__this
+	AlienNormal_tEAE36124318F739E085DF07814FA7C52DB2C8FAF* ___U3CU3E4__this_2;
+	// System.Int32 AlienNormal/<OnHit>d__11::damage
 	int32_t ___damage_3;
-	// UnityEngine.Vector2 Alien/<OnHit>d__10::onHitPosition
+	// UnityEngine.Vector2 AlienNormal/<OnHit>d__11::onHitPosition
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___onHitPosition_4;
 };
 
@@ -41903,6 +41907,10 @@ struct AlienNormal_tEAE36124318F739E085DF07814FA7C52DB2C8FAF  : public Alien_tF4
 	Animator_t8A52E42AE54F76681838FE9E632683EF3952E883* ___moonAlien1_BulletPos1_Anime_21;
 	// UnityEngine.Animator AlienNormal::moonAlien2_BulletPos1_Anime
 	Animator_t8A52E42AE54F76681838FE9E632683EF3952E883* ___moonAlien2_BulletPos1_Anime_22;
+	// System.Single AlienNormal::curdodgeMoveCooltime
+	float ___curdodgeMoveCooltime_23;
+	// System.Single AlienNormal::dodgeMoveCooltime
+	float ___dodgeMoveCooltime_24;
 };
 
 // UnityEngine.UI.Button
@@ -55522,9 +55530,9 @@ struct YogaConfig_tE8B56F99460C291C1F7F46DBD8BAC9F0B653A345_StaticFields
 
 // Alien/<DodgeMove>d__9
 
-// Alien/<OnHit>d__10
+// AlienNormal/<OnHit>d__11
 
-// Alien/<OnHit>d__10
+// AlienNormal/<OnHit>d__11
 
 // UnityEngine.UIElements.UIR.Allocator2D/Alloc2D
 
@@ -67427,15 +67435,15 @@ const Il2CppTypeDefinitionSizes g_typeDefinitionSize3271 = { sizeof(int32_t)+ si
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize3272;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize3272 = { sizeof(U3CDodgeMoveU3Ed__9_t3B4FBFA5ECA4F16C7FEB6BFD9FC6068AF86C2A9D), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize3273;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize3273 = { sizeof(U3COnHitU3Ed__10_t1A2A1BC31944BF32666F259371CBA9F91B4D6AAE), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize3273 = { sizeof(Alien_tF4F79D2F83C641B3FC81240FA0BC943A1D1191A9), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize3274;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize3274 = { sizeof(Alien_tF4F79D2F83C641B3FC81240FA0BC943A1D1191A9), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize3274 = { sizeof(AlienBoss_t05E3633BA58898C00CC7003AEB901E48BF2F883F), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize3275;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize3275 = { sizeof(AlienBoss_t05E3633BA58898C00CC7003AEB901E48BF2F883F), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize3275 = { sizeof(AlienBullet_tE89399C8B32703AECD619D47D8A820914EE1FFA0), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize3276;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize3276 = { sizeof(AlienBullet_tE89399C8B32703AECD619D47D8A820914EE1FFA0), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize3276 = { sizeof(AlienElite_t515A731CA41BDD6D3FBEA7B5D3F2D00CF5BEFFAC), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize3277;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize3277 = { sizeof(AlienElite_t515A731CA41BDD6D3FBEA7B5D3F2D00CF5BEFFAC), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize3277 = { sizeof(U3COnHitU3Ed__11_t68CA993AF60216BA6DD8DAA745E5380790D502DA), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize3278;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize3278 = { sizeof(AlienNormal_tEAE36124318F739E085DF07814FA7C52DB2C8FAF), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize3279;

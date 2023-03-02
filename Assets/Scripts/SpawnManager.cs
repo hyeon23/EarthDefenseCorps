@@ -249,6 +249,12 @@ public class SpawnManager : MonoBehaviour
             case 10:
                 enemyIndex = 10;
                 break;
+            case 11:
+                enemyIndex = 11;
+                break;
+            case 12:
+                enemyIndex = 12;
+                break;
         }
 
         int enemyPoint = spawnList[spawnIndex].spawnPoint;

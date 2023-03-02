@@ -14,6 +14,7 @@ public class Alien : Enemy
 
     protected float curShotDelay;//충전시간
 
+    [SerializeField]
     protected int curPosIndex = 0;
 
     [SerializeField]
@@ -23,38 +24,33 @@ public class Alien : Enemy
     [SerializeField]
     protected int[] maxPatternCount;
 
+    public GameObject afterEffectObj;
+
     protected Quaternion GetRotFromVectors(Vector2 posStart, Vector2 posEnd)
     {
         return Quaternion.Euler(0, 0, -Mathf.Atan2(posEnd.x - posStart.x, posEnd.y - posStart.y) * Mathf.Rad2Deg);
     }
 
-    private void Dodge()
+    protected void Dodge()
     {
         //적 회피 기동 시작
-        int dodgePosIndex = Random.Range(-1, 2);
-
-        if(curPosIndex == dodgePosIndex)
-        {
-            curShotDelay = 0;
-            Dodge();
-        }
-        else
-        {
-            curPosIndex = dodgePosIndex;
-            StartCoroutine(DodgeMove(dodgePosIndex));
-        }
-        Debug.Log("Dodge");
+        int dodgePosIndex = Random.Range(0, 3);
+        curPosIndex = dodgePosIndex;
+        StartCoroutine(DodgeMove(PlayerController.Instance.playerPos[curPosIndex].position.x));
         return;
     }
 
-    private IEnumerator DodgeMove(int dodgePosIndex)
+    private IEnumerator DodgeMove(float dodgePos)
     {
+        afterEffectObj.SetActive(true);
+
         float start = 0;
         float end = 1;
+
         float percent = 0;
 
         Vector3 startPos = transform.position;
-        Vector3 targetPos = new Vector3(transform.position.x + curPosIndex * 3f, transform.position.y, transform.position.z);
+        Vector3 targetPos = new Vector3(dodgePos, transform.position.y, transform.position.z);
 
         while (percent <= 1)
         {
@@ -63,35 +59,10 @@ public class Alien : Enemy
             parentGameObject.transform.position = Vector3.Lerp(startPos, targetPos, percent);
             yield return null;
         }
-        yield return null;
-    }
 
-    public IEnumerator OnHit(int damage, Vector2 onHitPosition)
-    {
-        alienState = AlienState.HitMove;
-        GameManager.Instance.curHitEnemy = gameObject;
+        yield return new WaitForSeconds(0.3f);
 
-        bool isCritical = CriticalCheck(damage, 33f);
-
-        if (isCritical) damage *= Mathf.RoundToInt(damage * 1.5f);
-
-        curHp -= damage;
-
-        InGameTextViewer.Instance.SetEnemyImage(true, curHp, maxHp, enemyType);
-        InGameTextViewer.Instance.SpawnHUDText(damage.ToString(), isCritical ? Color.red : Color.white, onHitPosition);
-
-        if (curHp <= 0)
-        {
-            OnDead(true);
-        }
-        else
-        {
-            Dodge();
-            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-            yield return new WaitForSeconds(0.1f);
-            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-            alienState = AlienState.Idle;
-        }
+        afterEffectObj.SetActive(false);
     }
 
     public bool CriticalCheck(int damage, float percent)

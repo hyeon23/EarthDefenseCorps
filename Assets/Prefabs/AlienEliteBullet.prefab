@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8925411724918164951}
   - component: {fileID: 8925411724918164950}
   m_Layer: 15
-  m_Name: AlienBullet
+  m_Name: AlienEliteBullet
   m_TagString: AlienBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8925411724918164952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2.18, z: 0}
-  m_LocalScale: {x: 1, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,7 +98,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 7
   m_Sprite: {fileID: 608747428, guid: 75eea58c82670a842a558a443bdc7c95, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -171,5 +171,5 @@ MonoBehaviour:
   enemyBulletObj_2: {fileID: 0}
   curHp: 0
   maxHp: 1
-  dmg: 10
-  isRotate: 0
+  dmg: 5
+  isRotate: 1

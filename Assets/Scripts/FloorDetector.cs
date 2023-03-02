@@ -22,13 +22,13 @@ public class FloorDetector : MonoBehaviour
                         break;
                     case EnemyType.Block1X1:
                         Debug.Log("Block1X1");
-                        EffectManager.Instance.SpawnEffect(new int[] { 21 }, collision.transform.position + new Vector3(0, -1f, 0));
+                        EffectManager.Instance.SpawnEffect(new int[] { 21 }, collision.transform.parent.position + new Vector3(0, -1f, 0));
                         StartCoroutine(GameManager.Instance.CameraShake(0.3f, 1, 2));
                         break;
                     case EnemyType.Block1X3:
                     case EnemyType.Block1X3M:
                         Debug.Log("Block1X3");
-                        EffectManager.Instance.SpawnEffect(new int[] { 22 }, collision.transform.position + new Vector3(0, -1f, 0));
+                        EffectManager.Instance.SpawnEffect(new int[] { 22 }, collision.transform.parent.position + new Vector3(0, -1f, 0));
                         StartCoroutine(GameManager.Instance.CameraShake(0.6f, 2, 3));
                         break;
                 }

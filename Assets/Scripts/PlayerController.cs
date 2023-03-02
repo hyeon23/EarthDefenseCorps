@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private PlayerState playerState;
 
     [SerializeField]
-    private Transform[] playerPos;
+    public Transform[] playerPos;
     [SerializeField]
     private TextMeshProUGUI textText;
     [SerializeField]

@@ -14,8 +14,15 @@ public class AlienNormal : Alien
     [SerializeField]
     protected Animator moonAlien2_BulletPos1_Anime;
 
+    [SerializeField]
+    private float curdodgeMoveCooltime = 0f;
+    private float dodgeMoveCooltime = 2f;
+
     void Update()
     {
+        //Cool Time Set
+        curdodgeMoveCooltime += Time.deltaTime;
+
         switch (alienState)
         {
             case AlienState.Idle:
@@ -25,19 +32,22 @@ public class AlienNormal : Alien
                 break;
             case AlienState.HitMove:
                 //Dodge Move 수행
+                if (curdodgeMoveCooltime < dodgeMoveCooltime) return;
+                Dodge();
+                curShotDelay = 0;
+                curdodgeMoveCooltime = 0;
                 break;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "PlayerTrigger")
+        if (collision.tag == "Weapon")
         {
             switch (enemyName)
             {
                 case "MoonAlien1":
-                    //회피(위치 재설정)
-                    //-재장전(curLoad = 0)
+                    StartCoroutine(OnHit(1, collision.transform.position));
                     break;
                 default:
                     break;
@@ -49,17 +59,6 @@ public class AlienNormal : Alien
             {
                 case "MoonAlien1":
                     //특정 효과
-                    break;
-                default:
-                    break;
-            }
-        }
-        else if (collision.tag == "Weapon")
-        {
-            switch (enemyName)
-            {
-                case "MoonAlien1":
-                    StartCoroutine(OnHit(1, collision.transform.position));
                     break;
                 default:
                     break;
@@ -81,8 +80,8 @@ public class AlienNormal : Alien
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             //플레이어의 위치를 유도해 발사
             moonAlien1_BulletPos1_Anime.SetTrigger("doShoot");
-
-            rigid.AddForce(dirVec.normalized * 6, ForceMode2D.Impulse);
+            rigid.velocity = parentRigid.velocity;
+            rigid.AddForce(dirVec.normalized * 20, ForceMode2D.Impulse);
         }
         else if (enemyName == "MoonAlien2")
         {
@@ -95,7 +94,8 @@ public class AlienNormal : Alien
             //플레이어의 위치를 유도해 발사
             Vector3 dirVecR = PlayerController.Instance.transform.position - (transform.position + Vector3.right * 0.3f);
             Vector3 dirVecL = PlayerController.Instance.transform.position - (transform.position + Vector3.left * 0.3f);
-
+            rigidR.velocity = parentRigid.velocity;
+            rigidL.velocity = parentRigid.velocity;
             rigidR.AddForce(dirVecR.normalized * 4, ForceMode2D.Impulse);
             rigidL.AddForce(dirVecL.normalized * 4, ForceMode2D.Impulse);
         }
@@ -108,15 +108,41 @@ public class AlienNormal : Alien
         curShotDelay += Time.deltaTime;
     }
 
-
     //플레이어를 따라갈 때,
     //피격당해 이동할 때,
     //Idle 상태 --> 공격 가능
     private void FollowPlayer()
     {
         // target 위치 찾기
-        Vector3 targetPosition = new Vector3(transform.position.x, PlayerController.Instance.transform.position.y + 8, transform.position.z);
+        Vector3 targetPosition = new Vector3(transform.position.x, PlayerController.Instance.transform.position.y + 7, transform.position.z);
         // target 위치로 카메라 속도에 맞게 이동
-        parentGameObject.transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 3);
+        parentGameObject.transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 4);
+    }
+
+    public IEnumerator OnHit(int damage, Vector2 onHitPosition)
+    {
+        alienState = AlienState.HitMove;
+        GameManager.Instance.curHitEnemy = gameObject;
+
+        bool isCritical = CriticalCheck(damage, 33f);
+
+        if (isCritical) damage *= Mathf.RoundToInt(damage * 1.5f);
+
+        curHp -= damage;
+
+        InGameTextViewer.Instance.SetEnemyImage(true, curHp, maxHp, enemyType);
+        InGameTextViewer.Instance.SpawnHUDText(damage.ToString(), isCritical ? Color.red : Color.white, onHitPosition);
+
+        if (curHp <= 0)
+        {
+            OnDead(true);
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        alienState = AlienState.Idle;
     }
 }
