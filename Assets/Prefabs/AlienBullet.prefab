@@ -171,5 +171,5 @@ MonoBehaviour:
   enemyBulletObj_2: {fileID: 0}
   curHp: 0
   maxHp: 1
-  dmg: 10
+  dmg: 5
   isRotate: 0

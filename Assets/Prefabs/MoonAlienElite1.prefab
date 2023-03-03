@@ -5106,7 +5106,7 @@ MonoBehaviour:
   dmg: 0
   ancestorGameObject: {fileID: 8518472417129103474}
   parentRigid: {fileID: 8518472417129103472}
-  maxShotDelay: 2
+  maxShotDelay: 3
   curShotDelay: 0
   curPosIndex: 0
   patternIndex: 0

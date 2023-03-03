@@ -67,31 +67,34 @@ public class AlienElite : Alien
         }
     }
 
+    IEnumerator Shoot(float order)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            Vector3 dirVec = PlayerController.Instance.transform.position - transform.position;
+
+            GameObject bulletC = Instantiate(moonAlienElite1_Bullet1, moonAlienElite1_BulletPos1_Anime.transform.position + Vector3.down * 0.3f, GetRotFromVectors(transform.position, PlayerController.Instance.transform.position));
+
+            Rigidbody2D rigidC = bulletC.GetComponent<Rigidbody2D>();
+            //플레이어의 위치를 유도해 발사
+            moonAlienElite1_BulletPos1_Anime.SetTrigger("doShoot");
+
+            rigidC.velocity = parentRigid.velocity;
+            rigidC.AddForce(dirVec.normalized * 10, ForceMode2D.Impulse);
+
+            yield return new WaitForSeconds(order);
+        }
+    }
+
     //총알 발사
     protected void Fire()
     {
-        if (curShotDelay < maxShotDelay)
+        if (curShotDelay < maxShotDelay)    
             return;
 
         if (enemyName == "MoonAlienElite1")
         {
-            Vector3 dirVec = PlayerController.Instance.transform.position - transform.position;
-            GameObject bulletL = Instantiate(moonAlienElite1_Bullet1, moonAlienElite1_BulletPos1_Anime.transform.position + Vector3.left * 0.3f, GetRotFromVectors(transform.position, PlayerController.Instance.transform.position));
-            GameObject bulletC = Instantiate(moonAlienElite1_Bullet1, moonAlienElite1_BulletPos1_Anime.transform.position + Vector3.down * 0.3f, GetRotFromVectors(transform.position, PlayerController.Instance.transform.position));
-            GameObject bulletR = Instantiate(moonAlienElite1_Bullet1, moonAlienElite1_BulletPos1_Anime.transform.position + Vector3.right * 0.3f, GetRotFromVectors(transform.position, PlayerController.Instance.transform.position));
-
-            Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
-            Rigidbody2D rigidC = bulletC.GetComponent<Rigidbody2D>();
-            Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
-
-            //플레이어의 위치를 유도해 발사
-            moonAlienElite1_BulletPos1_Anime.SetTrigger("doShoot");
-            rigidL.velocity = parentRigid.velocity;
-            rigidL.AddForce(dirVec.normalized * 10, ForceMode2D.Impulse);
-            rigidC.velocity = parentRigid.velocity;
-            rigidC.AddForce(dirVec.normalized * 10, ForceMode2D.Impulse);
-            rigidR.velocity = parentRigid.velocity;
-            rigidR.AddForce(dirVec.normalized * 10, ForceMode2D.Impulse);
+            StartCoroutine(Shoot(0.1f));
         }
         else if (enemyName == "MoonAlienElite2")
         {

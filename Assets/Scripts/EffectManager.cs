@@ -65,7 +65,7 @@ public class EffectManager : MonoBehaviour
         else
         {
             effectObject = intToEffectType(24);
-            offset = new Vector3(0.5f, 0.5f, 0);
+            offset = new Vector3(0.25f, 0.5f, 0);
         }
 
         if (effectObject == null) return;
