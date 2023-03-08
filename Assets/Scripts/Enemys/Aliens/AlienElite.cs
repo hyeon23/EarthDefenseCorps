@@ -53,13 +53,59 @@ public class AlienElite : Alien
                     break;
             }
         }
-
         else if (collision.tag == "Sheld")
         {
             switch (enemyName)
             {
                 case "MoonAlienElite1":
                     //특정 효과
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (collision.tag == "Special")
+        {
+            switch (enemyName)
+            {
+                case "MoonAlienElite1":
+                    //특정 효과
+                    if (!parentGameObject.activeSelf) return;
+                    StartCoroutine(OnHit(1, collision.transform.position));
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Special")
+        {
+            switch (enemyName)
+            {
+                case "MoonAlienElite1":
+                    //특정 효과
+                    if (!parentGameObject.activeSelf) return;
+                    StartCoroutine(OnHit(1, collision.transform.position));
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Special")
+        {
+            switch (enemyName)
+            {
+                case "MoonAlienElite1":
+                    //특정 효과
+                    if (!parentGameObject.activeSelf) return;
+                    parentRigid.velocity = Vector3.zero;
                     break;
                 default:
                     break;
@@ -73,7 +119,7 @@ public class AlienElite : Alien
         {
             Vector3 dirVec = PlayerController.Instance.transform.position - transform.position;
 
-            GameObject bulletC = Instantiate(moonAlienElite1_Bullet1, moonAlienElite1_BulletPos1_Anime.transform.position + Vector3.down * 0.3f, GetRotFromVectors(transform.position, PlayerController.Instance.transform.position));
+            GameObject bulletC = Instantiate(moonAlienElite1_Bullet1, moonAlienElite1_BulletPos1_Anime.transform.position, GetRotFromVectors(transform.position, PlayerController.Instance.transform.position));
 
             Rigidbody2D rigidC = bulletC.GetComponent<Rigidbody2D>();
             //플레이어의 위치를 유도해 발사
@@ -94,7 +140,7 @@ public class AlienElite : Alien
 
         if (enemyName == "MoonAlienElite1")
         {
-            StartCoroutine(Shoot(0.1f));
+            StartCoroutine(Shoot(0.25f));
         }
         else if (enemyName == "MoonAlienElite2")
         {
@@ -121,16 +167,7 @@ public class AlienElite : Alien
         curShotDelay += Time.deltaTime;
     }
 
-    //플레이어를 따라갈 때,
-    //피격당해 이동할 때,
-    //Idle 상태 --> 공격 가능
-    private void FollowPlayer()
-    {
-        // target 위치 찾기
-        Vector3 targetPosition = new Vector3(transform.position.x, PlayerController.Instance.transform.position.y + 7, transform.position.z);
-        // target 위치로 카메라 속도에 맞게 이동
-        parentGameObject.transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 4);
-    }
+    
 
     public IEnumerator OnHit(int damage, Vector2 onHitPosition)
     {
@@ -157,5 +194,36 @@ public class AlienElite : Alien
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         }
         alienState = AlienState.Idle;
+    }
+
+    public void OnDead(bool isAttacked = false)
+    {
+        gameObject.SetActive(false);
+
+        if (GameManager.Instance.curHitEnemy == gameObject)
+        {
+            InGameTextViewer.Instance.enemyGageShown = false;
+        }
+
+        switch (enemyName)
+        {
+            case "MoonAlienElite1":
+                EffectManager.Instance.SpawnEffect(new int[] { 32 }, transform.position);
+                break;
+            default:
+                break;
+        }
+
+        //Destroy
+        if (ancestorGameObject.transform.childCount == 1)
+        {
+            ancestorGameObject.SetActive(false);
+            Destroy(ancestorGameObject, 1);
+        }
+        else
+        {
+            parentGameObject.SetActive(false);
+            Destroy(parentGameObject, 1);
+        }
     }
 }

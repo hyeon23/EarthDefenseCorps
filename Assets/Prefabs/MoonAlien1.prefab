@@ -42,7 +42,7 @@ ParticleSystem:
   m_GameObject: {fileID: 5077985539608294454}
   serializedVersion: 8
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 2
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -867,7 +867,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 30
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4761,7 +4761,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 58f8b7c1ad47567449d00eef9bd792cb, type: 2}
+  - {fileID: 2100000, guid: 9d888d2596414f14b98b6ea0df015cfe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5109,9 +5109,6 @@ MonoBehaviour:
   maxShotDelay: 5
   curShotDelay: 0
   curPosIndex: 0
-  patternIndex: 0
-  curPatternCount: 0
-  maxPatternCount: 
   afterEffectObj: {fileID: 5077985539608294454}
   moonAlien1_Bullet1: {fileID: 8925411724918164952, guid: 8644ef4e561b0ea42a5992ae48bcf908, type: 3}
   moonAlien2_Bullet1: {fileID: 0}

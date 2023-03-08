@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AlienState { Idle, HitMove }
+public enum AlienState { Idle, HitMove, Pattern, Turn, Dead }
 
 public class Alien : Enemy
 {
@@ -16,13 +16,6 @@ public class Alien : Enemy
 
     [SerializeField]
     protected int curPosIndex = 0;
-
-    [SerializeField]
-    protected int patternIndex;
-    [SerializeField]
-    protected int curPatternCount;
-    [SerializeField]
-    protected int[] maxPatternCount;
 
     public GameObject afterEffectObj;
 
@@ -38,6 +31,25 @@ public class Alien : Enemy
         curPosIndex = dodgePosIndex;
         StartCoroutine(DodgeMove(PlayerController.Instance.playerPos[curPosIndex].position.x));
         return;
+    }
+
+    //플레이어를 따라갈 때,
+    //피격당해 이동할 때,
+    //Idle 상태 --> 공격 가능
+    protected void FollowPlayer()
+    {
+        // target 위치 찾기
+        Vector3 targetPosition = new Vector3(transform.position.x, PlayerController.Instance.transform.position.y + 6, transform.position.z);
+        // target 위치로 카메라 속도에 맞게 이동
+        parentGameObject.transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 3);
+    }
+
+    protected void FollowPlayerBoss()
+    {
+        // target 위치 찾기
+        Vector3 targetPosition = new Vector3(transform.position.x, PlayerController.Instance.transform.position.y + 12, transform.position.z);
+        // target 위치로 카메라 속도에 맞게 이동
+        parentGameObject.transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 3);
     }
 
     private IEnumerator DodgeMove(float dodgePos)
@@ -76,35 +88,6 @@ public class Alien : Enemy
         else
         {
             return false;
-        }
-    }
-
-    public void OnDead(bool isAttacked = false)
-    {
-        gameObject.SetActive(false);
-
-        if (GameManager.Instance.curHitEnemy == gameObject)
-        {
-            InGameTextViewer.Instance.enemyGageShown = false;
-        }
-
-        switch (enemyName)
-        {
-            case "MoaiBlue":
-                EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 10, 11, 12 }, transform.position);
-                break;
-            default:
-                break;
-        }
-
-        //Destroy
-        if (ancestorGameObject.transform.childCount == 1)
-        {
-            Destroy(ancestorGameObject);
-        }
-        else
-        {
-            Destroy(parentGameObject);
         }
     }
 }

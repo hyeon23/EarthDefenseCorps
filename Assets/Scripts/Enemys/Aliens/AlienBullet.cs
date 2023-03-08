@@ -43,13 +43,17 @@ public class AlienBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if (collision.gameObject.tag == "Weapon")
+        else if (collision.gameObject.tag == "Weapon" || collision.gameObject.tag == "Special")
         {
             StartCoroutine(OnHit(1, collision.transform.position));
         }
         else if (collision.gameObject.tag == "Sheld")
         {
 
+        }
+        else if (collision.gameObject.tag == "Boundary")
+        {
+            Destroy(gameObject);
         }
     }
 

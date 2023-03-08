@@ -18,6 +18,11 @@ TagManager:
   - AlienBullet
   - AlienTrigger
   - Alien
+  - Boundary
+  - SpecialBulletCollider
+  - SpecialBulletTrigger
+  - SpecialBullet
+  - Special
   layers:
   - Default
   - TransparentFX
@@ -35,10 +40,10 @@ TagManager:
   - Alien
   - AlienInvincibility
   - AlienBullet
-  - 
-  - 
-  - 
-  - 
+  - AlienBoss
+  - AlienBossDead
+  - SpecialBullet
+  - Special
   - 
   - 
   - 

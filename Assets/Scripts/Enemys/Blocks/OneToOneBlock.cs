@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 public class OneToOneBlock : Block
 {
-    public bool isOverlappedPlayer = false;
     public bool isCrushedPlayer = false;
+    public bool isOverlappedPlayer = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -35,13 +35,13 @@ public class OneToOneBlock : Block
                     if (!isOverlappedPlayer)
                     {
                         //±ò·ÁÀÖÁö ¾ÊÀº »óÅÂ¿¡¼­ ºí·Ï ÆÄ±«½Ã
-                        Debug.Log("OnDead");
                         OnDead();
                     }
                     else if (isOverlappedPlayer)
                     {
                         //ÇÃ·¹ÀÌ¾î°¡ ±ò¾Æ¹¶°³Áü
                         isCrushedPlayer = true;
+                        PlayerController.Instance.isCrushed = true;
                     }
                     break;
                 case EnemyType.Block1X3:
@@ -50,6 +50,7 @@ public class OneToOneBlock : Block
                     {
                         //ÇÃ·¹ÀÌ¾î°¡ ±ò¾Æ¹¶°³Áü
                         isCrushedPlayer = true;
+                        PlayerController.Instance.isCrushed = true;
                     }
                     break;
             }
@@ -65,7 +66,7 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X3:
                 case EnemyType.Block1X3M:
                     parentRigid.velocity = Vector2.zero;
-                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 10 : 5), ForceMode2D.Impulse);
+                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 10 : 10), ForceMode2D.Impulse);
                     break;
             }
         }
@@ -74,12 +75,74 @@ public class OneToOneBlock : Block
             switch (enemyType)
             {
                 case EnemyType.Block1X1H:
+                    if (!parentGameObject.activeSelf) return;
+
                     StartCoroutine(OnHit(1, collision.transform.position));
                     break;
                 case EnemyType.Block1X1:
                 case EnemyType.Block1X3:
                 case EnemyType.Block1X3M:
-                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 10 : 1), ForceMode2D.Impulse);
+                    if (!parentGameObject.activeSelf) return;
+
+                    StartCoroutine(OnHit(1, collision.transform.position));
+                    break;
+            }
+        }
+        else if(collision.tag == "Special")
+        {
+            switch (enemyType)
+            {
+                case EnemyType.Block1X1H:
+                    if (!parentGameObject.activeSelf) return;
+
+                    parentRigid.transform.position = new Vector3(parentRigid.transform.position.x, parentRigid.transform.position.y + 1.5f, parentRigid.transform.position.z);
+                    StartCoroutine(OnHit(1, collision.transform.position));
+                    break;
+                case EnemyType.Block1X1:
+                case EnemyType.Block1X3:
+                case EnemyType.Block1X3M:
+                    if (!parentGameObject.activeSelf) return;
+
+                    parentRigid.transform.position = new Vector3(parentRigid.transform.position.x, parentRigid.transform.position.y + 1.5f, parentRigid.transform.position.z);
+                    StartCoroutine(OnHit(1, collision.transform.position));
+                    break;
+            }
+        }
+        //if (collision.tag == "SpecialBulletTrigger")
+        //{
+        //    switch (enemyType)
+        //    {
+        //        case EnemyType.Block1X1H:
+        //            StartCoroutine(OnHit(1, collision.transform.position));
+        //            break;
+        //        case EnemyType.Block1X1:
+        //        case EnemyType.Block1X3:
+        //        case EnemyType.Block1X3M:
+        //            parentRigid.velocity = Vector2.zero;
+        //            parentRigid.AddForce(new Vector2(0, 2f), ForceMode2D.Impulse);
+        //            StartCoroutine(OnHit(1, collision.transform.position));
+        //            break;
+        //    }
+        //}
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Special")
+        {
+            switch (enemyType)
+            {
+                case EnemyType.Block1X1H:
+                    if (!parentGameObject.activeSelf) return;
+
+                    StartCoroutine(OnHit(1, collision.transform.position));
+                    break;
+                case EnemyType.Block1X1:
+                case EnemyType.Block1X3:
+                case EnemyType.Block1X3M:
+                    if (!parentGameObject.activeSelf) return;
+
+                    parentRigid.AddForce(new Vector2(0, 0.5f), ForceMode2D.Impulse);
                     StartCoroutine(OnHit(1, collision.transform.position));
                     break;
             }
@@ -114,10 +177,28 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X3:
                 case EnemyType.Block1X3M:
                     isCrushedPlayer = false;
+                    PlayerController.Instance.isCrushed = false;
+                    break;
+            }
+        }
+        else if (collision.tag == "Special")
+        {
+            switch (enemyType)
+            {
+                case EnemyType.Block1X1H:
+                    if (!parentGameObject.activeSelf) return;
+                    parentRigid.velocity = Vector3.zero;
+                    break;
+                case EnemyType.Block1X1:
+                case EnemyType.Block1X3:
+                case EnemyType.Block1X3M:
+                    if (!parentGameObject.activeSelf) return;
+                    parentRigid.velocity = Vector3.zero;
                     break;
             }
         }
     }
+
     public IEnumerator OnHit(int damage, Vector2 onHitPosition)
     {
         GameManager.Instance.curHitEnemy = gameObject;
@@ -159,8 +240,6 @@ public class OneToOneBlock : Block
 
     public void OnDead(bool isAttacked = false)
     {
-        gameObject.SetActive(false);
-
         if (GameManager.Instance.curHitEnemy == gameObject)
         {
             InGameTextViewer.Instance.enemyGageShown = false;
@@ -188,6 +267,8 @@ public class OneToOneBlock : Block
                     EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 7, 8, 9 }, transform.position);
                     break;
                 case "MoaiGray":
+                    EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 4, 5, 6 }, transform.position);
+                    break;
                 case "StoneTower":
                     EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 4, 5, 6 }, transform.position);
                     break;
@@ -200,7 +281,16 @@ public class OneToOneBlock : Block
                     EffectManager.Instance.SpawnEffect(new int[] { 14, 15, 16, 17, 18, 19, 20 }, transform.position);
                     break;
                 case "Cube":
-                    EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 13 }, transform.parent.position);
+                    EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 13 }, transform.position);
+                    break;
+                case "ApartmentOrange":
+                    EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 25, 26, 27 }, transform.position);
+                    break;
+                case "ApartmentYellow":
+                    EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 28, 29, 30 }, transform.position);
+                    break;
+                case "ApartmentGray":
+                    EffectManager.Instance.SpawnEffect(new int[] { 0, 1, 2, 3, 4, 5, 6 }, transform.position);
                     break;
                 default:
                     break;
@@ -215,6 +305,7 @@ public class OneToOneBlock : Block
                 //7: MoaiRedOne, 8: MoaiRedTwo, 9: MoaiRedThree
                 //10: MoaiBlueOne, 11: MoaiBlueTwo, 12: MoaiBlueThree
                 //13; Cube
+
                 //14: S_Bronze, 15: S_Silver, 16: S_Gold, 17: S_Zam
                 //18: S_TotemOne, 19: S_TotemTwo, 20: S_TotemThree
 
@@ -240,7 +331,7 @@ public class OneToOneBlock : Block
                     EffectManager.Instance.SpawnEffect(new int[] { 18, 19, 20 }, transform.position);
                     break;
                 case "Cube":
-                    EffectManager.Instance.SpawnEffect(new int[] { 13 }, transform.parent.position);
+                    EffectManager.Instance.SpawnEffect(new int[] { 13 }, transform.position);
                     break;
                 default:
                     break;
@@ -250,11 +341,20 @@ public class OneToOneBlock : Block
         //Destroy
         if (ancestorGameObject.transform.childCount == 1)
         {
-            Destroy(ancestorGameObject);
+            if (ancestorGameObject.activeSelf)
+            {
+                ancestorGameObject.SetActive(false);
+            }
+            
+            Destroy(ancestorGameObject, 1);
         }
         else
         {
-            Destroy(parentGameObject);
+            if (parentGameObject.activeSelf)
+            {
+                parentGameObject.SetActive(false);
+            }
+            Destroy(parentGameObject, 1);
         }
     }
 }

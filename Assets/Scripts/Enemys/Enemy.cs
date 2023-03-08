@@ -38,12 +38,13 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         curHp = maxHp;
+        GameManager.Instance.curLiveEnemyCount++;
         parentGameObject = gameObject.transform.parent.gameObject;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.curDeadEnemyCount++;
+        //GameManager.Instance.curDeadEnemyCount++;
         GameManager.Instance.curLiveEnemyCount--;
     }
 }

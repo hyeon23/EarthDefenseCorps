@@ -6,6 +6,8 @@ public class FloorDetector : MonoBehaviour
 {
     [SerializeField]
     private OneToOneBlock curBlock = null;
+    [SerializeField]
+    private AlienBoss curAlien = null;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,14 +23,28 @@ public class FloorDetector : MonoBehaviour
                     case EnemyType.Block1X1H:
                         break;
                     case EnemyType.Block1X1:
-                        Debug.Log("Block1X1");
                         EffectManager.Instance.SpawnEffect(new int[] { 21 }, collision.transform.parent.position + new Vector3(0, -1f, 0));
                         StartCoroutine(GameManager.Instance.CameraShake(0.3f, 1, 2));
                         break;
                     case EnemyType.Block1X3:
                     case EnemyType.Block1X3M:
-                        Debug.Log("Block1X3");
-                        EffectManager.Instance.SpawnEffect(new int[] { 22 }, collision.transform.parent.position + new Vector3(0, -1f, 0));
+                        EffectManager.Instance.SpawnEffect(new int[] { 22 }, transform.position + new Vector3(0, 1f, 0));
+                        StartCoroutine(GameManager.Instance.CameraShake(0.6f, 2, 3));
+                        break;
+                }
+            }
+        }
+        else if(collision.tag == "AlienTrigger")
+        {
+            if (collision.GetComponent<AlienBoss>().isOverlappedPlayer)
+            {
+                curAlien = collision.GetComponent<AlienBoss>();
+                StartCoroutine(PlayerTrigger.Instance.OnHit(curAlien.dmg * 100));
+
+                switch (curAlien.enemyType)
+                {
+                    case EnemyType.AlienBoss:
+                        EffectManager.Instance.SpawnEffect(new int[] { 22 }, transform.position + new Vector3(0, 1f, 0));
                         StartCoroutine(GameManager.Instance.CameraShake(0.6f, 2, 3));
                         break;
                 }
@@ -43,6 +59,14 @@ public class FloorDetector : MonoBehaviour
             if (curBlock.isCrushedPlayer)
             {
                 StartCoroutine(PlayerTrigger.Instance.OnHit(curBlock.dmg));
+            }
+        }
+
+        if (curAlien != null)
+        {
+            if (curAlien.isCrushedPlayer)
+            {
+                StartCoroutine(PlayerTrigger.Instance.OnHit(curAlien.dmg));
             }
         }
     }
