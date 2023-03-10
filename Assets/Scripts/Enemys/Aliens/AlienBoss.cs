@@ -1,10 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.VisualScripting;
-using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
-using System.Threading.Tasks;
 
 public class AlienBoss : Alien
 {
