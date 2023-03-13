@@ -45,6 +45,6 @@ public class Enemy : MonoBehaviour
     private void OnDisable()
     {
         //GameManager.Instance.curDeadEnemyCount++;
-        GameManager.Instance.curLiveEnemyCount--;
+        //GameManager.Instance.curLiveEnemyCount--;
     }
 }

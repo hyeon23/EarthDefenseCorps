@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     //해당 스테이지에서 스폰되는 총 EnemyCount;
     public int totalEnemyCount;
 
+    public int curStage = 1;
+
     public int score;
     public int combo;
 
