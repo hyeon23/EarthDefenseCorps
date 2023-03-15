@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
+using static UnityEngine.CullingGroup;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -23,13 +24,14 @@ public class MainMenuController : MonoBehaviour
 
     public string[] stageNames;
     public Color[] stageSymbolicColors;
-    public Sprite[] statePlanetSprites;
-    public Sprite[] statePlanetPressedSprites;
+    public Sprite[] stagePlanetSprites;
+    public Sprite[] stagePlanetPressedSprites;
 
     public Button StagePlanetButton;//행성버튼
     public Button StageSelectButton;//행성선택버튼
     public Button StageSelectedButton;//행성선택됨버튼
     public Button StageLockedButton;//행성잠김버튼
+    public Button StageGoBackButton;//스테이지 선택 창에서 뒤로가기 버튼
 
     public TextMeshProUGUI stageNameTMP;//행성 이름 TMP
     public TextMeshProUGUI stageNumberTMP;//행성 번호 TMP
@@ -80,10 +82,14 @@ public class MainMenuController : MonoBehaviour
         {
             StageSelectRightButton.interactable = false;
             StageSelectLeftButton.interactable = false;
-
+            StageGoBackButton.interactable = false;
+            StageSelectButton.interactable = false;
         }
         else
         {
+            StageGoBackButton.interactable = true;
+            StageSelectButton.interactable = true;
+
             if (curSelectStage == maxStageNum)
                 StageSelectRightButton.interactable = false;
             else
@@ -155,14 +161,24 @@ public class MainMenuController : MonoBehaviour
     //메인 화면으로 이동 버튼
     public void OnClickGoBackMainMenuButton() 
     {
+        int curStage = GameManager.Instance.curStage;
+
+        stageNameTMP.text = stageNames[curStage - 1];
+        stageNumberTMP.text = "S T A G E " + curStage;
+        stageNameTMP.color = stageSymbolicColors[curStage - 1];
+        gameStartButtonTMP.color = stageSymbolicColors[curStage - 1];
+        stageSelectButtonTMP.color = stageSymbolicColors[curStage - 1];
+        Planet.GetComponent<Image>().sprite = stagePlanetSprites[curStage - 1];
+        Planet.GetComponent<Image>().color = Color.white;
+
         StageSelectionPanel.SetActive(false);
         StagePlanetButton.enabled = true;
         StagePlanetPanel.SetActive(true);
-        
     }
 
     public void OnClickGoStageSelectionMenuButton()
     {
+        curSelectStage = GameManager.Instance.curStage;
         StagePlanetPanel.SetActive(false);
         StagePlanetButton.enabled = false;
         StageSelectionPanel.SetActive(true);
@@ -205,7 +221,12 @@ public class MainMenuController : MonoBehaviour
         stageNameTMP.color = stageSymbolicColors[curSelectStage - 1];
         gameStartButtonTMP.color = stageSymbolicColors[curSelectStage - 1];
         stageSelectButtonTMP.color = stageSymbolicColors[curSelectStage - 1];
-        Planet.GetComponent<Image>().sprite = statePlanetSprites[curSelectStage - 1];
+        Planet.GetComponent<Image>().sprite = stagePlanetSprites[curSelectStage - 1];
+
+        SpriteState newSpriteState = new SpriteState();
+        newSpriteState.highlightedSprite = stagePlanetPressedSprites[curSelectStage - 1];
+        newSpriteState.pressedSprite = stagePlanetPressedSprites[curSelectStage - 1];
+        Planet.GetComponent<Button>().spriteState = newSpriteState;
 
         //1, 2, 3
         //Stage 정보
@@ -225,7 +246,7 @@ public class MainMenuController : MonoBehaviour
                     ClearStageSelected(curSelectStage);
 
                     stageNameTMP.text = stageNames[curSelectStage - 1];
-                    Planet.GetComponent<Image>().color = stageSymbolicColors[curSelectStage - 1];
+                    Planet.GetComponent<Image>().color = Color.white;
                 }
                 else
                 {

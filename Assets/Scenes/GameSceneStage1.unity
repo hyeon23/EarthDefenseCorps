@@ -9880,7 +9880,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 228115059, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
+  m_Sprite: {fileID: 2106727407, guid: 00b609cd24a68c645a4b5feee1eba973, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16809,6 +16809,7 @@ MonoBehaviour:
   curKillEnemyCount: 0
   curLiveEnemyCount: 0
   totalEnemyCount: 0
+  curStage: 1
   score: 0
   combo: 0
 --- !u!4 &1428458982
