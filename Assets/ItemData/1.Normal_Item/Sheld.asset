@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 0
   itemName: Sheld
-  itemDesc: 
+  itemDesc: 4
   itemImage: {fileID: -503950853, guid: f3b427084f31a4942b8961231b7e7e91, type: 3}
   itemType: 3
-  itemGrade: 0
+  itemGrade: 3
   itemATK: 0
   itemLevel: 1
   itemHP: 30
@@ -26,3 +26,5 @@ MonoBehaviour:
   itemCriticalRate: 0
   itemCriticalDamage: 0
   itemPrice: 10
+  upgradeCost: 0
+  itemProbability: 0

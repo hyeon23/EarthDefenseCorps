@@ -13,6 +13,8 @@ public class Item: ScriptableObject
     //아이템 등급에 따른 최대레벨   { 10, 20, 30, 40, 50 } 
     public enum ItemGrade { Normal, Rare, Epic, Unique, Legendary, Count }
 
+    public bool isEquipped;//장비 착용 상태
+
     public int itemID;//아이템 고유 번호
     public string itemName;//아이템 이름
     public string itemDesc;//아이템 설명
@@ -35,5 +37,5 @@ public class Item: ScriptableObject
     //강화비용 = 강화비용 = 아이템 등급 X 현재 아이템 레벨
 
     //뽑기관련
-    public float itemProperty;//아이템 뽑기 확률(가중치)
+    public float itemProbability;//아이템 뽑기 확률(가중치)
 }

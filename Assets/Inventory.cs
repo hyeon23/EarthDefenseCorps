@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public Item[] randItems;
+
     public List<GameObject> slotGameObject;
     public List<ItemSlot> slots;
     public List<Item> items;
@@ -41,7 +43,20 @@ public class Inventory : MonoBehaviour
         GameObject cloneSlot = Instantiate(slotPrefab, slotParent);
         cloneSlot.GetComponent<ItemSlot>().item = _item;
         cloneSlot.GetComponent<ItemSlot>().ItemIcon.sprite = _item.itemImage;
-        cloneSlot.GetComponent<ItemSlot>().gradeBackground.color = cloneSlot.GetComponent<ItemSlot>().SetGradeColorBackground();
+        cloneSlot.GetComponent<ItemSlot>().gradeBackground.color = MainMenuController.Instance.SetGradeColorBackground(_item);
+        slots.Add(cloneSlot.GetComponent<ItemSlot>());
+        slotGameObject.Add(cloneSlot);
+    }
+
+    public void AddRandItem()
+    {
+        Item _item = randItems[Random.Range(0, randItems.Length)];
+
+        items.Add(_item);
+        GameObject cloneSlot = Instantiate(slotPrefab, slotParent);
+        cloneSlot.GetComponent<ItemSlot>().item = _item;
+        cloneSlot.GetComponent<ItemSlot>().ItemIcon.sprite = _item.itemImage;
+        cloneSlot.GetComponent<ItemSlot>().gradeBackground.color = MainMenuController.Instance.SetGradeColorBackground(_item);
         slots.Add(cloneSlot.GetComponent<ItemSlot>());
         slotGameObject.Add(cloneSlot);
     }

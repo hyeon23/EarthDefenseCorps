@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Progress;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -71,12 +72,84 @@ public class MainMenuController : MonoBehaviour
     public Animator popUpAnime;
     public TextMeshProUGUI PopUpTMP;//팝업 TMP
 
+    private static MainMenuController instance = null;
+
+    public static MainMenuController Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
+
     private void Awake()
     {
+        if (null == instance)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
         TabClick(1);
         isStageClear = new bool[3] { true, false, false };
         stageNames = new string[3] { "MOON", "Mercury", "Mars" };
         stageSymbolicColors = new Color[3] { Color.yellow, new Color(0, 150, 255, 255), Color.red };
+    }
+
+    public void EquipInfoUpdate(Item _item)
+    {
+        equipNameTMP.text = _item.itemName;
+        equipTopGradeImage.color = SetGradeColorBackground(_item);
+        equipTopGradeTMP.text = _item.itemGrade.ToString();
+        equipGradeImage.color = SetGradeColorBackground(_item);
+        equipImage.sprite = _item.itemImage;
+
+        equipLevelTMP.text = _item.itemLevel.ToString();
+        statTMP.text = "ATK";
+        equipStatTMP.text = _item.itemATK.ToString();
+        equipPartTMP.text = _item.itemType.ToString();
+        equipDescTMP.text = _item.itemDesc.ToString();
+        equipUpgradeCostTMP.text = _item.upgradeCost.ToString();
+        //equipButtonImage.sprite
+        //equipButtonTMP.text
+
+        equipmentInfoPanel.SetActive(true);
+}
+
+public Color SetGradeColorBackground(Item _item)
+    {
+        Color retColor;
+
+        switch (_item.itemGrade)
+        {
+            case Item.ItemGrade.Normal:
+                retColor = Color.gray;
+                break;
+            case Item.ItemGrade.Rare:
+                retColor = Color.cyan;
+                break;
+            case Item.ItemGrade.Epic:
+                retColor = Color.magenta;
+                break;
+            case Item.ItemGrade.Unique:
+                retColor = Color.yellow;
+                break;
+            case Item.ItemGrade.Legendary:
+                retColor = Color.red;
+                break;
+            default:
+                retColor = Color.white;
+                break;
+        }
+
+        return retColor;
     }
 
     private void Start()
@@ -110,11 +183,6 @@ public class MainMenuController : MonoBehaviour
                 StageSelectLeftButton.interactable = false;
             else
                 StageSelectLeftButton.interactable = true;
-        }
-
-        if (curSelectStage == GameManager.Instance.curStage)    
-        {
-
         }
 
         for (int i = 0; i < SIZE; i++)

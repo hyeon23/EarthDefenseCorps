@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 0
   itemName: Weapon
-  itemDesc: 
+  itemDesc: 6
   itemImage: {fileID: 656847722, guid: f3b427084f31a4942b8961231b7e7e91, type: 3}
   itemType: 0
-  itemGrade: 3
+  itemGrade: 5
   itemATK: 3
   itemLevel: 1
   itemHP: 0
@@ -26,3 +26,5 @@ MonoBehaviour:
   itemCriticalRate: 10
   itemCriticalDamage: 0
   itemPrice: 100
+  upgradeCost: 0
+  itemProbability: 0
