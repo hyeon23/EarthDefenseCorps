@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 [CreateAssetMenu(fileName = "New Item", menuName = "New Item/Item")]
 public class Item: ScriptableObject
 {
@@ -29,5 +31,9 @@ public class Item: ScriptableObject
 
     //비용관련
     public int itemPrice;//아이템 가격, 판매가격 = (int)(아이템 가격 * 0.3)
+    public int upgradeCost;
     //강화비용 = 강화비용 = 아이템 등급 X 현재 아이템 레벨
+
+    //뽑기관련
+    public float itemProperty;//아이템 뽑기 확률(가중치)
 }

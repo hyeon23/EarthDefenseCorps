@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using System.Collections;
 using UnityEngine.SceneManagement;
-using TMPro;
-using static UnityEngine.CullingGroup;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -17,7 +15,7 @@ public class MainMenuController : MonoBehaviour
 
     int targetIndex;
 
-    [Header("Middle Panel")]
+    [Header("Middle Battle Panel")]
     public GameObject[] MiddlePanels;
     public GameObject StagePlanetPanel;
     public GameObject StageSelectionPanel;
@@ -32,14 +30,12 @@ public class MainMenuController : MonoBehaviour
     public Button StageSelectedButton;//행성선택됨버튼
     public Button StageLockedButton;//행성잠김버튼
     public Button StageGoBackButton;//스테이지 선택 창에서 뒤로가기 버튼
-
     public TextMeshProUGUI stageNameTMP;//행성 이름 TMP
     public TextMeshProUGUI stageNumberTMP;//행성 번호 TMP
     public TextMeshProUGUI gameStartButtonTMP;//행성 이름 TMP
     public TextMeshProUGUI stageSelectButtonTMP;//행성 이름 TMP
 
     public GameObject Planet;//행성 이미지 및 버튼 설정을 위한 GameObject
-
 
     public GameObject PlanetAxis;//행성 회전축
     public Animator PlanetAxisAnime;
@@ -55,9 +51,25 @@ public class MainMenuController : MonoBehaviour
 
     public bool[] isStageClear;
 
+    [Header("Middle EquipmentInfo Panel")]
+    public GameObject equipmentInfoPanel;
+    public TextMeshProUGUI equipNameTMP;
+    public Image equipTopGradeImage;
+    public TextMeshProUGUI equipTopGradeTMP;
+    public Image equipGradeImage;
+    public Image equipImage;
+    public TextMeshProUGUI equipLevelTMP;
+    public TextMeshProUGUI statTMP;
+    public TextMeshProUGUI equipStatTMP;
+    public TextMeshProUGUI equipPartTMP;
+    public TextMeshProUGUI equipDescTMP;
+    public TextMeshProUGUI equipUpgradeCostTMP;
+    public Image equipButtonImage;
+    public TextMeshProUGUI equipButtonTMP;
+
+    [Header("Middle PopUp Panel")]
     public Animator popUpAnime;
     public TextMeshProUGUI PopUpTMP;//팝업 TMP
-
 
     private void Awake()
     {
@@ -100,7 +112,7 @@ public class MainMenuController : MonoBehaviour
                 StageSelectLeftButton.interactable = true;
         }
 
-        if (curSelectStage == GameManager.Instance.curStage)
+        if (curSelectStage == GameManager.Instance.curStage)    
         {
 
         }
@@ -295,5 +307,11 @@ public class MainMenuController : MonoBehaviour
     {
         PopUpTMP.text = msg;
         popUpAnime.SetTrigger("doPopUp");
+    }
+
+    //EquipmentInfoPanel
+    public void backButton()
+    {
+        equipmentInfoPanel.SetActive(false);
     }
 }

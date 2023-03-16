@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -503950853, guid: f3b427084f31a4942b8961231b7e7e91, type: 3}
+  m_Sprite: {fileID: -267987533, guid: f3b427084f31a4942b8961231b7e7e91, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 6269818464694270228}
   - component: {fileID: 6269818464694270229}
   m_Layer: 5
-  m_Name: CurEquipGradeColor
+  m_Name: CurEquipBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +275,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6269818465528820351}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6269818465528820349}
+        m_TargetAssemblyTypeName: ItemSlot, Assembly-CSharp
+        m_MethodName: ItemSlotClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6269818465528820349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,3 +301,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
+  ItemIcon: {fileID: 6269818463751148602}
+  gradeBackground: {fileID: 6269818465528820351}
