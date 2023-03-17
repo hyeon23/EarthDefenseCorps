@@ -61,17 +61,39 @@ public class Inventory : MonoBehaviour
         slotGameObject.Add(cloneSlot);
     }
 
-    public void EquipItem(Item _item)
+    public void Equip_UnequipItemButton(Item _item)
     {
+        if (!_item.isEquipped)
+        {
+            switch (_item.itemPart)
+            {
+                case Item.ItemPart.Weapon:
+                    DataManager.Instance.curEquippedWeapon = _item;
+                    break;
+                case Item.ItemPart.Gloves:
+                    DataManager.Instance.curEquippedGloves = _item;
+                    break;
+                case Item.ItemPart.Shoes:
+                    DataManager.Instance.curEquippedShoes = _item;
+                    break;
+                case Item.ItemPart.Sheld:
+                    DataManager.Instance.curEquippedSheld = _item;
+                    break;
+                case Item.ItemPart.Helmat:
+                    DataManager.Instance.curEquippedHelmat = _item;
+                    break;
+                case Item.ItemPart.Armor:
+                    DataManager.Instance.curEquippedArmor = _item;
+                    break;
+            }
+        }
+        else
+        {
 
+        }
     }
 
-    public void unequipItem(Item _item)
-    {
-
-    }
-
-    public void UpgradeItem(Item _item)
+    public void UpgradeItemButton(Item _item)
     {
         //if PlayerGold >= curUpgradeCost
         // PlayerGold - curUpgradeCost
@@ -79,7 +101,7 @@ public class Inventory : MonoBehaviour
         _item.itemLevel++;
     }
 
-    public void SellItem(Item _item)
+    public void SellItemButton(Item _item)
     {
         
     }

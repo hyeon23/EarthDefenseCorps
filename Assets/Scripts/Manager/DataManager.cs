@@ -6,6 +6,13 @@ public class DataManager : MonoBehaviour
 {
     private static DataManager instance = null;
 
+    public Item curEquippedWeapon;
+    public Item curEquippedGloves;
+    public Item curEquippedShoes;
+    public Item curEquippedSheld;
+    public Item curEquippedHelmat;
+    public Item curEquippedArmor;
+
     void Awake()
     {
         if (instance == null)

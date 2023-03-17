@@ -19,7 +19,7 @@ public class Item: ScriptableObject
     public string itemName;//아이템 이름
     public string itemDesc;//아이템 설명
     public Sprite itemImage;//아이템 스프라이트
-    public ItemPart itemType;//아이템 타입
+    public ItemPart itemPart;//아이템 타입
     public ItemGrade itemGrade;//아이템 등급
 
     //스텟관련

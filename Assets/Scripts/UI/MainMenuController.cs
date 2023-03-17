@@ -69,6 +69,9 @@ public class MainMenuController : MonoBehaviour
     public Image equipButtonImage;
     public TextMeshProUGUI equipButtonTMP;
 
+    public Button equipButton;
+    public Button unEquipButton;
+
     [Header("Middle PopUp Panel")]
     public Animator popUpAnime;
     public TextMeshProUGUI PopUpTMP;//팝업 TMP
@@ -113,10 +116,12 @@ public class MainMenuController : MonoBehaviour
         equipGradeImage.color = SetGradeColorBackground(_item);
         equipImage.sprite = _item.itemImage;
 
+        if(_item.isEquipped) {  }
+
         equipLevelTMP.text = _item.itemLevel.ToString();
         statTMP.text = "ATK";
         equipStatTMP.text = _item.itemATK.ToString();
-        equipPartTMP.text = _item.itemType.ToString();
+        equipPartTMP.text = _item.itemPart.ToString();
         equipDescTMP.text = _item.itemDesc.ToString();
         equipUpgradeCostTMP.text = _item.upgradeCost.ToString();
         //equipButtonImage.sprite
