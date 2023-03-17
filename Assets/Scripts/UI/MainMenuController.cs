@@ -54,6 +54,7 @@ public class MainMenuController : MonoBehaviour
 
     [Header("Middle EquipmentInfo Panel")]
     public GameObject equipmentInfoPanel;
+    public Image equipTopNameImage;
     public TextMeshProUGUI equipNameTMP;
     public Image equipTopGradeImage;
     public TextMeshProUGUI equipTopGradeTMP;
@@ -106,6 +107,7 @@ public class MainMenuController : MonoBehaviour
     public void EquipInfoUpdate(Item _item)
     {
         equipNameTMP.text = _item.itemName;
+        equipTopNameImage.color = SetGradeColorBackground(_item);
         equipTopGradeImage.color = SetGradeColorBackground(_item);
         equipTopGradeTMP.text = _item.itemGrade.ToString();
         equipGradeImage.color = SetGradeColorBackground(_item);
@@ -130,13 +132,13 @@ public Color SetGradeColorBackground(Item _item)
         switch (_item.itemGrade)
         {
             case Item.ItemGrade.Normal:
-                retColor = Color.gray;
+                retColor = new Color(0.75f, 0.75f, 0.75f, 1f);
                 break;
             case Item.ItemGrade.Rare:
-                retColor = Color.cyan;
+                retColor = new Color(0, 0.5f, 1f, 1f);
                 break;
             case Item.ItemGrade.Epic:
-                retColor = Color.magenta;
+                retColor = new Color(0.6f, 0f, 1f, 1f);
                 break;
             case Item.ItemGrade.Unique:
                 retColor = Color.yellow;
@@ -251,9 +253,16 @@ public Color SetGradeColorBackground(Item _item)
         Planet.GetComponent<Image>().sprite = stagePlanetSprites[curStage - 1];
         Planet.GetComponent<Image>().color = Color.white;
 
+        SpriteState newSpriteState = new SpriteState();
+        newSpriteState.highlightedSprite = stagePlanetPressedSprites[curStage - 1];
+        newSpriteState.pressedSprite = stagePlanetPressedSprites[curStage - 1];
+        Planet.GetComponent<Button>().spriteState = newSpriteState;
+
         StageSelectionPanel.SetActive(false);
         StagePlanetButton.enabled = true;
         StagePlanetPanel.SetActive(true);
+
+
     }
 
     public void OnClickGoStageSelectionMenuButton()
