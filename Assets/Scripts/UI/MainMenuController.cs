@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using static UnityEditor.Progress;
+using System.Security.Policy;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -72,6 +73,8 @@ public class MainMenuController : MonoBehaviour
     public Button equipButton;
     public Button unEquipButton;
 
+    public Item curSelectedItem = null;
+
     [Header("Middle PopUp Panel")]
     public Animator popUpAnime;
     public TextMeshProUGUI PopUpTMP;//팝업 TMP
@@ -107,8 +110,91 @@ public class MainMenuController : MonoBehaviour
         stageSymbolicColors = new Color[3] { Color.yellow, new Color(0, 150, 255, 255), Color.red };
     }
 
+    public void EquipButton()
+    {
+        //가존 장착된 장비를 찾아 정보를 받아 반환하는 과정이 필요
+        //인벤토리 내 모든 items 중에서 
+
+        curSelectedItem.isEquipped = true;
+
+        equipButton.gameObject.SetActive(false);
+        unEquipButton.gameObject.SetActive(true);
+
+        switch (curSelectedItem.itemPart)
+        {
+            case Item.ItemPart.Weapon:
+                DataManager.Instance.curEquippedWeapon = curSelectedItem;
+                break;
+            case Item.ItemPart.Gloves:
+                DataManager.Instance.curEquippedGloves = curSelectedItem;
+                break;
+            case Item.ItemPart.Shoes:
+                DataManager.Instance.curEquippedShoes = curSelectedItem;
+                break;
+            case Item.ItemPart.Sheld:
+                DataManager.Instance.curEquippedSheld = curSelectedItem;
+                break;
+            case Item.ItemPart.Helmat:
+                DataManager.Instance.curEquippedHelmat = curSelectedItem;
+                break;
+            case Item.ItemPart.Armor:
+                DataManager.Instance.curEquippedArmor = curSelectedItem;
+                break;
+        }
+    }
+
+    public void UnequipButton()
+    {
+        //아이템 장착 해제
+        curSelectedItem.isEquipped = false;
+
+        equipButton.gameObject.SetActive(true);
+        unEquipButton.gameObject.SetActive(false);
+
+        switch (curSelectedItem.itemPart)
+        {
+            case Item.ItemPart.Weapon:
+                DataManager.Instance.curEquippedWeapon = null;
+                break;
+            case Item.ItemPart.Gloves:
+                DataManager.Instance.curEquippedGloves = null;
+                break;
+            case Item.ItemPart.Shoes:
+                DataManager.Instance.curEquippedShoes = null;
+                break;
+            case Item.ItemPart.Sheld:
+                DataManager.Instance.curEquippedSheld = null;
+                break;
+            case Item.ItemPart.Helmat:
+                DataManager.Instance.curEquippedHelmat = null;
+                break;
+            case Item.ItemPart.Armor:
+                DataManager.Instance.curEquippedArmor = null;
+                break;
+        }
+    }
+
+    public void UpgradeButton()
+    {
+        //if PlayerGold >= curUpgradeCost
+        // PlayerGold - curUpgradeCost
+        // 
+        curSelectedItem.itemLevel++;
+        equipLevelTMP.text = curSelectedItem.itemLevel.ToString();
+        equipUpgradeCostTMP.text = curSelectedItem.itemUpgradeCost.ToString();
+    }
+
+    public void SellButton()
+    {
+        //해당 아이템 삭제
+    }
+
     public void EquipInfoUpdate(Item _item)
     {
+        curSelectedItem = _item;
+
+        Debug.Log(curSelectedItem.itemLevel);
+
         equipNameTMP.text = _item.itemName;
         equipTopNameImage.color = SetGradeColorBackground(_item);
         equipTopGradeImage.color = SetGradeColorBackground(_item);
@@ -116,16 +202,23 @@ public class MainMenuController : MonoBehaviour
         equipGradeImage.color = SetGradeColorBackground(_item);
         equipImage.sprite = _item.itemImage;
 
-        if(_item.isEquipped) {  }
+        if(curSelectedItem.isEquipped) 
+        {
+            equipButton.gameObject.SetActive(false);
+            unEquipButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            equipButton.gameObject.SetActive(true);
+            unEquipButton.gameObject.SetActive(false);
+        }
 
         equipLevelTMP.text = _item.itemLevel.ToString();
         statTMP.text = "ATK";
         equipStatTMP.text = _item.itemATK.ToString();
         equipPartTMP.text = _item.itemPart.ToString();
         equipDescTMP.text = _item.itemDesc.ToString();
-        equipUpgradeCostTMP.text = _item.upgradeCost.ToString();
-        //equipButtonImage.sprite
-        //equipButtonTMP.text
+        equipUpgradeCostTMP.text = _item.itemUpgradeCost.ToString();
 
         equipmentInfoPanel.SetActive(true);
 }
@@ -395,5 +488,7 @@ public Color SetGradeColorBackground(Item _item)
     public void backButton()
     {
         equipmentInfoPanel.SetActive(false);
+
+        curSelectedItem = null;
     }
 }

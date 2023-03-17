@@ -1193,7 +1193,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 171440048}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 654012049}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+        m_MethodName: UpgradeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &171440048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2610,9 +2622,9 @@ RectTransform:
   m_Father: {fileID: 336841815}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 350.135, y: -42.13324}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &431960503
@@ -2817,6 +2829,7 @@ GameObject:
   - component: {fileID: 477488419}
   - component: {fileID: 477488418}
   - component: {fileID: 477488417}
+  - component: {fileID: 477488420}
   m_Layer: 5
   m_Name: curEquipSlot
   m_TagString: Untagged
@@ -2890,7 +2903,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 477488418}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 477488420}
+        m_TargetAssemblyTypeName: EquipSlot, Assembly-CSharp
+        m_MethodName: ItemSlotClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &477488418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2929,6 +2954,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477488415}
   m_CullTransparentMesh: 1
+--- !u!114 &477488420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477488415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48207bc33a3b4a4fb94f3847bc668dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  ItemIcon: {fileID: 1808644446}
+  gradeBackground: {fileID: 477488418}
+  equipSlotPart: 0
 --- !u!1 &485041287
 GameObject:
   m_ObjectHideFlags: 0
@@ -3408,7 +3466,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 540, y: -42.13324}
-  m_SizeDelta: {x: 0, y: 50}
+  m_SizeDelta: {x: 279.73, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &541734245
 MonoBehaviour:
@@ -4652,6 +4710,26 @@ MonoBehaviour:
   equipUpgradeCostTMP: {fileID: 541734245}
   equipButtonImage: {fileID: 171440048}
   equipButtonTMP: {fileID: 1677079308}
+  equipButton: {fileID: 1027002243}
+  unEquipButton: {fileID: 1425654600}
+  curSelectedItem:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
   popUpAnime: {fileID: 705684672}
   PopUpTMP: {fileID: 1816890308}
 --- !u!1 &662886630
@@ -5324,6 +5402,7 @@ GameObject:
   - component: {fileID: 761147249}
   - component: {fileID: 761147248}
   - component: {fileID: 761147247}
+  - component: {fileID: 761147250}
   m_Layer: 5
   m_Name: curEquipSlot
   m_TagString: Untagged
@@ -5397,7 +5476,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 761147248}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 761147250}
+        m_TargetAssemblyTypeName: EquipSlot, Assembly-CSharp
+        m_MethodName: ItemSlotClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &761147248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5436,6 +5527,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761147245}
   m_CullTransparentMesh: 1
+--- !u!114 &761147250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761147245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48207bc33a3b4a4fb94f3847bc668dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  ItemIcon: {fileID: 633840004}
+  gradeBackground: {fileID: 761147248}
+  equipSlotPart: 1
 --- !u!1 &764483032
 GameObject:
   m_ObjectHideFlags: 0
@@ -6369,6 +6493,7 @@ GameObject:
   - component: {fileID: 911717374}
   - component: {fileID: 911717373}
   - component: {fileID: 911717372}
+  - component: {fileID: 911717375}
   m_Layer: 5
   m_Name: curEquipSlot
   m_TagString: Untagged
@@ -6442,7 +6567,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 911717373}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 911717375}
+        m_TargetAssemblyTypeName: EquipSlot, Assembly-CSharp
+        m_MethodName: ItemSlotClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &911717373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6481,6 +6618,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 911717370}
   m_CullTransparentMesh: 1
+--- !u!114 &911717375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911717370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48207bc33a3b4a4fb94f3847bc668dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  ItemIcon: {fileID: 427723516}
+  gradeBackground: {fileID: 911717373}
+  equipSlotPart: 5
 --- !u!1 &919462228
 GameObject:
   m_ObjectHideFlags: 0
@@ -7150,6 +7320,7 @@ GameObject:
   - component: {fileID: 1001476340}
   - component: {fileID: 1001476339}
   - component: {fileID: 1001476338}
+  - component: {fileID: 1001476341}
   m_Layer: 5
   m_Name: curEquipSlot
   m_TagString: Untagged
@@ -7223,7 +7394,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1001476339}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1001476341}
+        m_TargetAssemblyTypeName: EquipSlot, Assembly-CSharp
+        m_MethodName: ItemSlotClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1001476339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7262,6 +7445,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001476336}
   m_CullTransparentMesh: 1
+--- !u!114 &1001476341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001476336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48207bc33a3b4a4fb94f3847bc668dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  ItemIcon: {fileID: 1216600884}
+  gradeBackground: {fileID: 1001476339}
+  equipSlotPart: 2
 --- !u!1 &1024549480
 GameObject:
   m_ObjectHideFlags: 0
@@ -7396,7 +7612,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1027002244}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 654012049}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+        m_MethodName: EquipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1027002244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7600,6 +7828,7 @@ GameObject:
   - component: {fileID: 1055793153}
   - component: {fileID: 1055793152}
   - component: {fileID: 1055793151}
+  - component: {fileID: 1055793154}
   m_Layer: 5
   m_Name: curEquipSlot
   m_TagString: Untagged
@@ -7673,7 +7902,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1055793152}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1055793154}
+        m_TargetAssemblyTypeName: EquipSlot, Assembly-CSharp
+        m_MethodName: ItemSlotClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1055793152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7712,6 +7953,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055793149}
   m_CullTransparentMesh: 1
+--- !u!114 &1055793154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055793149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48207bc33a3b4a4fb94f3847bc668dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  ItemIcon: {fileID: 1661315136}
+  gradeBackground: {fileID: 1055793152}
+  equipSlotPart: 4
 --- !u!1 &1078075897
 GameObject:
   m_ObjectHideFlags: 0
@@ -7878,13 +8152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81dedb5dda5cb3488002047077cf5c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randItems:
-  - {fileID: 11400000, guid: e2c326ff1fb9ae44594e198fd4ed63bc, type: 2}
-  - {fileID: 11400000, guid: 3c8341071d72c92409582618d169649a, type: 2}
-  - {fileID: 11400000, guid: 7f331c185fe71e14881f672e5524a585, type: 2}
-  - {fileID: 11400000, guid: 3d3913d75d8fa0f4fb0c9226ea1b5831, type: 2}
-  - {fileID: 11400000, guid: a4ab00f4efd9710469495f5958105710, type: 2}
-  - {fileID: 11400000, guid: dab8c4c8e0667564a867b20fbe3b8d23, type: 2}
   slotGameObject: []
   slots: []
   items: []
@@ -9094,7 +9361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1223.0002}
+  m_AnchoredPosition: {x: 0, y: 1223.0001}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1340170068
@@ -9896,7 +10163,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1425654601}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 654012049}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+        m_MethodName: UnequipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1425654601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10315,7 +10594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1450946416
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12777,7 +13056,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1717081387}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 654012049}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+        m_MethodName: SellButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1717081387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14093,6 +14384,7 @@ GameObject:
   - component: {fileID: 1832265018}
   - component: {fileID: 1832265017}
   - component: {fileID: 1832265016}
+  - component: {fileID: 1832265019}
   m_Layer: 5
   m_Name: curEquipSlot
   m_TagString: Untagged
@@ -14166,7 +14458,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1832265017}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1832265019}
+        m_TargetAssemblyTypeName: EquipSlot, Assembly-CSharp
+        m_MethodName: ItemSlotClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1832265017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14205,6 +14509,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832265014}
   m_CullTransparentMesh: 1
+--- !u!114 &1832265019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832265014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48207bc33a3b4a4fb94f3847bc668dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  ItemIcon: {fileID: 1846714410}
+  gradeBackground: {fileID: 1832265017}
+  equipSlotPart: 3
 --- !u!1 &1837818339
 GameObject:
   m_ObjectHideFlags: 0
@@ -16057,12 +16394,217 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d64b6fad0837341a6e6d4b768d1a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curEquippedWeapon: {fileID: 0}
-  curEquippedGloves: {fileID: 0}
-  curEquippedShoes: {fileID: 0}
-  curEquippedSheld: {fileID: 0}
-  curEquippedHelmat: {fileID: 0}
-  curEquippedArmor: {fileID: 0}
+  curEquippedWeapon:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  curEquippedGloves:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  curEquippedShoes:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  curEquippedSheld:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  curEquippedHelmat:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  curEquippedArmor:
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  items:
+  - itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemID: 0
+    itemName: Hammer1
+    itemDesc: "\uD574\uBA38 1\uC785\uB2C8\uB2E4."
+    itemImage: {fileID: -933581795, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
+    itemATK: 0
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  - itemPart: 1
+    itemGrade: 1
+    isEquipped: 0
+    itemID: 1
+    itemName: Hammer2
+    itemDesc: "\uD574\uBA38 2\uC785\uB2C8\uB2E4."
+    itemImage: {fileID: 45636264, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
+    itemATK: 1
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  - itemPart: 2
+    itemGrade: 2
+    isEquipped: 0
+    itemID: 2
+    itemName: Gear1
+    itemDesc: "\uAE30\uC5B4 1\uC785\uB2C8\uB2E4."
+    itemImage: {fileID: -513493088, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
+    itemATK: 2
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  - itemPart: 3
+    itemGrade: 3
+    isEquipped: 0
+    itemID: 3
+    itemName: Gear2
+    itemDesc: "\uAE30\uC5B4 2\uC785\uB2C8\uB2E4."
+    itemImage: {fileID: 228115059, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
+    itemATK: 3
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  - itemPart: 4
+    itemGrade: 4
+    isEquipped: 0
+    itemID: 4
+    itemName: Sword1
+    itemDesc: "\uAC80 1\uC785\uB2C8\uB2E4."
+    itemImage: {fileID: 1345797762, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
+    itemATK: 4
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
+  - itemPart: 5
+    itemGrade: 4
+    isEquipped: 0
+    itemID: 5
+    itemName: Sword2
+    itemDesc: "\uAC80 2\uC785\uB2C8\uB2E4."
+    itemImage: {fileID: -1034617272, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
+    itemATK: 5
+    itemLevel: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemProbability: 0
 --- !u!4 &2146515956
 Transform:
   m_ObjectHideFlags: 0

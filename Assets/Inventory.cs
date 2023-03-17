@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public Item[] randItems;
 
     public List<GameObject> slotGameObject;
     public List<ItemSlot> slots;
@@ -50,61 +49,16 @@ public class Inventory : MonoBehaviour
 
     public void AddRandItem()
     {
-        Item _item = randItems[Random.Range(0, randItems.Length)];
+        Item nI = DataManager.Instance.items[Random.Range(0, DataManager.Instance.items.Count)];
 
-        items.Add(_item);
+        Item newItem = new Item(nI.itemPart, nI.itemGrade, nI.isEquipped, nI.itemID, nI.itemName, nI.itemDesc, nI.itemImage, nI.itemATK, nI.itemLevel, nI.itemHP, nI.itemSheldGager, nI.itemSpecialMoveGager, nI.itemCriticalDamage, nI.itemCriticalDamage, nI.itemPrice, nI.itemUpgradeCost, nI.itemProbability);
+
+        items.Add(newItem);
         GameObject cloneSlot = Instantiate(slotPrefab, slotParent);
-        cloneSlot.GetComponent<ItemSlot>().item = _item;
-        cloneSlot.GetComponent<ItemSlot>().ItemIcon.sprite = _item.itemImage;
-        cloneSlot.GetComponent<ItemSlot>().gradeBackground.color = MainMenuController.Instance.SetGradeColorBackground(_item);
+        cloneSlot.GetComponent<ItemSlot>().item = newItem;
+        cloneSlot.GetComponent<ItemSlot>().ItemIcon.sprite = newItem.itemImage;
+        cloneSlot.GetComponent<ItemSlot>().gradeBackground.color = MainMenuController.Instance.SetGradeColorBackground(newItem);
         slots.Add(cloneSlot.GetComponent<ItemSlot>());
         slotGameObject.Add(cloneSlot);
     }
-
-    public void Equip_UnequipItemButton(Item _item)
-    {
-        if (!_item.isEquipped)
-        {
-            switch (_item.itemPart)
-            {
-                case Item.ItemPart.Weapon:
-                    DataManager.Instance.curEquippedWeapon = _item;
-                    break;
-                case Item.ItemPart.Gloves:
-                    DataManager.Instance.curEquippedGloves = _item;
-                    break;
-                case Item.ItemPart.Shoes:
-                    DataManager.Instance.curEquippedShoes = _item;
-                    break;
-                case Item.ItemPart.Sheld:
-                    DataManager.Instance.curEquippedSheld = _item;
-                    break;
-                case Item.ItemPart.Helmat:
-                    DataManager.Instance.curEquippedHelmat = _item;
-                    break;
-                case Item.ItemPart.Armor:
-                    DataManager.Instance.curEquippedArmor = _item;
-                    break;
-            }
-        }
-        else
-        {
-
-        }
-    }
-
-    public void UpgradeItemButton(Item _item)
-    {
-        //if PlayerGold >= curUpgradeCost
-        // PlayerGold - curUpgradeCost
-        // 
-        _item.itemLevel++;
-    }
-
-    public void SellItemButton(Item _item)
-    {
-        
-    }
-
-
 }

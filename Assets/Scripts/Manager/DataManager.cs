@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,14 @@ public class DataManager : MonoBehaviour
 {
     private static DataManager instance = null;
 
-    public Item curEquippedWeapon;
-    public Item curEquippedGloves;
-    public Item curEquippedShoes;
-    public Item curEquippedSheld;
-    public Item curEquippedHelmat;
-    public Item curEquippedArmor;
+    public Item curEquippedWeapon = null;
+    public Item curEquippedGloves = null;
+    public Item curEquippedShoes = null;
+    public Item curEquippedSheld = null;
+    public Item curEquippedHelmat = null;
+    public Item curEquippedArmor = null;
+
+    public List<Item> items = new List<Item>();
 
     void Awake()
     {
