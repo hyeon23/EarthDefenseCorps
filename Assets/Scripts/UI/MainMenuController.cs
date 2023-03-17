@@ -114,8 +114,7 @@ public class MainMenuController : MonoBehaviour
     {
         //가존 장착된 장비를 찾아 정보를 받아 반환하는 과정이 필요
         //인벤토리 내 모든 items 중에서 
-
-        curSelectedItem.isEquipped = true;
+        
 
         equipButton.gameObject.SetActive(false);
         unEquipButton.gameObject.SetActive(true);
@@ -123,24 +122,50 @@ public class MainMenuController : MonoBehaviour
         switch (curSelectedItem.itemPart)
         {
             case Item.ItemPart.Weapon:
+                if(DataManager.Instance.curEquippedWeapon != null)
+                    DataManager.Instance.curEquippedWeapon.isEquipped = false;
+                curSelectedItem.isEquipped = true;
+
                 DataManager.Instance.curEquippedWeapon = curSelectedItem;
                 break;
             case Item.ItemPart.Gloves:
+                if (DataManager.Instance.curEquippedGloves != null)
+                    DataManager.Instance.curEquippedGloves.isEquipped = false;
+                curSelectedItem.isEquipped = true;
+
                 DataManager.Instance.curEquippedGloves = curSelectedItem;
                 break;
             case Item.ItemPart.Shoes:
+                if (DataManager.Instance.curEquippedShoes != null)
+                    DataManager.Instance.curEquippedShoes.isEquipped = false;
+                curSelectedItem.isEquipped = true;
+
                 DataManager.Instance.curEquippedShoes = curSelectedItem;
                 break;
             case Item.ItemPart.Sheld:
+                if (DataManager.Instance.curEquippedSheld != null)
+                    DataManager.Instance.curEquippedSheld.isEquipped = false;
+                curSelectedItem.isEquipped = true;
+
                 DataManager.Instance.curEquippedSheld = curSelectedItem;
                 break;
             case Item.ItemPart.Helmat:
+                if (DataManager.Instance.curEquippedHelmat != null)
+                    DataManager.Instance.curEquippedHelmat.isEquipped = false;
+                curSelectedItem.isEquipped = true;
+
                 DataManager.Instance.curEquippedHelmat = curSelectedItem;
                 break;
             case Item.ItemPart.Armor:
+                if (DataManager.Instance.curEquippedArmor != null)
+                    DataManager.Instance.curEquippedArmor.isEquipped = false;
+                curSelectedItem.isEquipped = true;
+
                 DataManager.Instance.curEquippedArmor = curSelectedItem;
                 break;
         }
+
+        backButton();
     }
 
     public void UnequipButton()
@@ -172,6 +197,8 @@ public class MainMenuController : MonoBehaviour
                 DataManager.Instance.curEquippedArmor = null;
                 break;
         }
+
+        backButton();
     }
 
     public void UpgradeButton()
@@ -192,9 +219,6 @@ public class MainMenuController : MonoBehaviour
     public void EquipInfoUpdate(Item _item)
     {
         curSelectedItem = _item;
-
-        Debug.Log(curSelectedItem.itemLevel);
-
         equipNameTMP.text = _item.itemName;
         equipTopNameImage.color = SetGradeColorBackground(_item);
         equipTopGradeImage.color = SetGradeColorBackground(_item);
@@ -202,13 +226,16 @@ public class MainMenuController : MonoBehaviour
         equipGradeImage.color = SetGradeColorBackground(_item);
         equipImage.sprite = _item.itemImage;
 
-        if(curSelectedItem.isEquipped) 
+        if(curSelectedItem.isEquipped)
+        //if(curSelectedItem == DataManager.Instance.curEquippedWeapon || curSelectedItem == DataManager.Instance.curEquippedGloves || curSelectedItem == DataManager.Instance.curEquippedShoes
+        //    || curSelectedItem == DataManager.Instance.curEquippedShoes || curSelectedItem == DataManager.Instance.curEquippedHelmat || curSelectedItem == DataManager.Instance.curEquippedArmor)
         {
             equipButton.gameObject.SetActive(false);
             unEquipButton.gameObject.SetActive(true);
         }
         else
         {
+
             equipButton.gameObject.SetActive(true);
             unEquipButton.gameObject.SetActive(false);
         }
@@ -236,7 +263,7 @@ public Color SetGradeColorBackground(Item _item)
                 retColor = new Color(0, 0.5f, 1f, 1f);
                 break;
             case Item.ItemGrade.Epic:
-                retColor = new Color(0.6f, 0f, 1f, 1f);
+                retColor = new Color(0.5f, 0f, 1f, 1f);
                 break;
             case Item.ItemGrade.Unique:
                 retColor = Color.yellow;

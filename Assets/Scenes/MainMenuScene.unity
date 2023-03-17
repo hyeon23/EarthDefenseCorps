@@ -513,7 +513,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4e247ae559ed524da462125188d639e, type: 2}
   m_sharedMaterial: {fileID: -3192972395681778903, guid: a4e247ae559ed524da462125188d639e, type: 2}
@@ -2883,9 +2883,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2966,24 +2966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48207bc33a3b4a4fb94f3847bc668dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item:
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemID: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemLevel: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemProbability: 0
   ItemIcon: {fileID: 1808644446}
   gradeBackground: {fileID: 477488418}
   equipSlotPart: 0
@@ -5456,9 +5438,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -5539,24 +5521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48207bc33a3b4a4fb94f3847bc668dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item:
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemID: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemLevel: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemProbability: 0
   ItemIcon: {fileID: 633840004}
   gradeBackground: {fileID: 761147248}
   equipSlotPart: 1
@@ -5771,7 +5735,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4e247ae559ed524da462125188d639e, type: 2}
   m_sharedMaterial: {fileID: -3192972395681778903, guid: a4e247ae559ed524da462125188d639e, type: 2}
@@ -6547,9 +6511,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -6630,24 +6594,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48207bc33a3b4a4fb94f3847bc668dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item:
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemID: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemLevel: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemProbability: 0
   ItemIcon: {fileID: 427723516}
   gradeBackground: {fileID: 911717373}
   equipSlotPart: 5
@@ -7152,7 +7098,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4e247ae559ed524da462125188d639e, type: 2}
   m_sharedMaterial: {fileID: -3192972395681778903, guid: a4e247ae559ed524da462125188d639e, type: 2}
@@ -7374,9 +7320,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7457,24 +7403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48207bc33a3b4a4fb94f3847bc668dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item:
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemID: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemLevel: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemProbability: 0
   ItemIcon: {fileID: 1216600884}
   gradeBackground: {fileID: 1001476339}
   equipSlotPart: 2
@@ -7882,9 +7810,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7965,24 +7893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48207bc33a3b4a4fb94f3847bc668dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item:
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemID: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemLevel: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemProbability: 0
   ItemIcon: {fileID: 1661315136}
   gradeBackground: {fileID: 1055793152}
   equipSlotPart: 4
@@ -13241,7 +13151,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4e247ae559ed524da462125188d639e, type: 2}
   m_sharedMaterial: {fileID: -3192972395681778903, guid: a4e247ae559ed524da462125188d639e, type: 2}
@@ -14438,9 +14348,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -14521,24 +14431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48207bc33a3b4a4fb94f3847bc668dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item:
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemID: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemLevel: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemProbability: 0
   ItemIcon: {fileID: 1846714410}
   gradeBackground: {fileID: 1832265017}
   equipSlotPart: 3
@@ -14834,7 +14726,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4e247ae559ed524da462125188d639e, type: 2}
   m_sharedMaterial: {fileID: -3192972395681778903, guid: a4e247ae559ed524da462125188d639e, type: 2}
@@ -15584,7 +15476,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4e247ae559ed524da462125188d639e, type: 2}
   m_sharedMaterial: {fileID: -3192972395681778903, guid: a4e247ae559ed524da462125188d639e, type: 2}
@@ -16507,11 +16399,11 @@ MonoBehaviour:
     itemGrade: 0
     isEquipped: 0
     itemID: 0
-    itemName: Hammer1
-    itemDesc: "\uD574\uBA38 1\uC785\uB2C8\uB2E4."
+    itemName: "\uB9DD\uCE581"
+    itemDesc: "\uB9DD\uCE581 \uC785\uB2C8\uB2E4."
     itemImage: {fileID: -933581795, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
     itemATK: 0
-    itemLevel: 0
+    itemLevel: 1
     itemHP: 0
     itemSheldGager: 0
     itemSpecialMoveGager: 0
@@ -16523,12 +16415,12 @@ MonoBehaviour:
   - itemPart: 1
     itemGrade: 1
     isEquipped: 0
-    itemID: 1
-    itemName: Hammer2
-    itemDesc: "\uD574\uBA38 2\uC785\uB2C8\uB2E4."
+    itemID: 0
+    itemName: "\uB9DD\uCE582"
+    itemDesc: "\uB9DD\uCE582 \uC785\uB2C8\uB2E4."
     itemImage: {fileID: 45636264, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
-    itemATK: 1
-    itemLevel: 0
+    itemATK: 0
+    itemLevel: 1
     itemHP: 0
     itemSheldGager: 0
     itemSpecialMoveGager: 0
@@ -16540,12 +16432,12 @@ MonoBehaviour:
   - itemPart: 2
     itemGrade: 2
     isEquipped: 0
-    itemID: 2
-    itemName: Gear1
-    itemDesc: "\uAE30\uC5B4 1\uC785\uB2C8\uB2E4."
-    itemImage: {fileID: -513493088, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
-    itemATK: 2
-    itemLevel: 0
+    itemID: 0
+    itemName: "\uAC801"
+    itemDesc: "\uAC801 \uC785\uB2C8\uB2E4."
+    itemImage: {fileID: 1345797762, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
+    itemATK: 0
+    itemLevel: 1
     itemHP: 0
     itemSheldGager: 0
     itemSpecialMoveGager: 0
@@ -16557,12 +16449,12 @@ MonoBehaviour:
   - itemPart: 3
     itemGrade: 3
     isEquipped: 0
-    itemID: 3
-    itemName: Gear2
-    itemDesc: "\uAE30\uC5B4 2\uC785\uB2C8\uB2E4."
-    itemImage: {fileID: 228115059, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
-    itemATK: 3
-    itemLevel: 0
+    itemID: 0
+    itemName: "\uAC802"
+    itemDesc: "\uAC802 \uC785\uB2C8\uB2E4."
+    itemImage: {fileID: -1034617272, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
+    itemATK: 0
+    itemLevel: 1
     itemHP: 0
     itemSheldGager: 0
     itemSpecialMoveGager: 0
@@ -16574,12 +16466,12 @@ MonoBehaviour:
   - itemPart: 4
     itemGrade: 4
     isEquipped: 0
-    itemID: 4
-    itemName: Sword1
-    itemDesc: "\uAC80 1\uC785\uB2C8\uB2E4."
-    itemImage: {fileID: 1345797762, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
-    itemATK: 4
-    itemLevel: 0
+    itemID: 0
+    itemName: "\uC790\uBB3C\uC1E01"
+    itemDesc: "\uC790\uBB3C\uC1E01 \uC785\uB2C8\uB2E4."
+    itemImage: {fileID: -307839090, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
+    itemATK: 0
+    itemLevel: 1
     itemHP: 0
     itemSheldGager: 0
     itemSpecialMoveGager: 0
@@ -16589,14 +16481,14 @@ MonoBehaviour:
     itemUpgradeCost: 0
     itemProbability: 0
   - itemPart: 5
-    itemGrade: 4
+    itemGrade: 5
     isEquipped: 0
-    itemID: 5
-    itemName: Sword2
-    itemDesc: "\uAC80 2\uC785\uB2C8\uB2E4."
-    itemImage: {fileID: -1034617272, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
-    itemATK: 5
-    itemLevel: 0
+    itemID: 0
+    itemName: "\uC790\uBB3C\uC1E02"
+    itemDesc: "\uC790\uBB3C\uC1E02 \uC785\uB2C8\uB2E4."
+    itemImage: {fileID: 2088263465, guid: 1d35f1bc04a7a984eb805fad1935da8b, type: 3}
+    itemATK: 0
+    itemLevel: 1
     itemHP: 0
     itemSheldGager: 0
     itemSpecialMoveGager: 0
