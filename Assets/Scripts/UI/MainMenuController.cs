@@ -203,12 +203,16 @@ public class MainMenuController : MonoBehaviour
 
     public void UpgradeButton()
     {
-        //if PlayerGold >= curUpgradeCost
-        // PlayerGold - curUpgradeCost
-        // 
-        curSelectedItem.itemLevel++;
-        equipLevelTMP.text = curSelectedItem.itemLevel.ToString();
-        equipUpgradeCostTMP.text = curSelectedItem.itemUpgradeCost.ToString();
+        if (DataManager.Instance.playerGold < curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)
+            //Alarm("You Don't Have Enough Money)
+            return;
+
+        DataManager.Instance.playerGold -= curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost;
+
+        curSelectedItem.itemCurLevel++;
+        equipLevelTMP.text = $"레벨: {curSelectedItem.itemCurLevel.ToString()} / {curSelectedItem.itemMaxLevel.ToString()}";
+        equipUpgradeCostTMP.text = $"{DataManager.Instance.playerGold} / {curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost}";
+
     }
 
     public void SellButton()
@@ -227,8 +231,6 @@ public class MainMenuController : MonoBehaviour
         equipImage.sprite = _item.itemImage;
 
         if(curSelectedItem.isEquipped)
-        //if(curSelectedItem == DataManager.Instance.curEquippedWeapon || curSelectedItem == DataManager.Instance.curEquippedGloves || curSelectedItem == DataManager.Instance.curEquippedShoes
-        //    || curSelectedItem == DataManager.Instance.curEquippedShoes || curSelectedItem == DataManager.Instance.curEquippedHelmat || curSelectedItem == DataManager.Instance.curEquippedArmor)
         {
             equipButton.gameObject.SetActive(false);
             unEquipButton.gameObject.SetActive(true);
@@ -240,12 +242,31 @@ public class MainMenuController : MonoBehaviour
             unEquipButton.gameObject.SetActive(false);
         }
 
-        equipLevelTMP.text = _item.itemLevel.ToString();
-        statTMP.text = "ATK";
+        equipLevelTMP.text = $"레벨: {_item.itemCurLevel.ToString()} / {_item.itemMaxLevel.ToString()}";
+
+        switch (_item.itemPart)
+        {
+            case Item.ItemPart.Weapon:
+            case Item.ItemPart.Gloves:
+            case Item.ItemPart.Shoes:
+                statTMP.text = "ATK";
+                break;
+            case Item.ItemPart.Sheld:
+            case Item.ItemPart.Armor:
+            case Item.ItemPart.Helmat:
+                statTMP.text = "HP";
+                break;
+            case Item.ItemPart.Count:
+                break;
+            default:
+                break;
+        }
+
+        
         equipStatTMP.text = _item.itemATK.ToString();
         equipPartTMP.text = _item.itemPart.ToString();
         equipDescTMP.text = _item.itemDesc.ToString();
-        equipUpgradeCostTMP.text = _item.itemUpgradeCost.ToString();
+        equipUpgradeCostTMP.text = $"{DataManager.Instance.playerGold} / {curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost}";
 
         equipmentInfoPanel.SetActive(true);
 }

@@ -5,6 +5,16 @@ public class DataManager : MonoBehaviour
 {
     private static DataManager instance = null;
 
+    public int playerATK;
+    public float playerHP;
+    public float playerShledGege;
+    public float playerSpecialMoveGege;
+    public float playerCriticalRate;
+    public float playerCriticalDamage;
+
+    public int playerZam;
+    public int playerGold;
+
     public Item curEquippedWeapon;
     public Item curEquippedGloves;
     public Item curEquippedShoes;
@@ -13,6 +23,18 @@ public class DataManager : MonoBehaviour
     public Item curEquippedArmor;
 
     public List<Item> items = new List<Item>();
+
+    public static DataManager Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
 
     void Awake()
     {
@@ -34,15 +56,5 @@ public class DataManager : MonoBehaviour
         curEquippedArmor = null;
 }
 
-    public static DataManager Instance
-    {
-        get
-        {
-            if (null == instance)
-            {
-                return null;
-            }
-            return instance;
-        }
-    }
+
 }
