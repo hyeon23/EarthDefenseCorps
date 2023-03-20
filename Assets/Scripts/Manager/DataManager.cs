@@ -5,22 +5,22 @@ public class DataManager : MonoBehaviour
 {
     private static DataManager instance = null;
 
-    public int playerATK;
-    public float playerHP;
-    public float playerShledGege;
-    public float playerSpecialMoveGege;
-    public float playerCriticalRate;
-    public float playerCriticalDamage;
+    public int playerATK = 1;
+    public float playerHP = 100;
+    public float playerShledGege = 100;
+    public float playerSpecialMoveGege = 100;
+    public float playerCriticalRate = 0;
+    public float playerCriticalDamage = 100;
 
     public int playerZam;
     public int playerGold;
 
-    public Item curEquippedWeapon;
-    public Item curEquippedGloves;
-    public Item curEquippedShoes;
-    public Item curEquippedSheld;
-    public Item curEquippedHelmat;
-    public Item curEquippedArmor;
+    public Item curEquippedWeapon = null;
+    public Item curEquippedGloves = null;
+    public Item curEquippedShoes = null;
+    public Item curEquippedSheld = null;
+    public Item curEquippedHelmat = null;
+    public Item curEquippedArmor = null;
 
     public List<Item> items = new List<Item>();
 
@@ -35,6 +35,21 @@ public class DataManager : MonoBehaviour
             return instance;
         }
     }
+
+    public int PlayerATK { get => playerATK; set => playerATK = value; }
+    public float PlayerHP { get => playerHP; set => playerHP = value; }
+    public float PlayerShledGege { get => playerShledGege; set => playerShledGege = value; }
+    public float PlayerSpecialMoveGege { get => playerSpecialMoveGege; set => playerSpecialMoveGege = value; }
+    public float PlayerCriticalRate { get => playerCriticalRate; set => playerCriticalRate = value; }
+    public float PlayerCriticalDamage { get => playerCriticalDamage; set => playerCriticalDamage = value; }
+    public int PlayerZam { get => playerZam; set => playerZam = value; }
+    public int PlayerGold { get => playerGold; set => playerGold = value; }
+    public Item CurEquippedWeapon { get => curEquippedWeapon; set => curEquippedWeapon = value; }
+    public Item CurEquippedGloves { get => curEquippedGloves; set => curEquippedGloves = value; }
+    public Item CurEquippedShoes { get => curEquippedShoes; set => curEquippedShoes = value; }
+    public Item CurEquippedSheld { get => curEquippedSheld; set => curEquippedSheld = value; }
+    public Item CurEquippedHelmat { get => curEquippedHelmat; set => curEquippedHelmat = value; }
+    public Item CurEquippedArmor { get => curEquippedArmor; set => curEquippedArmor = value; }
 
     void Awake()
     {
@@ -54,7 +69,17 @@ public class DataManager : MonoBehaviour
         curEquippedSheld = null;
         curEquippedHelmat = null;
         curEquippedArmor = null;
-}
+    }
 
-
+    private void Update()
+    {
+        playerATK = 1/*플레이어 기본 공격력*/
+            + ((CurEquippedWeapon != null) ? (CurEquippedWeapon.itemATK + ((int)CurEquippedWeapon.itemGrade) * CurEquippedWeapon.itemCurLevel) : 0)
+            + ((CurEquippedGloves != null) ? (CurEquippedGloves.itemATK + ((int)CurEquippedGloves.itemGrade) * CurEquippedGloves.itemCurLevel) : 0)
+            + ((CurEquippedShoes != null) ? (CurEquippedShoes.itemATK + ((int)CurEquippedShoes.itemGrade) * CurEquippedShoes.itemCurLevel) : 0);
+        playerHP = 100/*플레이어 기본 체력*/
+            + ((CurEquippedSheld != null) ? (CurEquippedSheld.itemHP + ((int)CurEquippedSheld.itemGrade) * CurEquippedSheld.itemCurLevel) : 0)
+            + ((CurEquippedHelmat != null) ? (CurEquippedHelmat.itemHP + ((int)CurEquippedHelmat.itemGrade) * CurEquippedHelmat.itemCurLevel) : 0)
+            + ((CurEquippedArmor != null) ? (CurEquippedArmor.itemHP + ((int)CurEquippedArmor.itemGrade) * CurEquippedArmor.itemCurLevel) : 0);
+    }
 }

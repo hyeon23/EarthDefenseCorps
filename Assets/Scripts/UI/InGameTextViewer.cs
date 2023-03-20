@@ -137,11 +137,9 @@ public class InGameTextViewer : MonoBehaviour
     private void FixedUpdate()
     {
         //Combo Text
-        StartCoroutine(Count(comboCountText, GameManager.Instance.combo, GameManager.Instance.combo + 1));
-        //CurDeadEnemyCountText
-        StartCoroutine(Count(curDeadEnemyCountText, GameManager.Instance.curDeadEnemyCount, GameManager.Instance.curDeadEnemyCount + 1));
-        //CurGetGoldCountText
-        StartCoroutine(Count(curGetGoldText, GameManager.Instance.curDeadEnemyCount, GameManager.Instance.curDeadEnemyCount + 1));
+        comboCountText.text = GameManager.Instance.combo.ToString();
+        curDeadEnemyCountText.text = GameManager.Instance.curDeadEnemyCount.ToString();
+        curGetGoldText.text = GameManager.Instance.curDeadEnemyCount.ToString();
 
         //Player Gage bar
         StartCoroutine(SliderInit(hpBar, hpBarShadow, PlayerData.Instance.curHp, PlayerData.Instance.maxHp, 0));
@@ -168,24 +166,6 @@ public class InGameTextViewer : MonoBehaviour
                 EnemySliderInitReady(false);
             }
         }
-    }
-
-    //Text Counting
-    public IEnumerator Count(TextMeshProUGUI _Text, float _Target, float _Current)
-    {
-        float duration = 0.5f; // 카운팅에 걸리는 시간 설정. 
-        float offset = (_Target - _Current) / duration;
-
-        while (_Current < _Target)
-        {
-            _Current += offset * Time.deltaTime;
-            _Text.text = ((int)_Current).ToString();
-            yield return null;
-        }
-
-        _Current = _Target;
-
-        _Text.text = ((int)_Current).ToString();
     }
 
     //Combo Text FadeInOut

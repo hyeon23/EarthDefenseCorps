@@ -6,9 +6,16 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using static UnityEditor.Progress;
 using System.Security.Policy;
+using System.Text;
 
 public class MainMenuController : MonoBehaviour
 {
+    
+    public TextMeshProUGUI playerHPText;
+    public TextMeshProUGUI playerZamText;
+    public TextMeshProUGUI playerATKText;
+    public TextMeshProUGUI playerGoldText;
+
     [Header("Bottom Panel")]
     public Sprite[] BtnTargetImage;
     public Sprite[] SelectedBtnTargetImage;
@@ -110,207 +117,23 @@ public class MainMenuController : MonoBehaviour
         stageSymbolicColors = new Color[3] { Color.yellow, new Color(0, 150, 255, 255), Color.red };
     }
 
-    public void EquipButton()
-    {
-        //가존 장착된 장비를 찾아 정보를 받아 반환하는 과정이 필요
-        //인벤토리 내 모든 items 중에서 
-        
-
-        equipButton.gameObject.SetActive(false);
-        unEquipButton.gameObject.SetActive(true);
-
-        switch (curSelectedItem.itemPart)
-        {
-            case Item.ItemPart.Weapon:
-                if(DataManager.Instance.curEquippedWeapon != null)
-                    DataManager.Instance.curEquippedWeapon.isEquipped = false;
-                curSelectedItem.isEquipped = true;
-
-                DataManager.Instance.curEquippedWeapon = curSelectedItem;
-                break;
-            case Item.ItemPart.Gloves:
-                if (DataManager.Instance.curEquippedGloves != null)
-                    DataManager.Instance.curEquippedGloves.isEquipped = false;
-                curSelectedItem.isEquipped = true;
-
-                DataManager.Instance.curEquippedGloves = curSelectedItem;
-                break;
-            case Item.ItemPart.Shoes:
-                if (DataManager.Instance.curEquippedShoes != null)
-                    DataManager.Instance.curEquippedShoes.isEquipped = false;
-                curSelectedItem.isEquipped = true;
-
-                DataManager.Instance.curEquippedShoes = curSelectedItem;
-                break;
-            case Item.ItemPart.Sheld:
-                if (DataManager.Instance.curEquippedSheld != null)
-                    DataManager.Instance.curEquippedSheld.isEquipped = false;
-                curSelectedItem.isEquipped = true;
-
-                DataManager.Instance.curEquippedSheld = curSelectedItem;
-                break;
-            case Item.ItemPart.Helmat:
-                if (DataManager.Instance.curEquippedHelmat != null)
-                    DataManager.Instance.curEquippedHelmat.isEquipped = false;
-                curSelectedItem.isEquipped = true;
-
-                DataManager.Instance.curEquippedHelmat = curSelectedItem;
-                break;
-            case Item.ItemPart.Armor:
-                if (DataManager.Instance.curEquippedArmor != null)
-                    DataManager.Instance.curEquippedArmor.isEquipped = false;
-                curSelectedItem.isEquipped = true;
-
-                DataManager.Instance.curEquippedArmor = curSelectedItem;
-                break;
-        }
-
-        backButton();
-    }
-
-    public void UnequipButton()
-    {
-        //아이템 장착 해제
-        curSelectedItem.isEquipped = false;
-
-        equipButton.gameObject.SetActive(true);
-        unEquipButton.gameObject.SetActive(false);
-
-        switch (curSelectedItem.itemPart)
-        {
-            case Item.ItemPart.Weapon:
-                DataManager.Instance.curEquippedWeapon = null;
-                break;
-            case Item.ItemPart.Gloves:
-                DataManager.Instance.curEquippedGloves = null;
-                break;
-            case Item.ItemPart.Shoes:
-                DataManager.Instance.curEquippedShoes = null;
-                break;
-            case Item.ItemPart.Sheld:
-                DataManager.Instance.curEquippedSheld = null;
-                break;
-            case Item.ItemPart.Helmat:
-                DataManager.Instance.curEquippedHelmat = null;
-                break;
-            case Item.ItemPart.Armor:
-                DataManager.Instance.curEquippedArmor = null;
-                break;
-        }
-
-        backButton();
-    }
-
-    public void UpgradeButton()
-    {
-        if (DataManager.Instance.playerGold < curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)
-            //Alarm("You Don't Have Enough Money)
-            return;
-
-        DataManager.Instance.playerGold -= curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost;
-
-        curSelectedItem.itemCurLevel++;
-        equipLevelTMP.text = $"레벨: {curSelectedItem.itemCurLevel.ToString()} / {curSelectedItem.itemMaxLevel.ToString()}";
-        equipUpgradeCostTMP.text = $"{DataManager.Instance.playerGold} / {curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost}";
-
-    }
-
-    public void SellButton()
-    {
-        //해당 아이템 삭제
-    }
-
-    public void EquipInfoUpdate(Item _item)
-    {
-        curSelectedItem = _item;
-        equipNameTMP.text = _item.itemName;
-        equipTopNameImage.color = SetGradeColorBackground(_item);
-        equipTopGradeImage.color = SetGradeColorBackground(_item);
-        equipTopGradeTMP.text = _item.itemGrade.ToString();
-        equipGradeImage.color = SetGradeColorBackground(_item);
-        equipImage.sprite = _item.itemImage;
-
-        if(curSelectedItem.isEquipped)
-        {
-            equipButton.gameObject.SetActive(false);
-            unEquipButton.gameObject.SetActive(true);
-        }
-        else
-        {
-
-            equipButton.gameObject.SetActive(true);
-            unEquipButton.gameObject.SetActive(false);
-        }
-
-        equipLevelTMP.text = $"레벨: {_item.itemCurLevel.ToString()} / {_item.itemMaxLevel.ToString()}";
-
-        switch (_item.itemPart)
-        {
-            case Item.ItemPart.Weapon:
-            case Item.ItemPart.Gloves:
-            case Item.ItemPart.Shoes:
-                statTMP.text = "ATK";
-                break;
-            case Item.ItemPart.Sheld:
-            case Item.ItemPart.Armor:
-            case Item.ItemPart.Helmat:
-                statTMP.text = "HP";
-                break;
-            case Item.ItemPart.Count:
-                break;
-            default:
-                break;
-        }
-
-        
-        equipStatTMP.text = _item.itemATK.ToString();
-        equipPartTMP.text = _item.itemPart.ToString();
-        equipDescTMP.text = _item.itemDesc.ToString();
-        equipUpgradeCostTMP.text = $"{DataManager.Instance.playerGold} / {curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost}";
-
-        equipmentInfoPanel.SetActive(true);
-}
-
-public Color SetGradeColorBackground(Item _item)
-    {
-        Color retColor;
-
-        switch (_item.itemGrade)
-        {
-            case Item.ItemGrade.Normal:
-                retColor = new Color(0.75f, 0.75f, 0.75f, 1f);
-                break;
-            case Item.ItemGrade.Rare:
-                retColor = new Color(0, 0.5f, 1f, 1f);
-                break;
-            case Item.ItemGrade.Epic:
-                retColor = new Color(0.5f, 0f, 1f, 1f);
-                break;
-            case Item.ItemGrade.Unique:
-                retColor = Color.yellow;
-                break;
-            case Item.ItemGrade.Legendary:
-                retColor = Color.red;
-                break;
-            default:
-                retColor = Color.white;
-                break;
-        }
-
-        return retColor;
-    }
-
     private void Start()
     {
         minStageNum = 1;
         maxStageNum = isStageClear.Length;
         curSelectStage = GameManager.Instance.curStage;
 
+        playerZamText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerZam);
+        playerGoldText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerGold);
+
         StartCoroutine(StageChange());
     }
 
     void Update()
     {
+        playerHPText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerHP);
+        playerATKText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerATK);
+
         if (isStageChanging)
         {
             StageSelectRightButton.interactable = false;
@@ -369,8 +192,6 @@ public Color SetGradeColorBackground(Item _item)
     //게임 씬으로 이동 버튼
     public void OnClickGoGameStartButton()
     {
-        
-
         switch (GameManager.Instance.curStage)
         {
             case 1:
@@ -407,8 +228,6 @@ public Color SetGradeColorBackground(Item _item)
         StageSelectionPanel.SetActive(false);
         StagePlanetButton.enabled = true;
         StagePlanetPanel.SetActive(true);
-
-
     }
 
     public void OnClickGoStageSelectionMenuButton()
@@ -538,5 +357,225 @@ public Color SetGradeColorBackground(Item _item)
         equipmentInfoPanel.SetActive(false);
 
         curSelectedItem = null;
+    }
+
+    IEnumerator Count(TextMeshProUGUI _text, int _current, int _target)
+    {
+        float start = 0;
+        float end = 0.75f;
+        float percent = 0;
+
+        while (percent <= 1)
+        {
+            start += Time.deltaTime;
+            percent = start / end;
+
+            _text.text = MoneyUnitString.GetThousandCommaText((int)Mathf.Lerp(_current, _target, percent));
+
+            yield return null;
+        }
+
+        _text.text = MoneyUnitString.GetThousandCommaText(_target);
+    }
+
+
+    public void EquipButton()
+    {
+        //가존 장착된 장비를 찾아 정보를 받아 반환하는 과정이 필요
+        //인벤토리 내 모든 items 중에서 
+
+        equipButton.gameObject.SetActive(false);
+        unEquipButton.gameObject.SetActive(true);
+
+        switch (curSelectedItem.itemPart)
+        {
+            case Item.ItemPart.Weapon:
+                if (DataManager.Instance.CurEquippedWeapon != null)
+                    DataManager.Instance.CurEquippedWeapon.isEquipped = false;
+                curSelectedItem.isEquipped = true;
+
+                DataManager.Instance.CurEquippedWeapon = curSelectedItem;
+                break;
+            case Item.ItemPart.Gloves:
+                if (DataManager.Instance.CurEquippedGloves != null)
+                    DataManager.Instance.CurEquippedGloves.isEquipped = false;
+                curSelectedItem.isEquipped = true;
+
+                DataManager.Instance.CurEquippedGloves = curSelectedItem;
+                break;
+            case Item.ItemPart.Shoes:
+                if (DataManager.Instance.CurEquippedShoes != null)
+                    DataManager.Instance.CurEquippedShoes.isEquipped = false;
+                curSelectedItem.isEquipped = true;
+
+                DataManager.Instance.CurEquippedShoes = curSelectedItem;
+                break;
+            case Item.ItemPart.Sheld:
+                if (DataManager.Instance.CurEquippedSheld != null)
+                    DataManager.Instance.CurEquippedSheld.isEquipped = false;
+                curSelectedItem.isEquipped = true;
+
+                DataManager.Instance.CurEquippedSheld = curSelectedItem;
+                break;
+            case Item.ItemPart.Helmat:
+                if (DataManager.Instance.CurEquippedHelmat != null)
+                    DataManager.Instance.CurEquippedHelmat.isEquipped = false;
+                curSelectedItem.isEquipped = true;
+
+                DataManager.Instance.CurEquippedHelmat = curSelectedItem;
+                break;
+            case Item.ItemPart.Armor:
+                if (DataManager.Instance.CurEquippedArmor != null)
+                    DataManager.Instance.CurEquippedArmor.isEquipped = false;
+                curSelectedItem.isEquipped = true;
+
+                DataManager.Instance.CurEquippedArmor = curSelectedItem;
+                break;
+        }
+
+        backButton();
+    }
+
+    public void UnequipButton()
+    {
+        //아이템 장착 해제
+        curSelectedItem.isEquipped = false;
+
+        equipButton.gameObject.SetActive(true);
+        unEquipButton.gameObject.SetActive(false);
+
+        switch (curSelectedItem.itemPart)
+        {
+            case Item.ItemPart.Weapon:
+                DataManager.Instance.CurEquippedWeapon = null;
+                break;
+            case Item.ItemPart.Gloves:
+                DataManager.Instance.CurEquippedGloves = null;
+                break;
+            case Item.ItemPart.Shoes:
+                DataManager.Instance.CurEquippedShoes = null;
+                break;
+            case Item.ItemPart.Sheld:
+                DataManager.Instance.CurEquippedSheld = null;
+                break;
+            case Item.ItemPart.Helmat:
+                DataManager.Instance.CurEquippedHelmat = null;
+                break;
+            case Item.ItemPart.Armor:
+                DataManager.Instance.CurEquippedArmor = null;
+                break;
+        }
+
+        backButton();
+    }
+
+    public void UpgradeButton()
+    {
+        if (curSelectedItem.itemCurLevel == curSelectedItem.itemMaxLevel)
+        {
+            TriggerPopUp("장비 레벨이 MAX입니다.");
+            return;
+        }
+
+        if (DataManager.Instance.PlayerGold < curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)
+        {
+            TriggerPopUp("골드가 부족합니다.");
+            return;
+        }
+
+        StartCoroutine(Count(playerGoldText, DataManager.Instance.PlayerGold, DataManager.Instance.PlayerGold - curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost));
+
+        DataManager.Instance.PlayerGold -= curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost;
+
+        curSelectedItem.itemCurLevel++;
+
+        EquipInfoUpdate(curSelectedItem);
+    }
+
+    public void SellButton()
+    {
+        //해당 아이템 삭제
+    }
+
+    public void EquipInfoUpdate(Item _item)
+    {
+        curSelectedItem = _item;
+        equipNameTMP.text = _item.itemName;
+        equipTopNameImage.color = SetGradeColorBackground(_item);
+        equipTopGradeImage.color = SetGradeColorBackground(_item);
+        equipTopGradeTMP.text = _item.itemGrade.ToString();
+        equipGradeImage.color = SetGradeColorBackground(_item);
+        equipImage.sprite = _item.itemImage;
+
+        if (curSelectedItem.isEquipped)
+        {
+            equipButton.gameObject.SetActive(false);
+            unEquipButton.gameObject.SetActive(true);
+        }
+        else
+        {
+
+            equipButton.gameObject.SetActive(true);
+            unEquipButton.gameObject.SetActive(false);
+        }
+
+        equipLevelTMP.text = $"레벨: {_item.itemCurLevel.ToString()} / {_item.itemMaxLevel.ToString()}";
+
+        switch (_item.itemPart)
+        {
+            case Item.ItemPart.Weapon:
+            case Item.ItemPart.Gloves:
+            case Item.ItemPart.Shoes:
+                statTMP.text = "ATK";
+                equipStatTMP.text = MoneyUnitString.GetThousandCommaText(_item.itemATK + (int)_item.itemGrade * _item.itemCurLevel);
+                break;
+            case Item.ItemPart.Sheld:
+            case Item.ItemPart.Armor:
+            case Item.ItemPart.Helmat:
+                statTMP.text = "HP";
+                equipStatTMP.text = MoneyUnitString.GetThousandCommaText(_item.itemHP + (int)_item.itemGrade * _item.itemCurLevel);
+                break;
+            case Item.ItemPart.Count:
+                break;
+            default:
+                break;
+        }
+
+
+        equipPartTMP.text = _item.itemPart.ToString();
+        equipDescTMP.text = _item.itemDesc.ToString();
+        equipUpgradeCostTMP.text = $"{MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerGold)} " +
+            $"/ {MoneyUnitString.GetThousandCommaText(curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)}";
+
+        equipmentInfoPanel.SetActive(true);
+    }
+
+    public Color SetGradeColorBackground(Item _item)
+    {
+        Color retColor;
+
+        switch (_item.itemGrade)
+        {
+            case Item.ItemGrade.Normal:
+                retColor = new Color(0.75f, 0.75f, 0.75f, 1f);
+                break;
+            case Item.ItemGrade.Rare:
+                retColor = new Color(0, 0.5f, 1f, 1f);
+                break;
+            case Item.ItemGrade.Epic:
+                retColor = new Color(0.65f, 0f, 1f, 1f);
+                break;
+            case Item.ItemGrade.Unique:
+                retColor = Color.yellow;
+                break;
+            case Item.ItemGrade.Legendary:
+                retColor = Color.red;
+                break;
+            default:
+                retColor = Color.white;
+                break;
+        }
+
+        return retColor;
     }
 }
