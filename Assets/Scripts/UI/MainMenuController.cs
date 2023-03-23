@@ -88,6 +88,10 @@ public class MainMenuController : MonoBehaviour
 
     private static MainMenuController instance = null;
 
+    [Header("Shop Gold/Zam Attracter")]
+    public ParticleSystem[] GoldAttracters;
+    public ParticleSystem[] ZamAttracters;
+
     public static MainMenuController Instance
     {
         get
@@ -596,15 +600,19 @@ public class MainMenuController : MonoBehaviour
         {
             case 50:
                 goldNumber = 20000;
+                GoldAttracters[0].Play();
                 break;
             case 100:
                 goldNumber = 50000;
+                GoldAttracters[1].Play();
                 break;
             case 300:
                 goldNumber = 200000;
+                GoldAttracters[2].Play();
                 break;
             case 1000:
                 goldNumber = 1000000;
+                GoldAttracters[3].Play();
                 break;
         }
         StartCoroutine(Count(playerGoldText, DataManager.Instance.PlayerGold, DataManager.Instance.PlayerGold + goldNumber));
