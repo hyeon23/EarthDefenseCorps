@@ -27,7 +27,8 @@ public class Inventory : MonoBehaviour
     public void initSlot()
     {
         int i = 0;
-        for (; i < items.Count && i < slots.Count; i++)
+        for (; i < items.
+            Count && i < slots.Count; i++)
         {
             slots[i].GetComponent<ItemSlot>().item = items[i];
         }
@@ -51,7 +52,7 @@ public class Inventory : MonoBehaviour
     {
         Item nI = DataManager.Instance.items[Random.Range(0, DataManager.Instance.items.Count)];
 
-        Item newItem = new Item(nI.itemPart, nI.itemGrade, nI.isEquipped, nI.itemID, nI.itemName, nI.itemDesc, nI.itemImage, nI.itemATK, nI.itemHP, nI.itemSheldGager, nI.itemSpecialMoveGager, nI.itemCriticalDamage, nI.itemCriticalDamage, nI.itemPrice, nI.itemUpgradeCost, nI.itemProbability);
+        Item newItem = new Item(nI.itemPart, nI.itemGrade, false, nI.itemID, nI.itemName, nI.itemDesc, nI.itemImage, nI.itemATK, nI.itemHP, nI.itemSheldGager, nI.itemSpecialMoveGager, nI.itemCriticalDamage, nI.itemCriticalDamage, nI.itemPrice, nI.itemUpgradeCost, nI.itemProbability);
 
         items.Add(newItem);
         GameObject cloneSlot = Instantiate(slotPrefab, slotParent);

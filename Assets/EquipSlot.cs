@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,8 +7,9 @@ public class EquipSlot : MonoBehaviour
     public enum EquipSlotPart { Weapon, Gloves, Shoes, Sheld, Helmat, Armor }
 
     public Image ItemIcon;
-    public Image gradeBackground;
+    public Image gradeBackground; 
     public EquipSlotPart equipSlotPart;
+    public TextMeshProUGUI curLevelText;
 
     public Item item = null;
 
@@ -22,13 +24,16 @@ public class EquipSlot : MonoBehaviour
                     item = DataManager.Instance.CurEquippedWeapon;
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 1;
+                    
                     ItemIcon.color = tempColor;
                     ItemIcon.sprite = item.itemImage;
+                    curLevelText.text = $"Lv.{item.itemCurLevel}";
                     gradeBackground.color = MainMenuController.Instance.SetGradeColorBackground(item);
                 }
                 else
                 {
                     item = null;
+                    curLevelText.text = "";
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 0;
                     ItemIcon.color = tempColor;
@@ -45,11 +50,13 @@ public class EquipSlot : MonoBehaviour
                     tempColor.a = 1;
                     ItemIcon.color = tempColor;
                     ItemIcon.sprite = item.itemImage;
+                    curLevelText.text = $"Lv.{item.itemCurLevel}";
                     gradeBackground.color = MainMenuController.Instance.SetGradeColorBackground(item);
                 }
                 else
                 {
                     item = null;
+                    curLevelText.text = "";
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 0;
                     ItemIcon.color = tempColor;
@@ -66,11 +73,13 @@ public class EquipSlot : MonoBehaviour
                     tempColor.a = 1;
                     ItemIcon.color = tempColor;
                     ItemIcon.sprite = item.itemImage;
+                    curLevelText.text = $"Lv.{item.itemCurLevel}";
                     gradeBackground.color = MainMenuController.Instance.SetGradeColorBackground(item);
                 }
                 else
                 {
                     item = null;
+                    curLevelText.text = "";
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 0;
                     ItemIcon.color = tempColor;
@@ -87,11 +96,13 @@ public class EquipSlot : MonoBehaviour
                     tempColor.a = 1;
                     ItemIcon.color = tempColor;
                     ItemIcon.sprite = item.itemImage;
+                    curLevelText.text = $"Lv.{item.itemCurLevel}";
                     gradeBackground.color = MainMenuController.Instance.SetGradeColorBackground(item);
                 }
                 else
                 {
                     item = null;
+                    curLevelText.text = "";
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 0;
                     ItemIcon.color = tempColor;
@@ -108,11 +119,13 @@ public class EquipSlot : MonoBehaviour
                     tempColor.a = 1;
                     ItemIcon.color = tempColor;
                     ItemIcon.sprite = item.itemImage;
+                    curLevelText.text = $"Lv.{item.itemCurLevel}";
                     gradeBackground.color = MainMenuController.Instance.SetGradeColorBackground(item);
                 }
                 else
                 {
                     item = null;
+                    curLevelText.text = "";
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 0;
                     ItemIcon.color = tempColor;
@@ -129,11 +142,13 @@ public class EquipSlot : MonoBehaviour
                     tempColor.a = 1;
                     ItemIcon.color = tempColor;
                     ItemIcon.sprite = item.itemImage;
+                    curLevelText.text = $"Lv.{item.itemCurLevel}";
                     gradeBackground.color = MainMenuController.Instance.SetGradeColorBackground(item);
                 }
                 else
                 {
                     item = null;
+                    curLevelText.text = "";
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 0;
                     ItemIcon.color = tempColor;

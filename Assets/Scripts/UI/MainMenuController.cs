@@ -578,4 +578,36 @@ public class MainMenuController : MonoBehaviour
 
         return retColor;
     }
+
+    public void BuyGold(int zamPrice)
+    {
+        int goldNumber = 0;
+        
+        if (zamPrice > DataManager.Instance.PlayerZam)
+        {
+            TriggerPopUp("젬이 부족합니다.");
+            return;
+        }
+
+        StartCoroutine(Count(playerZamText, DataManager.Instance.PlayerZam, DataManager.Instance.PlayerZam - zamPrice));
+        DataManager.Instance.playerZam -= zamPrice;
+
+        switch (zamPrice)
+        {
+            case 50:
+                goldNumber = 20000;
+                break;
+            case 100:
+                goldNumber = 50000;
+                break;
+            case 300:
+                goldNumber = 200000;
+                break;
+            case 1000:
+                goldNumber = 1000000;
+                break;
+        }
+        StartCoroutine(Count(playerGoldText, DataManager.Instance.PlayerGold, DataManager.Instance.PlayerGold + goldNumber));
+        DataManager.Instance.PlayerGold += goldNumber;
+    }
 }
