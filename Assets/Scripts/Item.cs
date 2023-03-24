@@ -33,54 +33,114 @@ public class Item
     public int itemUpgradeCost;//강화비용 = 강화비용 = 아이템 등급 X 현재 아이템 레벨
 
     //뽑기관련
-    public float itemProbability;//아이템 뽑기 확률(가중치)
+    public int itemDrawingWeight;//아이템 뽑기 확률(가중치)
 
-    public Item(ItemPart _itemPart, ItemGrade _itemGrade, bool _isEquipped, int _itemID, string _itemName, string _itemDesc, Sprite _itemImage, int _itemATK, float _itemHP, float _itemSheldGager, float _itemSpecialMoveGager, float _itemCriticalRate, float _itemCriticalDamage, int _itemPrice, int _itemUpgradeCost, float _itemProbability)
+    public Item(Item item)
 
     {
-        itemPart = _itemPart;
-        itemGrade = _itemGrade;
-        isEquipped = _isEquipped;
-        itemID = _itemID;
-        itemName = _itemName;
-        itemDesc = _itemDesc;
-        itemImage = _itemImage;
-        itemATK = _itemATK;
-        itemHP = _itemHP;
-        itemSheldGager = _itemSheldGager;
-        itemSpecialMoveGager = _itemSpecialMoveGager;
-        itemCriticalRate = _itemCriticalRate;
-        itemCriticalDamage = _itemCriticalDamage;
-        itemProbability = _itemProbability;
+        this.itemPart = item.itemPart;
+        this.itemGrade = item.itemGrade;
+        this.isEquipped = false;
+        this.itemID = item.itemID;
+        this.itemName = item.itemName;
+        this.itemDesc = item.itemDesc;
+        this.itemImage = item.itemImage;
+        this.itemATK = item.itemATK;
+        this.itemHP = item.itemHP;
+        this.itemSheldGager = item.itemSheldGager;
+        this.itemSpecialMoveGager = item.itemSpecialMoveGager;
+        this.itemCriticalRate = item.itemCriticalRate;
+        this.itemCriticalDamage = item.itemCriticalDamage;
 
-        itemCurLevel = 1;
+        this.itemCurLevel = 1;
 
         switch (itemGrade)
         {
             case ItemGrade.Normal:
-                itemPrice = 250;
-                itemMaxLevel = 10;
-                itemUpgradeCost = 1000;
+                this.itemPrice = 250;
+                this.itemMaxLevel = 10;
+                this.itemUpgradeCost = 1000;
+                this.itemDrawingWeight = 40;
                 break;
             case ItemGrade.Rare:
-                itemPrice = 1000;
-                itemMaxLevel = 20;
-                itemUpgradeCost = 2500;
+                this.itemPrice = 1000;
+                this.itemMaxLevel = 20;
+                this.itemUpgradeCost = 2500;
+                this.itemDrawingWeight = 35;
                 break;
             case ItemGrade.Epic:
-                itemPrice = 4000;
-                itemMaxLevel = 30;
-                itemUpgradeCost = 5000;
+                this.itemPrice = 4000;
+                this.itemMaxLevel = 30;
+                this.itemUpgradeCost = 5000;
+                this.itemDrawingWeight = 20;
                 break;
             case ItemGrade.Unique:
-                itemPrice = 16000;
-                itemMaxLevel = 40;
-                itemUpgradeCost = 10000;
+                this.itemPrice = 16000;
+                this.itemMaxLevel = 40;
+                this.itemUpgradeCost = 15000;
+                this.itemDrawingWeight = 10;
                 break;
             case ItemGrade.Legendary:
-                itemPrice = 32000;
-                itemMaxLevel = 50;
-                itemUpgradeCost = 50000;
+                this.itemPrice = 32000;
+                this.itemMaxLevel = 50;
+                this.itemUpgradeCost = 50000;
+                this.itemDrawingWeight = 5;
+                break;
+            case ItemGrade.Count:
+                break;
+        }
+    }
+
+    public Item(ItemPart _itemPart, ItemGrade _itemGrade, bool _isEquipped, int _itemID, string _itemName, string _itemDesc, Sprite _itemImage, int _itemATK, float _itemHP, float _itemSheldGager, float _itemSpecialMoveGager, float _itemCriticalRate, float _itemCriticalDamage)
+
+    {
+        this.itemPart = _itemPart;
+        this.itemGrade = _itemGrade;
+        this.isEquipped = _isEquipped;
+        this.itemID = _itemID;
+        this.itemName = _itemName;
+        this.itemDesc = _itemDesc;
+        this.itemImage = _itemImage;
+        this.itemATK = _itemATK;
+        this.itemHP = _itemHP;
+        this.itemSheldGager = _itemSheldGager;
+        this.itemSpecialMoveGager = _itemSpecialMoveGager;
+        this.itemCriticalRate = _itemCriticalRate;
+        this.itemCriticalDamage = _itemCriticalDamage;
+
+        this.itemCurLevel = 1;
+
+        switch (itemGrade)
+        {
+            case ItemGrade.Normal:
+                this.itemPrice = 250;
+                this.itemMaxLevel = 10;
+                this.itemUpgradeCost = 1000;
+                this.itemDrawingWeight = 40;
+                break;
+            case ItemGrade.Rare:
+                this.itemPrice = 1000;
+                this.itemMaxLevel = 20;
+                this.itemUpgradeCost = 2500;
+                this.itemDrawingWeight = 35;
+                break;
+            case ItemGrade.Epic:
+                this.itemPrice = 4000;
+                this.itemMaxLevel = 30;
+                this.itemUpgradeCost = 5000;
+                this.itemDrawingWeight = 20;
+                break;
+            case ItemGrade.Unique:
+                this.itemPrice = 16000;
+                this.itemMaxLevel = 40;
+                this.itemUpgradeCost = 10000;
+                this.itemDrawingWeight = 10;
+                break;
+            case ItemGrade.Legendary:
+                this.itemPrice = 32000;
+                this.itemMaxLevel = 50;
+                this.itemUpgradeCost = 50000;
+                this.itemDrawingWeight = 5;
                 break;
             case ItemGrade.Count:
                 break;

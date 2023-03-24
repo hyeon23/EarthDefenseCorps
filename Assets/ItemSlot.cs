@@ -17,6 +17,7 @@ public class ItemSlot : MonoBehaviour
 
     private void Update()
     {
+
         if (item.isEquipped == true)
         {
             isEquippedImage.SetActive(true);

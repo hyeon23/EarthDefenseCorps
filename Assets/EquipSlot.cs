@@ -15,6 +15,15 @@ public class EquipSlot : MonoBehaviour
 
     private void Update()
     {
+        if(item != null)
+        {
+            curLevelText.gameObject.SetActive(true);
+        }
+        else
+        {
+            curLevelText.gameObject.SetActive(false);
+        }
+
         switch (equipSlotPart)
         {
             case EquipSlotPart.Weapon:

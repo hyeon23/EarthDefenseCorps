@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using static UnityEditor.Progress;
 using System.Security.Policy;
 using System.Text;
+using System.Collections.Generic;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -88,6 +89,9 @@ public class MainMenuController : MonoBehaviour
 
     private static MainMenuController instance = null;
 
+    [Header("Inventory")]
+    public Inventory inventory;
+
     [Header("Shop Gold/Zam Attracter")]
     public ParticleSystem[] GoldAttracters;
     public ParticleSystem[] ZamAttracters;
@@ -123,6 +127,7 @@ public class MainMenuController : MonoBehaviour
 
     private void Start()
     {
+        
         minStageNum = 1;
         maxStageNum = isStageClear.Length;
         curSelectStage = GameManager.Instance.curStage;
@@ -363,7 +368,7 @@ public class MainMenuController : MonoBehaviour
         curSelectedItem = null;
     }
 
-    IEnumerator Count(TextMeshProUGUI _text, int _current, int _target)
+    public IEnumerator Count(TextMeshProUGUI _text, int _current, int _target)
     {
         float start = 0;
         float end = 0.75f;
@@ -499,6 +504,11 @@ public class MainMenuController : MonoBehaviour
     public void SellButton()
     {
         //해당 아이템 삭제
+        inventory.deleteItem(curSelectedItem);
+
+        PlusGold(Mathf.RoundToInt((curSelectedItem.itemPrice + (curSelectedItem.itemCurLevel - 1) * curSelectedItem.itemUpgradeCost) * 0.5f));
+
+        UnequipButton();
     }
 
     public void EquipInfoUpdate(Item _item)
@@ -593,29 +603,222 @@ public class MainMenuController : MonoBehaviour
             return;
         }
 
-        StartCoroutine(Count(playerZamText, DataManager.Instance.PlayerZam, DataManager.Instance.PlayerZam - zamPrice));
-        DataManager.Instance.playerZam -= zamPrice;
-
         switch (zamPrice)
         {
             case 50:
+                if (!GoldAttracters[0].isStopped)
+                    return;
                 goldNumber = 20000;
                 GoldAttracters[0].Play();
                 break;
             case 100:
+                if (!GoldAttracters[1].isStopped)
+                    return;
                 goldNumber = 50000;
                 GoldAttracters[1].Play();
                 break;
             case 300:
+                if (!GoldAttracters[2].isStopped)
+                    return;
                 goldNumber = 200000;
                 GoldAttracters[2].Play();
                 break;
             case 1000:
+                if (!GoldAttracters[3].isStopped)
+                    return;
                 goldNumber = 1000000;
                 GoldAttracters[3].Play();
                 break;
         }
+
+        SubtractZam(zamPrice);
+
+        PlusGold(goldNumber);
+    }
+
+    public void PlusGold(int goldNumber)
+    {
         StartCoroutine(Count(playerGoldText, DataManager.Instance.PlayerGold, DataManager.Instance.PlayerGold + goldNumber));
         DataManager.Instance.PlayerGold += goldNumber;
+    }
+
+    public void MinusGold(int goldNumber)
+    {
+        StartCoroutine(Count(playerZamText, DataManager.Instance.PlayerZam, DataManager.Instance.PlayerZam - goldNumber));
+        DataManager.Instance.playerZam -= goldNumber;
+    }
+
+    public void PlusZam(int zamNumber)
+    {
+        StartCoroutine(Count(playerZamText, DataManager.Instance.PlayerZam, DataManager.Instance.PlayerZam + zamNumber));
+        DataManager.Instance.playerZam += zamNumber;
+    }
+
+    public void SubtractZam(int zamPrice)
+    {
+        StartCoroutine(Count(playerZamText, DataManager.Instance.PlayerZam, DataManager.Instance.PlayerZam - zamPrice));
+        DataManager.Instance.playerZam -= zamPrice;
+    }
+
+    //가중치 랜덤 가챠
+    public void NormalDrawing1RandItem(int zamPrice)
+    {
+        int total = 0;
+        int weight = 0;
+        int selectNum = 0;
+        List<Item> gachaList = new List<Item>();
+
+        if (zamPrice > DataManager.Instance.PlayerZam)
+        {
+            TriggerPopUp("젬이 부족합니다.");
+            return;
+        }
+
+        //가차리스트 생성 및 초기화
+        for (int i = 0; i < DataManager.Instance.items.Count; i++)
+        {
+            Item.ItemGrade curItemGrade = DataManager.Instance.items[i].itemGrade;
+
+            if (curItemGrade == Item.ItemGrade.Normal || curItemGrade == Item.ItemGrade.Rare || curItemGrade == Item.ItemGrade.Epic)
+            {
+                gachaList.Add(DataManager.Instance.items[i]);
+                total += DataManager.Instance.items[i].itemDrawingWeight;
+            }
+        }
+
+        selectNum = Mathf.RoundToInt(total * Random.Range(0.0f, 1.0f));
+
+        for (int i = 0; i < gachaList.Count; i++)
+        {
+            weight += gachaList[i].itemDrawingWeight;
+
+            if (selectNum <= weight)
+            {
+                Item newItem = new Item(gachaList[i]);
+                inventory.AddItem(newItem);
+                break;
+            }
+        }
+
+        SubtractZam(zamPrice);
+    }
+
+    public void NormalDrawing10RandItem(int zamPrice)
+    {
+        int total = 0;
+        int weight = 0;
+        int selectNum = 0;
+        List<Item> gachaList = new List<Item>();
+
+        if (zamPrice > DataManager.Instance.PlayerZam)
+        {
+            TriggerPopUp("젬이 부족합니다.");
+            return;
+        }
+
+        //가차리스트 생성 및 초기화
+        for (int i = 0; i < DataManager.Instance.items.Count; i++)
+        {
+            Item.ItemGrade curItemGrade = DataManager.Instance.items[i].itemGrade;
+
+            if (curItemGrade == Item.ItemGrade.Normal || curItemGrade == Item.ItemGrade.Rare || curItemGrade == Item.ItemGrade.Epic)
+            {
+                gachaList.Add(DataManager.Instance.items[i]);
+                total += DataManager.Instance.items[i].itemDrawingWeight;
+            }
+        }
+
+        for (int j = 0; j < 10; j++)
+        {
+            weight = 0;
+            selectNum = Mathf.RoundToInt(total * Random.Range(0.0f, 1.0f));
+
+            for (int i = 0; i < gachaList.Count; i++)
+            {
+                weight += gachaList[i].itemDrawingWeight;
+
+                if (selectNum <= weight)
+                {
+                    Item newItem = new Item(gachaList[i]);
+                    inventory.AddItem(newItem);
+                    break;
+                }
+            }
+        }
+
+        SubtractZam(zamPrice);
+    }
+
+    public void PremiumDrawing1RandItem(int zamPrice)
+    {
+        int total = 0;
+        int weight = 0;
+        int selectNum = 0;
+
+        if (zamPrice > DataManager.Instance.PlayerZam)
+        {
+            TriggerPopUp("젬이 부족합니다.");
+            return;
+        }
+
+        //가차리스트 생성 및 초기화
+        for (int i = 0; i < DataManager.Instance.items.Count; i++)
+        {
+            total += DataManager.Instance.items[i].itemDrawingWeight;
+        }
+
+        selectNum = Mathf.RoundToInt(total * Random.Range(0.0f, 1.0f));
+
+        for (int i = 0; i < DataManager.Instance.items.Count; i++)
+        {
+            weight += DataManager.Instance.items[i].itemDrawingWeight;
+
+            if (selectNum <= weight)
+            {
+                Item newItem = new Item(DataManager.Instance.items[i]);
+                inventory.AddItem(newItem);
+                break;
+            }
+        }
+        SubtractZam(zamPrice);
+    }
+
+    public void PremiumDrawing10RandItem(int zamPrice)
+    {
+        int total = 0;
+        int weight = 0;
+        int selectNum = 0;
+
+        if (zamPrice > DataManager.Instance.PlayerZam)
+        {
+            TriggerPopUp("젬이 부족합니다.");
+            return;
+        }
+
+        //가차리스트 생성 및 초기화
+        for (int i = 0; i < DataManager.Instance.items.Count; i++)
+        {
+            total += DataManager.Instance.items[i].itemDrawingWeight;
+        }
+
+        for (int j = 0; j < 10; j++)
+        {
+            weight = 0;
+            selectNum = Mathf.RoundToInt(total * Random.Range(0.0f, 1.0f));
+
+            for (int i = 0; i < DataManager.Instance.items.Count; i++)
+            {
+                weight += DataManager.Instance.items[i].itemDrawingWeight;
+
+                if (selectNum <= weight)
+                {
+                    Item newItem = new Item(DataManager.Instance.items[i]);
+                    inventory.AddItem(newItem);
+                    break;
+                }
+            }
+        }
+
+        SubtractZam(zamPrice);
     }
 }
