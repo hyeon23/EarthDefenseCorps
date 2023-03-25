@@ -186,12 +186,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 3
   dmg: 0.1
+  gold: 50
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &1765067381937933362
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,3 +408,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0

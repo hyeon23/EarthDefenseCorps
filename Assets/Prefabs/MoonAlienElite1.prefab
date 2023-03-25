@@ -5104,6 +5104,7 @@ MonoBehaviour:
   curHp: 0
   maxHp: 10
   dmg: 0
+  gold: 500
   ancestorGameObject: {fileID: 8518472417129103474}
   parentRigid: {fileID: 8518472417129103472}
   maxShotDelay: 3

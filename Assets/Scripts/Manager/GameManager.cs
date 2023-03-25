@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     public int score;
     public int combo;
+    public int gold;
 
     private Transform cam;
 
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
 
         combo = 0;
         score = 0;
+        gold = 0;
     }
     public static GameManager Instance
     {

@@ -73,6 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &975920102397562379
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,12 +291,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 10
   dmg: 0.3
+  gold: 200
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!61 &1611315883304553302
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -453,6 +455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &3123766843658418216
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,12 +559,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 10
   dmg: 0.3
+  gold: 200
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!61 &4590384464584238146
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -661,6 +665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &4127526171397278385
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,12 +861,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 10
   dmg: 0.3
+  gold: 200
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!61 &3484150471222941224
 BoxCollider2D:
   m_ObjectHideFlags: 0

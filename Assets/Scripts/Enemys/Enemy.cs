@@ -29,6 +29,9 @@ public class Enemy : MonoBehaviour
     public float dmg;
 
     [SerializeField]
+    public int gold;
+
+    [SerializeField]
     protected GameObject ancestorGameObject;
 
     [SerializeField]
@@ -44,7 +47,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDisable()
     {
-        //GameManager.Instance.curDeadEnemyCount++;
-        //GameManager.Instance.curLiveEnemyCount--;
+        GameManager.Instance.curDeadEnemyCount++;
+        GameManager.Instance.curLiveEnemyCount--;
     }
 }

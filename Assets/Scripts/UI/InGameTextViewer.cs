@@ -71,7 +71,7 @@ public class InGameTextViewer : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI curDeadEnemyCountText;
     [SerializeField]
-    private TextMeshProUGUI curGetGoldText;
+    public TextMeshProUGUI curGetGoldText;
 
     [Header("PhaseGuideGroup")]
     [SerializeField]
@@ -122,6 +122,11 @@ public class InGameTextViewer : MonoBehaviour
         rightPhaseImageTrigger = false;
     }
 
+    private void Start()
+    {
+        curGetGoldText.text = GameManager.Instance.gold.ToString();
+    }
+
     public static InGameTextViewer Instance
     {
         get
@@ -139,7 +144,6 @@ public class InGameTextViewer : MonoBehaviour
         //Combo Text
         comboCountText.text = GameManager.Instance.combo.ToString();
         curDeadEnemyCountText.text = GameManager.Instance.curDeadEnemyCount.ToString();
-        curGetGoldText.text = GameManager.Instance.curDeadEnemyCount.ToString();
 
         //Player Gage bar
         StartCoroutine(SliderInit(hpBar, hpBarShadow, PlayerData.Instance.curHp, PlayerData.Instance.maxHp, 0));
@@ -357,5 +361,30 @@ public class InGameTextViewer : MonoBehaviour
     {
         PhaseGuideText.text = text;
         PhaseGuideGroupAnime.SetTrigger("doPhaseStart");
+    }
+
+    public IEnumerator Count(TextMeshProUGUI _text, int _current, int _target)
+    {
+        float start = 0;
+        float end = 0.75f;
+        float percent = 0;
+
+        while (percent <= 1)
+        {
+            start += Time.deltaTime;
+            percent = start / end;
+
+            _text.text = MoneyUnitString.GetThousandCommaText((int)Mathf.Lerp(_current, _target, percent));
+
+            yield return null;
+        }
+
+        _text.text = MoneyUnitString.GetThousandCommaText(_target);
+    }
+
+    public void PlusGetGold(int goldNumber)
+    {
+        StartCoroutine(Count(curGetGoldText, GameManager.Instance.gold, GameManager.Instance.gold + goldNumber));
+        GameManager.Instance.gold += goldNumber;
     }
 }

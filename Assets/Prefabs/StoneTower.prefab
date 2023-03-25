@@ -129,12 +129,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &45104461561603424
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &101884281667763699
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,12 +373,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &164528687440182176
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,12 +509,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &230840614678679078
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &317248818871945809
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &474886863307834993
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,6 +979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &516419590107994875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,12 +1259,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &697039656001621676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1331,6 +1339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &723175754137492239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,6 +1413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &746358042203821461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,12 +1543,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &749420627433071761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,6 +1657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &975920102397562379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,6 +1823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &999534524232705672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1884,6 +1897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &1073880781988839173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,6 +2005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &1183061932350222964
 GameObject:
   m_ObjectHideFlags: 0
@@ -2214,6 +2229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &1354765194322387482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,6 +2303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &1399177305828466447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2418,6 +2435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &1527717258396986783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,12 +2691,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &1603935611251396009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2786,6 +2805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &1740065926194469474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2859,6 +2879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &1765067381508701715
 GameObject:
   m_ObjectHideFlags: 0
@@ -3091,12 +3112,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 20
   dmg: 0.1
+  gold: 250
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &1765067381937933362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3321,6 +3343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &2000091849148379791
 GameObject:
   m_ObjectHideFlags: 0
@@ -3428,6 +3451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &2019021265300960107
 GameObject:
   m_ObjectHideFlags: 0
@@ -3557,12 +3581,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &2058120232022453826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3726,12 +3751,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &2100353986492946140
 GameObject:
   m_ObjectHideFlags: 0
@@ -3805,6 +3831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &2148606876313586498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3968,12 +3995,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &2263409751346663965
 GameObject:
   m_ObjectHideFlags: 0
@@ -4047,6 +4075,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &2362460377522754725
 GameObject:
   m_ObjectHideFlags: 0
@@ -4244,12 +4273,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &2392778189597359489
 GameObject:
   m_ObjectHideFlags: 0
@@ -4379,12 +4409,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &2413246529069736202
 GameObject:
   m_ObjectHideFlags: 0
@@ -4514,12 +4545,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &2441715052936269701
 GameObject:
   m_ObjectHideFlags: 0
@@ -4649,12 +4681,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &2448693579859906457
 GameObject:
   m_ObjectHideFlags: 0
@@ -4728,6 +4761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &2555083418287175122
 GameObject:
   m_ObjectHideFlags: 0
@@ -4857,12 +4891,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &2560235940385999015
 GameObject:
   m_ObjectHideFlags: 0
@@ -5144,6 +5179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &2746768964321061190
 GameObject:
   m_ObjectHideFlags: 0
@@ -5333,6 +5369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &2780452348622776236
 GameObject:
   m_ObjectHideFlags: 0
@@ -5462,12 +5499,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &2800296341042746185
 GameObject:
   m_ObjectHideFlags: 0
@@ -5691,6 +5729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &3123766843658418216
 GameObject:
   m_ObjectHideFlags: 0
@@ -5820,12 +5859,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &3216159521272954967
 GameObject:
   m_ObjectHideFlags: 0
@@ -5955,12 +5995,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &3320239918991539265
 GameObject:
   m_ObjectHideFlags: 0
@@ -6124,12 +6165,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &3502492451589576137
 GameObject:
   m_ObjectHideFlags: 0
@@ -6259,12 +6301,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &3611716802370482306
 GameObject:
   m_ObjectHideFlags: 0
@@ -6338,6 +6381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &3652426175347361567
 GameObject:
   m_ObjectHideFlags: 0
@@ -6617,6 +6661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &3967172155561188388
 GameObject:
   m_ObjectHideFlags: 0
@@ -6782,6 +6827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &4021028622755463783
 GameObject:
   m_ObjectHideFlags: 0
@@ -6855,6 +6901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &4043901534969656249
 GameObject:
   m_ObjectHideFlags: 0
@@ -6984,12 +7031,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &4127526171397278385
 GameObject:
   m_ObjectHideFlags: 0
@@ -7177,12 +7225,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &4221681499694206660
 GameObject:
   m_ObjectHideFlags: 0
@@ -7440,6 +7489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &4443612182997617445
 GameObject:
   m_ObjectHideFlags: 0
@@ -7661,12 +7711,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &4616455086191240922
 GameObject:
   m_ObjectHideFlags: 0
@@ -7796,12 +7847,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &4671583563210605323
 GameObject:
   m_ObjectHideFlags: 0
@@ -8047,12 +8099,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &4747368524154087839
 GameObject:
   m_ObjectHideFlags: 0
@@ -8182,12 +8235,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &4778706443207774934
 GameObject:
   m_ObjectHideFlags: 0
@@ -8261,6 +8315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &4853786412296606616
 GameObject:
   m_ObjectHideFlags: 0
@@ -8564,12 +8619,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &5051910460746644860
 GameObject:
   m_ObjectHideFlags: 0
@@ -8767,12 +8823,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &5146947001942124856
 GameObject:
   m_ObjectHideFlags: 0
@@ -8846,6 +8903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &5159768246529779354
 GameObject:
   m_ObjectHideFlags: 0
@@ -8987,6 +9045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &5221682228985311752
 GameObject:
   m_ObjectHideFlags: 0
@@ -9094,6 +9153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &5364775066125908401
 GameObject:
   m_ObjectHideFlags: 0
@@ -9167,6 +9227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &5369408861852457298
 GameObject:
   m_ObjectHideFlags: 0
@@ -9388,12 +9449,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &5422447626290900977
 GameObject:
   m_ObjectHideFlags: 0
@@ -9731,12 +9793,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &5555838984831897021
 GameObject:
   m_ObjectHideFlags: 0
@@ -9844,6 +9907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &5570177405683930405
 GameObject:
   m_ObjectHideFlags: 0
@@ -10031,12 +10095,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 20
   dmg: 0.1
+  gold: 250
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &5586961077223966824
 GameObject:
   m_ObjectHideFlags: 0
@@ -10258,12 +10323,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &5645841876227527420
 GameObject:
   m_ObjectHideFlags: 0
@@ -10337,6 +10403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &5707235372085162502
 GameObject:
   m_ObjectHideFlags: 0
@@ -10410,6 +10477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &5707668275401685707
 GameObject:
   m_ObjectHideFlags: 0
@@ -10539,12 +10607,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &5754700340102840749
 GameObject:
   m_ObjectHideFlags: 0
@@ -10674,12 +10743,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &5797931254424321445
 GameObject:
   m_ObjectHideFlags: 0
@@ -10983,12 +11053,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &6061791060359732716
 GameObject:
   m_ObjectHideFlags: 0
@@ -11278,12 +11349,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &6211818100825597623
 GameObject:
   m_ObjectHideFlags: 0
@@ -11391,6 +11463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &6351244811059866148
 GameObject:
   m_ObjectHideFlags: 0
@@ -11464,6 +11537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &6488150037209191383
 GameObject:
   m_ObjectHideFlags: 0
@@ -11765,12 +11839,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &6623854966874087129
 GameObject:
   m_ObjectHideFlags: 0
@@ -11844,6 +11919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &6664915107680987882
 GameObject:
   m_ObjectHideFlags: 0
@@ -11973,12 +12049,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &6770249274400591360
 GameObject:
   m_ObjectHideFlags: 0
@@ -12166,12 +12243,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &6836102990601952886
 GameObject:
   m_ObjectHideFlags: 0
@@ -12649,12 +12727,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &7136197397326895375
 GameObject:
   m_ObjectHideFlags: 0
@@ -12762,6 +12841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &7424175545190334166
 GameObject:
   m_ObjectHideFlags: 0
@@ -12835,6 +12915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &7453273773975724525
 GameObject:
   m_ObjectHideFlags: 0
@@ -12976,6 +13057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &7597312036868888257
 GameObject:
   m_ObjectHideFlags: 0
@@ -13049,6 +13131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &7625363707596683237
 GameObject:
   m_ObjectHideFlags: 0
@@ -13246,12 +13329,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &7725017067080906627
 GameObject:
   m_ObjectHideFlags: 0
@@ -13325,6 +13409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &7738424983203437423
 GameObject:
   m_ObjectHideFlags: 0
@@ -13524,6 +13609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &8108671671449336714
 GameObject:
   m_ObjectHideFlags: 0
@@ -13597,6 +13683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &8157254197730382724
 GameObject:
   m_ObjectHideFlags: 0
@@ -13670,6 +13757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &8192566567028162105
 GameObject:
   m_ObjectHideFlags: 0
@@ -13799,12 +13887,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &8201135562481170352
 GameObject:
   m_ObjectHideFlags: 0
@@ -13878,6 +13967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &8233470151998721209
 GameObject:
   m_ObjectHideFlags: 0
@@ -14007,12 +14097,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &8420942332561365415
 GameObject:
   m_ObjectHideFlags: 0
@@ -14086,6 +14177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &8436135012095417506
 GameObject:
   m_ObjectHideFlags: 0
@@ -14307,12 +14399,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &8477216669098756832
 GameObject:
   m_ObjectHideFlags: 0
@@ -14477,12 +14570,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &8571425221353422193
 GameObject:
   m_ObjectHideFlags: 0
@@ -14704,12 +14798,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &8845350713176215285
 GameObject:
   m_ObjectHideFlags: 0
@@ -14839,12 +14934,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &8919624520446162724
 GameObject:
   m_ObjectHideFlags: 0
@@ -15042,12 +15138,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &9027134561353619440
 GameObject:
   m_ObjectHideFlags: 0
@@ -15177,12 +15274,13 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0
 --- !u!1 &9139287000022341083
 GameObject:
   m_ObjectHideFlags: 0
@@ -15314,6 +15412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curBlockRigid: {fileID: 1765067381508701718}
   curMass: 0
+  curGravity: 0
 --- !u!1 &9169697014092762158
 GameObject:
   m_ObjectHideFlags: 0
@@ -15443,9 +15542,10 @@ MonoBehaviour:
   curHp: 0
   maxHp: 1
   dmg: 0.1
+  gold: 10
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
   mass: 0
   gravity: 0
-  isOverlappedPlayer: 0
   isCrushedPlayer: 0
+  isOverlappedPlayer: 0

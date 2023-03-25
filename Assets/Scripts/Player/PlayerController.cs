@@ -130,9 +130,9 @@ public class PlayerController : MonoBehaviour
                         if (isJump || isSpecial)
                         {
                             //Spetial Move
-                            //if (PlayerData.Instance.curSpecialMoveGage < 100f) { return; }
+                            if (PlayerData.Instance.curSpecialMoveGage < 100f) { return; }
 
-                            //PlayerData.Instance.curSpecialMoveGage -= 100f;
+                            PlayerData.Instance.curSpecialMoveGage -= 100f;
 
                             ChangeState(PlayerState.SpecialMove);
                         }

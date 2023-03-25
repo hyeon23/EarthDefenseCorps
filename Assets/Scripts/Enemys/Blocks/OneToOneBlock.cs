@@ -247,6 +247,9 @@ public class OneToOneBlock : Block
 
         if (isAttacked)
         {
+            //Get Gold
+            InGameTextViewer.Instance.PlusGetGold(gold);
+
             switch (enemyName)
             {
                 //0: B_Bronze, 1: B_Silver, 2: B_Gold, 3: B_Zam

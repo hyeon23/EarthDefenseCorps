@@ -562,6 +562,9 @@ public class AlienBoss : Alien
 
     public void OnDead(bool isAttacked = false)
     {
+        //Get Gold
+        InGameTextViewer.Instance.PlusGetGold(gold);
+
         if (GameManager.Instance.curHitEnemy == gameObject)
         {
             InGameTextViewer.Instance.enemyGageShown = false;
