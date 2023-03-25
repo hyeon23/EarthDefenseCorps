@@ -214,6 +214,8 @@ public class MainMenuController : MonoBehaviour
     //게임 씬으로 이동 버튼
     public void OnClickGoGameStartButton()
     {
+        DataManager.Instance.GameStartDataUpdate();
+
         switch (GameManager.Instance.curStage)
         {
             case 1:

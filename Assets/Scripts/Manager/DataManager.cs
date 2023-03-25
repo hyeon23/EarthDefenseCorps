@@ -74,12 +74,15 @@ public class DataManager : MonoBehaviour
         curEquippedHelmat = null;
         curEquippedArmor = null;
 
-        curHp = 100;
-        curSheldGage = 100;
-        curSpecialMoveGage = 0;
-
+        DataUpdate();
+    }
+    public void GameStartDataUpdate()
+    {
         DataUpdate();
 
+        curHp = playerHP;
+        curSheldGage = playerShledGage;
+        curSpecialMoveGage = 0;
     }
 
     public void DataUpdate()
@@ -92,10 +95,12 @@ public class DataManager : MonoBehaviour
             + ((CurEquippedSheld != null) ? (CurEquippedSheld.itemHP + ((int)CurEquippedSheld.itemGrade) * CurEquippedSheld.itemCurLevel) : 0)
             + ((CurEquippedHelmat != null) ? (CurEquippedHelmat.itemHP + ((int)CurEquippedHelmat.itemGrade) * CurEquippedHelmat.itemCurLevel) : 0)
             + ((CurEquippedArmor != null) ? (CurEquippedArmor.itemHP + ((int)CurEquippedArmor.itemGrade) * CurEquippedArmor.itemCurLevel) : 0);
+        
         //[수정필요]
-        playerShledGage = 100;
-        playerSpecialMoveGage = 100;
         playerCriticalRate = 0;
         playerCriticalDamage = 100;
+
+        playerShledGage = 100;
+        playerSpecialMoveGage = 100;
     }
 }
