@@ -84,4 +84,13 @@ public class GameManager : MonoBehaviour
         }
         cam.localPosition = originPosition;
     }
+
+    public void GameOver()
+    {
+        //gameOverSet.SetActive(true);
+    }
+    public void GameRetry()
+    {
+        //SceneManager.LoadScene(0);
+    }
 }

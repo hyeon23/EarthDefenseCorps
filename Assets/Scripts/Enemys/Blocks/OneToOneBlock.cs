@@ -357,7 +357,7 @@ public class OneToOneBlock : Block
             {
                 parentGameObject.SetActive(false);
             }
-            Destroy(parentGameObject, 1);
+            Destroy(parentGameObject);
         }
     }
 }

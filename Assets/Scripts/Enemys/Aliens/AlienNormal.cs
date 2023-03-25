@@ -190,7 +190,7 @@ public class AlienNormal : Alien
         gameObject.SetActive(false);
 
         //Get Gold
-        InGameTextViewer.Instance.PlusGetGold();
+        InGameTextViewer.Instance.PlusGetGold(gold);
 
         if (GameManager.Instance.curHitEnemy == gameObject)
         {

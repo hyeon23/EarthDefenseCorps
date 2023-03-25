@@ -16717,6 +16717,7 @@ MonoBehaviour:
   curStage: 1
   score: 0
   combo: 0
+  gold: 0
 --- !u!4 &1428458982
 Transform:
   m_ObjectHideFlags: 0

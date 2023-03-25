@@ -107,7 +107,6 @@ public class SpawnManager : MonoBehaviour
                         spawnEnd = true;
                         return;
                     }
-
                     curSpawnDelay = 0;
                     break;
                 default:
@@ -116,9 +115,6 @@ public class SpawnManager : MonoBehaviour
                     break;
             }
         }
-        //#UI Score Update
-        //Player playerLogic = player.GetComponent<Player>();
-        //scoreText.text = string.Format("{0:n0}", playerLogic.score); //자리수 단위로 끊음
     }
 
     void ReadSpawnFile(int stage)
@@ -180,11 +176,11 @@ public class SpawnManager : MonoBehaviour
                     break;
                 case 12:
                 case 13:
-                    pluser = 3;
+                    pluser = 1;
                     spawnData.spawnPoint = Random.Range(0, 3);
                     break;
                 case 14:
-                    pluser = 3;
+                    pluser = 1;
                     spawnData.spawnPoint = 1;
                     break;
             }
@@ -282,14 +278,5 @@ public class SpawnManager : MonoBehaviour
 
         //#.다음 리스폰 딜레이 갱신
         nextSpawnDelay = spawnList[spawnIndex].delay;
-    }
-
-    public void GameOver()
-    {
-        //gameOverSet.SetActive(true);
-    }
-    public void GameRetry()
-    {
-        //SceneManager.LoadScene(0);
     }
 }

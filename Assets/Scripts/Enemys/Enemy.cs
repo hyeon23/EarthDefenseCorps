@@ -13,22 +13,11 @@ public enum EnemyType { Block1X1, Block1X1H, Block1X3, Block1X3M, AlienNormal, A
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]
     public EnemyType enemyType;
-
-    [SerializeField]
     public string enemyName;
-
-    [SerializeField]
     public float curHp;
-
-    [SerializeField]
     public float maxHp;
-
-    [SerializeField]
     public float dmg;
-
-    [SerializeField]
     public int gold;
 
     [SerializeField]
