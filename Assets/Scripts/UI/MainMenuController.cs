@@ -8,6 +8,7 @@ using static UnityEditor.Progress;
 using System.Security.Policy;
 using System.Text;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -95,6 +96,18 @@ public class MainMenuController : MonoBehaviour
     [Header("Shop Gold/Zam Attracter")]
     public ParticleSystem[] GoldAttracters;
     public ParticleSystem[] ZamAttracters;
+
+    [Header("Drawing Result Panel")]
+    public GameObject drawing1ResultPanel;
+    public GameObject drawing10ResultPanel;
+    public GameObject drawing1SetActiveGroup;
+    public GameObject drawing10SetActiveGroup;
+    public TextMeshProUGUI DRItemGradeText;
+    public TextMeshProUGUI DRItemNameText;
+
+    public GameObject ProducingSlotPrefab;
+    public Transform drawing1SlotParent;
+    public Transform drawing10SlotParent;
 
     public static MainMenuController Instance
     {
@@ -504,6 +517,7 @@ public class MainMenuController : MonoBehaviour
     public void SellButton()
     {
         //해당 아이템 삭제
+
         inventory.deleteItem(curSelectedItem);
 
         PlusGold(Mathf.RoundToInt((curSelectedItem.itemPrice + (curSelectedItem.itemCurLevel - 1) * curSelectedItem.itemUpgradeCost) * 0.5f));
@@ -694,8 +708,14 @@ public class MainMenuController : MonoBehaviour
 
             if (selectNum <= weight)
             {
+                //아이템 선언
                 Item newItem = new Item(gachaList[i]);
+
+                //아이템 추가
                 inventory.AddItem(newItem);
+
+                //연출
+                StartCoroutine(Producing1Item(newItem));
                 break;
             }
         }
@@ -709,6 +729,7 @@ public class MainMenuController : MonoBehaviour
         int weight = 0;
         int selectNum = 0;
         List<Item> gachaList = new List<Item>();
+        List<Item> SelectedItemList = new List<Item>();
 
         if (zamPrice > DataManager.Instance.PlayerZam)
         {
@@ -741,10 +762,13 @@ public class MainMenuController : MonoBehaviour
                 {
                     Item newItem = new Item(gachaList[i]);
                     inventory.AddItem(newItem);
+                    SelectedItemList.Add(newItem);
                     break;
                 }
             }
         }
+
+        StartCoroutine(Producing10Items(SelectedItemList));
 
         SubtractZam(zamPrice);
     }
@@ -777,6 +801,9 @@ public class MainMenuController : MonoBehaviour
             {
                 Item newItem = new Item(DataManager.Instance.items[i]);
                 inventory.AddItem(newItem);
+
+                //연출
+                StartCoroutine(Producing1Item(newItem));
                 break;
             }
         }
@@ -788,6 +815,7 @@ public class MainMenuController : MonoBehaviour
         int total = 0;
         int weight = 0;
         int selectNum = 0;
+        List<Item> SelectedItemList = new List<Item>();
 
         if (zamPrice > DataManager.Instance.PlayerZam)
         {
@@ -814,11 +842,68 @@ public class MainMenuController : MonoBehaviour
                 {
                     Item newItem = new Item(DataManager.Instance.items[i]);
                     inventory.AddItem(newItem);
+                    SelectedItemList.Add(newItem);
                     break;
                 }
             }
         }
 
+        StartCoroutine(Producing10Items(SelectedItemList));
+
         SubtractZam(zamPrice);
+    }
+
+    public IEnumerator Producing1Item(Item item)
+    {
+        DRItemGradeText.text = item.itemGrade.ToString();
+        DRItemGradeText.color = SetGradeColorBackground(item);
+        DRItemNameText.text = item.itemName.ToString();
+
+        GameObject cloneSlot = Instantiate(ProducingSlotPrefab, drawing1SlotParent);
+        cloneSlot.GetComponent<ItemSlot>().item = item;
+        cloneSlot.GetComponent<ItemSlot>().ItemIcon.sprite = item.itemImage;
+        cloneSlot.GetComponent<ItemSlot>().gradeBackground.color = SetGradeColorBackground(item);
+
+        drawing1ResultPanel.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        drawing1SetActiveGroup.SetActive(true);
+    }
+
+    public IEnumerator Producing10Items(List<Item> items)
+    {
+        drawing10ResultPanel.SetActive(true);
+
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject cloneSlot = Instantiate(ProducingSlotPrefab, drawing10SlotParent);
+            cloneSlot.GetComponent<ItemSlot>().item = items[i];
+            cloneSlot.GetComponent<ItemSlot>().ItemIcon.sprite = items[i].itemImage;
+            cloneSlot.GetComponent<ItemSlot>().gradeBackground.color = SetGradeColorBackground(items[i]);
+
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        drawing10SetActiveGroup.SetActive(true);
+    }
+
+    public void Drawing1PanelButtonClicked()
+    {
+        drawing1SetActiveGroup.SetActive(false);
+        drawing1ResultPanel.SetActive(false);
+
+        Destroy(drawing1SlotParent.GetChild(0).gameObject);
+    }
+
+    public void Drawing10PanelButtonClicked()
+    {
+        drawing10SetActiveGroup.SetActive(false);
+        drawing10ResultPanel.SetActive(false);
+
+        for(int i = 0; i < 10; i++)
+        {
+            Destroy(drawing10SlotParent.GetChild(i).gameObject);
+        }
     }
 }
