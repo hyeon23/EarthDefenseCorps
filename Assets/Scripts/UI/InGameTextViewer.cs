@@ -146,9 +146,9 @@ public class InGameTextViewer : MonoBehaviour
         curDeadEnemyCountText.text = GameManager.Instance.curDeadEnemyCount.ToString();
 
         //Player Gage bar
-        StartCoroutine(SliderInit(hpBar, hpBarShadow, PlayerData.Instance.curHp, PlayerData.Instance.maxHp, 0));
-        StartCoroutine(SliderInit(sheldBar, sheldBarShadow, PlayerData.Instance.curSheldGage, PlayerData.Instance.maxSheldGage, 1));
-        StartCoroutine(SliderInit(specialMoveBar, specialMoveBarShadow, PlayerData.Instance.curSpecialMoveGage, PlayerData.Instance.maxSpecialMoveGage, 2));
+        StartCoroutine(SliderInit(hpBar, hpBarShadow, DataManager.Instance.curHp, DataManager.Instance.PlayerHP, 0));
+        StartCoroutine(SliderInit(sheldBar, sheldBarShadow, DataManager.Instance.curSheldGage, DataManager.Instance.PlayerShledGage, 1));
+        StartCoroutine(SliderInit(specialMoveBar, specialMoveBarShadow, DataManager.Instance.curSpecialMoveGage, DataManager.Instance.PlayerSpecialMoveGage, 2));
 
         StartCoroutine(PhaseSliderInit(phase1ProgressBar, GameManager.Instance.curDeadEnemyCount, SpawnManager.Instance.phase1Num));
         StartCoroutine(PhaseSliderInit(phase2ProgressBar, GameManager.Instance.curDeadEnemyCount - SpawnManager.Instance.phase1Num, SpawnManager.Instance.phase2Num));

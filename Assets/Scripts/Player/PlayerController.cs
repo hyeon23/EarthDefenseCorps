@@ -91,6 +91,11 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Swipe();
+
+        if (!isSheld)
+        {
+            DataManager.Instance.curSheldGage = DataManager.Instance.curSheldGage >= DataManager.Instance.PlayerShledGage ? DataManager.Instance.PlayerShledGage : DataManager.Instance.curSheldGage + 0.3f;
+        }
     }
 
     //스와이프와 터치
@@ -129,10 +134,10 @@ public class PlayerController : MonoBehaviour
 
                         if (isJump || isSpecial)
                         {
-                            //Spetial Move
-                            if (PlayerData.Instance.curSpecialMoveGage < 100f) { return; }
+                            //Special Move
+                            if (DataManager.Instance.curSpecialMoveGage < DataManager.Instance.playerSpecialMoveGage) { return; }
 
-                            PlayerData.Instance.curSpecialMoveGage -= 100f;
+                            DataManager.Instance.curSpecialMoveGage -= 100f;
 
                             ChangeState(PlayerState.SpecialMove);
                         }
@@ -151,9 +156,9 @@ public class PlayerController : MonoBehaviour
                         //Sheld
                         if (!isSheld)
                         {
-                            if (PlayerData.Instance.curSheldGage < 35f) { return; }
+                            if (DataManager.Instance.curSheldGage < 35f) { return; }
 
-                            PlayerData.Instance.curSheldGage -= 35f;
+                            DataManager.Instance.curSheldGage -= 35f;
                             timer = 0;
                             anime.ResetTrigger("onSheld");
                             ChangeState(PlayerState.Sheld);

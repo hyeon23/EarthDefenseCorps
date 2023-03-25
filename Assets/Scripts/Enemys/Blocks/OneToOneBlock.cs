@@ -77,14 +77,14 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X1H:
                     if (!parentGameObject.activeSelf) return;
 
-                    StartCoroutine(OnHit(1, collision.transform.position));
+                    StartCoroutine(OnHit(DataManager.Instance.playerATK, collision.transform.position));
                     break;
                 case EnemyType.Block1X1:
                 case EnemyType.Block1X3:
                 case EnemyType.Block1X3M:
                     if (!parentGameObject.activeSelf) return;
 
-                    StartCoroutine(OnHit(1, collision.transform.position));
+                    StartCoroutine(OnHit(DataManager.Instance.playerATK, collision.transform.position));
                     break;
             }
         }
@@ -96,7 +96,7 @@ public class OneToOneBlock : Block
                     if (!parentGameObject.activeSelf) return;
 
                     parentRigid.transform.position = new Vector3(parentRigid.transform.position.x, parentRigid.transform.position.y + 1.5f, parentRigid.transform.position.z);
-                    StartCoroutine(OnHit(1, collision.transform.position));
+                    StartCoroutine(OnHit(DataManager.Instance.playerATK, collision.transform.position));
                     break;
                 case EnemyType.Block1X1:
                 case EnemyType.Block1X3:
@@ -104,7 +104,7 @@ public class OneToOneBlock : Block
                     if (!parentGameObject.activeSelf) return;
 
                     parentRigid.transform.position = new Vector3(parentRigid.transform.position.x, parentRigid.transform.position.y + 1.5f, parentRigid.transform.position.z);
-                    StartCoroutine(OnHit(1, collision.transform.position));
+                    StartCoroutine(OnHit(DataManager.Instance.playerATK, collision.transform.position));
                     break;
             }
         }
@@ -135,7 +135,7 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X1H:
                     if (!parentGameObject.activeSelf) return;
 
-                    StartCoroutine(OnHit(1, collision.transform.position));
+                    StartCoroutine(OnHit(DataManager.Instance.playerATK, collision.transform.position));
                     break;
                 case EnemyType.Block1X1:
                 case EnemyType.Block1X3:
@@ -143,7 +143,7 @@ public class OneToOneBlock : Block
                     if (!parentGameObject.activeSelf) return;
 
                     parentRigid.AddForce(new Vector2(0, 0.5f), ForceMode2D.Impulse);
-                    StartCoroutine(OnHit(1, collision.transform.position));
+                    StartCoroutine(OnHit(DataManager.Instance.playerATK, collision.transform.position));
                     break;
             }
         }
@@ -203,7 +203,7 @@ public class OneToOneBlock : Block
     {
         GameManager.Instance.curHitEnemy = gameObject;
 
-        bool isCritical = CriticalCheck(damage, 33f);
+        bool isCritical = CriticalCheck(33f);
 
         if (isCritical) damage *= Mathf.RoundToInt(damage * 1.5f);
 
@@ -224,7 +224,7 @@ public class OneToOneBlock : Block
         }
     }
 
-    public bool CriticalCheck(int damage, float percent)
+    public bool CriticalCheck(float percent)
     {
         float r = Random.Range(0f, 100f) % 100;
         //percent 조건을 충족하면 크리티컬 발동

@@ -455,6 +455,8 @@ public class MainMenuController : MonoBehaviour
                 break;
         }
 
+        DataManager.Instance.DataUpdate();
+
         backButton();
     }
 
@@ -488,6 +490,8 @@ public class MainMenuController : MonoBehaviour
                 break;
         }
 
+        DataManager.Instance.DataUpdate();
+
         backButton();
     }
 
@@ -511,7 +515,11 @@ public class MainMenuController : MonoBehaviour
 
         curSelectedItem.itemCurLevel++;
 
+        DataManager.Instance.DataUpdate();
+
         EquipInfoUpdate(curSelectedItem);
+
+        
     }
 
     public void SellButton()

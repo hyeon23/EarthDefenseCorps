@@ -7,10 +7,14 @@ public class DataManager : MonoBehaviour
 
     public int playerATK = 1;
     public float playerHP = 100;
-    public float playerShledGege = 100;
-    public float playerSpecialMoveGege = 100;
+    public float playerShledGage = 100;
+    public float playerSpecialMoveGage = 100;
     public float playerCriticalRate = 0;
     public float playerCriticalDamage = 100;
+
+    public float curHp;
+    public float curSheldGage;
+    public float curSpecialMoveGage;
 
     public int playerZam;
     public int playerGold;
@@ -38,8 +42,8 @@ public class DataManager : MonoBehaviour
 
     public int PlayerATK { get => playerATK; set => playerATK = value; }
     public float PlayerHP { get => playerHP; set => playerHP = value; }
-    public float PlayerShledGege { get => playerShledGege; set => playerShledGege = value; }
-    public float PlayerSpecialMoveGege { get => playerSpecialMoveGege; set => playerSpecialMoveGege = value; }
+    public float PlayerShledGage { get => playerShledGage; set => playerShledGage = value; }
+    public float PlayerSpecialMoveGage { get => playerSpecialMoveGage; set => playerSpecialMoveGage = value; }
     public float PlayerCriticalRate { get => playerCriticalRate; set => playerCriticalRate = value; }
     public float PlayerCriticalDamage { get => playerCriticalDamage; set => playerCriticalDamage = value; }
     public int PlayerZam { get => playerZam; set => playerZam = value; }
@@ -69,9 +73,16 @@ public class DataManager : MonoBehaviour
         curEquippedSheld = null;
         curEquippedHelmat = null;
         curEquippedArmor = null;
+
+        curHp = 100;
+        curSheldGage = 100;
+        curSpecialMoveGage = 0;
+
+        DataUpdate();
+
     }
 
-    private void Update()
+    public void DataUpdate()
     {
         playerATK = 1/*플레이어 기본 공격력*/
             + ((CurEquippedWeapon != null) ? (CurEquippedWeapon.itemATK + ((int)CurEquippedWeapon.itemGrade) * CurEquippedWeapon.itemCurLevel) : 0)
@@ -81,5 +92,10 @@ public class DataManager : MonoBehaviour
             + ((CurEquippedSheld != null) ? (CurEquippedSheld.itemHP + ((int)CurEquippedSheld.itemGrade) * CurEquippedSheld.itemCurLevel) : 0)
             + ((CurEquippedHelmat != null) ? (CurEquippedHelmat.itemHP + ((int)CurEquippedHelmat.itemGrade) * CurEquippedHelmat.itemCurLevel) : 0)
             + ((CurEquippedArmor != null) ? (CurEquippedArmor.itemHP + ((int)CurEquippedArmor.itemGrade) * CurEquippedArmor.itemCurLevel) : 0);
+        //[수정필요]
+        playerShledGage = 100;
+        playerSpecialMoveGage = 100;
+        playerCriticalRate = 0;
+        playerCriticalDamage = 100;
     }
 }
