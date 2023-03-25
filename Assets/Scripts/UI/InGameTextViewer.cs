@@ -151,7 +151,7 @@ public class InGameTextViewer : MonoBehaviour
         StartCoroutine(SliderInit(specialMoveBar, specialMoveBarShadow, PlayerData.Instance.curSpecialMoveGage, PlayerData.Instance.maxSpecialMoveGage, 2));
 
         StartCoroutine(PhaseSliderInit(phase1ProgressBar, GameManager.Instance.curDeadEnemyCount, SpawnManager.Instance.phase1Num));
-        StartCoroutine(PhaseSliderInit(phase2ProgressBar, GameManager.Instance.curDeadEnemyCount - SpawnManager.Instance.phase1Num - 1, SpawnManager.Instance.phase2Num));
+        StartCoroutine(PhaseSliderInit(phase2ProgressBar, GameManager.Instance.curDeadEnemyCount - SpawnManager.Instance.phase1Num, SpawnManager.Instance.phase2Num));
 
         if (enemyGageShown)
         {
