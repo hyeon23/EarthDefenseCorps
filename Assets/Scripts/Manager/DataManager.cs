@@ -82,7 +82,7 @@ public class DataManager : MonoBehaviour
 
         curHp = playerHP;
         curSheldGage = playerShledGage;
-        curSpecialMoveGage = 0;
+        curSpecialMoveGage = 100;
     }
 
     public void DataUpdate()

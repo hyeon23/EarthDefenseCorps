@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public Transform[] playerPos;
     [SerializeField]
-    private TextMeshProUGUI textText;
-    [SerializeField]
     private float swipeSensitivity = 10;
 
     //Player Variables
@@ -226,21 +224,18 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator SideStepLeft()
     {
-        textText.text = "Left Move";
         Moving(false);
         yield return null;
     }
 
     private IEnumerator SideStepRight()
     {
-        textText.text = "Right Move";
         Moving(true);
         yield return null;
     }
 
     private IEnumerator Attack()
     {
-        textText.text = "Attack";
         SheldToX();
         atkOrder++;
         EffectManager.Instance.SpawnSwordEffect(gameObject, atkOrder);
@@ -251,7 +246,6 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Jump()
     {
         isJump = true;
-        textText.text = "JUMP";
         anime.SetBool("isJump", isJump);
         parentRigid.AddForce(new Vector2(0, 20f), ForceMode2D.Impulse);
         gameObject.layer = LayerMask.NameToLayer("Player");
@@ -266,7 +260,6 @@ public class PlayerController : MonoBehaviour
     {
         //Sheld On
         isSheld = !isSheld;
-        textText.text = "SheldOn";
         anime.SetTrigger("onSheld");
 
         while (true)
@@ -291,7 +284,6 @@ public class PlayerController : MonoBehaviour
 
     private void SheldOff()
     {
-        textText.text = "SheldOff";
         anime.SetTrigger("offSheld");
 
         SheldToX();
@@ -300,7 +292,6 @@ public class PlayerController : MonoBehaviour
     private void Parrying()
     {
         //Parrying!
-        textText.text = "Parrying!";
         anime.SetTrigger("doParrying");
 
         if (isJump)
