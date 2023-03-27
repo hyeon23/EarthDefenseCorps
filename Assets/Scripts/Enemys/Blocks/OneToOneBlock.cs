@@ -241,6 +241,9 @@ public class OneToOneBlock : Block
 
     public void OnDead(bool isAttacked = false)
     {
+        GameManager.Instance.curDeadEnemyCount++;
+        GameManager.Instance.curLiveEnemyCount--;
+
         if (GameManager.Instance.curHitEnemy == gameObject)
         {
             InGameTextViewer.Instance.enemyGageShown = false;
@@ -350,7 +353,7 @@ public class OneToOneBlock : Block
                 ancestorGameObject.SetActive(false);
             }
             
-            Destroy(ancestorGameObject, 1);
+            Destroy(ancestorGameObject);
         }
         else
         {

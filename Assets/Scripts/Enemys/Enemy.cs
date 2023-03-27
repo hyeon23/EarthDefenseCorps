@@ -33,10 +33,4 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.curLiveEnemyCount++;
         parentGameObject = gameObject.transform.parent.gameObject;
     }
-
-    private void OnDisable()
-    {
-        //GameManager.Instance.curDeadEnemyCount++;
-        //GameManager.Instance.curLiveEnemyCount--;
-    }
 }

@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         InGameTextViewer.Instance.GameOver();
+        DataManager.Instance.PlayerGold += gold;
     }
 
     public void GoToMenu()

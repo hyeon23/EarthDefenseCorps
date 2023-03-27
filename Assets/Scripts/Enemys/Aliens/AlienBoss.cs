@@ -549,6 +549,8 @@ public class AlienBoss : Alien
         {
             isDead = true;
             alienState = AlienState.Dead;
+            GameManager.Instance.curDeadEnemyCount++;
+            GameManager.Instance.curLiveEnemyCount--;
             gameObject.layer = LayerMask.NameToLayer("AlienBossDead");
             OnDead(true);
         }
