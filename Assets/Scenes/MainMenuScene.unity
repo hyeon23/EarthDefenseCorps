@@ -559,7 +559,7 @@ MonoBehaviour:
   m_MeshSharing: 0
   m_GroupId: 0
   m_GroupMaxId: 0
-  m_AbsoluteMode: 0
+  m_AbsoluteMode: 1
 --- !u!222 &58569354
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3742,7 +3742,7 @@ MonoBehaviour:
   m_MeshSharing: 0
   m_GroupId: 0
   m_GroupMaxId: 0
-  m_AbsoluteMode: 0
+  m_AbsoluteMode: 1
 --- !u!222 &297430186
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5168,8 +5168,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 5
+      scalar: 7
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5600,7 +5600,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 30
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -14810,7 +14810,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 6, y: 40}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &931116295
 CanvasRenderer:
@@ -14834,7 +14834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ParticleSystem: {fileID: 468454015}
   m_DestinationRadius: 0.1
-  m_DelayRate: 0.1
+  m_DelayRate: 0.15
   m_MaxSpeed: 1
   m_Movement: 1
   m_OnAttracted:
@@ -15128,7 +15128,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 6, y: 40}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &973355020
 MonoBehaviour:
@@ -15144,7 +15144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ParticleSystem: {fileID: 1921069019}
   m_DestinationRadius: 0.1
-  m_DelayRate: 0.1
+  m_DelayRate: 0.15
   m_MaxSpeed: 1
   m_Movement: 1
   m_OnAttracted:
@@ -16165,7 +16165,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 6, y: 40}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1047940930
 MonoBehaviour:
@@ -16181,7 +16181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ParticleSystem: {fileID: 1213882326}
   m_DestinationRadius: 0.1
-  m_DelayRate: 0.1
+  m_DelayRate: 0.15
   m_MaxSpeed: 1
   m_Movement: 1
   m_OnAttracted:
@@ -16379,7 +16379,7 @@ GameObject:
   - component: {fileID: 1062680507}
   - component: {fileID: 1062680509}
   - component: {fileID: 1062680508}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: GoldAttracter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16435,7 +16435,7 @@ MonoBehaviour:
   m_MeshSharing: 0
   m_GroupId: 0
   m_GroupMaxId: 0
-  m_AbsoluteMode: 0
+  m_AbsoluteMode: 1
 --- !u!222 &1062680509
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16646,7 +16646,7 @@ MonoBehaviour:
   m_MeshSharing: 0
   m_GroupId: 0
   m_GroupMaxId: 0
-  m_AbsoluteMode: 0
+  m_AbsoluteMode: 1
 --- !u!222 &1077144871
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16882,7 +16882,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotGameObjects: []
   slots: []
-  items: []
   slotParent: {fileID: 1723906372}
   slotPrefab: {fileID: 6269818465528820346, guid: ce192b265dc13cc429153936543d79ef, type: 3}
 --- !u!1 &1092412482
@@ -18762,7 +18761,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 30
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -24766,8 +24765,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 5
+      scalar: 7
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -25198,7 +25197,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 30
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -32647,7 +32646,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 6, y: 40}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1565893164
 MonoBehaviour:
@@ -32663,7 +32662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ParticleSystem: {fileID: 1339354021}
   m_DestinationRadius: 0.1
-  m_DelayRate: 0.1
+  m_DelayRate: 0.15
   m_MaxSpeed: 1
   m_Movement: 1
   m_OnAttracted:
@@ -38174,7 +38173,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 30
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -45052,6 +45051,7 @@ MonoBehaviour:
     itemPrice: 0
     itemUpgradeCost: 0
     itemDrawingWeight: 0
+  playerItems: []
   items:
   - itemPart: 1
     itemGrade: 1

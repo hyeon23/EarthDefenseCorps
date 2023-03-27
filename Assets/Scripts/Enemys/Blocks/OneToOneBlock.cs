@@ -66,7 +66,7 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X3:
                 case EnemyType.Block1X3M:
                     parentRigid.velocity = Vector2.zero;
-                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 10 : 10), ForceMode2D.Impulse);
+                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 15 : 10), ForceMode2D.Impulse);
                     break;
             }
         }
@@ -84,6 +84,7 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X3M:
                     if (!parentGameObject.activeSelf) return;
 
+                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 15 : 0.5f), ForceMode2D.Impulse);
                     StartCoroutine(OnHit(DataManager.Instance.playerATK, collision.transform.position));
                     break;
             }

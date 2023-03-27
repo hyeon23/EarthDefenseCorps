@@ -26,6 +26,9 @@ public class DataManager : MonoBehaviour
     public Item curEquippedHelmat = null;
     public Item curEquippedArmor = null;
 
+    //Player Item
+    public List<Item> playerItems = new List<Item>();
+    //Item Data
     public List<Item> items = new List<Item>();
 
     public static DataManager Instance
@@ -67,6 +70,7 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //여기서 기존에 가진 장비 불러와야 함
         curEquippedWeapon = null;
         curEquippedGloves = null;
         curEquippedShoes = null;

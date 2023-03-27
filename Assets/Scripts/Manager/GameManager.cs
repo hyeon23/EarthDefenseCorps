@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 //Layering
 //BackGround: -4 ~
 //Player: 1 ~
@@ -87,10 +88,17 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        //gameOverSet.SetActive(true);
+        InGameTextViewer.Instance.GameOver();
     }
+
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
     public void GameRetry()
     {
-        //SceneManager.LoadScene(0);
+        DataManager.Instance.GameStartDataUpdate();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

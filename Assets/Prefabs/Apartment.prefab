@@ -1424,7 +1424,7 @@ MonoBehaviour:
   enemyName: ApartmentGray
   curHp: 0
   maxHp: 4
-  dmg: 0.1
+  dmg: 1
   gold: 200
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
@@ -1834,7 +1834,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1.5
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -2542,7 +2542,7 @@ MonoBehaviour:
   enemyName: ApartmentGray
   curHp: 0
   maxHp: 6
-  dmg: 0.1
+  dmg: 1
   gold: 300
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}
@@ -4294,7 +4294,7 @@ MonoBehaviour:
   enemyName: ApartmentGray
   curHp: 0
   maxHp: 2
-  dmg: 0.1
+  dmg: 1
   gold: 100
   ancestorGameObject: {fileID: 1765067381508701715}
   parentRigid: {fileID: 1765067381508701718}

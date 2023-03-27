@@ -99,6 +99,9 @@ public class InGameTextViewer : MonoBehaviour
     [SerializeField]
     private Slider phase2ProgressBar;
 
+    [Header("GameOverPanel")]
+    public GameObject gameOverPanel;
+
     private bool leftPhaseImageTrigger;
     private bool middlePhaseImageTrigger;
     private bool rightPhaseImageTrigger;
@@ -386,5 +389,10 @@ public class InGameTextViewer : MonoBehaviour
     {
         StartCoroutine(Count(curGetGoldText, GameManager.Instance.gold, GameManager.Instance.gold + goldNumber));
         GameManager.Instance.gold += goldNumber;
+    }
+
+    public void GameOver()
+    {
+        gameOverPanel.SetActive(true);
     }
 }

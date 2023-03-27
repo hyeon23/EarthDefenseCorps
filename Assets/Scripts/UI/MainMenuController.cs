@@ -149,6 +149,11 @@ public class MainMenuController : MonoBehaviour
         playerGoldText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerGold);
 
         StartCoroutine(StageChange());
+
+        for (int j = 0; j < DataManager.Instance.playerItems.Count; j++)
+        {
+            inventory.InitItem(DataManager.Instance.playerItems[j]);
+        }
     }
 
     void Update()
@@ -526,13 +531,19 @@ public class MainMenuController : MonoBehaviour
 
     public void SellButton()
     {
-        //해당 아이템 삭제
-
         inventory.deleteItem(curSelectedItem);
 
         PlusGold(Mathf.RoundToInt((curSelectedItem.itemPrice + (curSelectedItem.itemCurLevel - 1) * curSelectedItem.itemUpgradeCost) * 0.5f));
 
-        UnequipButton();
+        //해당 아이템 삭제
+        if (curSelectedItem.isEquipped)
+        {
+            UnequipButton();
+        }
+        else
+        {
+            backButton();
+        }
     }
 
     public void EquipInfoUpdate(Item _item)
@@ -578,7 +589,6 @@ public class MainMenuController : MonoBehaviour
             default:
                 break;
         }
-
 
         equipPartTMP.text = _item.itemPart.ToString();
         equipDescTMP.text = _item.itemDesc.ToString();
@@ -892,7 +902,7 @@ public class MainMenuController : MonoBehaviour
             cloneSlot.GetComponent<ItemSlot>().ItemIcon.sprite = items[i].itemImage;
             cloneSlot.GetComponent<ItemSlot>().gradeBackground.color = SetGradeColorBackground(items[i]);
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.4f);
         }
 
         drawing10SetActiveGroup.SetActive(true);

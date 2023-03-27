@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum PlayerState { Idle, SideStepLeft, SideStepRight, Jump, Sheld, Attack, SpecialMove, Count }
+public enum PlayerState { Idle, SideStepLeft, SideStepRight, Jump, Sheld, Attack, SpecialMove, Dead, Count }
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private float swipeSensitivity = 10;
 
     //Player Variables
+    public bool isDead = false;
     public bool isJump = false;
     public bool isSheld = false;
     public bool isSpecial = false;
@@ -88,11 +89,22 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Swipe();
-
-        if (!isSheld)
+        if (!isDead)
         {
-            DataManager.Instance.curSheldGage = DataManager.Instance.curSheldGage >= DataManager.Instance.PlayerShledGage ? DataManager.Instance.PlayerShledGage : DataManager.Instance.curSheldGage + 0.3f;
+            if (DataManager.Instance.curHp <= 0){
+                isDead= true;
+                ChangeState(PlayerState.Dead);
+                GameManager.Instance.GameOver();
+            }
+            else
+            {
+                Swipe();
+
+                if (!isSheld)
+                {
+                    DataManager.Instance.curSheldGage = DataManager.Instance.curSheldGage >= DataManager.Instance.PlayerShledGage ? DataManager.Instance.PlayerShledGage : DataManager.Instance.curSheldGage + 0.3f;
+                }
+            }
         }
     }
 
@@ -240,6 +252,12 @@ public class PlayerController : MonoBehaviour
         atkOrder++;
         EffectManager.Instance.SpawnSwordEffect(gameObject, atkOrder);
         anime.SetTrigger("doAttack");
+        yield return null;
+    }
+
+    private IEnumerator Dead()
+    {
+        anime.SetTrigger("doDead");
         yield return null;
     }
 
