@@ -16029,7 +16029,8 @@ MonoBehaviour:
   - {fileID: 455431527}
   - {fileID: 926898061}
   - {fileID: 1762251643}
-  sfxClip: []
+  sfxClip:
+  - {fileID: 0}
 --- !u!4 &1024549482
 Transform:
   m_ObjectHideFlags: 0
