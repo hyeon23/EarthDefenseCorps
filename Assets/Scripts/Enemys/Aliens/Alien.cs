@@ -76,18 +76,4 @@ public class Alien : Enemy
 
         afterEffectObj.SetActive(false);
     }
-
-    public bool CriticalCheck(int damage, float percent)
-    {
-        float r = Random.Range(0f, 100f) % 100;
-        //percent 조건을 충족하면 크리티컬 발동
-        if (r < percent)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }

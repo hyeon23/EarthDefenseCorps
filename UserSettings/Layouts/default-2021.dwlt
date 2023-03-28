@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 7}
   m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 135
+  controlID: 94
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 64
+  controlID: 130
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 112
+  controlID: 131
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 113
+  controlID: 132
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1006,9 +1006,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 066d0000
-      m_LastClickedID: 27910
-      m_ExpandedIDs: d009fdff2e16fdffbc16fdff2a19fdff4437fdff3a46fdffc684fdff948dfdff649ffdff5cc2fdff1ed6fdff4c5cfeff7e6ffeff76a9feffc8abfeff50affeff20bafeff22f2feff56f3feffbe0bffff9eecfffffafafffff4ffffff46650000c2650000dc650000e46500003c660000526600001467000068670000486800005668000066680000ca680000da680000ea6800007a690000ee6900008c6a0000286b00004c6b0000546b00008c6b0000be6b0000f86b0000086c0000206c00002c6c00008c6c0000c66c0000825101006252010080520100045301000854010022560100fc980100dc990100fa990100829b01009c9d0100a0a8010080a901009ea9010026ab010040ad0100c2b20100e4b201003cb3010052b3010066b3010014b4010068b4010056b50100dab50100eab50100eeb601008cb7010028b801004cb8010066b801008cb80100beb80100f8b8010008b901002cb901008cb90100b2b90100c6b90100eab10200cab20200e8b202006cb3020070b40200aab50200ceb502008ab60200eeb60200
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 547dffffacbeffff8ccaffff5ed2fffffafafffff4ffffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1210,22 +1210,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\hyeon\unityprojects\EarthDefenseCorps
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 139}
-    m_SelectedIDs: 3a6f0000
-    m_LastClickedID: 28474
-    m_ExpandedIDs: 000000001e6f0000206f0000226f0000246f0000266f0000286f0000366f000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 286f0000
+    m_LastClickedID: 28456
+    m_ExpandedIDs: 000000001e6f0000206f0000226f0000246f0000266f0000286f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1305,7 +1305,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 451}
+    m_ScrollPosition: {x: 0, y: 142}
     m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 230

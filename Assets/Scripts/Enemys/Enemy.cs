@@ -33,4 +33,18 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.curLiveEnemyCount++;
         parentGameObject = gameObject.transform.parent.gameObject;
     }
+
+    public bool CriticalCheck(float percent)
+    {
+        float r = Random.Range(0f, 100f) % 100;
+        //percent 조건을 충족하면 크리티컬 발동
+        if (r < percent)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

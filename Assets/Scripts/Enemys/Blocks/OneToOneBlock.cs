@@ -204,10 +204,8 @@ public class OneToOneBlock : Block
     {
         GameManager.Instance.curHitEnemy = gameObject;
 
-        bool isCritical = CriticalCheck(33f);
-
-        if (isCritical) damage *= Mathf.RoundToInt(damage * 1.5f);
-
+        bool isCritical = CriticalCheck(DataManager.Instance.PlayerCriticalRate);
+        if (isCritical) damage *= Mathf.RoundToInt(damage * DataManager.Instance.PlayerCriticalDamage / 100);
         curHp -= damage;
 
         InGameTextViewer.Instance.SetEnemyImage(true, curHp, maxHp, enemyType);
@@ -215,6 +213,8 @@ public class OneToOneBlock : Block
 
         if (curHp <= 0)
         {
+            GameManager.Instance.curDeadEnemyCount++;
+            GameManager.Instance.curLiveEnemyCount--;
             OnDead(true);
         }
         else
@@ -225,24 +225,8 @@ public class OneToOneBlock : Block
         }
     }
 
-    public bool CriticalCheck(float percent)
-    {
-        float r = Random.Range(0f, 100f) % 100;
-        //percent 조건을 충족하면 크리티컬 발동
-        if (r < percent)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     public void OnDead(bool isAttacked = false)
     {
-        GameManager.Instance.curDeadEnemyCount++;
-        GameManager.Instance.curLiveEnemyCount--;
 
         if (GameManager.Instance.curHitEnemy == gameObject)
         {

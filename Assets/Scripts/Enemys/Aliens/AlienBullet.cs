@@ -59,9 +59,9 @@ public class AlienBullet : MonoBehaviour
 
     public IEnumerator OnHit(int damage, Vector2 onHitPosition)
     {
-        bool isCritical = CriticalCheck(damage, 33f);
+        bool isCritical = CriticalCheck(DataManager.Instance.PlayerCriticalRate);
 
-        if (isCritical) damage *= Mathf.RoundToInt(damage * 1.5f);
+        if (isCritical) damage *= Mathf.RoundToInt(damage * DataManager.Instance.PlayerCriticalDamage / 100);
         curHp -= damage;
 
         InGameTextViewer.Instance.SpawnHUDText(damage.ToString(), isCritical ? Color.red : Color.white, onHitPosition);
@@ -78,7 +78,7 @@ public class AlienBullet : MonoBehaviour
         }
     }
 
-    public bool CriticalCheck(int damage, float percent)
+    public bool CriticalCheck(float percent)
     {
         float r = Random.Range(0f, 100f) % 100;
         //percent 조건을 충족하면 크리티컬 발동

@@ -91,20 +91,41 @@ public class DataManager : MonoBehaviour
 
     public void DataUpdate()
     {
+        
+        //ATK
         playerATK = 1/*플레이어 기본 공격력*/
             + ((CurEquippedWeapon != null) ? (CurEquippedWeapon.itemATK + ((int)CurEquippedWeapon.itemGrade) * CurEquippedWeapon.itemCurLevel) : 0)
             + ((CurEquippedGloves != null) ? (CurEquippedGloves.itemATK + ((int)CurEquippedGloves.itemGrade) * CurEquippedGloves.itemCurLevel) : 0)
             + ((CurEquippedShoes != null) ? (CurEquippedShoes.itemATK + ((int)CurEquippedShoes.itemGrade) * CurEquippedShoes.itemCurLevel) : 0);
+
+        //HP
         playerHP = 100/*플레이어 기본 체력*/
             + ((CurEquippedSheld != null) ? (CurEquippedSheld.itemHP + ((int)CurEquippedSheld.itemGrade) * CurEquippedSheld.itemCurLevel) : 0)
             + ((CurEquippedHelmat != null) ? (CurEquippedHelmat.itemHP + ((int)CurEquippedHelmat.itemGrade) * CurEquippedHelmat.itemCurLevel) : 0)
             + ((CurEquippedArmor != null) ? (CurEquippedArmor.itemHP + ((int)CurEquippedArmor.itemGrade) * CurEquippedArmor.itemCurLevel) : 0);
-        
-        //[수정필요]
-        playerCriticalRate = 0;
-        playerCriticalDamage = 100;
 
-        playerShledGage = 100;
-        playerSpecialMoveGage = 100;
+        //CR
+        playerCriticalRate = 10/*플레이어 기본 크확[신발]*/
+            + ((CurEquippedWeapon != null) ? CurEquippedWeapon.itemCriticalRate : 0)
+            + ((CurEquippedGloves != null) ? CurEquippedGloves.itemCriticalRate : 0)
+            + ((CurEquippedShoes != null) ? CurEquippedShoes.itemCriticalRate : 0);
+
+        //CD
+        playerCriticalDamage = 150/*플레이어 기본 크뎀[장갑]*/
+            + ((CurEquippedWeapon != null) ? CurEquippedWeapon.itemCriticalDamage : 0)
+            + ((CurEquippedGloves != null) ? CurEquippedGloves.itemCriticalDamage : 0)
+            + ((CurEquippedShoes != null) ? CurEquippedShoes.itemCriticalDamage : 0);
+
+        //SG
+        playerShledGage = 100/*플레이어 기본 쉴드게이지[방패]*/
+            + ((CurEquippedSheld != null) ? CurEquippedSheld.itemSheldGager : 0)
+            + ((CurEquippedHelmat != null) ? CurEquippedHelmat.itemSheldGager : 0)
+            + ((CurEquippedArmor != null) ? CurEquippedArmor.itemSheldGager : 0);
+
+        //SMG
+        playerSpecialMoveGage = 100/*플레이어 기본 필살기게이지[투구]*/
+            + ((CurEquippedSheld != null) ? CurEquippedSheld.itemSpecialMoveGager : 0)
+            + ((CurEquippedHelmat != null) ? CurEquippedHelmat.itemSpecialMoveGager : 0)
+            + ((CurEquippedArmor != null) ? CurEquippedArmor.itemSpecialMoveGager : 0);
     }
 }
