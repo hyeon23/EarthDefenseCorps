@@ -478,7 +478,8 @@ public class MainMenuController : MonoBehaviour
 
         DataManager.Instance.DataUpdate();
 
-        backButton();
+        curSelectedItem = null;
+        equipmentInfoPanel.SetActive(false);
     }
 
     public void UnequipButton()
@@ -515,7 +516,8 @@ public class MainMenuController : MonoBehaviour
 
         DataManager.Instance.DataUpdate();
 
-        backButton();
+        curSelectedItem = null;
+        equipmentInfoPanel.SetActive(false);
     }
 
     public void UpgradeButton()
@@ -559,7 +561,8 @@ public class MainMenuController : MonoBehaviour
         }
         else
         {
-            backButton();
+            curSelectedItem = null;
+            equipmentInfoPanel.SetActive(false);
         }
     }
 
