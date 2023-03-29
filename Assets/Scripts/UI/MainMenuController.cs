@@ -132,7 +132,6 @@ public class MainMenuController : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        TabClick(1);
         isStageClear = new bool[3] { true, false, false };
         stageNames = new string[3] { "MOON", "Mercury", "Mars" };
         stageSymbolicColors = new Color[3] { Color.yellow, new Color(0, 150, 255, 255), Color.red };
@@ -140,7 +139,7 @@ public class MainMenuController : MonoBehaviour
 
     private void Start()
     {
-        
+        TabClick(1);
         minStageNum = 1;
         maxStageNum = isStageClear.Length;
         curSelectStage = GameManager.Instance.curStage;
@@ -213,14 +212,17 @@ public class MainMenuController : MonoBehaviour
 
     public void TabClick(int n)
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
         targetIndex = n;
     }
 
     //게임 씬으로 이동 버튼
     public void OnClickGoGameStartButton()
     {
-        DataManager.Instance.GameStartDataUpdate();
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
+        DataManager.Instance.GameStartDataUpdate();
         switch (GameManager.Instance.curStage)
         {
             case 1:
@@ -239,8 +241,9 @@ public class MainMenuController : MonoBehaviour
     //메인 화면으로 이동 버튼
     public void OnClickGoBackMainMenuButton() 
     {
-        int curStage = GameManager.Instance.curStage;
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
+        int curStage = GameManager.Instance.curStage;
         stageNameTMP.text = stageNames[curStage - 1];
         stageNumberTMP.text = "S T A G E " + curStage;
         stageNameTMP.color = stageSymbolicColors[curStage - 1];
@@ -261,6 +264,8 @@ public class MainMenuController : MonoBehaviour
 
     public void OnClickGoStageSelectionMenuButton()
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
         curSelectStage = GameManager.Instance.curStage;
         StagePlanetPanel.SetActive(false);
         StagePlanetButton.enabled = false;
@@ -269,6 +274,8 @@ public class MainMenuController : MonoBehaviour
 
     public void OnClickStageSelectButton()
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
         GameManager.Instance.curStage = curSelectStage;
         Debug.Log(curSelectStage);
         ClearStageSelected(curSelectStage);
@@ -277,6 +284,8 @@ public class MainMenuController : MonoBehaviour
 
     public void OnClickNextStageButton()
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
         if (isStageChanging) return;
 
         curSelectStage = curSelectStage + 1;
@@ -286,6 +295,8 @@ public class MainMenuController : MonoBehaviour
 
     public void OnClickPriorStageButton()
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
         if (isStageChanging) return;
 
         curSelectStage = curSelectStage - 1;
@@ -378,14 +389,15 @@ public class MainMenuController : MonoBehaviour
     {
         PopUpTMP.text = msg;
         popUpAnime.SetTrigger("doPopUp");
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.PopUP);
     }
 
     //EquipmentInfoPanel
     public void backButton()
     {
-        equipmentInfoPanel.SetActive(false);
-
         curSelectedItem = null;
+        equipmentInfoPanel.SetActive(false);
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
     }
 
     public IEnumerator Count(TextMeshProUGUI _text, int _current, int _target)
@@ -415,6 +427,8 @@ public class MainMenuController : MonoBehaviour
 
         equipButton.gameObject.SetActive(false);
         unEquipButton.gameObject.SetActive(true);
+
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Equip);
 
         switch (curSelectedItem.itemPart)
         {
@@ -475,6 +489,8 @@ public class MainMenuController : MonoBehaviour
         equipButton.gameObject.SetActive(true);
         unEquipButton.gameObject.SetActive(false);
 
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.UnEquip);
+
         switch (curSelectedItem.itemPart)
         {
             case Item.ItemPart.Weapon:
@@ -516,6 +532,8 @@ public class MainMenuController : MonoBehaviour
             return;
         }
 
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Upgrade);
+
         StartCoroutine(Count(playerGoldText, DataManager.Instance.PlayerGold, DataManager.Instance.PlayerGold - curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost));
 
         DataManager.Instance.PlayerGold -= curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost;
@@ -525,12 +543,11 @@ public class MainMenuController : MonoBehaviour
         DataManager.Instance.DataUpdate();
 
         EquipInfoUpdate(curSelectedItem);
-
-        
     }
 
     public void SellButton()
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.SellButton);
         inventory.deleteItem(curSelectedItem);
 
         PlusGold(Mathf.RoundToInt((curSelectedItem.itemPrice + (curSelectedItem.itemCurLevel - 1) * curSelectedItem.itemUpgradeCost) * 0.5f));
@@ -697,11 +714,12 @@ public class MainMenuController : MonoBehaviour
     //가중치 랜덤 가챠
     public void NormalDrawing1RandItem(int zamPrice)
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
         int total = 0;
         int weight = 0;
         int selectNum = 0;
         List<Item> gachaList = new List<Item>();
-
         if (zamPrice > DataManager.Instance.PlayerZam)
         {
             TriggerPopUp("젬이 부족합니다.");
@@ -745,6 +763,8 @@ public class MainMenuController : MonoBehaviour
 
     public void NormalDrawing10RandItem(int zamPrice)
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
         int total = 0;
         int weight = 0;
         int selectNum = 0;
@@ -795,6 +815,8 @@ public class MainMenuController : MonoBehaviour
 
     public void PremiumDrawing1RandItem(int zamPrice)
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
         int total = 0;
         int weight = 0;
         int selectNum = 0;
@@ -832,6 +854,8 @@ public class MainMenuController : MonoBehaviour
 
     public void PremiumDrawing10RandItem(int zamPrice)
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
         int total = 0;
         int weight = 0;
         int selectNum = 0;
@@ -880,6 +904,7 @@ public class MainMenuController : MonoBehaviour
         DRItemNameText.text = item.itemName.ToString();
 
         GameObject cloneSlot = Instantiate(ProducingSlotPrefab, drawing1SlotParent);
+        ItemGradeSound(item);
         cloneSlot.GetComponent<ItemSlot>().item = item;
         cloneSlot.GetComponent<ItemSlot>().ItemIcon.sprite = item.itemImage;
         cloneSlot.GetComponent<ItemSlot>().gradeBackground.color = SetGradeColorBackground(item);
@@ -898,11 +923,11 @@ public class MainMenuController : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             GameObject cloneSlot = Instantiate(ProducingSlotPrefab, drawing10SlotParent);
+            ItemGradeSound(items[i]);
             cloneSlot.GetComponent<ItemSlot>().item = items[i];
             cloneSlot.GetComponent<ItemSlot>().ItemIcon.sprite = items[i].itemImage;
             cloneSlot.GetComponent<ItemSlot>().gradeBackground.color = SetGradeColorBackground(items[i]);
-
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(ItemGradeSeconds(items[i]));
         }
 
         drawing10SetActiveGroup.SetActive(true);
@@ -924,6 +949,47 @@ public class MainMenuController : MonoBehaviour
         for(int i = 0; i < 10; i++)
         {
             Destroy(drawing10SlotParent.GetChild(i).gameObject);
+        }
+    }
+
+    public void ItemGradeSound(Item _item)
+    {
+        switch (_item.itemGrade)
+        {
+            case Item.ItemGrade.Normal:
+                SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemNormal);
+                break;
+            case Item.ItemGrade.Rare:
+                SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemRare);
+                break;
+            case Item.ItemGrade.Epic:
+                SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemEpic);
+                break;
+            case Item.ItemGrade.Unique:
+                SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemUnique);
+                break;
+            case Item.ItemGrade.Legendary:
+                SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemLegendary);
+                break;
+        }
+    }
+
+    public float ItemGradeSeconds(Item _item)
+    {
+        switch (_item.itemGrade)
+        {
+            case Item.ItemGrade.Normal:
+                return 0.3f;
+            case Item.ItemGrade.Rare:
+                return 0.3f;
+            case Item.ItemGrade.Epic:
+                return 0.5f;
+            case Item.ItemGrade.Unique:
+                return 0.75f;
+            case Item.ItemGrade.Legendary:
+                return 1f;
+            default:
+                return 1f;
         }
     }
 }

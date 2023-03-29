@@ -171,6 +171,7 @@ public class EquipSlot : MonoBehaviour
 
     public void ItemSlotClicked()
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
         MainMenuController.Instance.EquipInfoUpdate(item);
     }
 }
