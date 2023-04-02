@@ -230,7 +230,7 @@ public class OneToOneBlock : Block
         {
             InGameTextViewer.Instance.enemyGageShown = false;
         }
-        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienDead);
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.BlockDead);
 
         if (isAttacked)
         {

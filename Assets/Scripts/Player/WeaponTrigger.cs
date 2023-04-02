@@ -12,5 +12,10 @@ public class WeaponTrigger : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(InGameTextViewer.Instance.FadeInOutText());
         }
+        else if (collision.tag == "AlienBullet")
+        {
+            SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienBulletHit);
+
+        }
     }
 }

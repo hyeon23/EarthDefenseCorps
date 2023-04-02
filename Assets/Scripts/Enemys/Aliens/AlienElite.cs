@@ -124,7 +124,7 @@ public class AlienElite : Alien
             Rigidbody2D rigidC = bulletC.GetComponent<Rigidbody2D>();
             //플레이어의 위치를 유도해 발사
             moonAlienElite1_BulletPos1_Anime.SetTrigger("doShoot");
-
+            SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienEliteShoot);
             rigidC.velocity = parentRigid.velocity;
             rigidC.AddForce(dirVec.normalized * 10, ForceMode2D.Impulse);
 
@@ -202,6 +202,8 @@ public class AlienElite : Alien
 
         //Get Gold
         InGameTextViewer.Instance.PlusGetGold(gold);
+
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienDead);
 
         if (GameManager.Instance.curHitEnemy == gameObject)
         {

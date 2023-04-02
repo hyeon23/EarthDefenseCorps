@@ -45,6 +45,7 @@ public class FloorDetector : MonoBehaviour
                 switch (curAlien.enemyType)
                 {
                     case EnemyType.AlienBoss:
+                        SoundManager.Instance.SFXPlay(SoundManager.SFX.Collapse);
                         EffectManager.Instance.SpawnEffect(new int[] { 22 }, transform.position + new Vector3(0, 1f, 0));
                         StartCoroutine(GameManager.Instance.CameraShake(0.6f, 2, 3));
                         break;

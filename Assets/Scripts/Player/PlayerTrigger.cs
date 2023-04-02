@@ -59,7 +59,12 @@ public class PlayerTrigger : MonoBehaviour
     public IEnumerator OnHit(float damage)
     {
         GameManager.Instance.combo = 0;
-        DataManager.Instance.curHp -= damage;
+
+        if(DataManager.Instance.curHp > 0)
+        {
+            DataManager.Instance.curHp -= damage;
+        }
+        
         PlayerController.Instance.GetComponent<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(0.1f);
         PlayerController.Instance.GetComponent<SpriteRenderer>().color = Color.white;

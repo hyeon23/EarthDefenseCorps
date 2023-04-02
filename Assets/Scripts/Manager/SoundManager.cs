@@ -56,7 +56,14 @@ public class SoundManager : MonoBehaviour
         Collapse,
         ReadyFight,
         BlockDead,
-        AlienDead,
+        AlienDead, 
+        AlienSideFade,
+        AlienNormalShoot,
+        AlienEliteShoot,
+        AlienBulletHit,
+        AlienBossTurn,
+        AlienBossTakingUp,
+        AlienBossTakingDown,
     }
 
     int sfxCursor;
@@ -78,7 +85,7 @@ public class SoundManager : MonoBehaviour
         bgmPlayer.Play();
     }
 
-    public void SFXPlay(SFX sfxType)
+    public void SFXPlay(SFX sfxType, float volume = -1)
     {
         switch (smType)
         {
@@ -167,11 +174,37 @@ public class SoundManager : MonoBehaviour
                         sfxPlayer[sfxCursor].clip = sfxClip[Random.Range(18, 22)];
                         break;
                     case SFX.AlienDead:
-                        sfxPlayer[sfxCursor].clip = sfxClip[Random.Range(22, 25)];
+                        sfxPlayer[sfxCursor].clip = sfxClip[Random.Range(22, 24)];
+                        break;
+                    case SFX.AlienSideFade:
+                        sfxPlayer[sfxCursor].clip = sfxClip[24];
+                        break;
+                    case SFX.AlienNormalShoot:
+                        sfxPlayer[sfxCursor].clip = sfxClip[Random.Range(25, 27)];
+                        break;
+                    case SFX.AlienEliteShoot:
+                        sfxPlayer[sfxCursor].clip = sfxClip[Random.Range(27, 29)];
+                        break;
+                    case SFX.AlienBulletHit:
+                        sfxPlayer[sfxCursor].clip = sfxClip[29];
+                        break;
+                    case SFX.AlienBossTurn:
+                        sfxPlayer[sfxCursor].clip = sfxClip[Random.Range(30, 32)];
+                        break;
+                    case SFX.AlienBossTakingUp:
+                        sfxPlayer[sfxCursor].clip = sfxClip[32];
+                        break;
+                    case SFX.AlienBossTakingDown:
+                        sfxPlayer[sfxCursor].clip = sfxClip[33];
                         break;
                 }
                 break;
         }
+
+        if(volume != -1)
+            sfxPlayer[sfxCursor].volume = volume;
+        else
+            sfxPlayer[sfxCursor].volume = 0.5f;
 
         sfxPlayer[sfxCursor].Play();
         sfxCursor = (sfxCursor + 1) % sfxPlayer.Length;

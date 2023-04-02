@@ -113,6 +113,7 @@ public class AlienBoss : Alien
     {
         StartCoroutine(Turning(degree));
         alienState = AlienState.Pattern;
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienBossTurn, 0.3f);
     }
 
     private IEnumerator Turning(float degree)
@@ -184,6 +185,8 @@ public class AlienBoss : Alien
     //BossPaternFireForward
     private void FireFoward()
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienNormalShoot, 0.3f);
+
         //#Pattern 1
         GameObject bulletLL = Instantiate(moonAlienBoss1_Bullet1, transform.position + Vector3.left * 0.3f, parentGameObject.transform.rotation);
         GameObject bulletLR = Instantiate(moonAlienBoss1_Bullet1, transform.position + Vector3.left * 0.45f, parentGameObject.transform.rotation);
@@ -202,6 +205,7 @@ public class AlienBoss : Alien
 
         //#Pattern Counting
         curPatternCount++;
+        
 
         if (curPatternCount < maxPatternCount[patternIndex])
             Invoke("FireFoward", 0.15f);
@@ -210,6 +214,8 @@ public class AlienBoss : Alien
 
     private void FireFoward2()
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienNormalShoot, 0.3f);
+
         //#Pattern 1
         GameObject bulletLL = Instantiate(moonAlienBoss1_Bullet1, transform.position + Vector3.left * 2.5f, parentGameObject.transform.rotation);
         GameObject bulletLR = Instantiate(moonAlienBoss1_Bullet1, transform.position + Vector3.left * 2.25f, parentGameObject.transform.rotation);
@@ -241,6 +247,8 @@ public class AlienBoss : Alien
         //#. Fire Random Shotgun Bullet to PlayerController.Instance
         for (int index = 0; index < 5; index++)
         {
+            SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienNormalShoot, 0.1f);
+
             GameObject bullet = Instantiate(moonAlienBoss1_Bullet1, transform.position, parentGameObject.transform.rotation);
 
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
@@ -261,6 +269,8 @@ public class AlienBoss : Alien
     {
         curThinkCooltime = 0;
         //#. Fire Arc Continue Fire
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienEliteShoot, 0.3f);
+
         GameObject bullet = Instantiate(moonAlienBoss1_Bullet2, transform.position, Quaternion.identity);
         bullet.transform.position = transform.position;
         bullet.transform.rotation = Quaternion.identity;
@@ -287,7 +297,8 @@ public class AlienBoss : Alien
         //#. Fire Arc Continue Fire
         for (int index = 0; index < roundNum; index++)
         {
-            GameObject bullet = Instantiate(moonAlienBoss1_Bullet1, transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(moonAlienBoss1_Bullet2, transform.position, Quaternion.identity);
+            SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienEliteShoot, 0.3f);
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 2 * index / roundNum), Mathf.Sin(Mathf.PI * 2 * index / roundNum));//#원의 둘레, 더 많이 왕복을 원하면 2를 늘리면 됨
             rigid.AddForce(dirVec.normalized * 12, ForceMode2D.Impulse);
@@ -339,6 +350,8 @@ public class AlienBoss : Alien
         Vector3 startPos = transform.parent.position;
         Vector3 targetPos = new Vector3(0, 8, 0);
 
+
+
         while (percent <= 1)
         {
             start += Time.deltaTime;
@@ -360,6 +373,8 @@ public class AlienBoss : Alien
         Vector3 startPos = new Vector3(0, 8, 0);
         Vector3 targetPos = new Vector3(0, 10, 0);
 
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienBossTakingUp);
+
         while (percent <= 1)
         {
             start += Time.deltaTime;
@@ -377,6 +392,8 @@ public class AlienBoss : Alien
         float end = 0.25f;
 
         float percent = 0;
+
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienBossTakingDown);
 
         Vector3 startPos = new Vector3(0, 10, 0);
         Vector3 targetPos = GameObject.Find("Floor").transform.position + new Vector3(0, 7f, 0);

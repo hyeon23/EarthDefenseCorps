@@ -29,6 +29,7 @@ public class Alien : Enemy
         //적 회피 기동 시작
         int dodgePosIndex = Random.Range(0, 3);
         curPosIndex = dodgePosIndex;
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienSideFade);
         StartCoroutine(DodgeMove(PlayerController.Instance.playerPos[curPosIndex].position.x));
         return;
     }

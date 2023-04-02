@@ -124,6 +124,7 @@ public class AlienNormal : Alien
             Vector3 dirVec = PlayerController.Instance.transform.position - transform.position;
             
             GameObject bullet = Instantiate(moonAlien1_Bullet1, moonAlien1_BulletPos1_Anime.transform.position, GetRotFromVectors(transform.position, PlayerController.Instance.transform.position));
+            SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienNormalShoot);
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             //플레이어의 위치를 유도해 발사
             moonAlien1_BulletPos1_Anime.SetTrigger("doShoot");
@@ -191,6 +192,8 @@ public class AlienNormal : Alien
 
         //Get Gold
         InGameTextViewer.Instance.PlusGetGold(gold);
+
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienDead);
 
         if (GameManager.Instance.curHitEnemy == gameObject)
         {
