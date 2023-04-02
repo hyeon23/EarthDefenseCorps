@@ -34,6 +34,16 @@ public class Enemy : MonoBehaviour
         parentGameObject = gameObject.transform.parent.gameObject;
     }
 
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null && gameObject)
+        {
+
+            GameManager.Instance.curDeadEnemyCount++;
+            GameManager.Instance.curLiveEnemyCount--;
+        }
+    }
+
     public bool CriticalCheck(float percent)
     {
         float r = Random.Range(0f, 100f) % 100;

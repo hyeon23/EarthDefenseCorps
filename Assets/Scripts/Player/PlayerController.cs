@@ -129,14 +129,12 @@ public class PlayerController : MonoBehaviour
                     {
                         //Right Move
                         if (positionIndex >= 2 || isJump || isCrushed || isSpecial) return;
-
                         ChangeState(PlayerState.SideStepRight);
                     }
                     else if (touchDif.x < 0 && Mathf.Abs(touchDif.y) < Mathf.Abs(touchDif.x))
                     {
                         //Left Move
                         if (positionIndex <= 0 || isJump || isCrushed || isSpecial) return;
-
                         ChangeState(PlayerState.SideStepLeft);
                     }
                     else if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
@@ -148,13 +146,13 @@ public class PlayerController : MonoBehaviour
                             if (DataManager.Instance.curSpecialMoveGage < DataManager.Instance.playerSpecialMoveGage) { return; }
 
                             DataManager.Instance.curSpecialMoveGage -= 100f;
-
+                            
                             ChangeState(PlayerState.SpecialMove);
                         }
                         else
                         {
                             //Jump
-                            if (isSheld || isCrushed || isSpecial) return;
+                            if (isSheld || isOverlapped || isSpecial) return;
 
                             ChangeState(PlayerState.Jump);
                         }
@@ -199,6 +197,8 @@ public class PlayerController : MonoBehaviour
 
     public void Moving(bool dir)
     {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.SideWalk);
+
         positionIndex += dir ? 1 : -1;
         parentTransform.position = playerPos[positionIndex].position;
         parentTransform.localScale = new Vector3(dir ? 1 : -1, 1, 1);
@@ -250,6 +250,7 @@ public class PlayerController : MonoBehaviour
     {
         SheldToX();
         atkOrder++;
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Attack);
         EffectManager.Instance.SpawnSwordEffect(gameObject, atkOrder);
         anime.SetTrigger("doAttack");
         yield return null;
@@ -265,6 +266,7 @@ public class PlayerController : MonoBehaviour
     {
         isJump = true;
         anime.SetBool("isJump", isJump);
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Jump);
         parentRigid.AddForce(new Vector2(0, 20f), ForceMode2D.Impulse);
         gameObject.layer = LayerMask.NameToLayer("Player");
 
@@ -279,6 +281,7 @@ public class PlayerController : MonoBehaviour
         //Sheld On
         isSheld = !isSheld;
         anime.SetTrigger("onSheld");
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.SheldOn);
 
         while (true)
         {
@@ -303,7 +306,7 @@ public class PlayerController : MonoBehaviour
     private void SheldOff()
     {
         anime.SetTrigger("offSheld");
-
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.SheldOff);
         SheldToX();
     }
 
@@ -311,6 +314,7 @@ public class PlayerController : MonoBehaviour
     {
         //Parrying!
         anime.SetTrigger("doParrying");
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Parrying);
 
         if (isJump)
         {
@@ -331,9 +335,6 @@ public class PlayerController : MonoBehaviour
 
         float percent = 0;
 
-        //Vector3 startPos = transform.parent.position;
-        //Vector3 targetPos = startPos + new Vector3(0, 15, 0);
-
         isSpecial = true;
 
         anime.SetBool("isSpecial", isSpecial);
@@ -343,12 +344,6 @@ public class PlayerController : MonoBehaviour
         specialAxis.SetActive(true);
         specialTrigger.enabled = true;
         specialAfterEffect.SetActive(true);
-
-        //GameObject clone = Instantiate(specialBullet, gameObject.transform.position + Vector3.up, Quaternion.identity);
-        ////clone.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-
-        //parentRigid.velocity = Vector2.zero;
-        //parentRigid.AddForce(Vector2.down * 20f, ForceMode2D.Impulse);
 
         parentRigid.velocity = Vector2.zero;
         parentRigid.AddForce(Vector2.up * 25, ForceMode2D.Impulse);
@@ -371,6 +366,7 @@ public class PlayerController : MonoBehaviour
 
         isSpecial = false;
         anime.SetBool("isSpecial", isSpecial);
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.SpecialMove);
     }
 
     private void SheldToX()

@@ -277,9 +277,7 @@ public class MainMenuController : MonoBehaviour
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
         GameManager.Instance.curStage = curSelectStage;
-        Debug.Log(curSelectStage);
         ClearStageSelected(curSelectStage);
-        Debug.Log(curSelectStage);
     }
 
     public void OnClickNextStageButton()
@@ -290,6 +288,7 @@ public class MainMenuController : MonoBehaviour
 
         curSelectStage = curSelectStage + 1;
         PlanetAxisAnime.SetTrigger("doRotateNext");
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.RollPlanet);
         StartCoroutine(StageChange());
     }
 
@@ -301,6 +300,7 @@ public class MainMenuController : MonoBehaviour
 
         curSelectStage = curSelectStage - 1;
         PlanetAxisAnime.SetTrigger("doRotatePrior");
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.RollPlanet);
         StartCoroutine(StageChange());
     }
 
@@ -588,6 +588,7 @@ public class MainMenuController : MonoBehaviour
             unEquipButton.gameObject.SetActive(false);
         }
 
+
         equipLevelTMP.text = $"레벨: {_item.itemCurLevel.ToString()} / {_item.itemMaxLevel.ToString()}";
 
         switch (_item.itemPart)
@@ -612,8 +613,18 @@ public class MainMenuController : MonoBehaviour
 
         equipPartTMP.text = _item.itemPart.ToString();
         equipDescTMP.text = _item.itemDesc.ToString();
-        equipUpgradeCostTMP.text = $"{MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerGold)} " +
-            $"/ {MoneyUnitString.GetThousandCommaText(curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)}";
+
+
+        if (_item.itemCurLevel == _item.itemMaxLevel)
+        {
+            equipUpgradeCostTMP.text = $"{MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerGold)} / -";
+        }
+        else
+        {
+            equipUpgradeCostTMP.text = $"{MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerGold)} / {MoneyUnitString.GetThousandCommaText(curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)}";
+        }
+
+
 
         equipmentInfoPanel.SetActive(true);
     }
@@ -684,6 +695,8 @@ public class MainMenuController : MonoBehaviour
                 GoldAttracters[3].Play();
                 break;
         }
+
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.SellButton);
 
         SubtractZam(zamPrice);
 
@@ -994,5 +1007,15 @@ public class MainMenuController : MonoBehaviour
             default:
                 return 1f;
         }
+    }
+
+    public void OnAttachedGold()
+    {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.BuyGold);
+    }
+
+    public void OnAttachedZam()
+    {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.BuyZam);
     }
 }

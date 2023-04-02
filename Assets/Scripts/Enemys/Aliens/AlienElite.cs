@@ -185,8 +185,6 @@ public class AlienElite : Alien
 
         if (curHp <= 0)
         {
-            GameManager.Instance.curDeadEnemyCount++;
-            GameManager.Instance.curLiveEnemyCount--;
             OnDead(true);
         }
         else

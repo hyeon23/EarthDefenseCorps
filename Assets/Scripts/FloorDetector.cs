@@ -16,6 +16,7 @@ public class FloorDetector : MonoBehaviour
             if (collision.GetComponent<OneToOneBlock>().isOverlappedPlayer)
             {
                 curBlock = collision.GetComponent<OneToOneBlock>();
+                SoundManager.Instance.SFXPlay(SoundManager.SFX.Collapse);
                 StartCoroutine(PlayerTrigger.Instance.OnHit(curBlock.dmg * 100));
 
                 switch (curBlock.enemyType)

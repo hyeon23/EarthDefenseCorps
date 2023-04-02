@@ -213,8 +213,6 @@ public class OneToOneBlock : Block
 
         if (curHp <= 0)
         {
-            GameManager.Instance.curDeadEnemyCount++;
-            GameManager.Instance.curLiveEnemyCount--;
             OnDead(true);
         }
         else
@@ -232,6 +230,7 @@ public class OneToOneBlock : Block
         {
             InGameTextViewer.Instance.enemyGageShown = false;
         }
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienDead);
 
         if (isAttacked)
         {
@@ -345,6 +344,7 @@ public class OneToOneBlock : Block
             {
                 parentGameObject.SetActive(false);
             }
+
             Destroy(parentGameObject);
         }
     }

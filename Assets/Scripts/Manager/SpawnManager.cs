@@ -84,7 +84,6 @@ public class SpawnManager : MonoBehaviour
         curSpawnDelay += Time.deltaTime;
         if (curSpawnDelay >= nextSpawnDelay && !spawnEnd)
         {
-            //GameManager.Instance.curLiveEnemyCount == 0
             switch (spawnList[spawnIndex].phaseMileStone)
             {
                 case -1:
@@ -99,7 +98,7 @@ public class SpawnManager : MonoBehaviour
                     if (GameManager.Instance.curLiveEnemyCount != 0) return;
 
                     InGameTextViewer.Instance.PhaseStart($"Phase{spawnList[spawnIndex].phaseMileStone}");
-
+                    SoundManager.Instance.SFXPlay(SoundManager.SFX.ReadyFight);
                     spawnIndex++;
 
                     if (spawnIndex == spawnList.Count)
