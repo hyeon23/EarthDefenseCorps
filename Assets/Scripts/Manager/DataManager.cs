@@ -26,6 +26,9 @@ public class DataManager : MonoBehaviour
     public Item curEquippedHelmat = null;
     public Item curEquippedArmor = null;
 
+    public bool[] isStageClear;
+    public int curStage;
+
     //Player Item
     public List<Item> playerItems = new List<Item>();
     //Item Data
@@ -77,6 +80,9 @@ public class DataManager : MonoBehaviour
         curEquippedSheld = null;
         curEquippedHelmat = null;
         curEquippedArmor = null;
+
+        curStage = 1;
+        isStageClear = new bool[3] { false, false, false };
 
         DataUpdate();
     }

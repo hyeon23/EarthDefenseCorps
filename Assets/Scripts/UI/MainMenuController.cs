@@ -62,8 +62,6 @@ public class MainMenuController : MonoBehaviour
 
     public bool isStageChanging = false;
 
-    public bool[] isStageClear;
-
     [Header("Middle EquipmentInfo Panel")]
     public GameObject equipmentInfoPanel;
     public Image equipTopNameImage;
@@ -134,7 +132,7 @@ public class MainMenuController : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        isStageClear = new bool[3] { true, false, false };
+        
         stageNames = new string[3] { "MOON", "Mercury", "Mars" };
         stageSymbolicColors = new Color[3] { Color.yellow, new Color(0, 150, 255, 255), Color.red };
     }
@@ -143,8 +141,8 @@ public class MainMenuController : MonoBehaviour
     {
         TabClick(1);
         minStageNum = 1;
-        maxStageNum = isStageClear.Length;
-        curSelectStage = GameManager.Instance.curStage;
+        maxStageNum = DataManager.Instance.isStageClear.Length;
+        curSelectStage = DataManager.Instance.curStage;
 
         playerZamText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerZam);
         playerGoldText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerGold);
@@ -225,11 +223,12 @@ public class MainMenuController : MonoBehaviour
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
         DataManager.Instance.GameStartDataUpdate();
-        switch (GameManager.Instance.curStage)
+
+        switch (DataManager.Instance.curStage)
         {
             case 1:
                 //씬이동
-                SceneManager.LoadScene("GameSceneStage" + GameManager.Instance.curStage);
+                SceneManager.LoadScene("GameSceneStage" + DataManager.Instance.curStage);
                 break;
             case 2:
                 TriggerPopUp("Comming Soon...");
@@ -245,7 +244,7 @@ public class MainMenuController : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        int curStage = GameManager.Instance.curStage;
+        int curStage = DataManager.Instance.curStage;
         stageNameTMP.text = stageNames[curStage - 1];
         stageNumberTMP.text = "S T A G E " + curStage;
         stageNameTMP.color = stageSymbolicColors[curStage - 1];
@@ -271,17 +270,18 @@ public class MainMenuController : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        curSelectStage = GameManager.Instance.curStage;
+        curSelectStage = DataManager.Instance.curStage;
         StagePlanetPanel.SetActive(false);
         StagePlanetButton.enabled = false;
         StageSelectionPanel.SetActive(true);
+        ClearStageSelected(curSelectStage);
     }
 
     public void OnClickStageSelectButton()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        GameManager.Instance.curStage = curSelectStage;
+        DataManager.Instance.curStage = curSelectStage;
         ClearStageSelected(curSelectStage);
     }
 
@@ -342,7 +342,7 @@ public class MainMenuController : MonoBehaviour
                 break; 
             case 2:
             case 3:
-                if (isStageClear[curSelectStage - 2])
+                if (DataManager.Instance.isStageClear[curSelectStage - 2])
                 {
                     ClearStageSelected(curSelectStage);
 
@@ -373,7 +373,7 @@ public class MainMenuController : MonoBehaviour
     {
         StageLockedButton.gameObject.SetActive(false);
 
-        if (curSelectStage == GameManager.Instance.curStage)
+        if (curSelectStage == DataManager.Instance.curStage)
         {
             StageSelectedButton.gameObject.SetActive(true);
             StageSelectButton.gameObject.SetActive(false);

@@ -101,6 +101,9 @@ public class InGameTextViewer : MonoBehaviour
 
     [Header("GameOverPanel")]
     public GameObject gameOverPanel;
+    
+    [Header("StageClearPanel")]
+    public GameObject stageClearPanel;
 
     private bool leftPhaseImageTrigger;
     private bool middlePhaseImageTrigger;
@@ -394,5 +397,10 @@ public class InGameTextViewer : MonoBehaviour
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
+    }
+
+    public void StageClear()
+    {
+        stageClearPanel.SetActive(true);
     }
 }

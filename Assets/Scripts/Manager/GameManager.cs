@@ -22,8 +22,6 @@ public class GameManager : MonoBehaviour
     //해당 스테이지에서 스폰되는 총 EnemyCount;
     public int totalEnemyCount;
 
-    public int curStage = 1;
-
     public int score;
     public int combo;
     public int gold;
@@ -90,6 +88,18 @@ public class GameManager : MonoBehaviour
     {
         InGameTextViewer.Instance.GameOver();
         DataManager.Instance.PlayerGold += gold;
+
+        //SAVE
+
+    }
+
+    public void StageClear()
+    {
+        InGameTextViewer.Instance.StageClear();
+        DataManager.Instance.PlayerGold += gold;
+
+        //SAVE
+        DataManager.Instance.isStageClear[DataManager.Instance.curStage - 1] = true;
     }
 
     public void GoToMenu()

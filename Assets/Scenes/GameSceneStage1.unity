@@ -1260,8 +1260,8 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  m_CollisionDetection: 1
+  m_Constraints: 5
 --- !u!212 &103986034
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12445,6 +12445,7 @@ MonoBehaviour:
   phase1ProgressBar: {fileID: 1782708455}
   phase2ProgressBar: {fileID: 1703051245}
   gameOverPanel: {fileID: 312085730}
+  stageClearPanel: {fileID: 628350570}
 --- !u!4 &1034516135
 Transform:
   m_ObjectHideFlags: 0
@@ -19617,7 +19618,6 @@ MonoBehaviour:
   curKillEnemyCount: 0
   curLiveEnemyCount: 0
   totalEnemyCount: 0
-  curStage: 1
   score: 0
   combo: 0
   gold: 0
