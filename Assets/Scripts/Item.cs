@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item
 {
     public enum ItemGrade { None, Normal, Rare, Epic, Unique, Legendary, Count }
-    public enum ItemPart { None, Weapon, Gloves, Shoes, Sheld, Armor, Helmat, Count }
+    public enum ItemPart { None, Weapon, Gloves, Shoes, Sheld, Helmat, Armor, Count }
 
     public ItemPart itemPart;//아이템 타입
     public ItemGrade itemGrade;//아이템 등급
@@ -20,16 +20,22 @@ public class Item
 
     //스텟관련
     public int itemATK;//공격력
-    public int itemCurLevel;//현재레벨
-    public int itemMaxLevel;//현재레벨
-    public float itemHP;//생명력
-    public float itemSheldGager;//쉴드 게이지 총량 플러스
-    public float itemSpecialMoveGager;//필살기 게이지 총량 플러스
     public float itemCriticalRate;//크리티컬 확률
     public float itemCriticalDamage;//크리티컬 데미지
 
+    public float itemHP;//생명력
+    public float itemSheldGager;//쉴드 게이지 총량 플러스
+    public float itemSpecialMoveGager;//필살기 게이지 총량 플러스
+
+    [HideInInspector]
+    public int itemCurLevel;//현재레벨
+    [HideInInspector]
+    public int itemMaxLevel;//현재레벨
+
     //비용관련
+    [HideInInspector]
     public int itemPrice;//아이템 가격, 판매가격 = (int)(아이템 가격 * 0.3)
+    [HideInInspector]
     public int itemUpgradeCost;//강화비용 = 강화비용 = 아이템 등급 X 현재 아이템 레벨
 
     //뽑기관련

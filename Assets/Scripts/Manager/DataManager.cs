@@ -91,7 +91,6 @@ public class DataManager : MonoBehaviour
 
     public void DataUpdate()
     {
-        
         //ATK
         playerATK = 1/*플레이어 기본 공격력*/
             + ((CurEquippedWeapon != null) ? (CurEquippedWeapon.itemATK + ((int)CurEquippedWeapon.itemGrade) * CurEquippedWeapon.itemCurLevel) : 0)

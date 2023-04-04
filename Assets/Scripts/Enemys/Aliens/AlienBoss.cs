@@ -343,7 +343,7 @@ public class AlienBoss : Alien
         isTakingDown = true;
 
         float start = 0;
-        float end = 0.25f;
+        float end = 0.1f;
 
         float percent = 0;
 
@@ -366,7 +366,7 @@ public class AlienBoss : Alien
     IEnumerator Taking()
     {
         float start = 0;
-        float end = 1f;
+        float end = 0.8f;
 
         float percent = 0;
 
@@ -389,7 +389,7 @@ public class AlienBoss : Alien
     IEnumerator TakingDown()
     {
         float start = 0;
-        float end = 0.25f;
+        float end = 0.2f;
 
         float percent = 0;
 

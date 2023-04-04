@@ -853,6 +853,8 @@ public class MainMenuController : MonoBehaviour
 
         for (int i = 0; i < DataManager.Instance.items.Count; i++)
         {
+            Debug.Log(DataManager.Instance.items[i].itemDrawingWeight);
+
             weight += DataManager.Instance.items[i].itemDrawingWeight;
 
             if (selectNum <= weight)
