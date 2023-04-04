@@ -43,8 +43,10 @@ public class MainMenuController : MonoBehaviour
     public Button StageGoBackButton;//스테이지 선택 창에서 뒤로가기 버튼
     public TextMeshProUGUI stageNameTMP;//행성 이름 TMP
     public TextMeshProUGUI stageNumberTMP;//행성 번호 TMP
-    public TextMeshProUGUI gameStartButtonTMP;//행성 이름 TMP
-    public TextMeshProUGUI stageSelectButtonTMP;//행성 이름 TMP
+    public Image gameStartButtonImage;//행성 이름 TMP
+    public Image stageSelectButtonImage;//행성 이름 TMP
+    public Image stageSelectedButtonImage;//행성 이름 TMP
+    public Image stageLockedButtonImage;//행성 이름 TMP
 
     public GameObject Planet;//행성 이미지 및 버튼 설정을 위한 GameObject
 
@@ -247,8 +249,11 @@ public class MainMenuController : MonoBehaviour
         stageNameTMP.text = stageNames[curStage - 1];
         stageNumberTMP.text = "S T A G E " + curStage;
         stageNameTMP.color = stageSymbolicColors[curStage - 1];
-        gameStartButtonTMP.color = stageSymbolicColors[curStage - 1];
-        stageSelectButtonTMP.color = stageSymbolicColors[curStage - 1];
+
+        gameStartButtonImage.color = stageSymbolicColors[curStage - 1] * 0.97f;
+        stageSelectButtonImage.color = stageSymbolicColors[curStage - 1];
+        stageSelectedButtonImage.color = stageSymbolicColors[curStage - 1];
+        stageLockedButtonImage.color = stageSymbolicColors[curStage - 1];
         Planet.GetComponent<Image>().sprite = stagePlanetSprites[curStage - 1];
         Planet.GetComponent<Image>().color = Color.white;
 
@@ -313,8 +318,10 @@ public class MainMenuController : MonoBehaviour
 
         stageNumberTMP.text = "S T A G E " + curSelectStage;
         stageNameTMP.color = stageSymbolicColors[curSelectStage - 1];
-        gameStartButtonTMP.color = stageSymbolicColors[curSelectStage - 1];
-        stageSelectButtonTMP.color = stageSymbolicColors[curSelectStage - 1];
+        gameStartButtonImage.color = stageSymbolicColors[curSelectStage - 1] * 0.97f;
+        stageSelectButtonImage.color = stageSymbolicColors[curSelectStage - 1];
+        stageSelectedButtonImage.color = stageSymbolicColors[curSelectStage - 1];
+        stageLockedButtonImage.color = stageSymbolicColors[curSelectStage - 1];
         Planet.GetComponent<Image>().sprite = stagePlanetSprites[curSelectStage - 1];
 
         SpriteState newSpriteState = new SpriteState();
