@@ -23,6 +23,7 @@ TagManager:
   - SpecialBulletTrigger
   - SpecialBullet
   - Special
+  - PlayerAssembleTip
   layers:
   - Default
   - TransparentFX

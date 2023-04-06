@@ -605,10 +605,6 @@ public class AlienBoss : Alien
         {
             activeFeatures[i].SetActive(true);
         }
-
-        //GameClear
-        InGameTextViewer.Instance.PlusGetGold(gold);
-        GameManager.Instance.StageClear();
     }
 
     IEnumerator DeadTaking()
@@ -628,5 +624,9 @@ public class AlienBoss : Alien
             transform.parent.position = Vector3.Lerp(startPos, targetPos, percent);
             yield return null;
         }
+
+        //GameClear
+        InGameTextViewer.Instance.PlusGetGold(gold);
+        GameManager.Instance.StageClear();
     }
 }

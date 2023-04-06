@@ -90,9 +90,9 @@ public class DataManager : MonoBehaviour
     {
         DataUpdate();
 
-        curHp = playerHP;
-        curSheldGage = playerShledGage;
-        curSpecialMoveGage = 100;
+        curHp = PlayerHP;
+        curSheldGage = PlayerShledGage;
+        curSpecialMoveGage = PlayerSpecialMoveGage;
     }
 
     public void DataUpdate()

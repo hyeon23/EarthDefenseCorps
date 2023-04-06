@@ -53,8 +53,6 @@ public class PlayerController : MonoBehaviour
 
     private static PlayerController instance = null;
 
-    
-
     void Awake()
     {
         if (null == instance)
@@ -381,7 +379,6 @@ public class PlayerController : MonoBehaviour
         {
             isJump = false;
             anime.SetBool("isJump", isJump);
-            gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
         }
     }
 }
