@@ -109,6 +109,9 @@ public class InGameTextViewer : MonoBehaviour
     private bool middlePhaseImageTrigger;
     private bool rightPhaseImageTrigger;
 
+    [Header("StageClearPanel")]
+    public GameObject settingsPanel;
+
     void Awake()
     {
         if (null == instance)
@@ -402,5 +405,30 @@ public class InGameTextViewer : MonoBehaviour
     public void StageClear()
     {
         stageClearPanel.SetActive(true);
+    }
+
+    public void Setting()
+    {
+        Time.timeScale = 0f;
+        settingsPanel.SetActive(true);
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
+        for (int i = 0; i < SoundManager.Instance.sfxPlayer.Length; i++)
+        {
+            SoundManager.Instance.sfxPlayer[i].Pause();
+        }
+    }
+
+    public void Back()
+    {
+        Time.timeScale = 1f;
+
+        for (int i = 0; i < SoundManager.Instance.sfxPlayer.Length; i++)
+        {
+            SoundManager.Instance.sfxPlayer[i].UnPause();
+        }
+
+        settingsPanel.SetActive(false);
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
     }
 }

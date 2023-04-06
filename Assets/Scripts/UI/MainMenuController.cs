@@ -109,6 +109,9 @@ public class MainMenuController : MonoBehaviour
     public Transform drawing1SlotParent;
     public Transform drawing10SlotParent;
 
+    [Header("StageClearPanel")]
+    public GameObject settingsPanel;
+
     public static MainMenuController Instance
     {
         get
@@ -1026,5 +1029,31 @@ public class MainMenuController : MonoBehaviour
     public void OnAttachedZam()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.BuyZam);
+    }
+
+    public void Setting()
+    {
+        Time.timeScale = 0f;
+        settingsPanel.SetActive(true);
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
+        for(int i = 0; i < SoundManager.Instance.sfxPlayer.Length; i++)
+        {
+            SoundManager.Instance.sfxPlayer[i].Pause();
+        }
+        
+    }
+
+    public void Back()
+    {
+        Time.timeScale = 1f;
+
+        for (int i = 0; i < SoundManager.Instance.sfxPlayer.Length; i++)
+        {
+            SoundManager.Instance.sfxPlayer[i].UnPause();
+        }
+
+        settingsPanel.SetActive(false);
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
     }
 }
