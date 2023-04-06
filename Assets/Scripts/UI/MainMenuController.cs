@@ -109,9 +109,12 @@ public class MainMenuController : MonoBehaviour
     public Transform drawing1SlotParent;
     public Transform drawing10SlotParent;
 
-    [Header("StageClearPanel")]
+    [Header("settingsPanel")]
     public GameObject settingsPanel;
-
+    public TextMeshProUGUI BGMOnToggleTMP;
+    public TextMeshProUGUI BGMOffToggleTMP;
+    public TextMeshProUGUI SFXOnToggleTMP;
+    public TextMeshProUGUI SFXOffToggleTMP;
     public static MainMenuController Instance
     {
         get
@@ -1036,24 +1039,48 @@ public class MainMenuController : MonoBehaviour
         Time.timeScale = 0f;
         settingsPanel.SetActive(true);
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
-
-        for(int i = 0; i < SoundManager.Instance.sfxPlayer.Length; i++)
-        {
-            SoundManager.Instance.sfxPlayer[i].Pause();
-        }
-        
     }
 
     public void Back()
     {
         Time.timeScale = 1f;
 
-        for (int i = 0; i < SoundManager.Instance.sfxPlayer.Length; i++)
-        {
-            SoundManager.Instance.sfxPlayer[i].UnPause();
-        }
-
         settingsPanel.SetActive(false);
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+    }
+
+    public void BGMOnOff()
+    {
+        DataManager.Instance.isBGMOn = !DataManager.Instance.isBGMOn;
+
+        if (DataManager.Instance.isBGMOn)
+        {
+            BGMOnToggleTMP.enabled = false;
+            BGMOffToggleTMP.enabled = true;
+        }
+        else
+        {
+            BGMOffToggleTMP.enabled = false;
+            BGMOnToggleTMP.enabled = true;
+        }
+
+        SoundManager.Instance.BGMMuteOnOff();
+    }
+    public void SFXOnOff()
+    {
+        DataManager.Instance.isSFXOn = !DataManager.Instance.isSFXOn;
+
+        if (DataManager.Instance.isSFXOn)
+        {
+            SFXOnToggleTMP.enabled = false;
+            SFXOffToggleTMP.enabled = true;
+        }
+        else
+        {
+            SFXOffToggleTMP.enabled = false;
+            SFXOnToggleTMP.enabled = true;
+        }
+
+        SoundManager.Instance.SFXMuteOnOff();
     }
 }

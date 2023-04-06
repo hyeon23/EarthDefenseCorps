@@ -29,6 +29,9 @@ public class DataManager : MonoBehaviour
     public bool[] isStageClear;
     public int curStage;
 
+    public bool isBGMOn;
+    public bool isSFXOn;
+
     //Player Item
     public List<Item> playerItems = new List<Item>();
     //Item Data
@@ -82,6 +85,10 @@ public class DataManager : MonoBehaviour
         curEquippedArmor = null;
 
         curStage = 1;
+
+        isBGMOn = true;
+        isSFXOn = true;
+
         isStageClear = new bool[3] { false, false, false };
 
         DataUpdate();

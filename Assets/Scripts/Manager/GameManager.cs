@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
         //화면 보호기 제거
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
+        Time.timeScale = 1.0f;
+
         cam = Camera.main.transform;
 
         curDeadEnemyCount = 0;
