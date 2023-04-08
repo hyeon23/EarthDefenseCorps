@@ -108,6 +108,11 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_LEGACY_INPUT_MANAGER
 --compilation-defines=TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 --compilation-defines=UNITY_POST_PROCESSING_STACK_V2
+--compilation-defines=PACKAGE_PHYSICS
+--compilation-defines=PACKAGE_PHYSICS2D
+--compilation-defines=PACKAGE_TILEMAP
+--compilation-defines=PACKAGE_ANIMATION
+--compilation-defines=PACKAGE_UITOOLKIT
 --compilation-defines=CSHARP_7_OR_LATER
 --compilation-defines=CSHARP_7_3_OR_NEWER
 --compilation-defines=MODULE_AI_EXISTS
@@ -115,11 +120,6 @@ Library: lib_burst_generated
 --compilation-defines=MODULE_PHYSICS_EXISTS
 --compilation-defines=MODULE_PHYSICS_2D_EXISTS
 --compilation-defines=MODULE_PARTICLE_SYSTEM_EXISTS
---compilation-defines=PACKAGE_PHYSICS
---compilation-defines=PACKAGE_PHYSICS2D
---compilation-defines=PACKAGE_TILEMAP
---compilation-defines=PACKAGE_ANIMATION
---compilation-defines=PACKAGE_UITOOLKIT
 --compilation-defines=ENABLE_VR_MODULE
 --compilation-defines=ENABLE_XR_MODULE
 --compilation-defines=ENABLE_ANIMATION_BURST
@@ -127,9 +127,9 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_SPRITESHAPE_BURST
 --generate-link-xml=Temp\burst.link.xml
 --output=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\tempburstlibs\arm64-v8a\lib_burst_generated
+--root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\UnityEngine.Purchasing.Stores.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Unity.VisualScripting.Flow.dll
---root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Unity.Services.Core.Telemetry.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Unity.VisualScripting.State.dll
@@ -145,6 +145,7 @@ Library: lib_burst_generated
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Unity.Services.Core.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\UnityEngine.Purchasing.Security.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\UnityEngine.Purchasing.dll
+--root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Coffee.UIParticle.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Unity.Services.Core.Environments.dll
 --root-assembly=C:\hyeon\unityprojects\EarthDefenseCorps\Temp\StagingArea\Data\Managed\Unity.Services.Core.Internal.dll

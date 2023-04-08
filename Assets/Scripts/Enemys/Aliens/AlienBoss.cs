@@ -333,9 +333,34 @@ public class AlienBoss : Alien
     {
         for(int i = 0; i < takingCount; i++)
         {
-            StartCoroutine(TakingUp());
+            StartCoroutine(TakingStart());
             yield return new WaitForSeconds(2.5f);
         }
+    }
+
+    IEnumerator TakingStart()
+    {
+        isTakingDown = true;
+
+        float start = 0;
+        float end = 0.1f;
+
+        float percent = 0;
+
+        Vector3 startPos = transform.parent.position;
+        Vector3 targetPos = new Vector3(0, 8, 0);
+
+
+
+        while (percent <= 1)
+        {
+            start += Time.deltaTime;
+            percent = start / end;
+            transform.parent.position = Vector3.Lerp(startPos, targetPos, percent);
+            yield return null;
+        }
+
+        StartCoroutine(Taking());
     }
 
     IEnumerator TakingUp()
@@ -348,7 +373,7 @@ public class AlienBoss : Alien
         float percent = 0;
 
         Vector3 startPos = transform.parent.position;
-        Vector3 targetPos = new Vector3(0, 8, 0);
+        Vector3 targetPos = new Vector3(0, 10, 0);
 
 
 
@@ -593,6 +618,7 @@ public class AlienBoss : Alien
                 break;
         }
 
+        StopAllCoroutines();
         StartCoroutine(DeadTaking());
 
         //´« º¯°æ

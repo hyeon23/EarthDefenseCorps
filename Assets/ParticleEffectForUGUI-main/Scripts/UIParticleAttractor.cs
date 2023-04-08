@@ -108,6 +108,7 @@ namespace Coffee.UIExtensions
             m_ParticleSystem.GetParticles(particles, count);
 
             var dstPos = GetDestinationPosition();
+
             for (var i = 0; i < count; i++)
             {
                 // Attracted
@@ -152,7 +153,7 @@ namespace Coffee.UIExtensions
         {
             var isUI = _uiParticle && _uiParticle.enabled;
             var psPos = m_ParticleSystem.transform.position;
-            var attractorPos = transform.position;
+            var attractorPos = transform.position; 
             var dstPos = attractorPos;
             if (m_ParticleSystem.main.simulationSpace == ParticleSystemSimulationSpace.Local)
             {

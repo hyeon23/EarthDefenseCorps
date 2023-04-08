@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Progress;
 using System.Security.Policy;
 using System.Text;
 using System.Collections.Generic;
@@ -113,8 +112,11 @@ public class MainMenuController : MonoBehaviour
     public GameObject settingsPanel;
     public TextMeshProUGUI BGMOnToggleTMP;
     public TextMeshProUGUI BGMOffToggleTMP;
+    public Toggle BGMToggle;
     public TextMeshProUGUI SFXOnToggleTMP;
     public TextMeshProUGUI SFXOffToggleTMP;
+    public Toggle SFXToggle;
+
     public static MainMenuController Instance
     {
         get
@@ -1055,13 +1057,13 @@ public class MainMenuController : MonoBehaviour
 
         if (DataManager.Instance.isBGMOn)
         {
-            BGMOnToggleTMP.enabled = false;
-            BGMOffToggleTMP.enabled = true;
+            BGMOffToggleTMP.enabled = false;
+            BGMOnToggleTMP.enabled = true;
         }
         else
         {
-            BGMOffToggleTMP.enabled = false;
-            BGMOnToggleTMP.enabled = true;
+            BGMOnToggleTMP.enabled = false;
+            BGMOffToggleTMP.enabled = true;
         }
 
         SoundManager.Instance.BGMMuteOnOff();
@@ -1072,15 +1074,43 @@ public class MainMenuController : MonoBehaviour
 
         if (DataManager.Instance.isSFXOn)
         {
+            SFXOffToggleTMP.enabled = false;
+            SFXOnToggleTMP.enabled = true;
+        }
+        else
+        {
             SFXOnToggleTMP.enabled = false;
             SFXOffToggleTMP.enabled = true;
         }
+
+        SoundManager.Instance.SFXMuteOnOff();
+    }
+
+    public void BGMSFXInit()
+    {
+        BGMToggle.isOn = DataManager.Instance.isBGMOn;
+        SFXToggle.isOn = DataManager.Instance.isSFXOn;
+
+        if (DataManager.Instance.isBGMOn)
+        {
+            BGMOffToggleTMP.enabled = false;
+            BGMOnToggleTMP.enabled = true;
+        }
         else
+        {
+            BGMOnToggleTMP.enabled = false;
+            BGMOffToggleTMP.enabled = true;
+        }
+
+        if (DataManager.Instance.isSFXOn)
         {
             SFXOffToggleTMP.enabled = false;
             SFXOnToggleTMP.enabled = true;
         }
-
-        SoundManager.Instance.SFXMuteOnOff();
+        else
+        {
+            SFXOnToggleTMP.enabled = false;
+            SFXOffToggleTMP.enabled = true;
+        }
     }
 }
