@@ -32,6 +32,9 @@ public class DataManager : MonoBehaviour
     public bool isBGMOn;
     public bool isSFXOn;
 
+    public int[] Frames;
+    public int curFrameIndex;
+
     //Player Item
     public List<Item> playerItems = new List<Item>();
     //Item Data
@@ -72,8 +75,6 @@ public class DataManager : MonoBehaviour
 
             Debug.Log("isDMNull");
 
-            curStage = 1;
-
             //여기서 기존에 가진 장비 불러와야 함
             curEquippedWeapon = null;
             curEquippedGloves = null;
@@ -83,6 +84,13 @@ public class DataManager : MonoBehaviour
             curEquippedArmor = null;
 
             isStageClear = new bool[3] { false, false, false };
+            Frames = new int[3] { 30, 60, 120 };
+
+            curStage = 1;
+            curFrameIndex = 1;
+
+            //Target Frame Rate 설정
+            Application.targetFrameRate = Frames[curFrameIndex];
 
             DataUpdate();
 

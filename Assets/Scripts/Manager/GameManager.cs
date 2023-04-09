@@ -39,9 +39,6 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        //Target Frame Rate 설정
-        Application.targetFrameRate = 60;
-
         //화면 보호기 제거
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 

@@ -117,6 +117,11 @@ public class MainMenuController : MonoBehaviour
     public TextMeshProUGUI SFXOffToggleTMP;
     public Toggle SFXToggle;
 
+    public TextMeshProUGUI FPSTMP;
+    public Button FrameSelectLeftButton;
+    public Button FrameSelectRightButton;
+
+
     public static MainMenuController Instance
     {
         get
@@ -153,7 +158,9 @@ public class MainMenuController : MonoBehaviour
         minStageNum = 1;
         maxStageNum = DataManager.Instance.isStageClear.Length;
         curSelectStage = DataManager.Instance.curStage;
-        
+
+        FPSTMP.text = $"{Application.targetFrameRate}Hz";
+
         playerZamText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerZam);
         playerGoldText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerGold);
 
@@ -186,10 +193,28 @@ public class MainMenuController : MonoBehaviour
                 StageSelectRightButton.interactable = false;
             else
                 StageSelectRightButton.interactable = true;
+            
             if (curSelectStage == minStageNum)
                 StageSelectLeftButton.interactable = false;
             else
                 StageSelectLeftButton.interactable = true;
+
+            if (DataManager.Instance.curFrameIndex >= 2) {
+                FrameSelectRightButton.interactable = false;
+            }
+            else
+            {
+                FrameSelectRightButton.interactable = true;
+            }
+            
+            if(DataManager.Instance.curFrameIndex <= 0)
+            {
+                FrameSelectLeftButton.interactable = false;
+            }
+            else
+            {
+                FrameSelectLeftButton.interactable = true;
+            }
         }
 
         for (int i = 0; i < SIZE; i++)
@@ -1052,6 +1077,30 @@ public class MainMenuController : MonoBehaviour
         settingsPanel.SetActive(false);
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
     }
+
+    public void OnClickFPSPriorButton()
+    {
+        DataManager.Instance.curFrameIndex = DataManager.Instance.curFrameIndex - 1;
+
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
+        Application.targetFrameRate = DataManager.Instance.Frames[DataManager.Instance.curFrameIndex];
+
+        FPSTMP.text = $"{Application.targetFrameRate}Hz";
+    }
+
+    public void OnClickFPSNextButton()
+    {
+        DataManager.Instance.curFrameIndex = DataManager.Instance.curFrameIndex + 1;
+
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
+        Application.targetFrameRate = DataManager.Instance.Frames[DataManager.Instance.curFrameIndex];
+
+        FPSTMP.text = $"{Application.targetFrameRate}Hz";
+    }
+
+
 
     public void BGMOnOff()
     {
