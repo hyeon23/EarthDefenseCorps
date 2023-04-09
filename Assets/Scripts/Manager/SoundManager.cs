@@ -84,18 +84,19 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
+        bgmPlayer.Play();
+
         BGMMuteOnOff();
         SFXMuteOnOff();
-        bgmPlayer.Play();
     }
 
     public void BGMMuteOnOff()
     {
-
         bgmPlayer.mute = !DataManager.Instance.isBGMOn;
 
         if (DataManager.Instance.isBGMOn)
         {
+            Debug.Log("Test");
             bgmPlayer.UnPause();
         }
         else

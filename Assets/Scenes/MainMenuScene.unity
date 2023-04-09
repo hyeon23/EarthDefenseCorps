@@ -48316,8 +48316,8 @@ MonoBehaviour:
     itemDrawingWeight: 0
   isStageClear: 
   curStage: 0
-  isBGMOn: 0
-  isSFXOn: 0
+  isBGMOn: 1
+  isSFXOn: 1
   playerItems: []
   items:
   - itemPart: 1
@@ -50158,7 +50158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4916364337748909633, guid: 3b03b2dabc06a0e439f1e3e8e089a2f0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -105.599976
+      value: -105.59985
       objectReference: {fileID: 0}
     - target: {fileID: 6130502669341499401, guid: 3b03b2dabc06a0e439f1e3e8e089a2f0, type: 3}
       propertyPath: m_AnchorMax.y
@@ -50359,15 +50359,3 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7010569420214916801, guid: 3b03b2dabc06a0e439f1e3e8e089a2f0, type: 3}
   m_PrefabInstance: {fileID: 7010569419724107786}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7010569419724107788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7010569419724107787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a59aa4f99a09e345af2255280054dc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

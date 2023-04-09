@@ -69,29 +69,29 @@ public class DataManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+
+            Debug.Log("isDMNull");
+
+            curStage = 1;
+
+            //여기서 기존에 가진 장비 불러와야 함
+            curEquippedWeapon = null;
+            curEquippedGloves = null;
+            curEquippedShoes = null;
+            curEquippedSheld = null;
+            curEquippedHelmat = null;
+            curEquippedArmor = null;
+
+            isStageClear = new bool[3] { false, false, false };
+
+            DataUpdate();
+
             DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
-
-        //여기서 기존에 가진 장비 불러와야 함
-        curEquippedWeapon = null;
-        curEquippedGloves = null;
-        curEquippedShoes = null;
-        curEquippedSheld = null;
-        curEquippedHelmat = null;
-        curEquippedArmor = null;
-
-        curStage = 1;
-
-        isBGMOn = true;
-        isSFXOn = true;
-
-        isStageClear = new bool[3] { false, false, false };
-
-        DataUpdate();
     }
     public void GameStartDataUpdate()
     {

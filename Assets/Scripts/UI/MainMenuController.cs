@@ -147,11 +147,13 @@ public class MainMenuController : MonoBehaviour
 
     private void Start()
     {
+        BGMSFXInit();
+
         TabClick(1);
         minStageNum = 1;
         maxStageNum = DataManager.Instance.isStageClear.Length;
         curSelectStage = DataManager.Instance.curStage;
-
+        
         playerZamText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerZam);
         playerGoldText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerGold);
 
@@ -1053,45 +1055,62 @@ public class MainMenuController : MonoBehaviour
 
     public void BGMOnOff()
     {
-        DataManager.Instance.isBGMOn = !DataManager.Instance.isBGMOn;
-
-        if (DataManager.Instance.isBGMOn)
+        if (BGMToggle.isOn)
         {
-            BGMOffToggleTMP.enabled = false;
-            BGMOnToggleTMP.enabled = true;
+            DataManager.Instance.isBGMOn = true;
         }
         else
         {
-            BGMOnToggleTMP.enabled = false;
-            BGMOffToggleTMP.enabled = true;
+            DataManager.Instance.isBGMOn = false;
         }
+
+        BGMTMPOnOff();
 
         SoundManager.Instance.BGMMuteOnOff();
     }
     public void SFXOnOff()
     {
-        DataManager.Instance.isSFXOn = !DataManager.Instance.isSFXOn;
-
-        if (DataManager.Instance.isSFXOn)
+        if (SFXToggle.isOn)
         {
-            SFXOffToggleTMP.enabled = false;
-            SFXOnToggleTMP.enabled = true;
+            DataManager.Instance.isSFXOn = true;
         }
         else
         {
-            SFXOnToggleTMP.enabled = false;
-            SFXOffToggleTMP.enabled = true;
+            DataManager.Instance.isSFXOn = false;
         }
+        
+        SFXTMPOnOff();
 
         SoundManager.Instance.SFXMuteOnOff();
     }
 
     public void BGMSFXInit()
     {
-        BGMToggle.isOn = DataManager.Instance.isBGMOn;
-        SFXToggle.isOn = DataManager.Instance.isSFXOn;
-
         if (DataManager.Instance.isBGMOn)
+        {
+            BGMToggle.isOn = true;
+        }
+        else
+        {
+            BGMToggle.isOn = false;
+        }
+
+        if (DataManager.Instance.isSFXOn)
+        {
+            SFXToggle.isOn = true;
+        }
+        else
+        {
+            SFXToggle.isOn = false;
+        }
+
+        BGMTMPOnOff();
+        SFXTMPOnOff();
+    }
+
+    public void BGMTMPOnOff()
+    {
+        if (BGMToggle.isOn)
         {
             BGMOffToggleTMP.enabled = false;
             BGMOnToggleTMP.enabled = true;
@@ -1101,8 +1120,11 @@ public class MainMenuController : MonoBehaviour
             BGMOnToggleTMP.enabled = false;
             BGMOffToggleTMP.enabled = true;
         }
+    }
 
-        if (DataManager.Instance.isSFXOn)
+    public void SFXTMPOnOff()
+    {
+        if (SFXToggle.isOn)
         {
             SFXOffToggleTMP.enabled = false;
             SFXOnToggleTMP.enabled = true;
