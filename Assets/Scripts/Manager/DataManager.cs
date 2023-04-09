@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -73,33 +74,31 @@ public class DataManager : MonoBehaviour
         {
             instance = this;
 
-            Debug.Log("isDMNull");
-
-            //여기서 기존에 가진 장비 불러와야 함
-            curEquippedWeapon = null;
-            curEquippedGloves = null;
-            curEquippedShoes = null;
-            curEquippedSheld = null;
-            curEquippedHelmat = null;
-            curEquippedArmor = null;
-
-            isStageClear = new bool[3] { false, false, false };
-            Frames = new int[3] { 30, 60, 120 };
-
-            curStage = 1;
-            curFrameIndex = 1;
-
-            //Target Frame Rate 설정
-            Application.targetFrameRate = Frames[curFrameIndex];
-
-            DataUpdate();
-
             DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
+
+        //여기서 기존에 가진 장비 불러와야 함
+        curEquippedWeapon = null;
+        curEquippedGloves = null;
+        curEquippedShoes = null;
+        curEquippedSheld = null;
+        curEquippedHelmat = null;
+        curEquippedArmor = null;
+
+        isStageClear = new bool[3] { false, false, false };
+        Frames = new int[3] { 30, 60, 120 };
+
+        DataUpdate();
+
+        //DataLoad
+        PlayerPrefsLoad();
+
+        //Target Frame Rate 설정
+        Application.targetFrameRate = Frames[curFrameIndex];
     }
     public void GameStartDataUpdate()
     {
@@ -147,5 +146,41 @@ public class DataManager : MonoBehaviour
             + ((CurEquippedSheld != null) ? CurEquippedSheld.itemSpecialMoveGager : 0)
             + ((CurEquippedHelmat != null) ? CurEquippedHelmat.itemSpecialMoveGager : 0)
             + ((CurEquippedArmor != null) ? CurEquippedArmor.itemSpecialMoveGager : 0);
+    }
+
+    public void PlayerPrefsSave()
+    {
+        PlayerPrefs.SetInt("CurStage", curStage);
+        PlayerPrefs.SetInt("CurFrameIndex", curFrameIndex);
+        PlayerPrefs.SetString("IsBGMOn", isBGMOn.ToString());
+        PlayerPrefs.SetString("IsSFXOn", isSFXOn.ToString());
+    }
+
+    public void PlayerPrefsLoad()
+    {
+        if(PlayerPrefs.HasKey("CurStage"))
+            curStage = PlayerPrefs.GetInt("CurStage");
+        else
+            curStage = 1;
+
+        if (PlayerPrefs.HasKey("CurFrameIndex"))
+            curFrameIndex = PlayerPrefs.GetInt("CurFrameIndex");
+        else
+            curFrameIndex = 1;
+
+        if (PlayerPrefs.HasKey("IsBGMOn"))
+            Boolean.TryParse(PlayerPrefs.GetString("IsBGMOn"), out isBGMOn);
+        else
+            isBGMOn = true;
+
+        if (PlayerPrefs.HasKey("IsSFXOn"))
+            Boolean.TryParse(PlayerPrefs.GetString("IsSFXOn"), out isSFXOn);
+        else
+            isSFXOn = true;
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefsSave();
     }
 }

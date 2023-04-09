@@ -116,11 +116,9 @@ public class MainMenuController : MonoBehaviour
     public TextMeshProUGUI SFXOnToggleTMP;
     public TextMeshProUGUI SFXOffToggleTMP;
     public Toggle SFXToggle;
-
     public TextMeshProUGUI FPSTMP;
     public Button FrameSelectLeftButton;
     public Button FrameSelectRightButton;
-
 
     public static MainMenuController Instance
     {
@@ -144,7 +142,6 @@ public class MainMenuController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
         
         stageNames = new string[3] { "MOON", "Mercury", "Mars" };
         stageSymbolicColors = new Color[3] { Color.yellow, new Color(0, 150, 255, 255), Color.red };
@@ -198,23 +195,6 @@ public class MainMenuController : MonoBehaviour
                 StageSelectLeftButton.interactable = false;
             else
                 StageSelectLeftButton.interactable = true;
-
-            if (DataManager.Instance.curFrameIndex >= 2) {
-                FrameSelectRightButton.interactable = false;
-            }
-            else
-            {
-                FrameSelectRightButton.interactable = true;
-            }
-            
-            if(DataManager.Instance.curFrameIndex <= 0)
-            {
-                FrameSelectLeftButton.interactable = false;
-            }
-            else
-            {
-                FrameSelectLeftButton.interactable = true;
-            }
         }
 
         for (int i = 0; i < SIZE; i++)
@@ -242,6 +222,28 @@ public class MainMenuController : MonoBehaviour
             BtnImageRect[i].localScale = Vector3.Lerp(BtnImageRect[i].localScale, BtnTargetScale, 0.25f);
             BtnImageRect[i].transform.GetChild(0).gameObject.SetActive(textActive);
         }
+
+        if (DataManager.Instance.curFrameIndex == 2)
+        {
+            Debug.Log("RightNo");
+            FrameSelectRightButton.interactable = false;
+        }
+        else
+        {
+            FrameSelectRightButton.interactable = true;
+        }
+
+        if (DataManager.Instance.curFrameIndex == 0)
+        {
+            Debug.Log("LeftNo");
+            FrameSelectLeftButton.interactable = false;
+        }
+        else
+        {
+            FrameSelectLeftButton.interactable = true;
+        }
+
+        FPSTMP.text = $"{Application.targetFrameRate}Hz";
     }
 
 
@@ -1085,8 +1087,6 @@ public class MainMenuController : MonoBehaviour
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
         Application.targetFrameRate = DataManager.Instance.Frames[DataManager.Instance.curFrameIndex];
-
-        FPSTMP.text = $"{Application.targetFrameRate}Hz";
     }
 
     public void OnClickFPSNextButton()
@@ -1096,8 +1096,6 @@ public class MainMenuController : MonoBehaviour
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
         Application.targetFrameRate = DataManager.Instance.Frames[DataManager.Instance.curFrameIndex];
-
-        FPSTMP.text = $"{Application.targetFrameRate}Hz";
     }
 
 

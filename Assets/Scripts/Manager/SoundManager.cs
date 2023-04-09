@@ -96,7 +96,6 @@ public class SoundManager : MonoBehaviour
 
         if (DataManager.Instance.isBGMOn)
         {
-            Debug.Log("Test");
             bgmPlayer.UnPause();
         }
         else
