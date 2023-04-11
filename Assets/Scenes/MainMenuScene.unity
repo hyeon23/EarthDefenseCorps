@@ -23546,7 +23546,11 @@ MonoBehaviour:
   - {fileID: 1339354021}
   - {fileID: 1921069019}
   - {fileID: 1213882326}
-  ZamAttracters: []
+  ZamAttracters:
+  - {fileID: 404192782}
+  - {fileID: 541316364}
+  - {fileID: 1723589959}
+  - {fileID: 1287530601}
   drawing1ResultPanel: {fileID: 1819477415}
   drawing10ResultPanel: {fileID: 210857345}
   drawing1SetActiveGroup: {fileID: 1004696722}
@@ -28444,7 +28448,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: faf024d5300651a4c92b4d00fb290af3, type: 3}
   - {fileID: 8300000, guid: fa2123f844745e144a86929bd9725f58, type: 3}
   - {fileID: 8300000, guid: df4903be5e4c52c408393fc9a32aa67f, type: 3}
-  - {fileID: 8300000, guid: fa2123f844745e144a86929bd9725f58, type: 3}
+  - {fileID: 8300000, guid: 7514655d07699b545b2de016e4952445, type: 3}
   - {fileID: 8300000, guid: f195d29f5b392db42a7999d6b32dd37e, type: 3}
 --- !u!4 &1024549482
 Transform:

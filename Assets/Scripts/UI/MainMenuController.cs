@@ -745,6 +745,38 @@ public class MainMenuController : MonoBehaviour
         PlusGold(goldNumber);
     }
 
+    public void BuyZam(int ZamNumber)
+    {
+
+        switch (ZamNumber)
+        {
+            case 300:
+                if (!GoldAttracters[0].isStopped)
+                    return;
+                ZamAttracters[0].Play();
+                break;
+            case 1000:
+                if (!GoldAttracters[1].isStopped)
+                    return;
+                ZamAttracters[1].Play();
+                break;
+            case 3000:
+                if (!GoldAttracters[2].isStopped)
+                    return;
+                ZamAttracters[2].Play();
+                break;
+            case 10000:
+                if (!GoldAttracters[3].isStopped)
+                    return;
+                ZamAttracters[3].Play();
+                break;
+        }
+
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.SellButton);
+
+        PlusZam(ZamNumber);
+    }
+
     public void PlusGold(int goldNumber)
     {
         StartCoroutine(Count(playerGoldText, DataManager.Instance.playerData.PlayerGold, DataManager.Instance.playerData.PlayerGold + goldNumber));
