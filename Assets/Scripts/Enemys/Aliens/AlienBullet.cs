@@ -45,7 +45,7 @@ public class AlienBullet : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Weapon" || collision.gameObject.tag == "Special")
         {
-            StartCoroutine(OnHit(DataManager.Instance.playerATK, collision.transform.position));
+            StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
         }
         else if (collision.gameObject.tag == "Sheld")
         {
@@ -59,9 +59,9 @@ public class AlienBullet : MonoBehaviour
 
     public IEnumerator OnHit(int damage, Vector2 onHitPosition)
     {
-        bool isCritical = CriticalCheck(DataManager.Instance.PlayerCriticalRate);
+        bool isCritical = CriticalCheck(DataManager.Instance.playerData.PlayerCriticalRate);
 
-        if (isCritical) damage *= Mathf.RoundToInt(damage * DataManager.Instance.PlayerCriticalDamage / 100);
+        if (isCritical) damage *= Mathf.RoundToInt(damage * DataManager.Instance.playerData.PlayerCriticalDamage / 100);
         curHp -= damage;
 
         InGameTextViewer.Instance.SpawnHUDText(damage.ToString(), isCritical ? Color.red : Color.white, onHitPosition);

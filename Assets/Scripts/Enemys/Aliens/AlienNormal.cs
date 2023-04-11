@@ -164,9 +164,9 @@ public class AlienNormal : Alien
         alienState = AlienState.HitMove;
         GameManager.Instance.curHitEnemy = gameObject;
 
-        bool isCritical = CriticalCheck(DataManager.Instance.PlayerCriticalRate);
+        bool isCritical = CriticalCheck(DataManager.Instance.playerData.PlayerCriticalRate);
 
-        if (isCritical) damage *= Mathf.RoundToInt(damage * DataManager.Instance.PlayerCriticalDamage / 100);
+        if (isCritical) damage *= Mathf.RoundToInt(damage * DataManager.Instance.playerData.PlayerCriticalDamage / 100);
 
         curHp -= damage;
 

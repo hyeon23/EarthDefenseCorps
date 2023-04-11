@@ -16,7 +16,7 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        DataManager.Instance.playerItems.Add(item);
+        DataManager.Instance.playerData.playerItems.Add(item);
         GameObject cloneSlot = Instantiate(slotPrefab, slotParent);
         cloneSlot.GetComponent<ItemSlot>().item = item;
         cloneSlot.GetComponent<ItemSlot>().ItemIcon.sprite = item.itemImage;
@@ -37,10 +37,10 @@ public class Inventory : MonoBehaviour
 
     public void deleteItem(Item item)
     {
-        Destroy(slotGameObjects[DataManager.Instance.playerItems.IndexOf(item)]);
-        slotGameObjects.RemoveAt(DataManager.Instance.playerItems.IndexOf(item));
-        slots.RemoveAt(DataManager.Instance.playerItems.IndexOf(item));
-        DataManager.Instance.playerItems.Remove(item);
+        Destroy(slotGameObjects[DataManager.Instance.playerData.playerItems.IndexOf(item)]);
+        slotGameObjects.RemoveAt(DataManager.Instance.playerData.playerItems.IndexOf(item));
+        slots.RemoveAt(DataManager.Instance.playerData.playerItems.IndexOf(item));
+        DataManager.Instance.playerData.playerItems.Remove(item);
     }
 
     //아이템 초기화

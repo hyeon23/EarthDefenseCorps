@@ -60,9 +60,9 @@ public class PlayerTrigger : MonoBehaviour
     {
         GameManager.Instance.combo = 0;
 
-        if(DataManager.Instance.curHp > 0)
+        if(DataManager.Instance.playerData.curHp > 0)
         {
-            DataManager.Instance.curHp -= damage;
+            DataManager.Instance.playerData.curHp -= damage;
         }
         
         PlayerController.Instance.GetComponent<SpriteRenderer>().color = Color.red;

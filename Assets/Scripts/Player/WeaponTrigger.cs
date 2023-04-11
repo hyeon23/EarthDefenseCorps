@@ -7,7 +7,7 @@ public class WeaponTrigger : MonoBehaviour
         if (collision.tag == "BlockTrigger" || collision.tag == "BlockBullet" || collision.tag == "AlienTrigger")
         {
             GameManager.Instance.combo += 1;
-            DataManager.Instance.curSpecialMoveGage = (DataManager.Instance.curSpecialMoveGage >= DataManager.Instance.PlayerSpecialMoveGage) ? DataManager.Instance.PlayerSpecialMoveGage : DataManager.Instance.curSpecialMoveGage + 0.1f * Mathf.Clamp(GameManager.Instance.combo, 0, 50);
+            DataManager.Instance.playerData.curSpecialMoveGage = (DataManager.Instance.playerData.curSpecialMoveGage >= DataManager.Instance.playerData.PlayerSpecialMoveGage) ? DataManager.Instance.playerData.PlayerSpecialMoveGage : DataManager.Instance.playerData.curSpecialMoveGage + 0.1f * Mathf.Clamp(GameManager.Instance.combo, 0, 50);
             SoundManager.Instance.SFXPlay(SoundManager.SFX.EnemyHit);
             StopAllCoroutines();
             StartCoroutine(InGameTextViewer.Instance.FadeInOutText());

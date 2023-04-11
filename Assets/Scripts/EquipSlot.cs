@@ -27,10 +27,10 @@ public class EquipSlot : MonoBehaviour
         switch (equipSlotPart)
         {
             case EquipSlotPart.Weapon:
-                if (DataManager.Instance.CurEquippedWeapon != null)
+                if (DataManager.Instance.playerData.CurEquippedWeapon != null)
                 {
                    gameObject.GetComponent<Button>().interactable = true;
-                    item = DataManager.Instance.CurEquippedWeapon;
+                    item = DataManager.Instance.playerData.CurEquippedWeapon;
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 1;
                     
@@ -51,10 +51,10 @@ public class EquipSlot : MonoBehaviour
                 }
                 break;
             case EquipSlotPart.Gloves:
-                if (DataManager.Instance.CurEquippedGloves != null)
+                if (DataManager.Instance.playerData.CurEquippedGloves != null)
                 {
                     gameObject.GetComponent<Button>().interactable = true;
-                    item = DataManager.Instance.CurEquippedGloves;
+                    item = DataManager.Instance.playerData.CurEquippedGloves;
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 1;
                     ItemIcon.color = tempColor;
@@ -74,10 +74,10 @@ public class EquipSlot : MonoBehaviour
                 }
                 break;
             case EquipSlotPart.Shoes:
-                if (DataManager.Instance.CurEquippedShoes != null)
+                if (DataManager.Instance.playerData.CurEquippedShoes != null)
                 {
                     gameObject.GetComponent<Button>().interactable = true;
-                    item = DataManager.Instance.CurEquippedShoes;
+                    item = DataManager.Instance.playerData.CurEquippedShoes;
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 1;
                     ItemIcon.color = tempColor;
@@ -97,10 +97,10 @@ public class EquipSlot : MonoBehaviour
                 }
                 break;
             case EquipSlotPart.Sheld:
-                if (DataManager.Instance.CurEquippedSheld != null)
+                if (DataManager.Instance.playerData.CurEquippedSheld != null)
                 {
                     gameObject.GetComponent<Button>().interactable = true;
-                    item = DataManager.Instance.CurEquippedSheld;
+                    item = DataManager.Instance.playerData.CurEquippedSheld;
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 1;
                     ItemIcon.color = tempColor;
@@ -120,10 +120,10 @@ public class EquipSlot : MonoBehaviour
                 }
                 break;
             case EquipSlotPart.Helmat:
-                if (DataManager.Instance.CurEquippedHelmat != null)
+                if (DataManager.Instance.playerData.CurEquippedHelmat != null)
                 {
                     gameObject.GetComponent<Button>().interactable = true;
-                    item = DataManager.Instance.CurEquippedHelmat;
+                    item = DataManager.Instance.playerData.CurEquippedHelmat;
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 1;
                     ItemIcon.color = tempColor;
@@ -143,10 +143,10 @@ public class EquipSlot : MonoBehaviour
                 }
                 break;
             case EquipSlotPart.Armor:
-                if (DataManager.Instance.CurEquippedArmor != null)
+                if (DataManager.Instance.playerData.CurEquippedArmor != null)
                 {
                     gameObject.GetComponent<Button>().interactable = true;
-                    item = DataManager.Instance.CurEquippedArmor;
+                    item = DataManager.Instance.playerData.CurEquippedArmor;
                     Color tempColor = ItemIcon.color;
                     tempColor.a = 1;
                     ItemIcon.color = tempColor;

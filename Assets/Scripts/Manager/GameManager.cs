@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         InGameTextViewer.Instance.GameOver();
         SoundManager.Instance.bgmPlayer.Stop();
         SoundManager.Instance.SFXPlay(SoundManager.SFX.GameOver);
-        DataManager.Instance.PlayerGold += gold;
+        DataManager.Instance.playerData.PlayerGold += gold;
 
         //SAVE
 
@@ -98,10 +98,10 @@ public class GameManager : MonoBehaviour
     public void StageClear()
     {
         InGameTextViewer.Instance.StageClear();
-        DataManager.Instance.PlayerGold += gold;
+        DataManager.Instance.playerData.PlayerGold += gold;
         SoundManager.Instance.SFXPlay(SoundManager.SFX.GameClear);
         //SAVE
-        DataManager.Instance.isStageClear[DataManager.Instance.curStage - 1] = true;
+        DataManager.Instance.playerData.isStageClear[DataManager.Instance.playerData.curStage - 1] = true;
     }
 
     public void GoToMenu()

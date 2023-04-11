@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDead)
         {
-            if (DataManager.Instance.curHp <= 0){
+            if (DataManager.Instance.playerData.curHp <= 0){
                 isDead= true;
                 ChangeState(PlayerState.Dead);
                 GameManager.Instance.GameOver();
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
 
                 if (!isSheld)
                 {
-                    DataManager.Instance.curSheldGage = DataManager.Instance.curSheldGage >= DataManager.Instance.PlayerShledGage ? DataManager.Instance.PlayerShledGage : DataManager.Instance.curSheldGage + 0.3f;
+                    DataManager.Instance.playerData.curSheldGage = DataManager.Instance.playerData.curSheldGage >= DataManager.Instance.playerData.PlayerShledGage ? DataManager.Instance.playerData.PlayerShledGage : DataManager.Instance.playerData.curSheldGage + 0.3f;
                 }
             }
         }
@@ -141,9 +141,9 @@ public class PlayerController : MonoBehaviour
                         if (isJump || isSpecial)
                         {
                             //Special Move
-                            if (DataManager.Instance.curSpecialMoveGage < DataManager.Instance.playerSpecialMoveGage) { return; }
+                            if (DataManager.Instance.playerData.curSpecialMoveGage < DataManager.Instance.playerData.playerSpecialMoveGage) { return; }
 
-                            DataManager.Instance.curSpecialMoveGage -= 100f;
+                            DataManager.Instance.playerData.curSpecialMoveGage -= 100f;
                             
                             ChangeState(PlayerState.SpecialMove);
                         }
@@ -162,9 +162,9 @@ public class PlayerController : MonoBehaviour
                         //Sheld
                         if (!isSheld)
                         {
-                            if (DataManager.Instance.curSheldGage < 35f) { return; }
+                            if (DataManager.Instance.playerData.curSheldGage < 35f) { return; }
 
-                            DataManager.Instance.curSheldGage -= 35f;
+                            DataManager.Instance.playerData.curSheldGage -= 35f;
                             timer = 0;
                             anime.ResetTrigger("onSheld");
                             ChangeState(PlayerState.Sheld);

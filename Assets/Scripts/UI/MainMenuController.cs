@@ -153,26 +153,26 @@ public class MainMenuController : MonoBehaviour
 
         TabClick(1);
         minStageNum = 1;
-        maxStageNum = DataManager.Instance.isStageClear.Length;
-        curSelectStage = DataManager.Instance.curStage;
+        maxStageNum = DataManager.Instance.playerData.isStageClear.Length;
+        curSelectStage = DataManager.Instance.playerData.curStage;
 
         FPSTMP.text = $"{Application.targetFrameRate}Hz";
 
-        playerZamText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerZam);
-        playerGoldText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerGold);
+        playerZamText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerZam);
+        playerGoldText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerGold);
 
         StartCoroutine(StageChange());
 
-        for (int j = 0; j < DataManager.Instance.playerItems.Count; j++)
+        for (int j = 0; j < DataManager.Instance.playerData.playerItems.Count; j++)
         {
-            inventory.InitItem(DataManager.Instance.playerItems[j]);
+            inventory.InitItem(DataManager.Instance.playerData.playerItems[j]);
         }
     }
 
     void Update()
     {
-        playerHPText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerHP);
-        playerATKText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerATK);
+        playerHPText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerHP);
+        playerATKText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerATK);
 
         if (isStageChanging)
         {
@@ -223,9 +223,8 @@ public class MainMenuController : MonoBehaviour
             BtnImageRect[i].transform.GetChild(0).gameObject.SetActive(textActive);
         }
 
-        if (DataManager.Instance.curFrameIndex == 2)
+        if (DataManager.Instance.playerData.curFrameIndex == 2)
         {
-            Debug.Log("RightNo");
             FrameSelectRightButton.interactable = false;
         }
         else
@@ -233,9 +232,8 @@ public class MainMenuController : MonoBehaviour
             FrameSelectRightButton.interactable = true;
         }
 
-        if (DataManager.Instance.curFrameIndex == 0)
+        if (DataManager.Instance.playerData.curFrameIndex == 0)
         {
-            Debug.Log("LeftNo");
             FrameSelectLeftButton.interactable = false;
         }
         else
@@ -261,11 +259,11 @@ public class MainMenuController : MonoBehaviour
 
         DataManager.Instance.GameStartDataUpdate();
 
-        switch (DataManager.Instance.curStage)
+        switch (DataManager.Instance.playerData.curStage)
         {
             case 1:
                 //씬이동
-                SceneManager.LoadScene("GameSceneStage" + DataManager.Instance.curStage);
+                SceneManager.LoadScene("GameSceneStage" + DataManager.Instance.playerData.curStage);
                 break;
             case 2:
                 TriggerPopUp("Comming Soon...");
@@ -281,7 +279,7 @@ public class MainMenuController : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        int curStage = DataManager.Instance.curStage;
+        int curStage = DataManager.Instance.playerData.curStage;
         stageNameTMP.text = stageNames[curStage - 1];
         stageNumberTMP.text = "S T A G E " + curStage;
         stageNameTMP.color = stageSymbolicColors[curStage - 1];
@@ -307,7 +305,7 @@ public class MainMenuController : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        curSelectStage = DataManager.Instance.curStage;
+        curSelectStage = DataManager.Instance.playerData.curStage;
         StagePlanetPanel.SetActive(false);
         StagePlanetButton.enabled = false;
         StageSelectionPanel.SetActive(true);
@@ -318,7 +316,7 @@ public class MainMenuController : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        DataManager.Instance.curStage = curSelectStage;
+        DataManager.Instance.playerData.curStage = curSelectStage;
         ClearStageSelected(curSelectStage);
     }
 
@@ -379,7 +377,7 @@ public class MainMenuController : MonoBehaviour
                 break; 
             case 2:
             case 3:
-                if (DataManager.Instance.isStageClear[curSelectStage - 2])
+                if (DataManager.Instance.playerData.isStageClear[curSelectStage - 2])
                 {
                     ClearStageSelected(curSelectStage);
 
@@ -410,7 +408,7 @@ public class MainMenuController : MonoBehaviour
     {
         StageLockedButton.gameObject.SetActive(false);
 
-        if (curSelectStage == DataManager.Instance.curStage)
+        if (curSelectStage == DataManager.Instance.playerData.curStage)
         {
             StageSelectedButton.gameObject.SetActive(true);
             StageSelectButton.gameObject.SetActive(false);
@@ -476,47 +474,47 @@ public class MainMenuController : MonoBehaviour
 
         switch (curSelectedItem.itemPart)
         {
-            case Item.ItemPart.Weapon:
-                if (DataManager.Instance.CurEquippedWeapon != null)
-                    DataManager.Instance.CurEquippedWeapon.isEquipped = false;
+            case ItemPart.Weapon:
+                if (DataManager.Instance.playerData.CurEquippedWeapon != null)
+                    DataManager.Instance.playerData.CurEquippedWeapon.isEquipped = false;
                 curSelectedItem.isEquipped = true;
 
-                DataManager.Instance.CurEquippedWeapon = curSelectedItem;
+                DataManager.Instance.playerData.CurEquippedWeapon = curSelectedItem;
                 break;
-            case Item.ItemPart.Gloves:
-                if (DataManager.Instance.CurEquippedGloves != null)
-                    DataManager.Instance.CurEquippedGloves.isEquipped = false;
+            case ItemPart.Gloves:
+                if (DataManager.Instance.playerData.CurEquippedGloves != null)
+                    DataManager.Instance.playerData.CurEquippedGloves.isEquipped = false;
                 curSelectedItem.isEquipped = true;
 
-                DataManager.Instance.CurEquippedGloves = curSelectedItem;
+                DataManager.Instance.playerData.CurEquippedGloves = curSelectedItem;
                 break;
-            case Item.ItemPart.Shoes:
-                if (DataManager.Instance.CurEquippedShoes != null)
-                    DataManager.Instance.CurEquippedShoes.isEquipped = false;
+            case ItemPart.Shoes:
+                if (DataManager.Instance.playerData.CurEquippedShoes != null)
+                    DataManager.Instance.playerData.CurEquippedShoes.isEquipped = false;
                 curSelectedItem.isEquipped = true;
 
-                DataManager.Instance.CurEquippedShoes = curSelectedItem;
+                DataManager.Instance.playerData.CurEquippedShoes = curSelectedItem;
                 break;
-            case Item.ItemPart.Sheld:
-                if (DataManager.Instance.CurEquippedSheld != null)
-                    DataManager.Instance.CurEquippedSheld.isEquipped = false;
+            case ItemPart.Sheld:
+                if (DataManager.Instance.playerData.CurEquippedSheld != null)
+                    DataManager.Instance.playerData.CurEquippedSheld.isEquipped = false;
                 curSelectedItem.isEquipped = true;
 
-                DataManager.Instance.CurEquippedSheld = curSelectedItem;
+                DataManager.Instance.playerData.CurEquippedSheld = curSelectedItem;
                 break;
-            case Item.ItemPart.Helmat:
-                if (DataManager.Instance.CurEquippedHelmat != null)
-                    DataManager.Instance.CurEquippedHelmat.isEquipped = false;
+            case ItemPart.Helmat:
+                if (DataManager.Instance.playerData.CurEquippedHelmat != null)
+                    DataManager.Instance.playerData.CurEquippedHelmat.isEquipped = false;
                 curSelectedItem.isEquipped = true;
 
-                DataManager.Instance.CurEquippedHelmat = curSelectedItem;
+                DataManager.Instance.playerData.CurEquippedHelmat = curSelectedItem;
                 break;
-            case Item.ItemPart.Armor:
-                if (DataManager.Instance.CurEquippedArmor != null)
-                    DataManager.Instance.CurEquippedArmor.isEquipped = false;
+            case ItemPart.Armor:
+                if (DataManager.Instance.playerData.CurEquippedArmor != null)
+                    DataManager.Instance.playerData.CurEquippedArmor.isEquipped = false;
                 curSelectedItem.isEquipped = true;
 
-                DataManager.Instance.CurEquippedArmor = curSelectedItem;
+                DataManager.Instance.playerData.CurEquippedArmor = curSelectedItem;
                 break;
         }
 
@@ -538,23 +536,23 @@ public class MainMenuController : MonoBehaviour
 
         switch (curSelectedItem.itemPart)
         {
-            case Item.ItemPart.Weapon:
-                DataManager.Instance.CurEquippedWeapon = null;
+            case ItemPart.Weapon:
+                DataManager.Instance.playerData.CurEquippedWeapon = null;
                 break;
-            case Item.ItemPart.Gloves:
-                DataManager.Instance.CurEquippedGloves = null;
+            case ItemPart.Gloves:
+                DataManager.Instance.playerData.CurEquippedGloves = null;
                 break;
-            case Item.ItemPart.Shoes:
-                DataManager.Instance.CurEquippedShoes = null;
+            case ItemPart.Shoes:
+                DataManager.Instance.playerData.CurEquippedShoes = null;
                 break;
-            case Item.ItemPart.Sheld:
-                DataManager.Instance.CurEquippedSheld = null;
+            case ItemPart.Sheld:
+                DataManager.Instance.playerData.CurEquippedSheld = null;
                 break;
-            case Item.ItemPart.Helmat:
-                DataManager.Instance.CurEquippedHelmat = null;
+            case ItemPart.Helmat:
+                DataManager.Instance.playerData.CurEquippedHelmat = null;
                 break;
-            case Item.ItemPart.Armor:
-                DataManager.Instance.CurEquippedArmor = null;
+            case ItemPart.Armor:
+                DataManager.Instance.playerData.CurEquippedArmor = null;
                 break;
         }
 
@@ -572,7 +570,7 @@ public class MainMenuController : MonoBehaviour
             return;
         }
 
-        if (DataManager.Instance.PlayerGold < curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)
+        if (DataManager.Instance.playerData.PlayerGold < curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)
         {
             TriggerPopUp("골드가 부족합니다.");
             return;
@@ -580,9 +578,9 @@ public class MainMenuController : MonoBehaviour
 
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Upgrade);
 
-        StartCoroutine(Count(playerGoldText, DataManager.Instance.PlayerGold, DataManager.Instance.PlayerGold - curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost));
+        StartCoroutine(Count(playerGoldText, DataManager.Instance.playerData.PlayerGold, DataManager.Instance.playerData.PlayerGold - curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost));
 
-        DataManager.Instance.PlayerGold -= curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost;
+        DataManager.Instance.playerData.PlayerGold -= curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost;
 
         curSelectedItem.itemCurLevel++;
 
@@ -637,19 +635,19 @@ public class MainMenuController : MonoBehaviour
 
         switch (_item.itemPart)
         {
-            case Item.ItemPart.Weapon:
-            case Item.ItemPart.Gloves:
-            case Item.ItemPart.Shoes:
+            case ItemPart.Weapon:
+            case ItemPart.Gloves:
+            case ItemPart.Shoes:
                 statTMP.text = "ATK";
                 equipStatTMP.text = MoneyUnitString.GetThousandCommaText(_item.itemATK + (int)_item.itemGrade * _item.itemCurLevel);
                 break;
-            case Item.ItemPart.Sheld:
-            case Item.ItemPart.Armor:
-            case Item.ItemPart.Helmat:
+            case ItemPart.Sheld:
+            case ItemPart.Armor:
+            case ItemPart.Helmat:
                 statTMP.text = "HP";
                 equipStatTMP.text = MoneyUnitString.GetThousandCommaText(_item.itemHP + (int)_item.itemGrade * _item.itemCurLevel);
                 break;
-            case Item.ItemPart.Count:
+            case ItemPart.Count:
                 break;
             default:
                 break;
@@ -661,11 +659,11 @@ public class MainMenuController : MonoBehaviour
 
         if (_item.itemCurLevel == _item.itemMaxLevel)
         {
-            equipUpgradeCostTMP.text = $"{MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerGold)} / -";
+            equipUpgradeCostTMP.text = $"{MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerGold)} / -";
         }
         else
         {
-            equipUpgradeCostTMP.text = $"{MoneyUnitString.GetThousandCommaText(DataManager.Instance.PlayerGold)} / {MoneyUnitString.GetThousandCommaText(curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)}";
+            equipUpgradeCostTMP.text = $"{MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerGold)} / {MoneyUnitString.GetThousandCommaText(curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)}";
         }
 
 
@@ -679,19 +677,19 @@ public class MainMenuController : MonoBehaviour
 
         switch (_item.itemGrade)
         {
-            case Item.ItemGrade.Normal:
+            case ItemGrade.Normal:
                 retColor = new Color(0.75f, 0.75f, 0.75f, 1f);
                 break;
-            case Item.ItemGrade.Rare:
+            case ItemGrade.Rare:
                 retColor = new Color(0, 0.5f, 1f, 1f);
                 break;
-            case Item.ItemGrade.Epic:
+            case ItemGrade.Epic:
                 retColor = new Color(0.65f, 0f, 1f, 1f);
                 break;
-            case Item.ItemGrade.Unique:
+            case ItemGrade.Unique:
                 retColor = Color.yellow;
                 break;
-            case Item.ItemGrade.Legendary:
+            case ItemGrade.Legendary:
                 retColor = Color.red;
                 break;
             default:
@@ -706,7 +704,7 @@ public class MainMenuController : MonoBehaviour
     {
         int goldNumber = 0;
         
-        if (zamPrice > DataManager.Instance.PlayerZam)
+        if (zamPrice > DataManager.Instance.playerData.PlayerZam)
         {
             TriggerPopUp("젬이 부족합니다.");
             return;
@@ -749,26 +747,26 @@ public class MainMenuController : MonoBehaviour
 
     public void PlusGold(int goldNumber)
     {
-        StartCoroutine(Count(playerGoldText, DataManager.Instance.PlayerGold, DataManager.Instance.PlayerGold + goldNumber));
-        DataManager.Instance.PlayerGold += goldNumber;
+        StartCoroutine(Count(playerGoldText, DataManager.Instance.playerData.PlayerGold, DataManager.Instance.playerData.PlayerGold + goldNumber));
+        DataManager.Instance.playerData.PlayerGold += goldNumber;
     }
 
     public void MinusGold(int goldNumber)
     {
-        StartCoroutine(Count(playerZamText, DataManager.Instance.PlayerZam, DataManager.Instance.PlayerZam - goldNumber));
-        DataManager.Instance.playerZam -= goldNumber;
+        StartCoroutine(Count(playerZamText, DataManager.Instance.playerData.PlayerZam, DataManager.Instance.playerData.PlayerZam - goldNumber));
+        DataManager.Instance.playerData.playerZam -= goldNumber;
     }
 
     public void PlusZam(int zamNumber)
     {
-        StartCoroutine(Count(playerZamText, DataManager.Instance.PlayerZam, DataManager.Instance.PlayerZam + zamNumber));
-        DataManager.Instance.playerZam += zamNumber;
+        StartCoroutine(Count(playerZamText, DataManager.Instance.playerData.PlayerZam, DataManager.Instance.playerData.PlayerZam + zamNumber));
+        DataManager.Instance.playerData.playerZam += zamNumber;
     }
 
     public void SubtractZam(int zamPrice)
     {
-        StartCoroutine(Count(playerZamText, DataManager.Instance.PlayerZam, DataManager.Instance.PlayerZam - zamPrice));
-        DataManager.Instance.playerZam -= zamPrice;
+        StartCoroutine(Count(playerZamText, DataManager.Instance.playerData.PlayerZam, DataManager.Instance.playerData.PlayerZam - zamPrice));
+        DataManager.Instance.playerData.playerZam -= zamPrice;
     }
 
     //가중치 랜덤 가챠
@@ -780,7 +778,7 @@ public class MainMenuController : MonoBehaviour
         int weight = 0;
         int selectNum = 0;
         List<Item> gachaList = new List<Item>();
-        if (zamPrice > DataManager.Instance.PlayerZam)
+        if (zamPrice > DataManager.Instance.playerData.PlayerZam)
         {
             TriggerPopUp("젬이 부족합니다.");
             return;
@@ -789,9 +787,9 @@ public class MainMenuController : MonoBehaviour
         //가차리스트 생성 및 초기화
         for (int i = 0; i < DataManager.Instance.items.Count; i++)
         {
-            Item.ItemGrade curItemGrade = DataManager.Instance.items[i].itemGrade;
+            ItemGrade curItemGrade = DataManager.Instance.items[i].itemGrade;
 
-            if (curItemGrade == Item.ItemGrade.Normal || curItemGrade == Item.ItemGrade.Rare || curItemGrade == Item.ItemGrade.Epic)
+            if (curItemGrade == ItemGrade.Normal || curItemGrade == ItemGrade.Rare || curItemGrade == ItemGrade.Epic)
             {
                 gachaList.Add(DataManager.Instance.items[i]);
                 total += DataManager.Instance.items[i].itemDrawingWeight;
@@ -831,7 +829,7 @@ public class MainMenuController : MonoBehaviour
         List<Item> gachaList = new List<Item>();
         List<Item> SelectedItemList = new List<Item>();
 
-        if (zamPrice > DataManager.Instance.PlayerZam)
+        if (zamPrice > DataManager.Instance.playerData.PlayerZam)
         {
             TriggerPopUp("젬이 부족합니다.");
             return;
@@ -840,9 +838,9 @@ public class MainMenuController : MonoBehaviour
         //가차리스트 생성 및 초기화
         for (int i = 0; i < DataManager.Instance.items.Count; i++)
         {
-            Item.ItemGrade curItemGrade = DataManager.Instance.items[i].itemGrade;
+            ItemGrade curItemGrade = DataManager.Instance.items[i].itemGrade;
 
-            if (curItemGrade == Item.ItemGrade.Normal || curItemGrade == Item.ItemGrade.Rare || curItemGrade == Item.ItemGrade.Epic)
+            if (curItemGrade == ItemGrade.Normal || curItemGrade == ItemGrade.Rare || curItemGrade == ItemGrade.Epic)
             {
                 gachaList.Add(DataManager.Instance.items[i]);
                 total += DataManager.Instance.items[i].itemDrawingWeight;
@@ -881,7 +879,7 @@ public class MainMenuController : MonoBehaviour
         int weight = 0;
         int selectNum = 0;
 
-        if (zamPrice > DataManager.Instance.PlayerZam)
+        if (zamPrice > DataManager.Instance.playerData.PlayerZam)
         {
             TriggerPopUp("젬이 부족합니다.");
             return;
@@ -897,8 +895,6 @@ public class MainMenuController : MonoBehaviour
 
         for (int i = 0; i < DataManager.Instance.items.Count; i++)
         {
-            Debug.Log(DataManager.Instance.items[i].itemDrawingWeight);
-
             weight += DataManager.Instance.items[i].itemDrawingWeight;
 
             if (selectNum <= weight)
@@ -923,7 +919,7 @@ public class MainMenuController : MonoBehaviour
         int selectNum = 0;
         List<Item> SelectedItemList = new List<Item>();
 
-        if (zamPrice > DataManager.Instance.PlayerZam)
+        if (zamPrice > DataManager.Instance.playerData.PlayerZam)
         {
             TriggerPopUp("젬이 부족합니다.");
             return;
@@ -1018,19 +1014,19 @@ public class MainMenuController : MonoBehaviour
     {
         switch (_item.itemGrade)
         {
-            case Item.ItemGrade.Normal:
+            case ItemGrade.Normal:
                 SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemNormal);
                 break;
-            case Item.ItemGrade.Rare:
+            case ItemGrade.Rare:
                 SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemRare);
                 break;
-            case Item.ItemGrade.Epic:
+            case ItemGrade.Epic:
                 SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemEpic);
                 break;
-            case Item.ItemGrade.Unique:
+            case ItemGrade.Unique:
                 SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemUnique);
                 break;
-            case Item.ItemGrade.Legendary:
+            case ItemGrade.Legendary:
                 SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemLegendary);
                 break;
         }
@@ -1040,15 +1036,15 @@ public class MainMenuController : MonoBehaviour
     {
         switch (_item.itemGrade)
         {
-            case Item.ItemGrade.Normal:
+            case ItemGrade.Normal:
                 return 0.3f;
-            case Item.ItemGrade.Rare:
+            case ItemGrade.Rare:
                 return 0.3f;
-            case Item.ItemGrade.Epic:
+            case ItemGrade.Epic:
                 return 0.5f;
-            case Item.ItemGrade.Unique:
+            case ItemGrade.Unique:
                 return 0.75f;
-            case Item.ItemGrade.Legendary:
+            case ItemGrade.Legendary:
                 return 1f;
             default:
                 return 1f;
@@ -1082,20 +1078,20 @@ public class MainMenuController : MonoBehaviour
 
     public void OnClickFPSPriorButton()
     {
-        DataManager.Instance.curFrameIndex = DataManager.Instance.curFrameIndex - 1;
+        DataManager.Instance.playerData.curFrameIndex = DataManager.Instance.playerData.curFrameIndex - 1;
 
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        Application.targetFrameRate = DataManager.Instance.Frames[DataManager.Instance.curFrameIndex];
+        Application.targetFrameRate = DataManager.Instance.playerData.Frames[DataManager.Instance.playerData.curFrameIndex];
     }
 
     public void OnClickFPSNextButton()
     {
-        DataManager.Instance.curFrameIndex = DataManager.Instance.curFrameIndex + 1;
+        DataManager.Instance.playerData.curFrameIndex = DataManager.Instance.playerData.curFrameIndex + 1;
 
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        Application.targetFrameRate = DataManager.Instance.Frames[DataManager.Instance.curFrameIndex];
+        Application.targetFrameRate = DataManager.Instance.playerData.Frames[DataManager.Instance.playerData.curFrameIndex];
     }
 
 
@@ -1104,11 +1100,11 @@ public class MainMenuController : MonoBehaviour
     {
         if (BGMToggle.isOn)
         {
-            DataManager.Instance.isBGMOn = true;
+            DataManager.Instance.playerData.isBGMOn = true;
         }
         else
         {
-            DataManager.Instance.isBGMOn = false;
+            DataManager.Instance.playerData.isBGMOn = false;
         }
 
         BGMTMPOnOff();
@@ -1119,11 +1115,11 @@ public class MainMenuController : MonoBehaviour
     {
         if (SFXToggle.isOn)
         {
-            DataManager.Instance.isSFXOn = true;
+            DataManager.Instance.playerData.isSFXOn = true;
         }
         else
         {
-            DataManager.Instance.isSFXOn = false;
+            DataManager.Instance.playerData.isSFXOn = false;
         }
         
         SFXTMPOnOff();
@@ -1133,7 +1129,7 @@ public class MainMenuController : MonoBehaviour
 
     public void BGMSFXInit()
     {
-        if (DataManager.Instance.isBGMOn)
+        if (DataManager.Instance.playerData.isBGMOn)
         {
             BGMToggle.isOn = true;
         }
@@ -1142,7 +1138,7 @@ public class MainMenuController : MonoBehaviour
             BGMToggle.isOn = false;
         }
 
-        if (DataManager.Instance.isSFXOn)
+        if (DataManager.Instance.playerData.isSFXOn)
         {
             SFXToggle.isOn = true;
         }

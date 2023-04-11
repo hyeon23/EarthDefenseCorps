@@ -92,9 +92,9 @@ public class SoundManager : MonoBehaviour
 
     public void BGMMuteOnOff()
     {
-        bgmPlayer.mute = !DataManager.Instance.isBGMOn;
+        bgmPlayer.mute = !DataManager.Instance.playerData.isBGMOn;
 
-        if (DataManager.Instance.isBGMOn)
+        if (DataManager.Instance.playerData.isBGMOn)
         {
             bgmPlayer.UnPause();
         }
@@ -108,7 +108,7 @@ public class SoundManager : MonoBehaviour
     {
         for (int i = 0; i < sfxPlayer.Length; i++)
         {
-            sfxPlayer[i].mute = !DataManager.Instance.isSFXOn;
+            sfxPlayer[i].mute = !DataManager.Instance.playerData.isSFXOn;
         }
     }
 
