@@ -66,6 +66,7 @@ public class SoundManager : MonoBehaviour
         AlienBossTakingDown,
         GameOver,
         GameClear,
+        Landing
     }
 
     int sfxCursor;
@@ -232,6 +233,9 @@ public class SoundManager : MonoBehaviour
                         break;
                     case SFX.Button:
                         sfxPlayer[sfxCursor].clip = sfxClip[36];
+                        break;
+                    case SFX.Landing:
+                        sfxPlayer[sfxCursor].clip = sfxClip[37];
                         break;
                 }
                 break;
