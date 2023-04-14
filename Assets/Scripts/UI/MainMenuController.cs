@@ -1,13 +1,10 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using System.Security.Policy;
 using System.Text;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class MainMenuController : MonoBehaviour
 {

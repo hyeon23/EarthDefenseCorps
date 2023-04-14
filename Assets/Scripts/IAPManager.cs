@@ -6,19 +6,19 @@ using UnityEngine.Purchasing;
 public class IAPManager : MonoBehaviour
 {
     //zams
-    private string zam300 = "com.donghyeonkang.earthdefensecorps.zam300";
+    private string zam300 = "com.devurim.earthdefensecorps.zam300";
 
     //zams
-    private string zam1000 = "com.donghyeonkang.earthdefensecorps.zam1000";
+    private string zam1000 = "com.devurim.earthdefensecorps.zam1000";
 
     //zams
-    private string zam3000 = "com.donghyeonkang.earthdefensecorps.zam3000";
+    private string zam3000 = "com.devurim.earthdefensecorps.zam3000";
 
     //zams
-    private string zam10000 = "com.donghyeonkang.earthdefensecorps.zam10000";
+    private string zam10000 = "com.devurim.earthdefensecorps.zam10000";
 
     //SkipAds
-    private string removeAds = "com.donghyeonkang.earthdefensecorps.removeads";
+    private string removeAds = "com.devurim.earthdefensecorps.removeads";
 
     public void OnPurchaseComplete(Product product)
     {
