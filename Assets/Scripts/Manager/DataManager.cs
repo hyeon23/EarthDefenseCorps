@@ -35,6 +35,9 @@ public class PlayerData
     public int[] Frames;
     public int curFrameIndex;
 
+    public DateTime? supplyItemCoolTime = null;
+    public DateTime? supplyZamCoolTime = null;
+
     //Player Item
     public List<Item> playerItems = new List<Item>();
 

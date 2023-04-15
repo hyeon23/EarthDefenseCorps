@@ -117,6 +117,17 @@ public class MainMenuController : MonoBehaviour
     public Button FrameSelectLeftButton;
     public Button FrameSelectRightButton;
 
+    [Header("Ads")]
+    public GameObject adsManager;
+
+    public Button supplyButton1;
+    public GameObject supplyItemAdsGroup;
+    public GameObject supplyItemTimerGroup;
+
+    public Button supplyButton2;
+    public GameObject supplyZamAdsGroup;
+    public GameObject supplyZamTimerGroup;
+
     public static MainMenuController Instance
     {
         get
@@ -239,11 +250,19 @@ public class MainMenuController : MonoBehaviour
         }
 
         FPSTMP.text = $"{Application.targetFrameRate}Hz";
+
+        if ((DateTime.Now - DataManager.Instance.playerData.supplyItemCoolTime)?.Days > 24)
+        {
+
+        }
     }
 
 
     public void TabClick(int n)
     {
+        if(targetIndex == n)
+            adsManager.GetComponent<InterstitialAds>().ShowAd();
+
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
         targetIndex = n;
@@ -748,24 +767,29 @@ public class MainMenuController : MonoBehaviour
         switch (ZamNumber)
         {
             case 300:
-                if (!GoldAttracters[0].isStopped)
+                if (!ZamAttracters[0].isStopped)
                     return;
                 ZamAttracters[0].Play();
                 break;
             case 1000:
-                if (!GoldAttracters[1].isStopped)
+                if (!ZamAttracters[1].isStopped)
                     return;
                 ZamAttracters[1].Play();
                 break;
             case 3000:
-                if (!GoldAttracters[2].isStopped)
+                if (!ZamAttracters[2].isStopped)
                     return;
                 ZamAttracters[2].Play();
                 break;
             case 10000:
-                if (!GoldAttracters[3].isStopped)
+                if (!ZamAttracters[3].isStopped)
                     return;
                 ZamAttracters[3].Play();
+                break;
+            case 100:
+                if (!ZamAttracters[4].isStopped)
+                    return;
+                ZamAttracters[4].Play();
                 break;
         }
 
@@ -1206,5 +1230,17 @@ public class MainMenuController : MonoBehaviour
             SFXOnToggleTMP.enabled = false;
             SFXOffToggleTMP.enabled = true;
         }
+    }
+
+    public void SupplyItemButton()
+    {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+        NormalDrawing1RandItem(0);
+    }
+
+    public void SupplyZamButton()
+    {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+        BuyZam(100);
     }
 }
