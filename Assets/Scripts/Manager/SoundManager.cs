@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
     private static SoundManager instance = null;
 
-    public enum SMType { MainMenu, InGame }
+    public enum SMType { MainMenu, InGame, None }
 
     public static SoundManager Instance
     {
@@ -85,7 +86,8 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        bgmPlayer.Play();
+        if(smType != SMType.None)
+            bgmPlayer.Play();
 
         BGMMuteOnOff();
         SFXMuteOnOff();
@@ -239,8 +241,16 @@ public class SoundManager : MonoBehaviour
                         break;
                 }
                 break;
+            case SMType.None:
+                break;
+
         }
 
+        if (smType == SMType.None)
+        {
+            return;
+        }
+        
         if(volume != -1)
             sfxPlayer[sfxCursor].volume = volume;
         else
