@@ -5,6 +5,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Text;
 using System.Collections.Generic;
+using System;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -123,10 +124,12 @@ public class MainMenuController : MonoBehaviour
     public Button supplyButton1;
     public GameObject supplyItemAdsGroup;
     public GameObject supplyItemTimerGroup;
+    public TextMeshProUGUI supplyItemTimerTMP;
 
     public Button supplyButton2;
     public GameObject supplyZamAdsGroup;
     public GameObject supplyZamTimerGroup;
+    public TextMeshProUGUI supplyZamTimerTMP;
 
     public static MainMenuController Instance
     {
@@ -251,13 +254,43 @@ public class MainMenuController : MonoBehaviour
 
         FPSTMP.text = $"{Application.targetFrameRate}Hz";
 
-        if ((DateTime.Now - DataManager.Instance.playerData.supplyItemCoolTime)?.Days > 24)
-        {
+        Debug.Log(DataManager.Instance.playerData.supplyItemCoolTime.ToString(@"hh\:mm\:ss"));
+        Debug.Log(DataManager.Instance.playerData.supplyZamCoolTime.ToString(@"hh\:mm\:ss"));
 
+        if ((DateTime.Now - DataManager.Instance.playerData.supplyItemCoolTime).Hours >= 1)
+        {
+            supplyButton1.interactable = true;
+            supplyItemAdsGroup.SetActive(true);
+            supplyItemTimerGroup.SetActive(false);
+        }
+        else
+        {
+            supplyButton1.interactable = false;
+            supplyItemAdsGroup.SetActive(false);
+            supplyItemTimerGroup.SetActive(true);
+
+            DateTime dt = DataManager.Instance.playerData.supplyItemCoolTime.Add(new TimeSpan(1, 0, 0));
+
+            supplyItemTimerTMP.text = (dt - DateTime.Now).ToString(@"hh\:mm\:ss");
+        }
+
+        if ((DateTime.Now - DataManager.Instance.playerData.supplyZamCoolTime).Hours >= 2)
+        {
+            supplyButton2.interactable = true;
+            supplyZamAdsGroup.SetActive(true);
+            supplyZamTimerGroup.SetActive(false);
+        }
+        else
+        {
+            supplyButton2.interactable = false;
+            supplyZamAdsGroup.SetActive(false);
+            supplyZamTimerGroup.SetActive(true);
+
+            DateTime dt = DataManager.Instance.playerData.supplyZamCoolTime.Add(new TimeSpan(2, 0, 0));
+
+            supplyZamTimerTMP.text = (dt - DateTime.Now).ToString(@"hh\:mm\:ss");
         }
     }
-
-
     public void TabClick(int n)
     {
         if(targetIndex == n)
@@ -849,7 +882,7 @@ public class MainMenuController : MonoBehaviour
             }
         }
 
-        selectNum = Mathf.RoundToInt(total * Random.Range(0.0f, 1.0f));
+        selectNum = Mathf.RoundToInt(total * UnityEngine.Random.Range(0.0f, 1.0f));
 
         for (int i = 0; i < gachaList.Count; i++)
         {
@@ -903,7 +936,7 @@ public class MainMenuController : MonoBehaviour
         for (int j = 0; j < 10; j++)
         {
             weight = 0;
-            selectNum = Mathf.RoundToInt(total * Random.Range(0.0f, 1.0f));
+            selectNum = Mathf.RoundToInt(total * UnityEngine.Random.Range(0.0f, 1.0f));
 
             for (int i = 0; i < gachaList.Count; i++)
             {
@@ -944,7 +977,7 @@ public class MainMenuController : MonoBehaviour
             total += DataManager.Instance.items[i].itemDrawingWeight;
         }
 
-        selectNum = Mathf.RoundToInt(total * Random.Range(0.0f, 1.0f));
+        selectNum = Mathf.RoundToInt(total * UnityEngine.Random.Range(0.0f, 1.0f));
 
         for (int i = 0; i < DataManager.Instance.items.Count; i++)
         {
@@ -987,7 +1020,7 @@ public class MainMenuController : MonoBehaviour
         for (int j = 0; j < 10; j++)
         {
             weight = 0;
-            selectNum = Mathf.RoundToInt(total * Random.Range(0.0f, 1.0f));
+            selectNum = Mathf.RoundToInt(total * UnityEngine.Random.Range(0.0f, 1.0f));
 
             for (int i = 0; i < DataManager.Instance.items.Count; i++)
             {
@@ -1241,6 +1274,6 @@ public class MainMenuController : MonoBehaviour
     public void SupplyZamButton()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
-        BuyZam(100);
+        BuyZam(200);
     }
 }

@@ -35,8 +35,8 @@ public class PlayerData
     public int[] Frames;
     public int curFrameIndex;
 
-    public DateTime? supplyItemCoolTime = null;
-    public DateTime? supplyZamCoolTime = null;
+    public DateTime supplyZamCoolTime;
+    public DateTime supplyItemCoolTime;
 
     //Player Item
     public List<Item> playerItems = new List<Item>();
@@ -183,8 +183,12 @@ public class DataManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("CurStage", playerData.curStage);
         PlayerPrefs.SetInt("CurFrameIndex", playerData.curFrameIndex);
+
         PlayerPrefs.SetString("IsBGMOn", playerData.isBGMOn.ToString());
         PlayerPrefs.SetString("IsSFXOn", playerData.isSFXOn.ToString());
+
+        PlayerPrefs.SetString("SupplyItemCoolTime", playerData.supplyItemCoolTime.ToString());
+        PlayerPrefs.SetString("SupplyZamCoolTime", playerData.supplyZamCoolTime.ToString());
     }
 
     public void PlayerPrefsLoad()
@@ -208,6 +212,16 @@ public class DataManager : MonoBehaviour
             Boolean.TryParse(PlayerPrefs.GetString("IsSFXOn"), out playerData.isSFXOn);
         else
             playerData.isSFXOn = true;
+
+        if (PlayerPrefs.HasKey("SupplyItemCoolTime"))
+            DateTime.TryParse(PlayerPrefs.GetString("SupplyItemCoolTime"), out playerData.supplyItemCoolTime);
+        else
+            playerData.supplyItemCoolTime = new DateTime(10, 12, 01);
+
+        if (PlayerPrefs.HasKey("SupplyZamCoolTime"))
+            DateTime.TryParse(PlayerPrefs.GetString("SupplyZamCoolTime"), out playerData.supplyZamCoolTime);
+        else
+            playerData.supplyZamCoolTime = new DateTime(10, 12, 01);
     }
 
     public Sprite IDtoSprite(int _itemID)
