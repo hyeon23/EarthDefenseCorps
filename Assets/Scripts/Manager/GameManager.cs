@@ -109,13 +109,23 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
         SceneManager.LoadScene("MainMenuScene");
+        //LoadingSceneController.LoadScene("MainMenuScene");
     }
 
     public void GameRetry()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
+        if (DataManager.Instance.playerData.playerZen < 5)
+        {
+            InGameTextViewer.Instance.TriggerPopUp("Not Enough Zens");
+            return;
+        }
+
+        DataManager.Instance.playerData.PlayerZen -= 5;
+
         DataManager.Instance.GameStartDataUpdate();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //LoadingSceneController.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

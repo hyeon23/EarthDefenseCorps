@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ public class PlayerData
 
     public int playerZam;
     public int playerGold;
+    public int playerZen;
 
     public Item curEquippedWeapon = null;
     public Item curEquippedGloves = null;
@@ -38,6 +40,12 @@ public class PlayerData
     public DateTime supplyZamCoolTime;
     public DateTime supplyItemCoolTime;
 
+    public DateTime supplyZenCoolTime;
+
+    public DateTime watchAdsCoolTime;
+
+    public DateTime playerLastConnectionTime;
+
     //Player Item
     public List<Item> playerItems = new List<Item>();
 
@@ -47,6 +55,8 @@ public class PlayerData
     public float PlayerSpecialMoveGage { get => playerSpecialMoveGage; set => playerSpecialMoveGage = value; }
     public float PlayerCriticalRate { get => playerCriticalRate; set => playerCriticalRate = value; }
     public float PlayerCriticalDamage { get => playerCriticalDamage; set => playerCriticalDamage = value; }
+
+    public int PlayerZen { get => playerZen; set => playerZen = value; }
     public int PlayerZam { get => playerZam; set => playerZam = value; }
     public int PlayerGold { get => playerGold; set => playerGold = value; }
     public Item CurEquippedWeapon { get => curEquippedWeapon; set => curEquippedWeapon = value; }
@@ -112,6 +122,9 @@ public class DataManager : MonoBehaviour
 
         DataUpdate();
 
+        //PlayerPrefsDataDelete
+        //PlayerPrefs.DeleteAll();
+
         //DataLoad
         PlayerPrefsLoad();
 
@@ -128,6 +141,21 @@ public class DataManager : MonoBehaviour
             items.Add(new Item(int.Parse(ItemDB[i]["itemID"].ToString()), (ItemPart)Enum.Parse(typeof(ItemPart), ItemDB[i]["itemPart"].ToString()), (ItemGrade)Enum.Parse(typeof(ItemGrade), ItemDB[i]["itemGrade"].ToString()), bool.Parse(ItemDB[i]["isEquipped"].ToString()),
                 ItemDB[i]["itemName"].ToString(), ItemDB[i]["itemDesc"].ToString(), int.Parse(ItemDB[i]["itemATK"].ToString()), float.Parse(ItemDB[i]["itemCriticalRate"].ToString()),
                 float.Parse(ItemDB[i]["itemCriticalDamage"].ToString()), float.Parse(ItemDB[i]["itemHP"].ToString()), float.Parse(ItemDB[i]["itemSheldGager"].ToString()), float.Parse(ItemDB[i]["itemSpecialMoveGager"].ToString())));
+        }
+    }
+
+    private void Update()
+    {
+        if (playerData.playerZen < 30)
+        {
+            if ((playerData.supplyZenCoolTime - DateTime.Now).Seconds <= 0)
+            {
+                //5분이 지나면
+                playerData.playerZen += 1;
+                Debug.Log(playerData.playerZen);
+                Debug.Log(playerData.supplyZenCoolTime);
+                playerData.supplyZenCoolTime = DateTime.Now.AddSeconds(301);
+            }
         }
     }
 
@@ -181,6 +209,8 @@ public class DataManager : MonoBehaviour
 
     public void PlayerPrefsSave()
     {
+        PlayerPrefs.SetInt("PlayerZen", playerData.playerZen);
+
         PlayerPrefs.SetInt("CurStage", playerData.curStage);
         PlayerPrefs.SetInt("CurFrameIndex", playerData.curFrameIndex);
 
@@ -189,6 +219,10 @@ public class DataManager : MonoBehaviour
 
         PlayerPrefs.SetString("SupplyItemCoolTime", playerData.supplyItemCoolTime.ToString());
         PlayerPrefs.SetString("SupplyZamCoolTime", playerData.supplyZamCoolTime.ToString());
+
+        PlayerPrefs.SetString("PlayerLastConnectionTime", playerData.playerLastConnectionTime.ToString());
+
+        PlayerPrefs.SetString("WatchAdsCoolTime", playerData.watchAdsCoolTime.ToString());
     }
 
     public void PlayerPrefsLoad()
@@ -222,6 +256,28 @@ public class DataManager : MonoBehaviour
             DateTime.TryParse(PlayerPrefs.GetString("SupplyZamCoolTime"), out playerData.supplyZamCoolTime);
         else
             playerData.supplyZamCoolTime = new DateTime(10, 12, 01);
+
+        if (PlayerPrefs.HasKey("PlayerLastConnectionTime"))
+            DateTime.TryParse(PlayerPrefs.GetString("PlayerLastConnectionTime"), out playerData.playerLastConnectionTime);
+        else
+            playerData.playerLastConnectionTime = DateTime.Now;
+
+        if (PlayerPrefs.HasKey("WatchAdsCoolTime"))
+            DateTime.TryParse(PlayerPrefs.GetString("WatchAdsCoolTime"), out playerData.watchAdsCoolTime);
+        else
+            playerData.playerLastConnectionTime = DateTime.Now;
+
+        if (PlayerPrefs.HasKey("PlayerZen"))
+        {
+            int tempZen = PlayerPrefs.GetInt("PlayerZen") + (DateTime.Now - playerData.playerLastConnectionTime).Seconds / 301;
+            playerData.supplyZenCoolTime = DateTime.Now.AddSeconds((DateTime.Now - playerData.playerLastConnectionTime).Seconds % 301);
+            playerData.playerZen = tempZen >= 30 ? 30 : tempZen;
+        }
+        else
+        {
+            playerData.playerZen = 30;
+            playerData.supplyZenCoolTime = DateTime.Now.AddSeconds(301);
+        }
     }
 
     public Sprite IDtoSprite(int _itemID)
@@ -420,6 +476,8 @@ public class DataManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        playerData.playerLastConnectionTime = DateTime.Now;
+
         PlayerPrefsSave();
     }
 }

@@ -112,6 +112,10 @@ public class InGameTextViewer : MonoBehaviour
     [Header("StageClearPanel")]
     public GameObject settingsPanel;
 
+    [Header("InGame PopUp Panel")]
+    public Animator popUpAnime;
+    public TextMeshProUGUI PopUpTMP;//ÆË¾÷ TMP
+
     void Awake()
     {
         if (null == instance)
@@ -430,5 +434,12 @@ public class InGameTextViewer : MonoBehaviour
 
         settingsPanel.SetActive(false);
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+    }
+
+    public void TriggerPopUp(string msg)
+    {
+        PopUpTMP.text = msg;
+        popUpAnime.SetTrigger("doPopUp");
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.PopUP);
     }
 }

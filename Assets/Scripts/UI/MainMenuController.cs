@@ -11,6 +11,7 @@ public class MainMenuController : MonoBehaviour
 {
     
     public TextMeshProUGUI playerHPText;
+    public TextMeshProUGUI playerZenText;
     public TextMeshProUGUI playerZamText;
     public TextMeshProUGUI playerATKText;
     public TextMeshProUGUI playerGoldText;
@@ -131,6 +132,7 @@ public class MainMenuController : MonoBehaviour
     public GameObject supplyZamTimerGroup;
     public TextMeshProUGUI supplyZamTimerTMP;
 
+    public TextMeshProUGUI supplyZenTimerTMP;
     public static MainMenuController Instance
     {
         get
@@ -162,7 +164,7 @@ public class MainMenuController : MonoBehaviour
     {
         BGMSFXInit();
 
-        TabClick(1);
+        targetIndex = 1;
         minStageNum = 1;
         maxStageNum = DataManager.Instance.playerData.isStageClear.Length;
         curSelectStage = DataManager.Instance.playerData.curStage;
@@ -184,6 +186,7 @@ public class MainMenuController : MonoBehaviour
     {
         playerHPText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerHP);
         playerATKText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerATK);
+        playerZenText.text = DataManager.Instance.playerData.PlayerZen.ToString() + "/30";
 
         if (isStageChanging)
         {
@@ -254,8 +257,8 @@ public class MainMenuController : MonoBehaviour
 
         FPSTMP.text = $"{Application.targetFrameRate}Hz";
 
-        Debug.Log(DataManager.Instance.playerData.supplyItemCoolTime.ToString(@"hh\:mm\:ss"));
-        Debug.Log(DataManager.Instance.playerData.supplyZamCoolTime.ToString(@"hh\:mm\:ss"));
+        //Debug.Log(DataManager.Instance.playerData.supplyItemCoolTime.ToString(@"hh\:mm\:ss"));
+        //Debug.Log(DataManager.Instance.playerData.supplyZamCoolTime.ToString(@"hh\:mm\:ss"));
 
         if ((DateTime.Now - DataManager.Instance.playerData.supplyItemCoolTime).Hours >= 1)
         {
@@ -290,15 +293,32 @@ public class MainMenuController : MonoBehaviour
 
             supplyZamTimerTMP.text = (dt - DateTime.Now).ToString(@"hh\:mm\:ss");
         }
+
+        if(DataManager.Instance.playerData.PlayerZen >= 30)
+        {
+            supplyZenTimerTMP.text = "- : -";
+        }
+        else
+        {
+            supplyZenTimerTMP.text = (DataManager.Instance.playerData.supplyZenCoolTime - DateTime.Now).ToString(@"mm\:ss");
+        }
     }
+
     public void TabClick(int n)
     {
-        if(targetIndex == n)
-            adsManager.GetComponent<InterstitialAds>().ShowAd();
-
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
         targetIndex = n;
+
+        if ((DataManager.Instance.playerData.watchAdsCoolTime - DateTime.Now).Seconds <= 0)
+        {
+            if (targetIndex == n)
+            {
+                adsManager.GetComponent<InterstitialAds>().ShowAd();
+
+                DataManager.Instance.playerData.watchAdsCoolTime = DateTime.Now.AddSeconds(3601);
+            }
+        }
     }
 
     //게임 씬으로 이동 버튼
@@ -306,13 +326,21 @@ public class MainMenuController : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
+        if(DataManager.Instance.playerData.playerZen < 5)
+        {
+            TriggerPopUp("Not Enough Zens");
+            return;
+        }
+
+        DataManager.Instance.playerData.PlayerZen -= 5;
         DataManager.Instance.GameStartDataUpdate();
 
         switch (DataManager.Instance.playerData.curStage)
         {
             case 1:
                 //씬이동
-                SceneManager.LoadScene("GameSceneStage" + DataManager.Instance.playerData.curStage);
+                //SceneManager.LoadScene("GameSceneStage" + DataManager.Instance.playerData.curStage);
+                LoadingSceneController.LoadScene("GameSceneStage" + DataManager.Instance.playerData.curStage);
                 break;
             case 2:
                 TriggerPopUp("Comming Soon...");
@@ -819,7 +847,7 @@ public class MainMenuController : MonoBehaviour
                     return;
                 ZamAttracters[3].Play();
                 break;
-            case 100:
+            case 200:
                 if (!ZamAttracters[4].isStopped)
                     return;
                 ZamAttracters[4].Play();
