@@ -294,12 +294,20 @@ public class MainMenuController : MonoBehaviour
             supplyZamTimerTMP.text = (dt - DateTime.Now).ToString(@"hh\:mm\:ss");
         }
 
-        if(DataManager.Instance.playerData.PlayerZen >= 30)
+
+
+        if (DataManager.Instance.playerData.PlayerZen >= 30)
         {
             supplyZenTimerTMP.text = "- : -";
         }
         else
         {
+            if (DateTime.Compare(DataManager.Instance.playerData.supplyZenCoolTime, DateTime.Now) <= 0)
+            {
+                DataManager.Instance.playerData.PlayerZen++;
+                DataManager.Instance.playerData.supplyZenCoolTime = DateTime.Now.AddSeconds(DataManager.Instance.spawnZenTime);
+            }
+
             supplyZenTimerTMP.text = (DataManager.Instance.playerData.supplyZenCoolTime - DateTime.Now).ToString(@"mm\:ss");
         }
     }

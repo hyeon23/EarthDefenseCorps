@@ -39,7 +39,7 @@ public class PlayerData
 
     public DateTime supplyZamCoolTime;
     public DateTime supplyItemCoolTime;
-
+    
     public DateTime supplyZenCoolTime;
 
     public DateTime watchAdsCoolTime;
@@ -73,6 +73,7 @@ public class ItemPartList
     public Sprite[] itemSrpites;
 }
 
+[System.Serializable]
 public class DataManager : MonoBehaviour
 {
     private static DataManager instance = null;
@@ -83,6 +84,8 @@ public class DataManager : MonoBehaviour
 
     //Item Sprites
     public ItemPartList[] itemParts;
+
+    public int spawnZenTime;
 
     public static DataManager Instance
     {
@@ -117,13 +120,15 @@ public class DataManager : MonoBehaviour
         playerData.curEquippedHelmat = null;
         playerData.curEquippedArmor = null;
 
+        spawnZenTime = 300;//300
+
         playerData.isStageClear = new bool[3] { false, false, false };
         playerData.Frames = new int[3] { 30, 60, 120 };
 
         DataUpdate();
 
         //PlayerPrefsDataDelete
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
 
         //DataLoad
         PlayerPrefsLoad();
@@ -141,21 +146,6 @@ public class DataManager : MonoBehaviour
             items.Add(new Item(int.Parse(ItemDB[i]["itemID"].ToString()), (ItemPart)Enum.Parse(typeof(ItemPart), ItemDB[i]["itemPart"].ToString()), (ItemGrade)Enum.Parse(typeof(ItemGrade), ItemDB[i]["itemGrade"].ToString()), bool.Parse(ItemDB[i]["isEquipped"].ToString()),
                 ItemDB[i]["itemName"].ToString(), ItemDB[i]["itemDesc"].ToString(), int.Parse(ItemDB[i]["itemATK"].ToString()), float.Parse(ItemDB[i]["itemCriticalRate"].ToString()),
                 float.Parse(ItemDB[i]["itemCriticalDamage"].ToString()), float.Parse(ItemDB[i]["itemHP"].ToString()), float.Parse(ItemDB[i]["itemSheldGager"].ToString()), float.Parse(ItemDB[i]["itemSpecialMoveGager"].ToString())));
-        }
-    }
-
-    private void Update()
-    {
-        if (playerData.playerZen < 30)
-        {
-            if ((playerData.supplyZenCoolTime - DateTime.Now).Seconds <= 0)
-            {
-                //5분이 지나면
-                playerData.playerZen += 1;
-                Debug.Log(playerData.playerZen);
-                Debug.Log(playerData.supplyZenCoolTime);
-                playerData.supplyZenCoolTime = DateTime.Now.AddSeconds(301);
-            }
         }
     }
 
@@ -219,6 +209,7 @@ public class DataManager : MonoBehaviour
 
         PlayerPrefs.SetString("SupplyItemCoolTime", playerData.supplyItemCoolTime.ToString());
         PlayerPrefs.SetString("SupplyZamCoolTime", playerData.supplyZamCoolTime.ToString());
+        PlayerPrefs.SetString("SupplyZenCoolTime", playerData.supplyZenCoolTime.ToString());
 
         PlayerPrefs.SetString("PlayerLastConnectionTime", playerData.playerLastConnectionTime.ToString());
 
@@ -262,22 +253,53 @@ public class DataManager : MonoBehaviour
         else
             playerData.playerLastConnectionTime = DateTime.Now;
 
-        if (PlayerPrefs.HasKey("WatchAdsCoolTime"))
-            DateTime.TryParse(PlayerPrefs.GetString("WatchAdsCoolTime"), out playerData.watchAdsCoolTime);
+        DateTime tempDate;
+
+        //여기서 부터 수정중
+        if (PlayerPrefs.HasKey("SupplyZenCoolTime"))
+        {
+            DateTime.TryParse(PlayerPrefs.GetString("SupplyZenCoolTime"), out playerData.supplyZenCoolTime);
+            tempDate = playerData.supplyZenCoolTime;
+
+            if(DateTime.Compare(tempDate, DateTime.Now) >= 0)
+            {
+                DateTime.TryParse(PlayerPrefs.GetString("SupplyZenCoolTime"), out playerData.supplyZenCoolTime);
+            }
+            else
+            {
+                playerData.supplyZenCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, spawnZenTime - (tempDate.AddSeconds(spawnZenTime * ((spawnZenTime - (tempDate - playerData.playerLastConnectionTime).Seconds + (DateTime.Now - playerData.playerLastConnectionTime).Seconds) / spawnZenTime)) - DateTime.Now).Seconds));
+            }
+        }
         else
-            playerData.playerLastConnectionTime = DateTime.Now;
+        {
+            playerData.supplyZenCoolTime = DateTime.Now.AddSeconds(spawnZenTime);
+            tempDate = DateTime.Now;
+        }
 
         if (PlayerPrefs.HasKey("PlayerZen"))
         {
-            int tempZen = PlayerPrefs.GetInt("PlayerZen") + (DateTime.Now - playerData.playerLastConnectionTime).Seconds / 301;
-            playerData.supplyZenCoolTime = DateTime.Now.AddSeconds((DateTime.Now - playerData.playerLastConnectionTime).Seconds % 301);
+            int tempZen;
+
+            if (DateTime.Compare(tempDate, DateTime.Now) < 0)
+            {
+                tempZen = PlayerPrefs.GetInt("PlayerZen") + ((spawnZenTime - (tempDate - playerData.playerLastConnectionTime).Seconds + (DateTime.Now - playerData.playerLastConnectionTime).Seconds) / spawnZenTime);
+            }
+            else
+            {
+                tempZen = PlayerPrefs.GetInt("PlayerZen");
+            }
+
             playerData.playerZen = tempZen >= 30 ? 30 : tempZen;
         }
         else
         {
             playerData.playerZen = 30;
-            playerData.supplyZenCoolTime = DateTime.Now.AddSeconds(301);
         }
+
+        if (PlayerPrefs.HasKey("WatchAdsCoolTime"))
+            DateTime.TryParse(PlayerPrefs.GetString("WatchAdsCoolTime"), out playerData.watchAdsCoolTime);
+        else
+            playerData.watchAdsCoolTime = DateTime.Now.AddMinutes(5);
     }
 
     public Sprite IDtoSprite(int _itemID)
