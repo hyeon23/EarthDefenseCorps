@@ -305,7 +305,7 @@ public class MainMenuController : MonoBehaviour
             if (DateTime.Compare(DataManager.Instance.playerData.supplyZenCoolTime, DateTime.Now) <= 0)
             {
                 DataManager.Instance.playerData.PlayerZen++;
-                DataManager.Instance.playerData.supplyZenCoolTime = DateTime.Now.AddSeconds(DataManager.Instance.spawnZenTime);
+                DataManager.Instance.playerData.supplyZenCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, DataManager.Instance.spawnZenTime));
             }
 
             supplyZenTimerTMP.text = (DataManager.Instance.playerData.supplyZenCoolTime - DateTime.Now).ToString(@"mm\:ss");

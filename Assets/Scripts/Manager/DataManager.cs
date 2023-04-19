@@ -128,7 +128,7 @@ public class DataManager : MonoBehaviour
         DataUpdate();
 
         //PlayerPrefsDataDelete
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
         //DataLoad
         PlayerPrefsLoad();
@@ -261,28 +261,27 @@ public class DataManager : MonoBehaviour
             DateTime.TryParse(PlayerPrefs.GetString("SupplyZenCoolTime"), out playerData.supplyZenCoolTime);
             tempDate = playerData.supplyZenCoolTime;
 
-            if(DateTime.Compare(tempDate, DateTime.Now) >= 0)
+            if(DateTime.Compare(tempDate, DateTime.Now) <= 0)
             {
-                DateTime.TryParse(PlayerPrefs.GetString("SupplyZenCoolTime"), out playerData.supplyZenCoolTime);
-            }
-            else
-            {
-                playerData.supplyZenCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, spawnZenTime - (tempDate.AddSeconds(spawnZenTime * ((spawnZenTime - (tempDate - playerData.playerLastConnectionTime).Seconds + (DateTime.Now - playerData.playerLastConnectionTime).Seconds) / spawnZenTime)) - DateTime.Now).Seconds));
+                playerData.supplyZenCoolTime = tempDate.Add(new TimeSpan(0, 0, spawnZenTime * ((spawnZenTime + (int)DateTime.Now.Subtract(tempDate).TotalSeconds) / spawnZenTime)));
             }
         }
         else
         {
-            playerData.supplyZenCoolTime = DateTime.Now.AddSeconds(spawnZenTime);
-            tempDate = DateTime.Now;
+            playerData.supplyZenCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, 10/*spawnZenTime*/));
+            tempDate = playerData.supplyZenCoolTime;
         }
 
         if (PlayerPrefs.HasKey("PlayerZen"))
         {
             int tempZen;
 
-            if (DateTime.Compare(tempDate, DateTime.Now) < 0)
+            if (DateTime.Compare(tempDate, DateTime.Now) <= 0)
             {
-                tempZen = PlayerPrefs.GetInt("PlayerZen") + ((spawnZenTime - (tempDate - playerData.playerLastConnectionTime).Seconds + (DateTime.Now - playerData.playerLastConnectionTime).Seconds) / spawnZenTime);
+                Debug.Log("tempDate(초): " + tempDate);
+                Debug.Log("시간차이(초): " + (spawnZenTime + DateTime.Now.Subtract(tempDate).TotalSeconds));
+                Debug.Log("시간지급 젬: " + ((spawnZenTime + (int)DateTime.Now.Subtract(tempDate).TotalSeconds) / spawnZenTime));
+                tempZen = PlayerPrefs.GetInt("PlayerZen") + ((spawnZenTime + (int)DateTime.Now.Subtract(tempDate).TotalSeconds) / spawnZenTime);
             }
             else
             {
@@ -299,7 +298,7 @@ public class DataManager : MonoBehaviour
         if (PlayerPrefs.HasKey("WatchAdsCoolTime"))
             DateTime.TryParse(PlayerPrefs.GetString("WatchAdsCoolTime"), out playerData.watchAdsCoolTime);
         else
-            playerData.watchAdsCoolTime = DateTime.Now.AddMinutes(5);
+            playerData.watchAdsCoolTime = DateTime.Now.Add(new TimeSpan(0, 5, 0));
     }
 
     public Sprite IDtoSprite(int _itemID)
