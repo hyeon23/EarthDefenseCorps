@@ -13,6 +13,8 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
         _adUnitId = (Application.platform == RuntimePlatform.IPhonePlayer)
             ? _iOsAdUnitId
             : _androidAdUnitId;
+
+        LoadAd();
     }
 
     // ±§∞Ì ¿Ø¥÷ø° ƒ‹≈Ÿ√˜∏¶ ∑ŒµÂ«’¥œ¥Ÿ.

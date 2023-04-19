@@ -1303,13 +1303,11 @@ public class MainMenuController : MonoBehaviour
 
     public void SupplyItemButton()
     {
-        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
         NormalDrawing1RandItem(0);
     }
 
     public void SupplyZamButton()
     {
-        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
         BuyZam(200);
     }
 }

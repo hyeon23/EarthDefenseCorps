@@ -30983,19 +30983,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 783748679}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 783748682}
-        m_TargetAssemblyTypeName: RewardedAdsButton, Assembly-CSharp
-        m_MethodName: ShowAd
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &783748682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31727,19 +31715,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 837553719}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 837553723}
-        m_TargetAssemblyTypeName: RewardedAdsButton, Assembly-CSharp
-        m_MethodName: ShowAd
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &837553723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80078,6 +80054,7 @@ MonoBehaviour:
     - {fileID: 560083106, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
     - {fileID: -978890735, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
     - {fileID: -1495909672, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
+  spawnZenTime: 0
 --- !u!4 &2146515956
 Transform:
   m_ObjectHideFlags: 0

@@ -23,6 +23,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
         //광고가 표시될 준비가 될 때까지 버튼을 비활성화합니다.
         //_showAdButton.interactable = false;
+
+        LoadRewardedAd();
     }
 
     // 광고 유닛에 콘텐츠를 로드합니다.
@@ -53,7 +55,11 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         // 버튼을 비활성화합니다.
         //_showAdButton.interactable = false;
         // 그런 다음 광고를 표시합니다.
+
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
         Advertisement.Show(_adUnitId, this);
+
+        LoadRewardedAd();
     }
 
     // Show Listener의 OnUnityAdsShowComplete 콜백 메서드를 구현하여 유저가 보상을 받을지 결정합니다.
