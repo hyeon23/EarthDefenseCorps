@@ -60,7 +60,15 @@ public class MoneyUnitString : MonoBehaviour
     }
 
     //1000 단위 , 찍어주기
-    public static string GetThousandCommaText(double value)
+    //public static string GetThousandCommaText(double value)
+    //{
+    //    if (value == 0)
+    //        return "0";
+
+    //    return string.Format("{0:#,###}", value);
+    //}
+
+    public static string GetThousandCommaText(int value)
     {
         if (value == 0)
             return "0";

@@ -171,8 +171,8 @@ public class MainMenuController : MonoBehaviour
 
         FPSTMP.text = $"{Application.targetFrameRate}Hz";
 
-        playerZamText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerZam);
-        playerGoldText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerGold);
+        playerZamText.text = NotateNumber.Transform(DataManager.Instance.playerData.PlayerZam);
+        playerGoldText.text = NotateNumber.Transform(DataManager.Instance.playerData.PlayerGold);
 
         StartCoroutine(StageChange());
 
@@ -184,8 +184,13 @@ public class MainMenuController : MonoBehaviour
 
     void Update()
     {
-        playerHPText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerHP);
-        playerATKText.text = MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerATK);
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+        playerHPText.text = NotateNumber.Transform((int)DataManager.Instance.playerData.PlayerHP);
+        playerATKText.text = NotateNumber.Transform(DataManager.Instance.playerData.PlayerATK);
         playerZenText.text = DataManager.Instance.playerData.PlayerZen.ToString() + "/30";
 
         if (isStageChanging)
@@ -260,7 +265,7 @@ public class MainMenuController : MonoBehaviour
         //Debug.Log(DataManager.Instance.playerData.supplyItemCoolTime.ToString(@"hh\:mm\:ss"));
         //Debug.Log(DataManager.Instance.playerData.supplyZamCoolTime.ToString(@"hh\:mm\:ss"));
 
-        if ((DateTime.Now - DataManager.Instance.playerData.supplyItemCoolTime).Hours >= 1)
+        if ((DateTime.Now - DataManager.Instance.playerData.supplyItemCoolTime).TotalHours >= 1)
         {
             supplyButton1.interactable = true;
             supplyItemAdsGroup.SetActive(true);
@@ -277,7 +282,7 @@ public class MainMenuController : MonoBehaviour
             supplyItemTimerTMP.text = (dt - DateTime.Now).ToString(@"hh\:mm\:ss");
         }
 
-        if ((DateTime.Now - DataManager.Instance.playerData.supplyZamCoolTime).Hours >= 2)
+        if ((DateTime.Now - DataManager.Instance.playerData.supplyZamCoolTime).TotalHours >= 2)
         {
             supplyButton2.interactable = true;
             supplyZamAdsGroup.SetActive(true);
@@ -318,7 +323,7 @@ public class MainMenuController : MonoBehaviour
 
         targetIndex = n;
 
-        if ((DataManager.Instance.playerData.watchAdsCoolTime - DateTime.Now).Seconds <= 0)
+        if ((DataManager.Instance.playerData.watchAdsCoolTime - DateTime.Now).TotalSeconds <= 0)
         {
             if (targetIndex == n)
             {
@@ -538,12 +543,12 @@ public class MainMenuController : MonoBehaviour
             start += Time.deltaTime;
             percent = start / end;
 
-            _text.text = MoneyUnitString.GetThousandCommaText((int)Mathf.Lerp(_current, _target, percent));
+            _text.text = NotateNumber.Transform((int)Mathf.Lerp(_current, _target, percent));
 
             yield return null;
         }
 
-        _text.text = MoneyUnitString.GetThousandCommaText(_target);
+        _text.text = NotateNumber.Transform(_target);
     }
 
 
@@ -724,13 +729,13 @@ public class MainMenuController : MonoBehaviour
             case ItemPart.Gloves:
             case ItemPart.Shoes:
                 statTMP.text = "ATK";
-                equipStatTMP.text = MoneyUnitString.GetThousandCommaText(_item.itemATK + (int)_item.itemGrade * _item.itemCurLevel);
+                equipStatTMP.text = NotateNumber.Transform(_item.itemATK + (int)_item.itemGrade * _item.itemCurLevel);
                 break;
             case ItemPart.Sheld:
             case ItemPart.Armor:
             case ItemPart.Helmat:
                 statTMP.text = "HP";
-                equipStatTMP.text = MoneyUnitString.GetThousandCommaText(_item.itemHP + (int)_item.itemGrade * _item.itemCurLevel);
+                equipStatTMP.text = NotateNumber.Transform((int)_item.itemHP + (int)_item.itemGrade * _item.itemCurLevel);
                 break;
             case ItemPart.Count:
                 break;
@@ -744,11 +749,11 @@ public class MainMenuController : MonoBehaviour
 
         if (_item.itemCurLevel == _item.itemMaxLevel)
         {
-            equipUpgradeCostTMP.text = $"{MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerGold)} / -";
+            equipUpgradeCostTMP.text = $"{NotateNumber.Transform(DataManager.Instance.playerData.PlayerGold)} / -";
         }
         else
         {
-            equipUpgradeCostTMP.text = $"{MoneyUnitString.GetThousandCommaText(DataManager.Instance.playerData.PlayerGold)} / {MoneyUnitString.GetThousandCommaText(curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)}";
+            equipUpgradeCostTMP.text = $"{NotateNumber.Transform(DataManager.Instance.playerData.PlayerGold)} / {NotateNumber.Transform(curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)}";
         }
 
 

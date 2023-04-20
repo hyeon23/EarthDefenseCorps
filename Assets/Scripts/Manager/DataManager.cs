@@ -112,20 +112,10 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //여기서 기존에 가진 장비 불러와야 함
-        playerData.curEquippedWeapon = null;
-        playerData.curEquippedGloves = null;
-        playerData.curEquippedShoes = null;
-        playerData.curEquippedSheld = null;
-        playerData.curEquippedHelmat = null;
-        playerData.curEquippedArmor = null;
-
-        spawnZenTime = 300;//300
-
         playerData.isStageClear = new bool[3] { false, false, false };
         playerData.Frames = new int[3] { 30, 60, 120 };
 
-        DataUpdate();
+        spawnZenTime = 300;//300
 
         //PlayerPrefsDataDelete
         //PlayerPrefs.DeleteAll();
@@ -135,6 +125,16 @@ public class DataManager : MonoBehaviour
 
         //Target Frame Rate 설정
         Application.targetFrameRate = playerData.Frames[playerData.curFrameIndex];
+
+        //여기서 기존에 가진 장비 불러와야 함
+        playerData.curEquippedWeapon = null;
+        playerData.curEquippedGloves = null;
+        playerData.curEquippedShoes = null;
+        playerData.curEquippedSheld = null;
+        playerData.curEquippedHelmat = null;
+        playerData.curEquippedArmor = null;
+
+        DataUpdate();
     }
 
     private void Start()
@@ -268,7 +268,7 @@ public class DataManager : MonoBehaviour
         }
         else
         {
-            playerData.supplyZenCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, 10/*spawnZenTime*/));
+            playerData.supplyZenCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, spawnZenTime));
             tempDate = playerData.supplyZenCoolTime;
         }
 
@@ -298,7 +298,7 @@ public class DataManager : MonoBehaviour
         if (PlayerPrefs.HasKey("WatchAdsCoolTime"))
             DateTime.TryParse(PlayerPrefs.GetString("WatchAdsCoolTime"), out playerData.watchAdsCoolTime);
         else
-            playerData.watchAdsCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, 10));
+            playerData.watchAdsCoolTime = DateTime.Now.Add(new TimeSpan(0, 5, 0));
     }
 
     public Sprite IDtoSprite(int _itemID)
@@ -500,5 +500,15 @@ public class DataManager : MonoBehaviour
         playerData.playerLastConnectionTime = DateTime.Now;
 
         PlayerPrefsSave();
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            playerData.playerLastConnectionTime = DateTime.Now;
+
+            PlayerPrefsSave();
+        }
     }
 }

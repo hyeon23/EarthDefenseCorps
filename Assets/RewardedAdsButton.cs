@@ -7,7 +7,7 @@ using System;
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] Button _showAdButton;
-    [SerializeField] string _androidAdUnitId = "Rewarded_Android";
+    [SerializeField] string _androidAdUnitId;
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     [SerializeField] string _RewardType;
     string _adUnitId = null; // 지원되지 않는 플랫폼의 경우 값은 null로 남아 있습니다.
