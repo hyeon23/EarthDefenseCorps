@@ -1315,4 +1315,9 @@ public class MainMenuController : MonoBehaviour
     {
         BuyZam(200);
     }
+
+    public void plusZenButton()
+    {
+        DataManager.Instance.playerData.PlayerZen += 30;
+    }
 }

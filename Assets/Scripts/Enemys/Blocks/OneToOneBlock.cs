@@ -20,7 +20,7 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X3:
                 case EnemyType.Block1X3M:
                     isOverlappedPlayer = true;
-                    PlayerController.Instance.isOverlapped = true;
+                    //PlayerController.Instance.isOverlapped = true;
                     break;
             }
         }
@@ -66,7 +66,7 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X3:
                 case EnemyType.Block1X3M:
                     parentRigid.velocity = Vector2.zero;
-                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 15 : 10), ForceMode2D.Impulse);
+                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 20 : 10), ForceMode2D.Impulse);
                     break;
             }
         }
@@ -163,7 +163,7 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X3:
                 case EnemyType.Block1X3M:
                     isOverlappedPlayer = false;
-                    PlayerController.Instance.isOverlapped = false;
+                    //PlayerController.Instance.isOverlapped = false;
                     break;
             }
         }
@@ -187,9 +187,6 @@ public class OneToOneBlock : Block
             switch (enemyType)
             {
                 case EnemyType.Block1X1H:
-                    if (!parentGameObject.activeSelf) return;
-                    parentRigid.velocity = Vector3.zero;
-                    break;
                 case EnemyType.Block1X1:
                 case EnemyType.Block1X3:
                 case EnemyType.Block1X3M:
@@ -336,7 +333,7 @@ public class OneToOneBlock : Block
                 ancestorGameObject.SetActive(false);
             }
             
-            Destroy(ancestorGameObject);
+            Destroy(ancestorGameObject, 1);
         }
         else
         {
@@ -345,7 +342,7 @@ public class OneToOneBlock : Block
                 parentGameObject.SetActive(false);
             }
 
-            Destroy(parentGameObject);
+            Destroy(parentGameObject, 1);
         }
     }
 }

@@ -53,6 +53,9 @@ public class PlayerController : MonoBehaviour
 
     private static PlayerController instance = null;
 
+    RaycastHit2D hit;
+    int layerMask;  // Player 레이어만 충돌 체크함
+
     void Awake()
     {
         if (null == instance)
@@ -64,6 +67,8 @@ public class PlayerController : MonoBehaviour
             Destroy(this.gameObject);
         }
         ChangeState(PlayerState.Idle);
+
+        layerMask = 1 << LayerMask.NameToLayer("Floor");
     }
 
     public static PlayerController Instance
@@ -89,8 +94,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDead)
         {
-            if (DataManager.Instance.playerData.curHp <= 0){
-                isDead= true;
+            if (DataManager.Instance.playerData.curHp <= 0)
+            {
+                isDead = true;
                 ChangeState(PlayerState.Dead);
                 GameManager.Instance.GameOver();
             }
@@ -102,6 +108,19 @@ public class PlayerController : MonoBehaviour
                 {
                     DataManager.Instance.playerData.curSheldGage = DataManager.Instance.playerData.curSheldGage >= DataManager.Instance.playerData.PlayerShledGage ? DataManager.Instance.playerData.PlayerShledGage : DataManager.Instance.playerData.curSheldGage + 0.3f;
                 }
+            }
+
+            hit = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 1.0f, layerMask);
+            Debug.DrawRay(gameObject.transform.position, Vector2.down * 1.0f, Color.red);
+
+            if (hit.collider == null)
+            {
+                gameObject.layer = LayerMask.NameToLayer("Player");
+            }
+            else if (hit.collider.tag == "Floor")
+            {
+                Debug.Log(hit.collider.tag);
+                gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
             }
         }
     }
@@ -266,7 +285,6 @@ public class PlayerController : MonoBehaviour
         anime.SetBool("isJump", isJump);
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Jump);
         parentRigid.AddForce(new Vector2(0, 20f), ForceMode2D.Impulse);
-        gameObject.layer = LayerMask.NameToLayer("Player");
 
         yield return null;
     }

@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
+using UnityEngine.Purchasing.Extension;
+using TMPro;
 
 public class IAPManager : MonoBehaviour
 {
@@ -20,9 +20,11 @@ public class IAPManager : MonoBehaviour
     //SkipAds
     private string removeAds = "com.devurim.earthdefensecorps.removeads";
 
+    public TextMeshProUGUI[] IAPTexts;
+
     public void OnPurchaseComplete(Product product)
     {
-        if(product.definition.id == zam300)
+        if (product.definition.id == zam300)
         {
             //reward your players
             Debug.Log("You've Gained 300 Zam");
@@ -57,8 +59,30 @@ public class IAPManager : MonoBehaviour
         }
     }
 
-    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
+    public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
     {
-        Debug.Log($"{product.definition.id} failed bacause {failureReason}");
+        Debug.Log($"{product.definition.id} failed bacause {failureDescription}");
+    }
+
+    public void OnProductFetched(Product product)
+    {
+        Debug.Log($"{product.definition.id} {product.metadata}");
+
+        if (product.definition.id == zam300)
+        {
+            IAPTexts[0].text = $"{product.metadata.GetGoogleProductMetadata().localizedPrice} {product.metadata.GetGoogleProductMetadata().isoCurrencyCode}";
+        }
+        else if (product.definition.id == zam1000)
+        {
+            IAPTexts[1].text = $"{product.metadata.GetGoogleProductMetadata().localizedPrice} {product.metadata.GetGoogleProductMetadata().isoCurrencyCode}";
+        }
+        else if (product.definition.id == zam3000)
+        {
+            IAPTexts[2].text = $"{product.metadata.GetGoogleProductMetadata().localizedPrice} {product.metadata.GetGoogleProductMetadata().isoCurrencyCode}";
+        }
+        else if (product.definition.id == zam10000)
+        {
+            IAPTexts[3].text = $"{product.metadata.GetGoogleProductMetadata().localizedPrice} {product.metadata.GetGoogleProductMetadata().isoCurrencyCode}";
+        }
     }
 }
