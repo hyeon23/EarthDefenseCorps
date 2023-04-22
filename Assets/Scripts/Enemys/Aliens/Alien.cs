@@ -29,7 +29,7 @@ public class Alien : Enemy
         //적 회피 기동 시작
         int dodgePosIndex = Random.Range(0, 3);
         curPosIndex = dodgePosIndex;
-        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienSideFade);
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienSideFade, 0.25f);
         StartCoroutine(DodgeMove(PlayerController.Instance.playerPos[curPosIndex].position.x));
         return;
     }
@@ -58,7 +58,7 @@ public class Alien : Enemy
         afterEffectObj.SetActive(true);
 
         float start = 0;
-        float end = 1;
+        float end = 0.5f;
 
         float percent = 0;
 
@@ -73,7 +73,7 @@ public class Alien : Enemy
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.15f);
 
         afterEffectObj.SetActive(false);
     }

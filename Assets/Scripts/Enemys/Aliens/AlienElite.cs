@@ -47,7 +47,7 @@ public class AlienElite : Alien
             switch (enemyName)
             {
                 case "MoonAlienElite1":
-                    StartCoroutine(OnHit(1, collision.transform.position));
+                    StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
                     break;
                 default:
                     break;
@@ -71,7 +71,7 @@ public class AlienElite : Alien
                 case "MoonAlienElite1":
                     //특정 효과
                     if (!parentGameObject.activeSelf) return;
-                    StartCoroutine(OnHit(1, collision.transform.position));
+                    StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
                     break;
                 default:
                     break;
@@ -88,7 +88,7 @@ public class AlienElite : Alien
                 case "MoonAlienElite1":
                     //특정 효과
                     if (!parentGameObject.activeSelf) return;
-                    StartCoroutine(OnHit(1, collision.transform.position));
+                    StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
                     break;
                 default:
                     break;
@@ -176,7 +176,7 @@ public class AlienElite : Alien
 
         bool isCritical = CriticalCheck(DataManager.Instance.playerData.PlayerCriticalRate);
 
-        if (isCritical) damage *= Mathf.RoundToInt(damage * DataManager.Instance.playerData.PlayerCriticalDamage / 100);
+        if (isCritical) damage = Mathf.RoundToInt(damage * DataManager.Instance.playerData.PlayerCriticalDamage / 100);
 
         curHp -= damage;
 

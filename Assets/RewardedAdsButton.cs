@@ -23,7 +23,10 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
         //광고가 표시될 준비가 될 때까지 버튼을 비활성화합니다.
         //_showAdButton.interactable = false;
+    }
 
+    private void Start()
+    {
         LoadRewardedAd();
     }
 
@@ -89,6 +92,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     {
         Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
         // 오류 세부 정보를 사용하여 또 다른 광고를 로드할지 여부를 결정합니다.
+
+        Advertisement.Load(_adUnitId, this);
     }
 
     public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)

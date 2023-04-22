@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class WeaponTrigger : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer weaponImage;
+    private void Start()
+    {
+        weaponImage.sprite = DataManager.Instance.playerData.CurEquippedWeapon != null ? DataManager.Instance.playerData.CurEquippedWeapon.itemImage : null;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "BlockTrigger" || collision.tag == "BlockBullet" || collision.tag == "AlienTrigger")
@@ -15,7 +21,6 @@ public class WeaponTrigger : MonoBehaviour
         else if (collision.tag == "AlienBullet")
         {
             SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienBulletHit);
-
         }
     }
 }

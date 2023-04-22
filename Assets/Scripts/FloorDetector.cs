@@ -25,12 +25,12 @@ public class FloorDetector : MonoBehaviour
                         break;
                     case EnemyType.Block1X1:
                         EffectManager.Instance.SpawnEffect(new int[] { 21 }, collision.transform.parent.position + new Vector3(0, -1f, 0));
-                        StartCoroutine(GameManager.Instance.CameraShake(0.3f, 1, 2));
+                        StartCoroutine(GameManager.Instance.CameraShake(0.2f, 1, 2));
                         break;
                     case EnemyType.Block1X3:
                     case EnemyType.Block1X3M:
                         EffectManager.Instance.SpawnEffect(new int[] { 22 }, transform.position + new Vector3(0, 1f, 0));
-                        StartCoroutine(GameManager.Instance.CameraShake(0.6f, 2, 3));
+                        StartCoroutine(GameManager.Instance.CameraShake(0.4f, 1, 3));
                         break;
                 }
             }
@@ -40,7 +40,7 @@ public class FloorDetector : MonoBehaviour
             if (collision.GetComponent<AlienBoss>().isOverlappedPlayer)
             {
                 curAlien = collision.GetComponent<AlienBoss>();
-                StartCoroutine(PlayerTrigger.Instance.OnHit(curAlien.dmg * 100));
+                StartCoroutine(PlayerTrigger.Instance.OnHit(curAlien.dmg * 15));
 
                 switch (curAlien.enemyType)
                 {

@@ -61,7 +61,7 @@ public class AlienBullet : MonoBehaviour
     {
         bool isCritical = CriticalCheck(DataManager.Instance.playerData.PlayerCriticalRate);
 
-        if (isCritical) damage *= Mathf.RoundToInt(damage * DataManager.Instance.playerData.PlayerCriticalDamage / 100);
+        if (isCritical) damage = Mathf.RoundToInt(damage * DataManager.Instance.playerData.PlayerCriticalDamage / 100);
         curHp -= damage;
 
         InGameTextViewer.Instance.SpawnHUDText(damage.ToString(), isCritical ? Color.red : Color.white, onHitPosition);

@@ -202,7 +202,10 @@ public class OneToOneBlock : Block
         GameManager.Instance.curHitEnemy = gameObject;
 
         bool isCritical = CriticalCheck(DataManager.Instance.playerData.PlayerCriticalRate);
-        if (isCritical) damage *= Mathf.RoundToInt(damage * DataManager.Instance.playerData.PlayerCriticalDamage / 100);
+        if (isCritical) 
+        { 
+            damage = Mathf.RoundToInt(damage * DataManager.Instance.playerData.PlayerCriticalDamage / 100); 
+        }
         curHp -= damage;
 
         InGameTextViewer.Instance.SetEnemyImage(true, curHp, maxHp, enemyType);

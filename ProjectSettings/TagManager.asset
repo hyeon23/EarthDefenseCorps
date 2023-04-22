@@ -61,3 +61,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: SkyDepth
+    uniqueID: 4109985757
+    locked: 0

@@ -2,11 +2,14 @@ using TMPro;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public enum PlayerState { Idle, SideStepLeft, SideStepRight, Jump, Sheld, Attack, SpecialMove, Dead, Count }
 
 public class PlayerController : MonoBehaviour
 {
+    private static PlayerController instance = null;
+
     private PlayerState playerState;
 
     [SerializeField]
@@ -51,10 +54,12 @@ public class PlayerController : MonoBehaviour
     //[SerializeField]
     //private GameObject specialBullet = null;
 
-    private static PlayerController instance = null;
-
+    [Header("JumpDetectRay")]
     RaycastHit2D hit;
     int layerMask;  // Player 레이어만 충돌 체크함
+
+    [Header("SpawnPos")]
+    [SerializeField] private Transform[] spawnPos;
 
     void Awake()
     {
@@ -94,6 +99,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDead)
         {
+            for(int i = 0; i < spawnPos.Length; i++)
+            {
+                spawnPos[i].position = new Vector2(spawnPos[i].position.x, gameObject.transform.position.y + 50) ;
+            }
+
             if (DataManager.Instance.playerData.curHp <= 0)
             {
                 isDead = true;
@@ -330,7 +340,6 @@ public class PlayerController : MonoBehaviour
     {
         //Parrying!
         anime.SetTrigger("doParrying");
-        SoundManager.Instance.SFXPlay(SoundManager.SFX.Parrying);
 
         if (isJump)
         {
@@ -353,12 +362,21 @@ public class PlayerController : MonoBehaviour
 
         isSpecial = true;
 
-        anime.SetBool("isSpecial", isSpecial);
-        
-        anime.SetTrigger("doSpecial");
-
         specialAxis.SetActive(true);
         specialTrigger.enabled = true;
+
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.SpecialMove);
+        Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        Time.timeScale = 1f;
+
+        anime.SetBool("isSpecial", isSpecial);
+
+        anime.SetTrigger("doSpecial");
+
+
         specialAfterEffect.SetActive(true);
 
         parentRigid.velocity = Vector2.zero;
@@ -382,7 +400,6 @@ public class PlayerController : MonoBehaviour
 
         isSpecial = false;
         anime.SetBool("isSpecial", isSpecial);
-        SoundManager.Instance.SFXPlay(SoundManager.SFX.SpecialMove);
     }
 
     private void SheldToX()

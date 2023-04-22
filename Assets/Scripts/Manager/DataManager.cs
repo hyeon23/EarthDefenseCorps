@@ -79,6 +79,8 @@ public class DataManager : MonoBehaviour
     private static DataManager instance = null;
     public PlayerData playerData = new PlayerData();
 
+    List<Dictionary<string, object>> ItemDB;
+
     //Item Data
     public List<Item> items = new List<Item>();
 
@@ -125,7 +127,20 @@ public class DataManager : MonoBehaviour
 
         //Target Frame Rate 설정
         Application.targetFrameRate = playerData.Frames[playerData.curFrameIndex];
+    }
 
+    private void Start()
+    {
+        ItemDB = CSVReader.Read("ItemDB");
+
+        for (int i = 0; i < ItemDB.Count; i++)
+        {
+            items.Add(new Item(int.Parse(ItemDB[i]["itemID"].ToString()), (ItemPart)Enum.Parse(typeof(ItemPart), ItemDB[i]["itemPart"].ToString()), (ItemGrade)Enum.Parse(typeof(ItemGrade), ItemDB[i]["itemGrade"].ToString()), bool.Parse(ItemDB[i]["isEquipped"].ToString()),
+                ItemDB[i]["itemName"].ToString(), ItemDB[i]["itemDesc"].ToString(), int.Parse(ItemDB[i]["itemATK"].ToString()), float.Parse(ItemDB[i]["itemCriticalRate"].ToString()),
+                float.Parse(ItemDB[i]["itemCriticalDamage"].ToString()), float.Parse(ItemDB[i]["itemHP"].ToString()), float.Parse(ItemDB[i]["itemSheldGager"].ToString()), float.Parse(ItemDB[i]["itemSpecialMoveGager"].ToString())));
+        }
+
+        Debug.Log("DMStart");
         //여기서 기존에 가진 장비 불러와야 함
         playerData.curEquippedWeapon = null;
         playerData.curEquippedGloves = null;
@@ -135,18 +150,6 @@ public class DataManager : MonoBehaviour
         playerData.curEquippedArmor = null;
 
         DataUpdate();
-    }
-
-    private void Start()
-    {
-        List<Dictionary<string, object>> ItemDB = CSVReader.Read("ItemDB");
-
-        for (int i = 0; i < ItemDB.Count; i++)
-        {
-            items.Add(new Item(int.Parse(ItemDB[i]["itemID"].ToString()), (ItemPart)Enum.Parse(typeof(ItemPart), ItemDB[i]["itemPart"].ToString()), (ItemGrade)Enum.Parse(typeof(ItemGrade), ItemDB[i]["itemGrade"].ToString()), bool.Parse(ItemDB[i]["isEquipped"].ToString()),
-                ItemDB[i]["itemName"].ToString(), ItemDB[i]["itemDesc"].ToString(), int.Parse(ItemDB[i]["itemATK"].ToString()), float.Parse(ItemDB[i]["itemCriticalRate"].ToString()),
-                float.Parse(ItemDB[i]["itemCriticalDamage"].ToString()), float.Parse(ItemDB[i]["itemHP"].ToString()), float.Parse(ItemDB[i]["itemSheldGager"].ToString()), float.Parse(ItemDB[i]["itemSpecialMoveGager"].ToString())));
-        }
     }
 
     public void GameStartDataUpdate()
@@ -179,7 +182,7 @@ public class DataManager : MonoBehaviour
             + ((playerData.CurEquippedShoes != null) ? playerData.CurEquippedShoes.itemCriticalRate : 0);
 
         //CD
-        playerData.playerCriticalDamage = 150/*플레이어 기본 크뎀[장갑]*/
+        playerData.playerCriticalDamage = 120/*플레이어 기본 크뎀[장갑]*/
             + ((playerData.CurEquippedWeapon != null) ? playerData.CurEquippedWeapon.itemCriticalDamage : 0)
             + ((playerData.CurEquippedGloves != null) ? playerData.CurEquippedGloves.itemCriticalDamage : 0)
             + ((playerData.CurEquippedShoes != null) ? playerData.CurEquippedShoes.itemCriticalDamage : 0);
