@@ -116,11 +116,11 @@ public class GameManager : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        if (DataManager.Instance.playerData.playerZen < 5)
-        {
-            InGameTextViewer.Instance.TriggerPopUp("Not Enough Zens");
-            return;
-        }
+        //if (DataManager.Instance.playerData.playerZen < 5)
+        //{
+        //    InGameTextViewer.Instance.TriggerPopUp("Not Enough Zens");
+        //    return;
+        //}
 
         DataManager.Instance.playerData.PlayerZen -= 5;
 

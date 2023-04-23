@@ -319,7 +319,7 @@ public class MainMenuController : MonoBehaviour
 
     public void TabClick(int n)
     {
-        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+        //SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
         targetIndex = n;
 
@@ -337,13 +337,13 @@ public class MainMenuController : MonoBehaviour
     //게임 씬으로 이동 버튼
     public void OnClickGoGameStartButton()
     {
-        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+        //SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        if(DataManager.Instance.playerData.playerZen < 5)
-        {
-            TriggerPopUp("Not Enough Zens");
-            return;
-        }
+        //if(DataManager.Instance.playerData.playerZen < 5)
+        //{
+        //    TriggerPopUp("Not Enough Zens");
+        //    return;
+        //}
 
         DataManager.Instance.playerData.PlayerZen -= 5;
         DataManager.Instance.GameStartDataUpdate();
