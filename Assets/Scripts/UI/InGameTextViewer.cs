@@ -387,12 +387,12 @@ public class InGameTextViewer : MonoBehaviour
             start += Time.deltaTime;
             percent = start / end;
 
-            _text.text = MoneyUnitString.GetThousandCommaText((int)Mathf.Lerp(_current, _target, percent));
+            _text.text = Mathf.Lerp(_current, _target, percent).ToString();
 
             yield return null;
         }
 
-        _text.text = MoneyUnitString.GetThousandCommaText(_target);
+        _text.text = _target.ToString();
     }
 
     public void PlusGetGold(int goldNumber)
