@@ -6,6 +6,24 @@ TagManager:
   tags:
   - Background
   - LandMark
+  - Floor
+  - Block
+  - Weapon
+  - Sheld
+  - BlockBullet
+  - PlayerTrigger
+  - BlockTrigger
+  - AssembleTip
+  - FloorTrigger
+  - AlienBullet
+  - AlienTrigger
+  - Alien
+  - Boundary
+  - SpecialBulletCollider
+  - SpecialBulletTrigger
+  - SpecialBullet
+  - Special
+  - PlayerAssembleTip
   layers:
   - Default
   - TransparentFX
@@ -13,20 +31,20 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Floor
+  - Player
+  - PlayerGrounded
+  - BlockBullet
+  - Block
+  - Weapon
+  - Sheld
+  - Alien
+  - AlienInvincibility
+  - AlienBullet
+  - AlienBoss
+  - AlienBossDead
+  - SpecialBullet
+  - Special
   - 
   - 
   - 
@@ -42,4 +60,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: SkyDepth
+    uniqueID: 4109985757
     locked: 0
