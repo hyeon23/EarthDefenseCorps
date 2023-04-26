@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class PlayerData
@@ -120,17 +121,14 @@ public class DataManager : MonoBehaviour
         spawnZenTime = 300;//300
 
         //PlayerPrefsDataDelete
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
 
         //DataLoad
         PlayerPrefsLoad();
 
         //Target Frame Rate 설정
         Application.targetFrameRate = playerData.Frames[playerData.curFrameIndex];
-    }
 
-    private void Start()
-    {
         ItemDB = CSVReader.Read("ItemDB");
 
         for (int i = 0; i < ItemDB.Count; i++)
@@ -139,9 +137,31 @@ public class DataManager : MonoBehaviour
                 ItemDB[i]["itemName"].ToString(), ItemDB[i]["itemDesc"].ToString(), int.Parse(ItemDB[i]["itemATK"].ToString()), float.Parse(ItemDB[i]["itemCriticalRate"].ToString()),
                 float.Parse(ItemDB[i]["itemCriticalDamage"].ToString()), float.Parse(ItemDB[i]["itemHP"].ToString()), float.Parse(ItemDB[i]["itemSheldGager"].ToString()), float.Parse(ItemDB[i]["itemSpecialMoveGager"].ToString())));
         }
+    }
 
+    private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        //여기서 기존 장비 불러와야 함
+        //if (장비 존재시) {}
+        //else {}
+        playerData.curEquippedWeapon = null;
+        playerData.curEquippedGloves = null;
+        playerData.curEquippedShoes = null;
+        playerData.curEquippedSheld = null;
+        playerData.curEquippedHelmat = null;
+        playerData.curEquippedArmor = null;
+
+        DataUpdate();
+    }
+
+    private void Start()
+    {
         Debug.Log("DMStart");
+
+        SceneManager.sceneLoaded += LoadedsceneEvent;
+
         //여기서 기존에 가진 장비 불러와야 함
+        //기존 장착 데이터 존재 시, 기존 데이터, 없으면 없는 데이터 사용
         playerData.curEquippedWeapon = null;
         playerData.curEquippedGloves = null;
         playerData.curEquippedShoes = null;

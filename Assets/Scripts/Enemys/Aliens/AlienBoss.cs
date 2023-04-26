@@ -421,7 +421,7 @@ public class AlienBoss : Alien
         SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienBossTakingDown);
 
         Vector3 startPos = new Vector3(0, 10, 0);
-        Vector3 targetPos = GameObject.Find("Floor").transform.position + new Vector3(0, 7f, 0);
+        Vector3 targetPos = GameObject.Find("Floor").transform.position + new Vector3(0, 8f, 0);
 
         while (percent <= 1)
         {

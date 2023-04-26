@@ -19,6 +19,25 @@ public class EquipSlot : MonoBehaviour
         {
             case EquipSlotPart.Weapon:
                 item = DataManager.Instance.playerData.CurEquippedWeapon;
+
+                if(item == null)
+                {
+                    Debug.Log("Wnull");
+                }
+                else
+                {
+                    Debug.Log("WNotnull");
+                }
+
+                if(DataManager.Instance.playerData.CurEquippedWeapon == null)
+                {
+                    item = null;
+                }
+                else
+                {
+                    item = DataManager.Instance.playerData.CurEquippedWeapon;
+                }
+                
                 break;
             case EquipSlotPart.Gloves:
                 item = DataManager.Instance.playerData.CurEquippedGloves;
