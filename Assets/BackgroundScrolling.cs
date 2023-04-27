@@ -1,14 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BackGroundSystem : MonoBehaviour
+public class BackgroundScrolling : MonoBehaviour
 {
-    //Parallax Background
-    [SerializeField] private Vector2 parallaxEffectMultiplier;
-    private Transform cameraTransform;
-    private Vector3 lastCameraPosition;
-    
     [SerializeField] float speed;
     [SerializeField] Transform[] backgrounds;
 
@@ -17,12 +10,8 @@ public class BackGroundSystem : MonoBehaviour
     float xScreenHalfSize;
     float yScreenHalfSize;
 
-    private void Start()
+    void Start()
     {
-        //Parallax
-        cameraTransform = Camera.main.transform;
-        lastCameraPosition= cameraTransform.position;
-
         //Scrolling
         yScreenHalfSize = Camera.main.orthographicSize;
         xScreenHalfSize = yScreenHalfSize * Camera.main.aspect;
@@ -30,15 +19,6 @@ public class BackGroundSystem : MonoBehaviour
         leftPosX = -(xScreenHalfSize * 2) * backgrounds.Length;
         rightPosX = xScreenHalfSize * 2;
     }
-
-    private void LateUpdate()
-    {
-        //Parallax
-        Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
-        transform.position += new Vector3(deltaMovement.x * parallaxEffectMultiplier.x, deltaMovement.y * parallaxEffectMultiplier.y, 0);
-        lastCameraPosition= cameraTransform.position;
-    }
-
     private void Update()
     {
         //Scrolling
@@ -54,6 +34,4 @@ public class BackGroundSystem : MonoBehaviour
             }
         }
     }
-
-    //Scrolling Background
 }
