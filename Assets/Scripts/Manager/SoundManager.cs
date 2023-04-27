@@ -68,6 +68,7 @@ public class SoundManager : MonoBehaviour
         GameOver,
         GameClear,
         Landing,
+        bulletParrying
     }
 
     int sfxCursor;
@@ -241,6 +242,9 @@ public class SoundManager : MonoBehaviour
                         break;
                     case SFX.PopUP:
                         sfxPlayer[sfxCursor].clip = sfxClip[38];
+                        break;
+                    case SFX.bulletParrying:
+                        sfxPlayer[sfxCursor].clip = sfxClip[39];
                         break;
                 }
                 break;

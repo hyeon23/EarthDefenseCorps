@@ -13,14 +13,14 @@ public class SheldTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Block" || collision.transform.tag == "BlockBullet" || collision.transform.tag == "Alien")
+        if (collision.transform.tag == "Block" || collision.transform.tag == "Alien")
         {
             PlayerController.Instance.parryingSheld = true;
             SoundManager.Instance.SFXPlay(SoundManager.SFX.Parrying);
         }
         else if (collision.transform.tag == "BlockBullet" || collision.transform.tag == "AlienBullet")
         {
-            SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienBulletHit);
+            SoundManager.Instance.SFXPlay(SoundManager.SFX.bulletParrying, 0.2f);
         }
     }
 }
