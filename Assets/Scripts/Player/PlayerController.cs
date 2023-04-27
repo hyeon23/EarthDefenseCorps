@@ -55,8 +55,11 @@ public class PlayerController : MonoBehaviour
     //private GameObject specialBullet = null;
 
     [Header("JumpDetectRay")]
-    RaycastHit2D hit;
-    int layerMask;  // Player 레이어만 충돌 체크함
+    RaycastHit2D floorHit;
+    int floorLayerMask;  // Player 레이어만 충돌 체크함
+
+    RaycastHit2D enemyHit;
+    int enemyLayerMask;  // Player 레이어만 충돌 체크함
 
     [Header("SpawnPos")]
     [SerializeField] private Transform[] spawnPos;
@@ -73,7 +76,13 @@ public class PlayerController : MonoBehaviour
         }
         ChangeState(PlayerState.Idle);
 
-        layerMask = 1 << LayerMask.NameToLayer("Floor");
+        floorLayerMask = (1 << LayerMask.NameToLayer("Floor"));
+        enemyLayerMask = 
+            (1 << LayerMask.NameToLayer("Block")) 
+            | (1 << LayerMask.NameToLayer("Alien"))
+            | (1 << LayerMask.NameToLayer("AlienInvincibility"))
+            | (1 << LayerMask.NameToLayer("AlienBoss") 
+            | (1 << LayerMask.NameToLayer("AlienBossDead")));
     }
 
     public static PlayerController Instance
@@ -120,18 +129,61 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            hit = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 1.0f, layerMask);
-            Debug.DrawRay(gameObject.transform.position, Vector2.down * 1.0f, Color.red);
+            //Raycast To Floor
+            floorHit = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 1.25f, floorLayerMask);
+            Debug.DrawRay(gameObject.transform.position, Vector2.down * 1.25f, Color.red);
 
-            if (hit.collider == null)
+            //Raycast To Enemy
+            enemyHit = Physics2D.Raycast(gameObject.transform.position, Vector2.up, 1.25f, enemyLayerMask);
+            Debug.DrawRay(gameObject.transform.position, Vector2.up * 1.25f, Color.blue);
+
+            //Enemy Collide
+            if (enemyHit.collider == null)
             {
+                Debug.Log("isNull");
+                isOverlapped = false;
+                parentRigid.mass = 1;
+            }
+            else if (enemyHit.collider.tag == "BlockTrigger" || enemyHit.collider.tag == "AlienTrigger" ||
+                enemyHit.collider.tag == "Block" || enemyHit.collider.tag == "Alien")
+            {
+                Debug.Log("Trigger" + enemyHit.collider.tag);
+                parentRigid.mass = 0.5f;
+                isOverlapped = true;
+            }
+
+            //Floor Collide
+            if (floorHit.collider == null)
+            {
+                if (isCrushed && isOverlapped && isJump)
+                {
+                    if (gameObject.layer == LayerMask.NameToLayer("Player"))
+                    {
+                        gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
+                        parentRigid.velocity= Vector2.zero;
+                        parentTransform.position = playerPos[positionIndex].position;
+                    }
+                    return;
+                }
+
                 gameObject.layer = LayerMask.NameToLayer("Player");
             }
-            else if (hit.collider.tag == "Floor")
+            else if (floorHit.collider.tag == "Floor")
             {
-                Debug.Log(hit.collider.tag);
                 gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
             }
+
+            
+
+            ////Floor Collide
+            //if (isOverlapped && isCrushed)
+            //{
+            //    gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
+            //}
+            //else
+            //{
+            //    gameObject.layer = LayerMask.NameToLayer("Player");
+            //}
         }
     }
 
@@ -344,7 +396,7 @@ public class PlayerController : MonoBehaviour
         if (isJump)
         {
             parentRigid.velocity = Vector2.zero;
-            parentRigid.AddForce(Vector2.down * 50f, ForceMode2D.Impulse);
+            parentRigid.AddForce(Vector2.down *25f, ForceMode2D.Impulse);
         }
 
         SheldToX();

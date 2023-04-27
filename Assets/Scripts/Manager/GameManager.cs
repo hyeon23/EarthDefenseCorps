@@ -80,7 +80,8 @@ public class GameManager : MonoBehaviour
 
             elapsedTime += Time.deltaTime;
         }
-        cam.localPosition = originPosition;
+
+        //cam.localPosition = originPosition;
     }
 
     public void GameOver()

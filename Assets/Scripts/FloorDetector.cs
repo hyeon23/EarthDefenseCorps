@@ -25,12 +25,12 @@ public class FloorDetector : MonoBehaviour
                         break;
                     case EnemyType.Block1X1:
                         EffectManager.Instance.SpawnEffect(new int[] { 21 }, collision.transform.parent.position + new Vector3(0, -1f, 0));
-                        StartCoroutine(GameManager.Instance.CameraShake(0.2f, 1, 2));
+                        StartCoroutine(GameManager.Instance.CameraShake(0.1f, 1, 1));
                         break;
                     case EnemyType.Block1X3:
                     case EnemyType.Block1X3M:
                         EffectManager.Instance.SpawnEffect(new int[] { 22 }, transform.position + new Vector3(0, 1f, 0));
-                        StartCoroutine(GameManager.Instance.CameraShake(0.4f, 1, 3));
+                        StartCoroutine(GameManager.Instance.CameraShake(0.3f, 2, 2));
                         break;
                 }
             }
@@ -47,7 +47,7 @@ public class FloorDetector : MonoBehaviour
                     case EnemyType.AlienBoss:
                         SoundManager.Instance.SFXPlay(SoundManager.SFX.Collapse);
                         EffectManager.Instance.SpawnEffect(new int[] { 22 }, transform.position + new Vector3(0, 1f, 0));
-                        StartCoroutine(GameManager.Instance.CameraShake(0.6f, 2, 3));
+                        StartCoroutine(GameManager.Instance.CameraShake(0.5f, 3, 3));
                         break;
                 }
             }

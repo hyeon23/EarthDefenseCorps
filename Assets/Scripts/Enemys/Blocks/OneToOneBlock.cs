@@ -20,7 +20,6 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X3:
                 case EnemyType.Block1X3M:
                     isOverlappedPlayer = true;
-                    //PlayerController.Instance.isOverlapped = true;
                     break;
             }
         }
@@ -84,7 +83,7 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X3M:
                     if (!parentGameObject.activeSelf) return;
 
-                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 15 : 0.5f), ForceMode2D.Impulse);
+                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 15 : 1.5f), ForceMode2D.Impulse);
                     StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
                     break;
             }
@@ -163,7 +162,6 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X3:
                 case EnemyType.Block1X3M:
                     isOverlappedPlayer = false;
-                    //PlayerController.Instance.isOverlapped = false;
                     break;
             }
         }
