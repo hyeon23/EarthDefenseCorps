@@ -123,7 +123,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 288
-        height: 1024
+        height: 350
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90b911325a8308e4c89675413cf0e840
-      internalID: -258143953
+      spriteID: 6e787e069796d4f4a8b800343a26576b
+      internalID: 685186638
       vertices: []
       indices: 
       edges: []
@@ -144,7 +144,7 @@ TextureImporter:
         x: 288
         y: 0
         width: 288
-        height: 1024
+        height: 350
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80a04bbf9ffb7754b8ebbd398bcbcde6
-      internalID: -274353946
+      spriteID: 88aadcb441573d74d9e01ff2e71187a5
+      internalID: 561080291
       vertices: []
       indices: 
       edges: []
@@ -165,7 +165,7 @@ TextureImporter:
         x: 576
         y: 0
         width: 288
-        height: 1024
+        height: 350
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ef8ef3be42c93e4398191f4ca24151c
-      internalID: 469111189
+      spriteID: b9bde38e74209614db20cef17ffffbf9
+      internalID: 1424610742
       vertices: []
       indices: 
       edges: []
@@ -186,7 +186,7 @@ TextureImporter:
         x: 864
         y: 0
         width: 288
-        height: 1024
+        height: 350
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12c266946eed6ad43821bada84326a85
-      internalID: 1676309908
+      spriteID: 1a89c8c81ec6a99449ff01455e2967da
+      internalID: 840375885
       vertices: []
       indices: 
       edges: []
@@ -207,7 +207,7 @@ TextureImporter:
         x: 1152
         y: 0
         width: 288
-        height: 1024
+        height: 350
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7e4b2098d5fed141a629077e334e829
-      internalID: 314924546
+      spriteID: fa90bd1fabf3c4d4d8e3498471121b6a
+      internalID: -1669404545
       vertices: []
       indices: 
       edges: []
@@ -228,7 +228,7 @@ TextureImporter:
         x: 1440
         y: 0
         width: 288
-        height: 1024
+        height: 161
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,29 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4a47696f0a9eb147855b827bc3c2e2c
-      internalID: 205724052
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BackGrounds_6
-      rect:
-        serializedVersion: 2
-        x: 1728
-        y: 0
-        width: 288
-        height: 55
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 21cf8bf4914c05b44859bf0b7ed4735e
-      internalID: 2078863184
+      spriteID: e8d957251f17dd4408e2bca59c3c8498
+      internalID: -1283075050
       vertices: []
       indices: 
       edges: []
@@ -274,13 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BackGrounds_0: -258143953
-      BackGrounds_1: -274353946
-      BackGrounds_2: 469111189
-      BackGrounds_3: 1676309908
-      BackGrounds_4: 314924546
-      BackGrounds_5: 205724052
-      BackGrounds_6: 2078863184
+      BackGrounds_0: 685186638
+      BackGrounds_1: 561080291
+      BackGrounds_2: 1424610742
+      BackGrounds_3: 840375885
+      BackGrounds_4: -1669404545
+      BackGrounds_5: -1283075050
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
