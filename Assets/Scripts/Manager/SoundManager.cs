@@ -205,7 +205,7 @@ public class SoundManager : MonoBehaviour
                         sfxPlayer[sfxCursor].clip = sfxClip[Random.Range(18, 22)];
                         break;
                     case SFX.AlienDead:
-                        sfxPlayer[sfxCursor].clip = sfxClip[Random.Range(22, 24)];
+                        sfxPlayer[sfxCursor].clip = sfxClip[23];
                         break;
                     case SFX.AlienSideFade:
                         sfxPlayer[sfxCursor].clip = sfxClip[24];

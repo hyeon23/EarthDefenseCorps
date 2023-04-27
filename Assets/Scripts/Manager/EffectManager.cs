@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EffectManager : MonoBehaviour
@@ -60,7 +61,19 @@ public class EffectManager : MonoBehaviour
 
             if (effectObject == null) return;
 
+            StartCoroutine(ExplosionGap(effectObject, spawnPos));
+        }
+    }
+
+    public IEnumerator ExplosionGap(GameObject effectObject, Transform spawnPos)
+    {
+        for (int i = 0; i < 30; i++)
+        {
             GameObject clone = Instantiate(effectObject, spawnPos.position, Quaternion.identity, spawnPos);
+            SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienDead);
+
+            yield return new WaitForSeconds(0.2f);
+
             Destroy(clone, 10f);//Effect Ending ½Ã°£°ú ¸ÂÃã
         }
     }

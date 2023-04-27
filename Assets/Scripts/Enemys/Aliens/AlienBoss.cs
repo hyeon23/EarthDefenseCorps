@@ -25,14 +25,16 @@ public class AlienBoss : Alien
 
     [SerializeField]
     private float curThinkCooltime = 5f;
-    private float thinkCooltime = 7;
-    [SerializeField]
 
+    [SerializeField]
+    private float thinkCooltime = 7;
+    
+    [SerializeField]
     private float turnDegree = 0f;
-    private bool isDead = false;
-    private bool isTurning = false;
-    private bool isTakingDown = false;
-    private bool sheldTriggered = false;
+    public bool isDead = false;
+    public bool isTurning = false;
+    public bool isTakingDown = false;
+    public bool sheldTriggered = false;
 
     public bool isCrushedPlayer = false;
     public bool isOverlappedPlayer = false;
@@ -51,37 +53,44 @@ public class AlienBoss : Alien
     void Update()
     {
         //Cool Time Set
-        if(!isTurning || !isTakingDown || !isDead)
-            curThinkCooltime += Time.deltaTime;
-
-        switch (alienState)
+        if (isDead)
         {
-            //랜덤 패턴 수행
-            //패턴 뽑기
-            //뽑힌 패턴에 대한 tern 수행
-            //뽑힌 패턴 수행
-            case AlienState.Idle:
 
-                //주의 후에 추가
-                if (!isTakingDown)
-                    FollowPlayerBoss();
-
-                if (curThinkCooltime < thinkCooltime) return;
-
-                Think();
-                break;
-            case AlienState.Turn:
-                Turn(turnDegree);
-                break;
-            case AlienState.Pattern:
-                if (isTurning || isTakingDown || isDead) return;
-
-                PatternTrigger(patternIndex);
-                break;
-            case AlienState.Dead:
-
-                break;
         }
+        else
+        {
+            if (!isTurning || !isTakingDown)
+                curThinkCooltime += Time.deltaTime;
+
+            switch (alienState)
+            {
+                //랜덤 패턴 수행
+                //패턴 뽑기
+                //뽑힌 패턴에 대한 tern 수행
+                //뽑힌 패턴 수행
+                case AlienState.Idle:
+
+                    if (!isTakingDown)
+                        FollowPlayerBoss();
+
+                    if (curThinkCooltime < thinkCooltime) 
+                        return;
+                    Think();
+                    break;
+                case AlienState.Turn:
+                    Turn(turnDegree);
+                    break;
+                case AlienState.Pattern:
+                    if (isTurning || isTakingDown) 
+                        return;
+                    PatternTrigger(patternIndex);
+                    break;
+            }
+        }
+
+        
+
+        
     }
 
     //Boss Patern Think
@@ -518,8 +527,6 @@ public class AlienBoss : Alien
                     //특정 효과
                     if (!parentGameObject.activeSelf) return;
                     StartCoroutine(OnHit(DataManager.Instance.playerData.PlayerATK, collision.transform.position));
-
-                    StopAllCoroutines();
                     alienState = AlienState.Idle;
                     break;
                 default:
@@ -581,6 +588,7 @@ public class AlienBoss : Alien
             {
                 case "Moon":
                     if (!parentGameObject.activeSelf) return;
+                    alienState = AlienState.Idle;
                     break;
                 default:
                     break;
@@ -655,7 +663,7 @@ public class AlienBoss : Alien
         float percent = 0;
 
         Vector3 startPos = transform.parent.position;
-        Vector3 targetPos = new Vector3(0, 3, 0);
+        Vector3 targetPos = new Vector3(0, 5, 0);
 
         while (percent <= 1)
         {
@@ -667,6 +675,9 @@ public class AlienBoss : Alien
 
         //GameClear
         InGameTextViewer.Instance.PlusGetGold(gold);
+
+        yield return new WaitForSeconds(2f);
+
         GameManager.Instance.StageClear();
     }
 }

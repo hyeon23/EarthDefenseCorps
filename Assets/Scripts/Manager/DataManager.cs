@@ -158,8 +158,6 @@ public class DataManager : MonoBehaviour
     {
         Debug.Log("DMStart");
 
-        SceneManager.sceneLoaded += LoadedsceneEvent;
-
         //여기서 기존에 가진 장비 불러와야 함
         //기존 장착 데이터 존재 시, 기존 데이터, 없으면 없는 데이터 사용
         playerData.curEquippedWeapon = null;
