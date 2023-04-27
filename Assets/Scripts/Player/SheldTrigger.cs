@@ -20,7 +20,7 @@ public class SheldTrigger : MonoBehaviour
         }
         else if (collision.transform.tag == "BlockBullet" || collision.transform.tag == "AlienBullet")
         {
-            SoundManager.Instance.SFXPlay(SoundManager.SFX.bulletParrying, 0.2f);
+            SoundManager.Instance.SFXPlay(SoundManager.SFX.Parrying, 0.1f);
         }
     }
 }

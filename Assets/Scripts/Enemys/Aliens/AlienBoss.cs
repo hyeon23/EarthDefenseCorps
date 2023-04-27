@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AlienBoss : Alien
@@ -23,7 +24,7 @@ public class AlienBoss : Alien
     protected Animator moonAlienBoss1_BulletPos2_Anime;
 
     [SerializeField]
-    private float curThinkCooltime = 0f;
+    private float curThinkCooltime = 5f;
     private float thinkCooltime = 7;
     [SerializeField]
 
@@ -50,7 +51,7 @@ public class AlienBoss : Alien
     void Update()
     {
         //Cool Time Set
-        if(!isTurning || !isTakingDown || isDead)
+        if(!isTurning || !isTakingDown || !isDead)
             curThinkCooltime += Time.deltaTime;
 
         switch (alienState)
@@ -74,6 +75,7 @@ public class AlienBoss : Alien
                 break;
             case AlienState.Pattern:
                 if (isTurning || isTakingDown || isDead) return;
+
                 PatternTrigger(patternIndex);
                 break;
             case AlienState.Dead:
@@ -85,7 +87,16 @@ public class AlienBoss : Alien
     //Boss Patern Think
     private void Think()
     {
-        patternIndex = Random.Range(0, maxPatternCount.Length);
+        //중복 패턴 제거
+        int oldPatternIndex = patternIndex;
+
+        List<int> patternIndexArray = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7 };
+
+        patternIndexArray.Remove(oldPatternIndex);
+
+        patternIndex = patternIndexArray[Random.Range(0, patternIndexArray.Count)];
+        //중복 패턴 끝
+
         curPatternCount = 0;
 
         switch (patternIndex)
@@ -105,7 +116,6 @@ public class AlienBoss : Alien
                 turnDegree = 120;
                 break;
         }
-        curThinkCooltime = 0;
         alienState = AlienState.Turn;
     }
 
@@ -121,7 +131,7 @@ public class AlienBoss : Alien
         isTurning = true;
 
         float start = 0;
-        float end = 2.5f;
+        float end = 1.5f;
         
         float percent = 0;
 
@@ -137,7 +147,7 @@ public class AlienBoss : Alien
         }
         curThinkCooltime = 0;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         isTurning = false;
     }
@@ -145,8 +155,12 @@ public class AlienBoss : Alien
     private void PatternTrigger(int patternIndex)
     {
         curPatternCount = 0;
+
         switch (patternIndex)
         {
+            case -1:
+                curThinkCooltime = 3;
+                break;
             case 0:
                 curThinkCooltime = 4;
                 FireFoward();
@@ -276,7 +290,7 @@ public class AlienBoss : Alien
         bullet.transform.rotation = Quaternion.identity;
 
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-        Vector2 dirVec = new Vector2(Mathf.Sin(Mathf.PI * 15 * curPatternCount / maxPatternCount[patternIndex]), -1f);//#원의 둘레, 더 많이 왕복을 원하면 2를 늘리면 됨
+        Vector2 dirVec = new Vector2(Mathf.Sin(Mathf.PI * 15 * curPatternCount / maxPatternCount[patternIndex]) / 2, -1f);//#원의 둘레, 더 많이 왕복을 원하면 2를 늘리면 됨
         rigid.AddForce(dirVec.normalized * 12, ForceMode2D.Impulse);
 
         curPatternCount++;

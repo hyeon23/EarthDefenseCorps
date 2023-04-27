@@ -2014,7 +2014,7 @@ MonoBehaviour:
   moonAlienBoss1_Bullet2: {fileID: 8925411724918164952, guid: 2db3a5a7627df744c9b49bb2526c157c, type: 3}
   moonAlienBoss1_BulletPos1_Anime: {fileID: 5340212312462250827}
   moonAlienBoss1_BulletPos2_Anime: {fileID: 5340212310842290659}
-  curThinkCooltime: 0
+  curThinkCooltime: 3
   turnDegree: 0
   isCrushedPlayer: 0
   isOverlappedPlayer: 0
