@@ -614,6 +614,7 @@ public class AlienBoss : Alien
             isDead = true;
             alienState = AlienState.Dead;
             gameObject.layer = LayerMask.NameToLayer("AlienBossDead");
+            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             OnDead(true);
         }
         else
