@@ -1,0 +1,26 @@
+using UnityEngine;
+
+public class SpecialTrigger : MonoBehaviour
+{
+    [SerializeField] private SpriteRenderer specialImage;
+
+    private void Start()
+    {
+        specialImage.sprite = DataManager.Instance.playerData.CurEquippedWeapon != null ? DataManager.Instance.playerData.CurEquippedWeapon.itemImage : null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "BlockTrigger" || collision.tag == "BlockBullet" || collision.tag == "AlienTrigger")
+        {
+            DataManager.Instance.playerData.curSpecialMoveGage = (DataManager.Instance.playerData.curSpecialMoveGage >= DataManager.Instance.playerData.PlayerSpecialMoveGage) ? DataManager.Instance.playerData.PlayerSpecialMoveGage : DataManager.Instance.playerData.curSpecialMoveGage + 0.1f * Mathf.Clamp(GameManager.Instance.combo, 0, 50);
+            SoundManager.Instance.SFXPlay(SoundManager.SFX.EnemyHit);
+            StopAllCoroutines();
+            StartCoroutine(InGameTextViewer.Instance.FadeInOutText());
+        }
+        else if (collision.tag == "AlienBullet")
+        {
+            SoundManager.Instance.SFXPlay(SoundManager.SFX.AlienBulletHit);
+        }
+    }
+}

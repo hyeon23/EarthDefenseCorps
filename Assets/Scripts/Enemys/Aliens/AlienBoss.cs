@@ -535,24 +535,24 @@ public class AlienBoss : Alien
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (isDead) return;
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (isDead) return;
 
-        if (collision.tag == "Special")
-        {
-            switch (enemyName)
-            {
-                case "Moon":
-                    //특정 효과
-                    if (!parentGameObject.activeSelf) return;
-                    StartCoroutine(OnHit(DataManager.Instance.playerData.PlayerATK, collision.transform.position));
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+    //    if (collision.tag == "Special")
+    //    {
+    //        switch (enemyName)
+    //        {
+    //            case "Moon":
+    //                //특정 효과
+    //                if (!parentGameObject.activeSelf) return;
+    //                StartCoroutine(OnHit(DataManager.Instance.playerData.PlayerATK, collision.transform.position));
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //    }
+    //}
 
     private void OnTriggerExit2D(Collider2D collision)
     {

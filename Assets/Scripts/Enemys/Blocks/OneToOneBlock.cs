@@ -95,7 +95,8 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X1H:
                     if (!parentGameObject.activeSelf) return;
 
-                    parentRigid.transform.position = new Vector3(parentRigid.transform.position.x, parentRigid.transform.position.y + 1.5f, parentRigid.transform.position.z);
+                    parentRigid.AddForce(new Vector2(0, 0.5f), ForceMode2D.Impulse);
+                    //parentRigid.transform.position = new Vector3(parentRigid.transform.position.x, parentRigid.transform.position.y + 1.5f, parentRigid.transform.position.z);
                     StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
                     break;
                 case EnemyType.Block1X1:
@@ -103,7 +104,11 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X3M:
                     if (!parentGameObject.activeSelf) return;
 
-                    parentRigid.transform.position = new Vector3(parentRigid.transform.position.x, parentRigid.transform.position.y + 1.5f, parentRigid.transform.position.z);
+                    if (PlayerController.Instance.specialTargetEnemyTransform != gameObject.transform)
+                        return;
+
+                    parentRigid.AddForce(new Vector2(0, 0.5f), ForceMode2D.Impulse);
+                    //parentRigid.transform.position = new Vector3(parentRigid.transform.position.x, parentRigid.transform.position.y + 1.5f, parentRigid.transform.position.z);
                     StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
                     break;
             }
@@ -126,28 +131,28 @@ public class OneToOneBlock : Block
         //}
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag == "Special")
-        {
-            switch (enemyType)
-            {
-                case EnemyType.Block1X1H:
-                    if (!parentGameObject.activeSelf) return;
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Special")
+    //    {
+    //        switch (enemyType)
+    //        {
+    //            case EnemyType.Block1X1H:
+    //                if (!parentGameObject.activeSelf) return;
 
-                    StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
-                    break;
-                case EnemyType.Block1X1:
-                case EnemyType.Block1X3:
-                case EnemyType.Block1X3M:
-                    if (!parentGameObject.activeSelf) return;
+    //                StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
+    //                break;
+    //            case EnemyType.Block1X1:
+    //            case EnemyType.Block1X3:
+    //            case EnemyType.Block1X3M:
+    //                if (!parentGameObject.activeSelf) return;
 
-                    parentRigid.AddForce(new Vector2(0, 0.5f), ForceMode2D.Impulse);
-                    StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
-                    break;
-            }
-        }
-    }
+    //                //parentRigid.AddForce(new Vector2(0, 0.5f), ForceMode2D.Impulse);
+    //                StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
+    //                break;
+    //        }
+    //    }
+    //}
 
     private void OnTriggerExit2D(Collider2D collision)
     {

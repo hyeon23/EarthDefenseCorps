@@ -79,22 +79,22 @@ public class AlienElite : Alien
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag == "Special")
-        {
-            switch (enemyName)
-            {
-                case "MoonAlienElite1":
-                    //특정 효과
-                    if (!parentGameObject.activeSelf) return;
-                    StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Special")
+    //    {
+    //        switch (enemyName)
+    //        {
+    //            case "MoonAlienElite1":
+    //                //특정 효과
+    //                if (!parentGameObject.activeSelf) return;
+    //                StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //    }
+    //}
 
     private void OnTriggerExit2D(Collider2D collision)
     {

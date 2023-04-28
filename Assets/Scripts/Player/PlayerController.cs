@@ -61,10 +61,15 @@ public class PlayerController : MonoBehaviour
 
     RaycastHit2D upEnemyHit;
     RaycastHit2D downEnemyHit;
+
+    [Header("SpecialMoveRay")]
+    RaycastHit2D specialEnemyHit;
     int enemyLayerMask;  // Player 레이어만 충돌 체크함
 
     [Header("SpawnPos")]
     [SerializeField] private Transform[] spawnPos;
+
+    public Transform specialTargetEnemyTransform = null;
 
     void Awake()
     {
@@ -143,6 +148,10 @@ public class PlayerController : MonoBehaviour
             downEnemyHit = Physics2D.Raycast(gameObject.transform.position + new Vector3(-1, -1, 0), Vector2.right, 1.25f, enemyLayerMask);
             Debug.DrawRay(gameObject.transform.position + new Vector3(-0.5f, -0.5f, 0), Vector2.right * 1.25f, Color.green);
 
+            //Raycast To Enemy
+            specialEnemyHit = Physics2D.Raycast(gameObject.transform.position, Vector2.up, Mathf.Infinity, enemyLayerMask);
+            Debug.DrawRay(gameObject.transform.position, Vector2.up * Mathf.Infinity, Color.black);
+
             //Enemy Collide
             if (upEnemyHit.collider == null)
             {
@@ -192,6 +201,24 @@ public class PlayerController : MonoBehaviour
             else if (floorHit.collider.tag == "Floor")
             {
                 gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
+            }
+
+            if (isSpecial)
+            {
+                //Floor Collide
+                if (specialEnemyHit.collider == null)
+                {
+
+                }
+                else if (specialEnemyHit.collider.tag == "BlockTrigger" || specialEnemyHit.collider.tag == "AlienTrigger" ||
+                    specialEnemyHit.collider.tag == "Block" || specialEnemyHit.collider.tag == "Alien")
+                {
+                    specialTargetEnemyTransform = specialEnemyHit.transform;
+                }
+            }
+            else
+            {
+                specialTargetEnemyTransform = null;
             }
         }
     }
@@ -378,7 +405,7 @@ public class PlayerController : MonoBehaviour
         if (isJump)
         {
             parentRigid.velocity = Vector2.zero;
-            parentRigid.AddForce(Vector2.down *25f, ForceMode2D.Impulse);
+            parentRigid.AddForce(Vector2.down * 35f, ForceMode2D.Impulse);
         }
 
         SheldToX();
@@ -388,12 +415,6 @@ public class PlayerController : MonoBehaviour
     private IEnumerator SpecialMove()
     {
         SheldToX();
-
-        float start = 0;
-        float end = 1f;
-
-        float percent = 0;
-
         isSpecial = true;
 
         specialAxis.SetActive(true);
@@ -401,39 +422,41 @@ public class PlayerController : MonoBehaviour
 
         SoundManager.Instance.SFXPlay(SoundManager.SFX.SpecialMove);
 
-        Time.timeScale = 0f;
-
-        yield return new WaitForSecondsRealtime(0.5f);
-
-        Time.timeScale = 1f;
-
-        anime.SetBool("isSpecial", isSpecial);
-
-        anime.SetTrigger("doSpecial");
-
-
         specialAfterEffect.SetActive(true);
 
         parentRigid.velocity = Vector2.zero;
         parentRigid.AddForce(Vector2.up * 25, ForceMode2D.Impulse);
 
-        while (percent <= 1)
+        //while (percent <= 1)
+        //{
+        //    start += Time.deltaTime;
+        //    percent = start / end;
+        //    parentRigid.AddForce(Vector2.up * 1, ForceMode2D.Impulse);
+
+        //    specialTrigger.enabled = true;
+
+        //    yield return new WaitForSeconds(0.1f);
+
+        //    specialTrigger.enabled = false;
+        //}
+
+        for (int i = 0; i < 10; i++)
         {
-            start += Time.deltaTime;
-            percent = start / end;
-            parentRigid.AddForce(Vector2.up * 1, ForceMode2D.Impulse);
-            yield return null;
+            specialTrigger.enabled = true;
+
+            parentRigid.AddForce(Vector2.up * 0.1f, ForceMode2D.Impulse);
+            yield return new WaitForSeconds(0.1f);
+
+            specialTrigger.enabled = false;
         }
 
         parentRigid.velocity = Vector2.zero;
         parentRigid.AddForce(Vector2.down * 30f, ForceMode2D.Impulse);
 
         specialAfterEffect.SetActive(false);
-        specialTrigger.enabled = false;
         specialAxis.SetActive(false);
 
         isSpecial = false;
-        anime.SetBool("isSpecial", isSpecial);
     }
 
     private void SheldToX()
