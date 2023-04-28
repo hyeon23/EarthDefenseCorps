@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public bool isSheld = false;
     public bool isSpecial = false;
     public bool isCrushed = false;
+    public bool isStucked = false;
     public bool isOverlapped = false;
     public bool parryingSheld = false;
 
@@ -58,7 +59,8 @@ public class PlayerController : MonoBehaviour
     RaycastHit2D floorHit;
     int floorLayerMask;  // Player 레이어만 충돌 체크함
 
-    RaycastHit2D enemyHit;
+    RaycastHit2D upEnemyHit;
+    RaycastHit2D downEnemyHit;
     int enemyLayerMask;  // Player 레이어만 충돌 체크함
 
     [Header("SpawnPos")]
@@ -76,7 +78,7 @@ public class PlayerController : MonoBehaviour
         }
         ChangeState(PlayerState.Idle);
 
-        floorLayerMask = (1 << LayerMask.NameToLayer("Floor"));
+        floorLayerMask = 1 << LayerMask.NameToLayer("Floor");
         enemyLayerMask = 
             (1 << LayerMask.NameToLayer("Block")) 
             | (1 << LayerMask.NameToLayer("Alien"))
@@ -134,35 +136,54 @@ public class PlayerController : MonoBehaviour
             Debug.DrawRay(gameObject.transform.position, Vector2.down * 1.25f, Color.red);
 
             //Raycast To Enemy
-            enemyHit = Physics2D.Raycast(gameObject.transform.position, Vector2.up, 1.25f, enemyLayerMask);
+            upEnemyHit = Physics2D.Raycast(gameObject.transform.position, Vector2.up, 1.25f, enemyLayerMask);
             Debug.DrawRay(gameObject.transform.position, Vector2.up * 1.25f, Color.blue);
 
+            //Raycast To Enemy
+            downEnemyHit = Physics2D.Raycast(gameObject.transform.position + new Vector3(-1, -1, 0), Vector2.right, 1.25f, enemyLayerMask);
+            Debug.DrawRay(gameObject.transform.position + new Vector3(-0.5f, -0.5f, 0), Vector2.right * 1.25f, Color.green);
+
             //Enemy Collide
-            if (enemyHit.collider == null)
+            if (upEnemyHit.collider == null)
             {
-                Debug.Log("isNull");
                 isOverlapped = false;
                 parentRigid.mass = 1;
             }
-            else if (enemyHit.collider.tag == "BlockTrigger" || enemyHit.collider.tag == "AlienTrigger" ||
-                enemyHit.collider.tag == "Block" || enemyHit.collider.tag == "Alien")
+            else if (upEnemyHit.collider.tag == "BlockTrigger" || upEnemyHit.collider.tag == "AlienTrigger" ||
+                upEnemyHit.collider.tag == "Block" || upEnemyHit.collider.tag == "Alien")
             {
-                Debug.Log("Trigger" + enemyHit.collider.tag);
                 parentRigid.mass = 0.5f;
                 isOverlapped = true;
+            }
+
+            //Enemy Collide
+            if (downEnemyHit.collider == null)
+            {
+                isStucked = false;
+            }
+            else if (downEnemyHit.collider.tag == "BlockTrigger" || downEnemyHit.collider.tag == "AlienTrigger" ||
+                downEnemyHit.collider.tag == "Block" || downEnemyHit.collider.tag == "Alien")
+            {
+                isStucked = true;
             }
 
             //Floor Collide
             if (floorHit.collider == null)
             {
-                if (isCrushed && isOverlapped && isJump)
+                if (isStucked || (isJump && isOverlapped && isCrushed))
                 {
-                    if (gameObject.layer == LayerMask.NameToLayer("Player"))
-                    {
-                        gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
-                        parentRigid.velocity= Vector2.zero;
-                        parentTransform.position = playerPos[positionIndex].position;
-                    }
+                    gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
+
+                    float tempGravity = parentRigid.gravityScale;
+
+                    Debug.Log("TickTick");
+
+                    parentRigid.gravityScale = 0;
+                    parentRigid.velocity = Vector2.zero;
+                    parentTransform.position = playerPos[positionIndex].position;
+                    Debug.Log("TickTackToe");
+                    parentRigid.gravityScale = tempGravity;
+
                     return;
                 }
 
@@ -172,18 +193,6 @@ public class PlayerController : MonoBehaviour
             {
                 gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
             }
-
-            
-
-            ////Floor Collide
-            //if (isOverlapped && isCrushed)
-            //{
-            //    gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
-            //}
-            //else
-            //{
-            //    gameObject.layer = LayerMask.NameToLayer("Player");
-            //}
         }
     }
 
@@ -284,34 +293,6 @@ public class PlayerController : MonoBehaviour
         anime.SetTrigger("doSideStep");
         SheldToX();
     }
-
-    //private void SideStepLeft()
-    //{
-    //    Debug.Log("SideLeft");
-    //    textText.text = "Left Move";
-    //    positionIndex += -1;
-    //    parentTransform.position = playerPos[positionIndex].position;
-    //    parentTransform.localScale = new Vector3(-1, 1, 1);
-    //    Moving(false);
-    //}
-
-    //private void SideStepRight()
-    //{
-    //    Debug.Log("SideRight");
-    //    textText.text = "Right Move";
-    //    positionIndex += 1;
-    //    parentTransform.position = playerPos[positionIndex].position;
-    //    parentTransform.localScale = Vector3.one;
-    //    Moving(true);
-    //}
-
-    //private void Attack()
-    //{
-    //    Debug.Log("Attack");
-    //    textText.text = "Attack";
-    //    SheldToX();
-    //    anime.SetTrigger("doAttack");
-    //}
 
     private IEnumerator SideStepLeft()
     {
