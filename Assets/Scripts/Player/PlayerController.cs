@@ -286,7 +286,7 @@ public class PlayerController : MonoBehaviour
     public void Moving(bool dir)
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.SideWalk);
-
+        EffectManager.Instance.SpawnEffect(new int[] { 35 }, transform.position + new Vector3(0, -0.5f, 0));
         positionIndex += dir ? 1 : -1;
         parentTransform.position = playerPos[positionIndex].position;
         parentTransform.localScale = new Vector3(dir ? 1 : -1, 1, 1);
@@ -327,6 +327,7 @@ public class PlayerController : MonoBehaviour
         isJump = true;
         anime.SetBool("isJump", isJump);
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Jump);
+        EffectManager.Instance.SpawnEffect(new int[] { 35 }, transform.position + new Vector3(0, -0.5f, 0));
         parentRigid.AddForce(new Vector2(0, 20f), ForceMode2D.Impulse);
 
         yield return null;
@@ -399,6 +400,7 @@ public class PlayerController : MonoBehaviour
         specialTrigger.enabled = true;
 
         SoundManager.Instance.SFXPlay(SoundManager.SFX.SpecialMove);
+
         Time.timeScale = 0f;
 
         yield return new WaitForSecondsRealtime(0.5f);
@@ -420,7 +422,6 @@ public class PlayerController : MonoBehaviour
             start += Time.deltaTime;
             percent = start / end;
             parentRigid.AddForce(Vector2.up * 1, ForceMode2D.Impulse);
-            //transform.parent.position = Vector3.Lerp(startPos, targetPos, percent);
             yield return null;
         }
 
@@ -448,6 +449,7 @@ public class PlayerController : MonoBehaviour
             isJump = false;
             anime.SetBool("isJump", isJump);
             SoundManager.Instance.SFXPlay(SoundManager.SFX.Landing);
+            EffectManager.Instance.SpawnEffect(new int[] { 35 }, transform.position + new Vector3(0, -0.5f, 0));
         }
     }
 }

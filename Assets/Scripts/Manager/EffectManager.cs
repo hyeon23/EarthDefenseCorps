@@ -175,6 +175,8 @@ public class EffectManager : MonoBehaviour
                 return Effects[33];
             case 34:
                 return Effects[34];
+            case 35:
+                return Effects[35];
             default:
                 return null;
         }
