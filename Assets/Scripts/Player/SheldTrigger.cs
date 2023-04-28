@@ -17,6 +17,7 @@ public class SheldTrigger : MonoBehaviour
         {
             PlayerController.Instance.parryingSheld = true;
             SoundManager.Instance.SFXPlay(SoundManager.SFX.Parrying);
+            EffectManager.Instance.SpawnEffect(new int[] { 33 }, sheldImage.gameObject.transform.position);
         }
         else if (collision.transform.tag == "BlockBullet" || collision.transform.tag == "AlienBullet")
         {

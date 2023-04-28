@@ -601,7 +601,6 @@ public class AlienBoss : Alien
         GameManager.Instance.curHitEnemy = gameObject;
 
         bool isCritical = CriticalCheck(DataManager.Instance.playerData.PlayerCriticalRate);
-
         if (isCritical) damage = Mathf.RoundToInt(damage * DataManager.Instance.playerData.PlayerCriticalDamage / 100);
 
         curHp -= damage;
@@ -635,7 +634,7 @@ public class AlienBoss : Alien
         switch (enemyName)
         {
             case "Moon":
-                EffectManager.Instance.SpawnMoonBossEffect(new int[] { 31 }, transform);
+                EffectManager.Instance.SpawnMoonBossEffect(new int[] { 4, 5, 6, 31 }, transform);
                 break;
             default:
                 break;

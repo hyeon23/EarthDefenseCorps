@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 616445627882637218}
   - component: {fileID: 616445627882637219}
   m_Layer: 0
-  m_Name: Effect 1
+  m_Name: SparkleEffect 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
