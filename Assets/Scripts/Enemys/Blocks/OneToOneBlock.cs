@@ -75,7 +75,7 @@ public class OneToOneBlock : Block
             {
                 case EnemyType.Block1X1H:
                     if (!parentGameObject.activeSelf) return;
-
+                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 15 : 1.2f), ForceMode2D.Impulse);
                     StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
                     break;
                 case EnemyType.Block1X1:
@@ -83,7 +83,7 @@ public class OneToOneBlock : Block
                 case EnemyType.Block1X3M:
                     if (!parentGameObject.activeSelf) return;
 
-                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 15 : 1.5f), ForceMode2D.Impulse);
+                    parentRigid.AddForce(new Vector2(0, isCrushedPlayer ? 15 : 1.2f), ForceMode2D.Impulse);
                     StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
                     break;
             }
@@ -99,7 +99,7 @@ public class OneToOneBlock : Block
                         return;
 
                     parentRigid.velocity = Vector3.zero;
-                    parentRigid.AddForce(new Vector2(0, 1f), ForceMode2D.Impulse);
+                    parentRigid.AddForce(new Vector2(0, 1.2f), ForceMode2D.Impulse);
                     StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
                     break;
                 case EnemyType.Block1X1:
@@ -111,7 +111,7 @@ public class OneToOneBlock : Block
                         return;
 
                     parentRigid.velocity = Vector3.zero;
-                    parentRigid.AddForce(new Vector2(0, 1f), ForceMode2D.Impulse);
+                    parentRigid.AddForce(new Vector2(0, 1.2f), ForceMode2D.Impulse);
                     StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
                     break;
             }
