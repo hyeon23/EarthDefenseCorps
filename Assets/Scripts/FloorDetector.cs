@@ -16,7 +16,7 @@ public class FloorDetector : MonoBehaviour
             if (collision.GetComponent<OneToOneBlock>().isOverlappedPlayer)
             {
                 curBlock = collision.GetComponent<OneToOneBlock>();
-                SoundManager.Instance.SFXPlay(SoundManager.SFX.Collapse);
+                SoundManager.Instance.SFXPlay(SoundManager.SFX.Collapse, 1);
                 StartCoroutine(PlayerTrigger.Instance.OnHit(curBlock.dmg * 100));
 
                 switch (curBlock.enemyType)
@@ -45,7 +45,7 @@ public class FloorDetector : MonoBehaviour
                 switch (curAlien.enemyType)
                 {
                     case EnemyType.AlienBoss:
-                        SoundManager.Instance.SFXPlay(SoundManager.SFX.Collapse);
+                        SoundManager.Instance.SFXPlay(SoundManager.SFX.Collapse, 1);
                         EffectManager.Instance.SpawnEffect(new int[] { 22 }, transform.position + new Vector3(0, 1f, 0));
                         StartCoroutine(GameManager.Instance.CameraShake(0.5f, 3, 3));
                         break;
