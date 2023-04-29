@@ -84,12 +84,10 @@ public class PlayerController : MonoBehaviour
         ChangeState(PlayerState.Idle);
 
         floorLayerMask = 1 << LayerMask.NameToLayer("Floor");
-        enemyLayerMask = 
-            (1 << LayerMask.NameToLayer("Block")) 
-            | (1 << LayerMask.NameToLayer("Alien"))
-            | (1 << LayerMask.NameToLayer("AlienInvincibility"))
-            | (1 << LayerMask.NameToLayer("AlienBoss") 
-            | (1 << LayerMask.NameToLayer("AlienBossDead")));
+        enemyLayerMask =
+            (1 << LayerMask.NameToLayer("BlockTrigger"))
+            | (1 << LayerMask.NameToLayer("AlienTrigger"))
+            | (1 << LayerMask.NameToLayer("AlienBossTrigger"));
     }
 
     public static PlayerController Instance
@@ -150,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
             //Raycast To Enemy
             specialEnemyHit = Physics2D.Raycast(gameObject.transform.position, Vector2.up, Mathf.Infinity, enemyLayerMask);
-            Debug.DrawRay(gameObject.transform.position, Vector2.up * Mathf.Infinity, Color.black);
+            Debug.DrawRay(gameObject.transform.position + new Vector3(0.1f, 0, 0), Vector2.up * 100, Color.black);
 
             //Enemy Collide
             if (upEnemyHit.collider == null)
@@ -158,8 +156,7 @@ public class PlayerController : MonoBehaviour
                 isOverlapped = false;
                 parentRigid.mass = 1;
             }
-            else if (upEnemyHit.collider.tag == "BlockTrigger" || upEnemyHit.collider.tag == "AlienTrigger" ||
-                upEnemyHit.collider.tag == "Block" || upEnemyHit.collider.tag == "Alien")
+            else if (upEnemyHit.collider.tag == "BlockTrigger" || upEnemyHit.collider.tag == "AlienTrigger")
             {
                 parentRigid.mass = 0.5f;
                 isOverlapped = true;
@@ -170,10 +167,23 @@ public class PlayerController : MonoBehaviour
             {
                 isStucked = false;
             }
-            else if (downEnemyHit.collider.tag == "BlockTrigger" || downEnemyHit.collider.tag == "AlienTrigger" ||
-                downEnemyHit.collider.tag == "Block" || downEnemyHit.collider.tag == "Alien")
+            else if (downEnemyHit.collider.tag == "BlockTrigger" || downEnemyHit.collider.tag == "AlienTrigger")
             {
                 isStucked = true;
+            }
+
+            //Special Collide
+            if (specialEnemyHit.collider == null)
+            {
+                specialTargetEnemyTransform = null;
+
+                Debug.Log(null);
+            }
+            else if (specialEnemyHit.collider.tag == "BlockTrigger" || specialEnemyHit.collider.tag == "AlienTrigger")
+            {
+                specialTargetEnemyTransform = specialEnemyHit.transform;
+
+                Debug.Log(specialEnemyHit.collider.name);
             }
 
             //Floor Collide
@@ -195,30 +205,11 @@ public class PlayerController : MonoBehaviour
 
                     return;
                 }
-
                 gameObject.layer = LayerMask.NameToLayer("Player");
             }
             else if (floorHit.collider.tag == "Floor")
             {
                 gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
-            }
-
-            if (isSpecial)
-            {
-                //Floor Collide
-                if (specialEnemyHit.collider == null)
-                {
-
-                }
-                else if (specialEnemyHit.collider.tag == "BlockTrigger" || specialEnemyHit.collider.tag == "AlienTrigger" ||
-                    specialEnemyHit.collider.tag == "Block" || specialEnemyHit.collider.tag == "Alien")
-                {
-                    specialTargetEnemyTransform = specialEnemyHit.transform;
-                }
-            }
-            else
-            {
-                specialTargetEnemyTransform = null;
             }
         }
     }
@@ -255,7 +246,7 @@ public class PlayerController : MonoBehaviour
                     else if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
                     {
 
-                        if (isJump || isSpecial)
+                        if ((isJump /*&& specialTargetEnemyTransform != null)*/ && !isSpecial))
                         {
                             //Special Move
                             if (DataManager.Instance.playerData.curSpecialMoveGage < DataManager.Instance.playerData.playerSpecialMoveGage) { return; }
@@ -267,7 +258,7 @@ public class PlayerController : MonoBehaviour
                         else
                         {
                             //Jump
-                            if (isSheld || isOverlapped || isSpecial) return;
+                            if (isJump || isSheld || isOverlapped || isSpecial) return;
 
                             ChangeState(PlayerState.Jump);
                         }
@@ -417,6 +408,11 @@ public class PlayerController : MonoBehaviour
         SheldToX();
         isSpecial = true;
 
+        float start = 0;
+        float end = 0.25f;
+
+        float percent = 0;
+
         specialAxis.SetActive(true);
         specialTrigger.enabled = true;
 
@@ -424,30 +420,27 @@ public class PlayerController : MonoBehaviour
 
         specialAfterEffect.SetActive(true);
 
-        parentRigid.velocity = Vector2.zero;
         parentRigid.AddForce(Vector2.up * 25, ForceMode2D.Impulse);
 
-        //while (percent <= 1)
-        //{
-        //    start += Time.deltaTime;
-        //    percent = start / end;
-        //    parentRigid.AddForce(Vector2.up * 1, ForceMode2D.Impulse);
-
-        //    specialTrigger.enabled = true;
-
-        //    yield return new WaitForSeconds(0.1f);
-
-        //    specialTrigger.enabled = false;
-        //}
-
-        for (int i = 0; i < 10; i++)
+        while (percent <= 1)
         {
-            specialTrigger.enabled = true;
+            start += Time.deltaTime;
+            percent = start / end;
 
-            parentRigid.AddForce(Vector2.up * 0.1f, ForceMode2D.Impulse);
-            yield return new WaitForSeconds(0.1f);
+            parentRigid.AddForce(Vector2.up * 1.5f, ForceMode2D.Impulse);
 
-            specialTrigger.enabled = false;
+
+            if(percent % 0.1f >= 0)
+            {
+                specialTrigger.enabled = true;
+
+                parentRigid.AddForce(Vector2.up * 0.1f, ForceMode2D.Impulse);
+                yield return new WaitForSeconds(0.05f);
+
+                specialTrigger.enabled = false;
+            }
+
+            yield return null;
         }
 
         parentRigid.velocity = Vector2.zero;

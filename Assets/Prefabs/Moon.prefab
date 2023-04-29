@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 418173393}
   - component: {fileID: 418173394}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 605915967}
   - component: {fileID: 605915968}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 784344965}
   - component: {fileID: 784344966}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 816647339}
   - component: {fileID: 816647340}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1051303408}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeatureDefeated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1304448206}
   - component: {fileID: 1304448207}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1428171669}
   - component: {fileID: 1428171670}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1607084353}
   - component: {fileID: 1607084354}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,7 +631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1624988374}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeatureDefeated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1901157264}
   - component: {fileID: 1901157265}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1996052898}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeatureDefeated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -784,7 +784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2068451282}
   - component: {fileID: 2068451283}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -867,7 +867,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1640946407557402937}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -903,7 +903,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5340212310555653164}
   - component: {fileID: 5340212310555653165}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature2Eyeball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -988,7 +988,7 @@ GameObject:
   - component: {fileID: 5340212310683616220}
   - component: {fileID: 5340212310683616223}
   - component: {fileID: 5340212310683616221}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature1Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1095,7 +1095,7 @@ GameObject:
   - component: {fileID: 5340212310690591930}
   - component: {fileID: 5340212310690591931}
   - component: {fileID: 5340212310690591928}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature2Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1201,7 +1201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5340212310806355265}
   - component: {fileID: 5340212310806355264}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature1Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1391,7 +1391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5340212310890952118}
   - component: {fileID: 5340212310890952119}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature2Eyeball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1476,7 +1476,7 @@ GameObject:
   - component: {fileID: 5340212311002725319}
   - component: {fileID: 5340212311002725316}
   - component: {fileID: 5340212311002725317}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature2Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,7 +1581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5340212311086654227}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: Feature3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1663,7 +1663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5340212311276737943}
   - component: {fileID: 5340212311276737940}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature3Eyeball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1746,7 +1746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5340212311302243510}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: Feature1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1781,7 +1781,7 @@ GameObject:
   - component: {fileID: 5340212311439514686}
   - component: {fileID: 5340212311439514687}
   - component: {fileID: 5340212311439514684}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature2Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1889,7 +1889,7 @@ GameObject:
   - component: {fileID: 5340212311728735370}
   - component: {fileID: 5340212311728735371}
   - component: {fileID: 5340212311728735368}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonTrigger
   m_TagString: AlienTrigger
   m_Icon: {fileID: 0}
@@ -2015,7 +2015,12 @@ MonoBehaviour:
   moonAlienBoss1_BulletPos1_Anime: {fileID: 5340212312462250827}
   moonAlienBoss1_BulletPos2_Anime: {fileID: 5340212310842290659}
   curThinkCooltime: 3
+  thinkCooltime: 7
   turnDegree: 0
+  isDead: 0
+  isTurning: 0
+  isTakingDown: 0
+  sheldTriggered: 0
   isCrushedPlayer: 0
   isOverlappedPlayer: 0
   unActiveFeatures:
@@ -2037,7 +2042,7 @@ GameObject:
   - component: {fileID: 5340212311738888799}
   - component: {fileID: 5340212311738888796}
   - component: {fileID: 5340212311738888797}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature3Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2144,7 +2149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5340212312153059377}
   - component: {fileID: 5340212312153059342}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature3Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2391,7 +2396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5340212312475886537}
   - component: {fileID: 5340212312475886534}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature2Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2475,7 +2480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5340212312538159465}
   - component: {fileID: 5340212312538159462}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: MoonFeature2Eyeball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2558,7 +2563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5340212312591267936}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: Feature2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

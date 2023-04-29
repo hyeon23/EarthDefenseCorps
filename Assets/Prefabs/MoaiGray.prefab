@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 6566879576935040837}
   - component: {fileID: 7468571491382558119}
   - component: {fileID: 1611315883304553302}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: FloorTrigger
   m_TagString: BlockTrigger
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 7586403566917558938}
   - component: {fileID: 8994845117257825404}
   - component: {fileID: 4590384464584238146}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: FloorTrigger
   m_TagString: BlockTrigger
   m_Icon: {fileID: 0}
@@ -770,7 +770,7 @@ GameObject:
   - component: {fileID: 7832925086747318467}
   - component: {fileID: 2956163947661012361}
   - component: {fileID: 3484150471222941224}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: FloorTrigger
   m_TagString: BlockTrigger
   m_Icon: {fileID: 0}

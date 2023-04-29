@@ -4975,6 +4975,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8518472416971505153
 GameObject:
   m_ObjectHideFlags: 0
@@ -4987,7 +4988,7 @@ GameObject:
   - component: {fileID: 1293585922672904603}
   - component: {fileID: 8518472416971505167}
   - component: {fileID: 7187480080960286856}
-  m_Layer: 13
+  m_Layer: 21
   m_Name: AlienTrigger
   m_TagString: AlienTrigger
   m_Icon: {fileID: 0}
@@ -5194,3 +5195,4 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 1765067381925141491}
   - component: {fileID: 6566879576935040837}
   - component: {fileID: 7468571491382558119}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: FloorTrigger
   m_TagString: BlockTrigger
   m_Icon: {fileID: 0}

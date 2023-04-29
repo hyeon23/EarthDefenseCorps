@@ -45,9 +45,9 @@ TagManager:
   - AlienBossDead
   - SpecialBullet
   - Special
-  - 
-  - 
-  - 
+  - BlockTrigger
+  - AlienTrigger
+  - AlienBossTrigger
   - 
   - 
   - 
