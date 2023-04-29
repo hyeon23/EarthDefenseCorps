@@ -13,8 +13,10 @@ public class SpecialTrigger : MonoBehaviour
     {
         if (collision.tag == "BlockTrigger" || collision.tag == "BlockBullet" || collision.tag == "AlienTrigger")
         {
+            DataManager.Instance.playerData.curSpecialMoveGage = (DataManager.Instance.playerData.curSpecialMoveGage >= DataManager.Instance.playerData.PlayerSpecialMoveGage) ? DataManager.Instance.playerData.PlayerSpecialMoveGage : DataManager.Instance.playerData.curSpecialMoveGage + 0.1f * Mathf.Clamp(GameManager.Instance.combo, 0, 50);
             SoundManager.Instance.SFXPlay(SoundManager.SFX.EnemyHit);
             StopAllCoroutines();
+            StartCoroutine(InGameTextViewer.Instance.FadeInOutText());
         }
         else if (collision.tag == "AlienBullet")
         {

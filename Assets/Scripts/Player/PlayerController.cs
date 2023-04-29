@@ -416,7 +416,7 @@ public class PlayerController : MonoBehaviour
         specialAxis.SetActive(true);
         specialTrigger.enabled = true;
 
-        SoundManager.Instance.SFXPlay(SoundManager.SFX.SpecialMove, 1);
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.SpecialMove);
 
         specialAfterEffect.SetActive(true);
 
