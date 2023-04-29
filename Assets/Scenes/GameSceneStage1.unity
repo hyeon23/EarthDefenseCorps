@@ -12891,7 +12891,7 @@ MonoBehaviour:
   phase1ProgressBar: {fileID: 1782708455}
   phase2ProgressBar: {fileID: 1703051245}
   gameOverPanel: {fileID: 312085730}
-  stageClearPanel: {fileID: 0}
+  stageClearPanel: {fileID: 1552135396}
   settingsPanel: {fileID: 197431124}
   popUpAnime: {fileID: 395345992}
   PopUpTMP: {fileID: 1212008418}
@@ -22648,7 +22648,7 @@ MonoBehaviour:
   - {fileID: 715189091}
   - {fileID: 640887845}
   - {fileID: 593910533}
-  specialTargetEnemyTransform: {fileID: 0}
+  specialTargetEnemyCollider: {fileID: 0}
 --- !u!61 &1786370216
 BoxCollider2D:
   m_ObjectHideFlags: 0

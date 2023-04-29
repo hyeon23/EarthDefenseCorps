@@ -71,6 +71,9 @@ public class AlienNormal : Alien
                 case "MoonAlien1":
                     //특정 효과
                     if (!parentGameObject.activeSelf) return;
+
+                    if (PlayerController.Instance.specialTargetEnemyCollider != gameObject.GetComponent<Collider2D>()) return;
+
                     StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
                     break;
                 default:
@@ -95,6 +98,7 @@ public class AlienNormal : Alien
     //        }
     //    }
     //}
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {

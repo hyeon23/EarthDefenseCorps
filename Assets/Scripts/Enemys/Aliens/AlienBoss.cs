@@ -526,7 +526,18 @@ public class AlienBoss : Alien
                 case "Moon":
                     //특정 효과
                     if (!parentGameObject.activeSelf) return;
-                    StartCoroutine(OnHit(DataManager.Instance.playerData.PlayerATK, collision.transform.position));
+
+                    if (PlayerController.Instance.specialTargetEnemyCollider != gameObject.GetComponent<Collider2D>()) return;
+
+                    StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
+
+                    curThinkCooltime = 4f;
+
+                    if (isTakingDown)
+                    {
+                        sheldTriggered = true;
+                    }
+
                     alienState = AlienState.Idle;
                     break;
                 default:
@@ -577,18 +588,6 @@ public class AlienBoss : Alien
                 case "Moon":
                     isCrushedPlayer = false;
                     PlayerController.Instance.isCrushed = false;
-                    break;
-                default:
-                    break;
-            }
-        }
-        else if (collision.tag == "Special")
-        {
-            switch (enemyName)
-            {
-                case "Moon":
-                    if (!parentGameObject.activeSelf) return;
-                    alienState = AlienState.Idle;
                     break;
                 default:
                     break;

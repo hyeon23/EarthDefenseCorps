@@ -71,6 +71,9 @@ public class AlienElite : Alien
                 case "MoonAlienElite1":
                     //특정 효과
                     if (!parentGameObject.activeSelf) return;
+
+                    if (PlayerController.Instance.specialTargetEnemyCollider != gameObject.GetComponent<Collider2D>()) return;
+
                     StartCoroutine(OnHit(DataManager.Instance.playerData.playerATK, collision.transform.position));
                     break;
                 default:

@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 
 public enum PlayerState { Idle, SideStepLeft, SideStepRight, Jump, Sheld, Attack, SpecialMove, Dead, Count }
 
+[System.Serializable]
 public class PlayerController : MonoBehaviour
 {
     private static PlayerController instance = null;
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
     [Header("SpawnPos")]
     [SerializeField] private Transform[] spawnPos;
 
-    public Transform specialTargetEnemyTransform = null;
+    public Collider2D specialTargetEnemyCollider = null;
 
     void Awake()
     {
@@ -175,20 +176,20 @@ public class PlayerController : MonoBehaviour
             //Special Collide
             if (specialEnemyHit.collider == null)
             {
-                specialTargetEnemyTransform = null;
-
-                Debug.Log(null);
+                specialTargetEnemyCollider = null;
             }
             else if (specialEnemyHit.collider.tag == "BlockTrigger" || specialEnemyHit.collider.tag == "AlienTrigger")
             {
-                specialTargetEnemyTransform = specialEnemyHit.transform;
+                specialTargetEnemyCollider = specialEnemyHit.collider;
 
-                Debug.Log(specialEnemyHit.collider.name);
+                Debug.Log(specialEnemyHit.transform.position);
             }
 
             //Floor Collide
             if (floorHit.collider == null)
             {
+                if (isSpecial) return;
+
                 if (isStucked || (isJump && isOverlapped && isCrushed))
                 {
                     gameObject.layer = LayerMask.NameToLayer("PlayerGrounded");
@@ -245,11 +246,10 @@ public class PlayerController : MonoBehaviour
                     }
                     else if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
                     {
-
-                        if ((isJump /*&& specialTargetEnemyTransform != null)*/ && !isSpecial))
+                        if ((isJump && specialTargetEnemyCollider != null && !isSpecial))
                         {
                             //Special Move
-                            if (DataManager.Instance.playerData.curSpecialMoveGage < DataManager.Instance.playerData.playerSpecialMoveGage) { return; }
+                            if (DataManager.Instance.playerData.curSpecialMoveGage < DataManager.Instance.playerData.playerSpecialMoveGage) return;
 
                             DataManager.Instance.playerData.curSpecialMoveGage -= 100f;
                             
@@ -420,31 +420,37 @@ public class PlayerController : MonoBehaviour
 
         specialAfterEffect.SetActive(true);
 
-        parentRigid.AddForce(Vector2.up * 25, ForceMode2D.Impulse);
+        parentTransform.position = specialTargetEnemyCollider.transform.position + Vector3.down * 1.5f;
+        gameObject.GetComponent<Collider2D>().enabled = false;
 
         while (percent <= 1)
         {
             start += Time.deltaTime;
             percent = start / end;
 
-            parentRigid.AddForce(Vector2.up * 1.5f, ForceMode2D.Impulse);
-
-
             if(percent % 0.1f >= 0)
             {
+                
                 specialTrigger.enabled = true;
 
-                parentRigid.AddForce(Vector2.up * 0.1f, ForceMode2D.Impulse);
+
+                if(specialTargetEnemyCollider != null)
+                {
+                    parentTransform.position = specialTargetEnemyCollider.transform.position + Vector3.down * 1.5f;
+                }
+
                 yield return new WaitForSeconds(0.05f);
 
                 specialTrigger.enabled = false;
             }
 
+            
+
             yield return null;
         }
-
+        gameObject.GetComponent<Collider2D>().enabled = true;
         parentRigid.velocity = Vector2.zero;
-        parentRigid.AddForce(Vector2.down * 30f, ForceMode2D.Impulse);
+        parentTransform.position = playerPos[positionIndex].position;
 
         specialAfterEffect.SetActive(false);
         specialAxis.SetActive(false);
