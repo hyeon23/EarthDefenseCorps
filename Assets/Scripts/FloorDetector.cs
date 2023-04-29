@@ -16,7 +16,6 @@ public class FloorDetector : MonoBehaviour
             if (collision.GetComponent<OneToOneBlock>().isOverlappedPlayer)
             {
                 curBlock = collision.GetComponent<OneToOneBlock>();
-                SoundManager.Instance.SFXPlay(SoundManager.SFX.Collapse, 1);
                 StartCoroutine(PlayerTrigger.Instance.OnHit(curBlock.dmg * 100));
 
                 switch (curBlock.enemyType)
@@ -24,11 +23,13 @@ public class FloorDetector : MonoBehaviour
                     case EnemyType.Block1X1H:
                         break;
                     case EnemyType.Block1X1:
+                        SoundManager.Instance.SFXPlay(SoundManager.SFX.Collapse, 0.6f);
                         EffectManager.Instance.SpawnEffect(new int[] { 21 }, collision.transform.parent.position + new Vector3(0, -1f, 0));
                         StartCoroutine(GameManager.Instance.CameraShake(0.1f, 1, 1));
                         break;
                     case EnemyType.Block1X3:
                     case EnemyType.Block1X3M:
+                        SoundManager.Instance.SFXPlay(SoundManager.SFX.Collapse, 1);
                         EffectManager.Instance.SpawnEffect(new int[] { 22 }, transform.position + new Vector3(0, 1f, 0));
                         StartCoroutine(GameManager.Instance.CameraShake(0.3f, 2, 2));
                         break;
