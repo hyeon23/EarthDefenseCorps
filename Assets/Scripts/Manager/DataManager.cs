@@ -262,12 +262,12 @@ public class DataManager : MonoBehaviour
         if (PlayerPrefs.HasKey("SupplyItemCoolTime"))
             DateTime.TryParse(PlayerPrefs.GetString("SupplyItemCoolTime"), out playerData.supplyItemCoolTime);
         else
-            playerData.supplyItemCoolTime = new DateTime(10, 12, 01);
+            playerData.supplyItemCoolTime = DateTime.Now;
 
         if (PlayerPrefs.HasKey("SupplyZamCoolTime"))
             DateTime.TryParse(PlayerPrefs.GetString("SupplyZamCoolTime"), out playerData.supplyZamCoolTime);
         else
-            playerData.supplyZamCoolTime = new DateTime(10, 12, 01);
+            playerData.supplyZamCoolTime = DateTime.Now;
 
         if (PlayerPrefs.HasKey("PlayerLastConnectionTime"))
             DateTime.TryParse(PlayerPrefs.GetString("PlayerLastConnectionTime"), out playerData.playerLastConnectionTime);
