@@ -25,6 +25,7 @@ public class GPGSBinder
 
     void Init()
     {
+        //클라우드 저장이 필요 없다면 EnableSavedGames() 생략
         var config = new PlayGamesClientConfiguration.Builder().EnableSavedGames().Build();
         PlayGamesPlatform.InitializeInstance(config);
         PlayGamesPlatform.DebugLogEnabled = true;

@@ -25,11 +25,15 @@ public class GPGSLoginTest : MonoBehaviour
             GPGSBinder.Inst.Logout();
 
         if (GUILayout.Button("SaveCloud"))
+
+            //원하는 파일 네임 & 원하는 데이터를 인자로 가짐, 성공시 -> 성공 표현
             GPGSBinder.Inst.SaveCloud("mysave", "want data", success => log = $"{success}");
 
+        //원하는 파일 네임을 인자로 가짐, 성공시 -> 데이터 전달
         if (GUILayout.Button("LoadCloud"))
             GPGSBinder.Inst.LoadCloud("mysave", (success, data) => log = $"{success}, {data}");
 
+        //원하는 파일 네임을 인자로 가짐, 성공시 -> 파일 삭제
         if (GUILayout.Button("DeleteCloud"))
             GPGSBinder.Inst.DeleteCloud("mysave", success => log = $"{success}");
 

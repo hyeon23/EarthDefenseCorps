@@ -345,15 +345,15 @@ public class MainMenuController : MonoBehaviour
             return;
         }
 
-        DataManager.Instance.playerData.PlayerZen -= 5;
-        DataManager.Instance.GameStartDataUpdate();
-
         switch (DataManager.Instance.playerData.curStage)
         {
             case 1:
                 //씬이동
                 //SceneManager.LoadScene("GameSceneStage" + DataManager.Instance.playerData.curStage);
                 LoadingSceneController.LoadScene("GameSceneStage" + DataManager.Instance.playerData.curStage);
+
+                DataManager.Instance.playerData.PlayerZen -= 5;
+                DataManager.Instance.GameStartDataUpdate();
                 break;
             case 2:
                 TriggerPopUp("Comming Soon...");
