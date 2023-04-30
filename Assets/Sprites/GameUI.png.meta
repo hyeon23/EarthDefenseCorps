@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1d35f1bc04a7a984eb805fad1935da8b
+guid: cfa7c0e6df921d24fac6826bedce25c8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,11 +117,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GoldMetalFile_0
+      name: GameUI_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 104
+        x: 8
+        y: 120
         width: 8
         height: 8
       alignment: 0
@@ -131,18 +131,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8958f2591ecf3e643903a3093e822965
-      internalID: -758766979
+      spriteID: c6dd3e8999676db46b2e66e19d467ba1
+      internalID: -1441524238
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_1
+      name: GameUI_1
       rect:
         serializedVersion: 2
         x: 16
-        y: 96
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -152,18 +152,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41fc65d2597162547bfa2dded7996fad
-      internalID: -1828728033
+      spriteID: 2d5e446e5a1beef43b6cef2e4ffacfc2
+      internalID: -1700313148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_2
+      name: GameUI_2
       rect:
         serializedVersion: 2
         x: 32
-        y: 96
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -173,18 +173,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77a0ffc1e43659741a5345a22b454a5a
-      internalID: -973501422
+      spriteID: 52638f6d79a95654a925b50e19303677
+      internalID: 891954693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_3
+      name: GameUI_3
       rect:
         serializedVersion: 2
         x: 48
-        y: 96
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -194,18 +194,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec54f9f027670ea409579085b2762740
-      internalID: -2075911041
+      spriteID: 864f31987461cf849b9a2856da0eda41
+      internalID: -1904796129
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_4
+      name: GameUI_4
       rect:
         serializedVersion: 2
         x: 64
-        y: 96
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -215,18 +215,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fabe5a040cd36b541b4716bf519cb8d4
-      internalID: -1059313429
+      spriteID: 260d51ac155d01645a54b67c4ada154b
+      internalID: 1873566118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_5
+      name: GameUI_5
       rect:
         serializedVersion: 2
         x: 80
-        y: 96
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -236,18 +236,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd6c57daa6d347f4b8ee7b72a3d2347f
-      internalID: 1364942252
+      spriteID: 86ff28807e083c147af51d61ce0ac055
+      internalID: 1880566552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_6
+      name: GameUI_6
       rect:
         serializedVersion: 2
         x: 96
-        y: 96
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -257,17 +257,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8663969266078b4458286dd13fed708a
-      internalID: 1295126980
+      spriteID: d8472fb9d2233eb45ac561a6cc912f00
+      internalID: -1913051247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_7
+      name: GameUI_7
       rect:
         serializedVersion: 2
         x: 112
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc186ae04817b6f47a1aa675f388e8a4
+      internalID: -826249229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_8
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 96
         width: 16
         height: 16
@@ -278,39 +299,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14c4b732ac08d874fb20aeb690f6f7fe
-      internalID: -933581795
+      spriteID: 5884c9be412cdd249abc885864dacc52
+      internalID: 967351134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91820f6a061438d4f9356568eca58246
-      internalID: 45636264
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GoldMetalFile_9
+      name: GameUI_9
       rect:
         serializedVersion: 2
         x: 16
-        y: 80
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -320,18 +320,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16a6636a9d700e94b856c2e83c501953
-      internalID: -513493088
+      spriteID: 8d4d0051016c96f4d86514437fc3657c
+      internalID: -268142346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_10
+      name: GameUI_10
       rect:
         serializedVersion: 2
         x: 32
-        y: 80
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -341,18 +341,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b56bb7908ed9a7144a1728a7019069bc
-      internalID: 228115059
+      spriteID: 41c4fde28c6639e46a46828e1b2e2e86
+      internalID: -1515830781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_11
+      name: GameUI_11
       rect:
         serializedVersion: 2
         x: 48
-        y: 80
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -362,18 +362,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e26c26326ecc724e96ce78f2ed3fa12
-      internalID: 1345797762
+      spriteID: 2b0abf4b041ec6e498bc51d68fc9bc86
+      internalID: 1252016311
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_12
+      name: GameUI_12
       rect:
         serializedVersion: 2
         x: 64
-        y: 80
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -383,18 +383,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67827f010b677af4e812ae9e0593263a
-      internalID: -1034617272
+      spriteID: e35f6da8c014c3249a751d610d89b771
+      internalID: 292617567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_13
+      name: GameUI_13
       rect:
         serializedVersion: 2
         x: 80
-        y: 90
+        y: 106
         width: 16
         height: 6
       alignment: 0
@@ -404,14 +404,182 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a0d33c3e8f390f46b49fd8ba3fbecb6
-      internalID: 142012459
+      spriteID: 9aac30475aa677e49a1e0eb3d2a6fe7a
+      internalID: -524987608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_14
+      name: GameUI_14
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dceb62f43b163bb49b47a53cd09ed00f
+      internalID: -1988479326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_15
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81feeae92d7a43547b32e7628fb19840
+      internalID: 1423983145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1f54a4d71238b4409f7911c1ac38c53
+      internalID: 1306234748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c00d8b45f87bda40823e196ebabfa90
+      internalID: 1349977307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_18
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8135ee7fea1cd646b65377e8862cc16
+      internalID: 972823199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_19
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d84d75fcb3e73254eb4cab7a29f9e1f8
+      internalID: -1091270314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55bbb4a6217cd0d4c92641ac0603ba51
+      internalID: -1767907745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_21
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bb199d8ef1f4ba44a7a4e3af6e8e57a
+      internalID: 97964308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_22
       rect:
         serializedVersion: 2
         x: 96
@@ -425,14 +593,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f32fece983313a7479e181106bd9e4d8
-      internalID: -307839090
+      spriteID: de7a2d6486cc0e24c8f3ee91c42604c0
+      internalID: -707074783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_15
+      name: GameUI_23
       rect:
         serializedVersion: 2
         x: 112
@@ -446,14 +614,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9da4e3565eea034e9c467a2f1340e83
-      internalID: 2088263465
+      spriteID: 79a3e44cfcf797d408095ed30ebe8ed2
+      internalID: 1559469284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_16
+      name: GameUI_24
       rect:
         serializedVersion: 2
         x: 0
@@ -467,14 +635,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a6106a2567578f4989a683b6e3599ea
-      internalID: 1215933809
+      spriteID: d40280ee843984d47a36a011dcb6495f
+      internalID: 747495887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_17
+      name: GameUI_25
       rect:
         serializedVersion: 2
         x: 16
@@ -488,14 +656,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e81f1f2aa7afcc41a2692306ec72a75
-      internalID: 1718761548
+      spriteID: aa34d9bc49b171744a5ea40761ae156b
+      internalID: -1564983484
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_18
+      name: GameUI_26
       rect:
         serializedVersion: 2
         x: 32
@@ -509,14 +677,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7876a144879685743bd5bfbb297f819a
-      internalID: -1444017162
+      spriteID: 6435aa84579af2a49a3dd88c0df34c0b
+      internalID: 61674318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_19
+      name: GameUI_27
       rect:
         serializedVersion: 2
         x: 48
@@ -530,14 +698,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 319c5573ddf1cc64cbd8541003495fd0
-      internalID: 582521782
+      spriteID: 03b54e3d6e2720c4ca4f2400268d78a5
+      internalID: -253641496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_20
+      name: GameUI_28
       rect:
         serializedVersion: 2
         x: 64
@@ -551,14 +719,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59392d3b371c8be42bfec1976d2dcfc2
-      internalID: -1572232578
+      spriteID: 98175d0c13d41f4418d6e9461975bba7
+      internalID: 1347667040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_21
+      name: GameUI_29
       rect:
         serializedVersion: 2
         x: 80
@@ -572,186 +740,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f17ef6f2640660f4da36bff893cfd971
-      internalID: -356220555
+      spriteID: 5255f383697f1904c90a31f5ba37c458
+      internalID: -737971840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_22
+      name: GameUI_30
       rect:
         serializedVersion: 2
         x: 96
         y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8bacf52ae261f104583602fb5ff58cb3
-      internalID: -1160054454
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GoldMetalFile_23
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b2986a01027366d44bf27a62290b1bcc
-      internalID: 705442329
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GoldMetalFile_24
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1cce9f282e97bac418bcc2f2da2d11ea
-      internalID: -1659554089
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GoldMetalFile_25
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62330e0932359d648b131dd400774a9c
-      internalID: -1183720291
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GoldMetalFile_26
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1fa776d8b722e4a41a3cf51e7ff4dc3d
-      internalID: 198219156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GoldMetalFile_27
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c694b447c8851249a378aa7417f233a
-      internalID: -1493018769
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GoldMetalFile_28
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be69508cc64f80040a4557c5cd5472fb
-      internalID: 1000404231
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GoldMetalFile_29
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00909a613ea3ef34da27c02ddcb39438
-      internalID: 2086428527
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GoldMetalFile_30
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -761,17 +761,59 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f35168d0f6a2e1a459270e182a920749
-      internalID: -281872313
+      spriteID: 0f45c7d0fb5921f4c9bdb2d9e3d57692
+      internalID: 1742811501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_31
+      name: GameUI_31
       rect:
         serializedVersion: 2
         x: 112
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 3, y: 3, z: 3, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca0e3d4c2125fd445a4d7116412ec994
+      internalID: -1833153213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2a2fdeb0441389488642d4b9982e3b7
+      internalID: -152082918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_33
+      rect:
+        serializedVersion: 2
+        x: 16
         y: 48
         width: 16
         height: 16
@@ -782,14 +824,140 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2de2b1f07f69d99459d219b104b85acd
-      internalID: 456394236
+      spriteID: 328ae83ed5ad47e48a51ecb7c2515a2e
+      internalID: -1859056226
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_32
+      name: GameUI_34
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12b29b7834954d74886acbac26c5292d
+      internalID: -1316344348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_35
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e856970a8e92b74b99c23fe9650757d
+      internalID: -662763316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_36
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7ebccf8ba117cf40b12993bf04f74ab
+      internalID: 1946587175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_37
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c3a3c5767f431644b41e5930714b11d
+      internalID: -1640892183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_38
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4c112221e281194ea6b603682096687
+      internalID: -1032983700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_39
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e406bdf3f0401e43aac5351b8bc59c6
+      internalID: 657094095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_40
       rect:
         serializedVersion: 2
         x: 0
@@ -798,19 +966,19 @@ TextureImporter:
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 1, y: 1, z: 1, w: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93473b2791157fd4298fbc942e037060
-      internalID: 1479828900
+      spriteID: 69a8029ac0654d04dabc6e6a84faba4f
+      internalID: -1343046957
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_33
+      name: GameUI_41
       rect:
         serializedVersion: 2
         x: 16
@@ -819,19 +987,19 @@ TextureImporter:
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 3, y: 3, z: 3, w: 3}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18d0fc6457176f14085b3e537fa079ce
-      internalID: 425632847
+      spriteID: f1add42cc76ea9945a01641e5791840a
+      internalID: 1311999675
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_34
+      name: GameUI_42
       rect:
         serializedVersion: 2
         x: 32
@@ -845,14 +1013,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04d5653abaee2ac4d876f2aa54387d29
-      internalID: -1258522561
+      spriteID: dcb9bfe1df3e4ee4b9a1a09dc982d2e4
+      internalID: -1290177009
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_35
+      name: GameUI_43
       rect:
         serializedVersion: 2
         x: 48
@@ -866,14 +1034,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd5b4899e2d31e041b8695073ae0c1c6
-      internalID: 1361012843
+      spriteID: 8b4ce44adc4da264abfaf332fcc7a9ce
+      internalID: 248764640
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_36
+      name: GameUI_44
       rect:
         serializedVersion: 2
         x: 64
@@ -887,14 +1055,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8a8f85fdecd7de41b939ff21d851f7a
-      internalID: 176208286
+      spriteID: 3daf772e9a5c0274fa7df2baf918f229
+      internalID: 684549514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_37
+      name: GameUI_45
       rect:
         serializedVersion: 2
         x: 80
@@ -908,14 +1076,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfbd91a6980e1c245b44ee666c590d47
-      internalID: -939848990
+      spriteID: da1e52e67e4c2a44fba2e189d4554fd7
+      internalID: -337712232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_38
+      name: GameUI_46
       rect:
         serializedVersion: 2
         x: 96
@@ -929,14 +1097,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec63cc26fec5b0841a0991566643b2ad
-      internalID: 1046206450
+      spriteID: b1afa914e4ad42a4d9821dd569eb40bd
+      internalID: 2005261014
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_39
+      name: GameUI_47
       rect:
         serializedVersion: 2
         x: 112
@@ -950,14 +1118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a80beea512285f47b6ff3818cf0c789
-      internalID: 936543884
+      spriteID: 67af6e319d4205746981ef7a35f5b658
+      internalID: 1079783642
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_40
+      name: GameUI_48
       rect:
         serializedVersion: 2
         x: 0
@@ -971,56 +1139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0158aa75920760944aabcbd625f82320
-      internalID: 1107730015
+      spriteID: b181d0b8fdedcc54eaec95c058d3ea5d
+      internalID: 4610899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_41
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69ea24182e597454485c8105fa448bb2
-      internalID: 1419156615
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GoldMetalFile_42
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e271af1276d9b67468e0523bb891acbc
-      internalID: 233473844
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GoldMetalFile_43
+      name: GameUI_51
       rect:
         serializedVersion: 2
         x: 48
@@ -1034,14 +1160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 058fd8dc8b1f78148be483248bd89c12
-      internalID: 796832968
+      spriteID: 515a394e8a47aec45b811d7f2766efe7
+      internalID: -892978718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_44
+      name: GameUI_52
       rect:
         serializedVersion: 2
         x: 64
@@ -1055,14 +1181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 324b9efe56370f44cbe21bab3bf55a97
-      internalID: 278731773
+      spriteID: 3cfcae1a030248248893ec1b77f85b57
+      internalID: -1677515536
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_45
+      name: GameUI_53
       rect:
         serializedVersion: 2
         x: 80
@@ -1076,14 +1202,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a1cf2987859caf41ae9bf339bcded0f
-      internalID: -1134329049
+      spriteID: f2a14ca93f7165d4f90353a315f238f7
+      internalID: 470292690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_46
+      name: GameUI_54
       rect:
         serializedVersion: 2
         x: 96
@@ -1097,14 +1223,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28f027ec772647047a51488a75e76c48
-      internalID: -162961151
+      spriteID: 13e15827a31a8dd419d3b96186557065
+      internalID: 1221444074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_47
+      name: GameUI_55
       rect:
         serializedVersion: 2
         x: 112
@@ -1118,14 +1244,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a090d4eccc8da834d9da914a63bc5d73
-      internalID: 1829523929
+      spriteID: 9f2e5ebdcac36b84985762e88dc55508
+      internalID: -1988022508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_48
+      name: GameUI_56
       rect:
         serializedVersion: 2
         x: 0
@@ -1139,20 +1265,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea59996abe1a00947b8ad74fc219ebe4
-      internalID: 1858747770
+      spriteID: 149e33489bc4b874d96095e4e113e9d7
+      internalID: 1815856315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_49
+      name: GameUI_57
       rect:
         serializedVersion: 2
         x: 16
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1160,35 +1286,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a3cdf80bca5d1046a77df6aa420d7c5
-      internalID: -336356741
+      spriteID: ef556b41f4c8cd848a3bedc6113e3924
+      internalID: -1928924408
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_50
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 299d6f91273ec9948bafd72a5097cfe6
-      internalID: 1507947653
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GoldMetalFile_51
+      name: GameUI_59
       rect:
         serializedVersion: 2
         x: 48
@@ -1202,14 +1307,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff9b9b96b9862464faaa9e27bb1a9587
-      internalID: -142380800
+      spriteID: ae646000de0c3df47b8c9487646c1ade
+      internalID: -720817374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_52
+      name: GameUI_60
       rect:
         serializedVersion: 2
         x: 64
@@ -1223,14 +1328,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a600768ae646e56468b4c2d284fbed12
-      internalID: 1254478362
+      spriteID: d4281f7231c895e4aa98057120c26fc0
+      internalID: 142422714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_53
+      name: GameUI_61
       rect:
         serializedVersion: 2
         x: 80
@@ -1244,18 +1349,60 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f23462e2d1dad7140b4ee1d456c5e541
-      internalID: -1239974853
+      spriteID: eabc4d99eac65b4439089f052313b11d
+      internalID: -1283929923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldMetalFile_54
+      name: GameUI_62
       rect:
         serializedVersion: 2
-        x: 8
-        y: 104
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b0cb8a27eec95d479780e2778f228c7
+      internalID: -1873736826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_63
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ae589fca268f064687494227d9273a8
+      internalID: 318984166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_64
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
         width: 8
         height: 8
       alignment: 0
@@ -1265,8 +1412,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a0cd3a04e67bab4697f08490041dd8f
-      internalID: 1713125319
+      spriteID: 75a22dc07acffa84b8fa5eb23da8ac63
+      internalID: -665637320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 859fedd1ca6e1594e94cc711808eb824
+      internalID: -1375425894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameUI_66
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 112
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c076c84fd84a89d44aef189be3fcb445
+      internalID: -1607987173
       vertices: []
       indices: 
       edges: []
@@ -1282,61 +1471,73 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GoldMetalFile_3: -2075911041
-      GoldMetalFile_2: -973501422
-      GoldMetalFile_48: 1858747770
-      GoldMetalFile_21: -356220555
-      GoldMetalFile_54: 1713125319
-      GoldMetalFile_49: -336356741
-      GoldMetalFile_52: 1254478362
-      GoldMetalFile_7: -933581795
-      GoldMetalFile_14: -307839090
-      GoldMetalFile_34: -1258522561
-      GoldMetalFile_38: 1046206450
-      GoldMetalFile_40: 1107730015
-      GoldMetalFile_8: 45636264
-      GoldMetalFile_6: 1295126980
-      GoldMetalFile_17: 1718761548
-      GoldMetalFile_42: 233473844
-      GoldMetalFile_26: 198219156
-      GoldMetalFile_5: 1364942252
-      GoldMetalFile_10: 228115059
-      GoldMetalFile_30: -281872313
-      GoldMetalFile_47: 1829523929
-      GoldMetalFile_20: -1572232578
-      GoldMetalFile_1: -1828728033
-      GoldMetalFile_12: -1034617272
-      GoldMetalFile_53: -1239974853
-      GoldMetalFile_23: 705442329
-      GoldMetalFile_45: -1134329049
-      GoldMetalFile_0: -758766979
-      GoldMetalFile_19: 582521782
-      GoldMetalFile_27: -1493018769
-      GoldMetalFile_39: 936543884
-      GoldMetalFile_22: -1160054454
-      GoldMetalFile_31: 456394236
-      GoldMetalFile_25: -1183720291
-      GoldMetalFile_32: 1479828900
-      GoldMetalFile_51: -142380800
-      GoldMetalFile_18: -1444017162
-      GoldMetalFile_46: -162961151
-      GoldMetalFile_24: -1659554089
-      GoldMetalFile_33: 425632847
-      GoldMetalFile_13: 142012459
-      GoldMetalFile_41: 1419156615
-      GoldMetalFile_4: -1059313429
-      GoldMetalFile_28: 1000404231
-      GoldMetalFile_44: 278731773
-      GoldMetalFile_9: -513493088
-      GoldMetalFile_11: 1345797762
-      GoldMetalFile_43: 796832968
-      GoldMetalFile_35: 1361012843
-      GoldMetalFile_16: 1215933809
-      GoldMetalFile_15: 2088263465
-      GoldMetalFile_50: 1507947653
-      GoldMetalFile_37: -939848990
-      GoldMetalFile_29: 2086428527
-      GoldMetalFile_36: 176208286
+      GameUI_0: -1441524238
+      GameUI_1: -1700313148
+      GameUI_10: -1515830781
+      GameUI_11: 1252016311
+      GameUI_12: 292617567
+      GameUI_13: -524987608
+      GameUI_14: -1988479326
+      GameUI_15: 1423983145
+      GameUI_16: 1306234748
+      GameUI_17: 1349977307
+      GameUI_18: 972823199
+      GameUI_19: -1091270314
+      GameUI_2: 891954693
+      GameUI_20: -1767907745
+      GameUI_21: 97964308
+      GameUI_22: -707074783
+      GameUI_23: 1559469284
+      GameUI_24: 747495887
+      GameUI_25: -1564983484
+      GameUI_26: 61674318
+      GameUI_27: -253641496
+      GameUI_28: 1347667040
+      GameUI_29: -737971840
+      GameUI_3: -1904796129
+      GameUI_30: 1742811501
+      GameUI_31: -1833153213
+      GameUI_32: -152082918
+      GameUI_33: -1859056226
+      GameUI_34: -1316344348
+      GameUI_35: -662763316
+      GameUI_36: 1946587175
+      GameUI_37: -1640892183
+      GameUI_38: -1032983700
+      GameUI_39: 657094095
+      GameUI_4: 1873566118
+      GameUI_40: -1343046957
+      GameUI_41: 1311999675
+      GameUI_42: -1290177009
+      GameUI_43: 248764640
+      GameUI_44: 684549514
+      GameUI_45: -337712232
+      GameUI_46: 2005261014
+      GameUI_47: 1079783642
+      GameUI_48: 4610899
+      GameUI_49: 213829228
+      GameUI_5: 1880566552
+      GameUI_50: -831553630
+      GameUI_51: -892978718
+      GameUI_52: -1677515536
+      GameUI_53: 470292690
+      GameUI_54: 1221444074
+      GameUI_55: -1988022508
+      GameUI_56: 1815856315
+      GameUI_57: -1928924408
+      GameUI_58: -685327717
+      GameUI_59: -720817374
+      GameUI_6: -1913051247
+      GameUI_60: 142422714
+      GameUI_61: -1283929923
+      GameUI_62: -1873736826
+      GameUI_63: 318984166
+      GameUI_64: -665637320
+      GameUI_65: -1375425894
+      GameUI_66: -1607987173
+      GameUI_7: -826249229
+      GameUI_8: 967351134
+      GameUI_9: -268142346
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

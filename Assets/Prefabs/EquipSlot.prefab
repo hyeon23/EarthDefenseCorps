@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -267987533, guid: f3b427084f31a4942b8961231b7e7e91, type: 3}
+  m_Sprite: {fileID: -826249229, guid: cfa7c0e6df921d24fac6826bedce25c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1778455864, guid: f3b427084f31a4942b8961231b7e7e91, type: 3}
+  m_Sprite: {fileID: 1742811501, guid: cfa7c0e6df921d24fac6826bedce25c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1493503594, guid: f3b427084f31a4942b8961231b7e7e91, type: 3}
+  m_Sprite: {fileID: -152082918, guid: cfa7c0e6df921d24fac6826bedce25c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -303,21 +303,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item:
+    itemID: 0
     itemPart: 0
     itemGrade: 0
     isEquipped: 0
-    itemID: 0
     itemName: 
     itemDesc: 
     itemImage: {fileID: 0}
     itemATK: 0
-    itemCurLevel: 0
-    itemMaxLevel: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
     itemHP: 0
     itemSheldGager: 0
     itemSpecialMoveGager: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
+    itemCurLevel: 0
+    itemMaxLevel: 0
     itemPrice: 0
     itemUpgradeCost: 0
     itemDrawingWeight: 0
