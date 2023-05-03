@@ -19,7 +19,7 @@ public class GPGSLoginTest : MonoBehaviour
         //localUaser. 을 이용해 여러 변수를 사용하면 됨[쓰고싶은 것을 쓰면 된다.]
         if (GUILayout.Button("Login"))
             GPGSBinder.Inst.Login((success, localUser) =>
-            log = $"{success}, {localUser.userName}, {localUser.id}, {localUser.state}, {localUser.underage}");
+            log = $"{success}, {localUser.userName}, {Social.localUser.id}, {localUser.state}, {localUser.underage}");
 
         if (GUILayout.Button("Logout"))
             GPGSBinder.Inst.Logout();

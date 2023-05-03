@@ -2,8 +2,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.SceneManagement;
-using System.Text;
 using System.Collections.Generic;
 using System;
 
@@ -12,6 +10,7 @@ public class MainMenuController : MonoBehaviour
     
     public TextMeshProUGUI playerHPText;
     public TextMeshProUGUI playerZenText;
+    public TextMeshProUGUI ZenTimerTMP;
     public TextMeshProUGUI playerZamText;
     public TextMeshProUGUI playerATKText;
     public TextMeshProUGUI playerGoldText;
@@ -94,6 +93,7 @@ public class MainMenuController : MonoBehaviour
     [Header("Shop Gold/Zam Attracter")]
     public ParticleSystem[] GoldAttracters;
     public ParticleSystem[] ZamAttracters;
+    public ParticleSystem ZenAttracter;
 
     [Header("Drawing Result Panel")]
     public GameObject drawing1ResultPanel;
@@ -122,17 +122,26 @@ public class MainMenuController : MonoBehaviour
     [Header("Ads")]
     public GameObject adsManager;
 
-    public Button supplyButton1;
-    public GameObject supplyItemAdsGroup;
-    public GameObject supplyItemTimerGroup;
-    public TextMeshProUGUI supplyItemTimerTMP;
+    public Button supplyItem1Button;
+    public GameObject supplyItem1AdsGroup;
+    public GameObject supplyItem1TimerGroup;
+    public TextMeshProUGUI supplyItem1TimerTMP;
 
-    public Button supplyButton2;
+    public Button supplyZamButton;
     public GameObject supplyZamAdsGroup;
     public GameObject supplyZamTimerGroup;
     public TextMeshProUGUI supplyZamTimerTMP;
 
+    public Button supplyItem2Button;
+    public GameObject supplyItem2AdsGroup;
+    public GameObject supplyItem2TimerGroup;
+    public TextMeshProUGUI supplyItem2TimerTMP;
+
+    public Button supplyZenButton;
+    public GameObject supplyZenAdsGroup;
+    public GameObject supplyZenTimerGroup;
     public TextMeshProUGUI supplyZenTimerTMP;
+    
     public static MainMenuController Instance
     {
         get
@@ -265,55 +274,87 @@ public class MainMenuController : MonoBehaviour
         //Debug.Log(DataManager.Instance.playerData.supplyItemCoolTime.ToString(@"hh\:mm\:ss"));
         //Debug.Log(DataManager.Instance.playerData.supplyZamCoolTime.ToString(@"hh\:mm\:ss"));
 
-        if ((DateTime.Now - DataManager.Instance.playerData.supplyItemCoolTime).TotalHours >= 1)
+        if ((DateTime.Now - DataManager.Instance.playerData.supplyItem1CoolTime).TotalMinutes >= 30)
         {
-            supplyButton1.interactable = true;
-            supplyItemAdsGroup.SetActive(true);
-            supplyItemTimerGroup.SetActive(false);
+            supplyItem1Button.interactable = true;
+            supplyItem1AdsGroup.SetActive(true);
+            supplyItem1TimerGroup.SetActive(false);
         }
         else
         {
-            supplyButton1.interactable = false;
-            supplyItemAdsGroup.SetActive(false);
-            supplyItemTimerGroup.SetActive(true);
+            supplyItem1Button.interactable = false;
+            supplyItem1AdsGroup.SetActive(false);
+            supplyItem1TimerGroup.SetActive(true);
 
-            DateTime dt = DataManager.Instance.playerData.supplyItemCoolTime.Add(new TimeSpan(1, 0, 0));
+            DateTime dt = DataManager.Instance.playerData.supplyItem1CoolTime.Add(new TimeSpan(0, 30, 0));
 
-            supplyItemTimerTMP.text = (dt - DateTime.Now).ToString(@"hh\:mm\:ss");
+            supplyItem1TimerTMP.text = (dt - DateTime.Now).ToString(@"hh\:mm\:ss");
         }
 
-        if ((DateTime.Now - DataManager.Instance.playerData.supplyZamCoolTime).TotalHours >= 2)
+        if ((DateTime.Now - DataManager.Instance.playerData.supplyZamCoolTime).TotalMinutes >= 90)
         {
-            supplyButton2.interactable = true;
+            supplyZamButton.interactable = true;
             supplyZamAdsGroup.SetActive(true);
             supplyZamTimerGroup.SetActive(false);
         }
         else
         {
-            supplyButton2.interactable = false;
+            supplyZamButton.interactable = false;
             supplyZamAdsGroup.SetActive(false);
             supplyZamTimerGroup.SetActive(true);
 
-            DateTime dt = DataManager.Instance.playerData.supplyZamCoolTime.Add(new TimeSpan(2, 0, 0));
+            DateTime dt = DataManager.Instance.playerData.supplyZamCoolTime.Add(new TimeSpan(1, 30, 0));
 
             supplyZamTimerTMP.text = (dt - DateTime.Now).ToString(@"hh\:mm\:ss");
         }
 
-
-
-        if (DataManager.Instance.playerData.PlayerZen >= 30)
+        if ((DateTime.Now - DataManager.Instance.playerData.supplyItem2CoolTime).TotalHours >= 3)
         {
-            supplyZenTimerTMP.text = "- : -";
+            supplyItem2Button.interactable = true;
+            supplyItem2AdsGroup.SetActive(true);
+            supplyItem2TimerGroup.SetActive(false);
         }
         else
         {
-            if (DateTime.Compare(DataManager.Instance.playerData.supplyZenCoolTime, DateTime.Now) <= 0)
+            supplyItem2Button.interactable = false;
+            supplyItem2AdsGroup.SetActive(false);
+            supplyItem2TimerGroup.SetActive(true);
+
+            DateTime dt = DataManager.Instance.playerData.supplyItem2CoolTime.Add(new TimeSpan(3, 0, 0));
+
+            supplyItem2TimerTMP.text = (dt - DateTime.Now).ToString(@"hh\:mm\:ss");
+        }
+
+        if ((DateTime.Now - DataManager.Instance.playerData.supplyZenCoolTime).TotalMinutes >= 5)
+        {
+            supplyZenButton.interactable = true;
+            supplyZenAdsGroup.SetActive(true);
+            supplyZenTimerGroup.SetActive(false);
+        }
+        else
+        {
+            supplyZenButton.interactable = false;
+            supplyZenAdsGroup.SetActive(false);
+            supplyZenTimerGroup.SetActive(true);
+
+            DateTime dt = DataManager.Instance.playerData.supplyZenCoolTime.Add(new TimeSpan(0, 5, 0));
+
+            supplyZenTimerTMP.text = (dt - DateTime.Now).ToString(@"hh\:mm\:ss");
+        }
+
+        if (DataManager.Instance.playerData.PlayerZen >= 30)
+        {
+            ZenTimerTMP.text = "- : -";
+        }
+        else
+        {
+            if (DateTime.Compare(DataManager.Instance.playerData.zenCoolTime, DateTime.Now) <= 0)
             {
                 DataManager.Instance.playerData.PlayerZen++;
-                DataManager.Instance.playerData.supplyZenCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, DataManager.Instance.spawnZenTime));
+                DataManager.Instance.playerData.zenCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, DataManager.Instance.spawnZenTime));
             }
 
-            supplyZenTimerTMP.text = (DataManager.Instance.playerData.supplyZenCoolTime - DateTime.Now).ToString(@"mm\:ss");
+            ZenTimerTMP.text = (DataManager.Instance.playerData.zenCoolTime - DateTime.Now).ToString(@"mm\:ss");
         }
     }
 
@@ -896,6 +937,13 @@ public class MainMenuController : MonoBehaviour
         DataManager.Instance.playerData.playerZam -= zamPrice;
     }
 
+    public void PlusZen(int zenNumber)
+    {
+        ZenAttracter.Play();
+
+        DataManager.Instance.playerData.PlayerZen += zenNumber;
+    }
+
     //가중치 랜덤 가챠
     public void NormalDrawing1RandItem(int zamPrice)
     {
@@ -1306,9 +1354,14 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
-    public void SupplyItemButton()
+    public void SupplyItem1Button()
     {
         NormalDrawing1RandItem(0);
+    }
+
+    public void SupplyItem2Button()
+    {
+        PremiumDrawing1RandItem(0);
     }
 
     public void SupplyZamButton()
@@ -1316,8 +1369,8 @@ public class MainMenuController : MonoBehaviour
         BuyZam(200);
     }
 
-    public void plusZenButton()
+    public void SupplyZenButton()
     {
-        DataManager.Instance.playerData.PlayerZen += 30;
+        PlusZen(5);
     }
 }

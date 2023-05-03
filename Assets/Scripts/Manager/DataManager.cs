@@ -39,9 +39,10 @@ public class PlayerData
     public int curFrameIndex;
 
     public DateTime supplyZamCoolTime;
-    public DateTime supplyItemCoolTime;
-    
     public DateTime supplyZenCoolTime;
+    public DateTime supplyItem1CoolTime;
+    public DateTime supplyItem2CoolTime;
+    public DateTime zenCoolTime;
 
     public DateTime watchAdsCoolTime;
 
@@ -228,9 +229,11 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.SetString("IsBGMOn", playerData.isBGMOn.ToString());
         PlayerPrefs.SetString("IsSFXOn", playerData.isSFXOn.ToString());
 
-        PlayerPrefs.SetString("SupplyItemCoolTime", playerData.supplyItemCoolTime.ToString());
+        PlayerPrefs.SetString("SupplyItem1CoolTime", playerData.supplyItem1CoolTime.ToString());
+        PlayerPrefs.SetString("SupplyItem2CoolTime", playerData.supplyItem2CoolTime.ToString());
         PlayerPrefs.SetString("SupplyZamCoolTime", playerData.supplyZamCoolTime.ToString());
         PlayerPrefs.SetString("SupplyZenCoolTime", playerData.supplyZenCoolTime.ToString());
+        PlayerPrefs.SetString("ZenCoolTime", playerData.zenCoolTime.ToString());
 
         PlayerPrefs.SetString("PlayerLastConnectionTime", playerData.playerLastConnectionTime.ToString());
 
@@ -259,15 +262,25 @@ public class DataManager : MonoBehaviour
         else
             playerData.isSFXOn = true;
 
-        if (PlayerPrefs.HasKey("SupplyItemCoolTime"))
-            DateTime.TryParse(PlayerPrefs.GetString("SupplyItemCoolTime"), out playerData.supplyItemCoolTime);
+        if (PlayerPrefs.HasKey("SupplyItem1CoolTime"))
+            DateTime.TryParse(PlayerPrefs.GetString("SupplyItem1CoolTime"), out playerData.supplyItem1CoolTime);
         else
-            playerData.supplyItemCoolTime = DateTime.Now;
+            playerData.supplyItem1CoolTime = DateTime.Now.AddHours(-3);
+
+        if (PlayerPrefs.HasKey("SupplyItem2CoolTime"))
+            DateTime.TryParse(PlayerPrefs.GetString("SupplyItem2CoolTime"), out playerData.supplyItem2CoolTime);
+        else
+            playerData.supplyItem2CoolTime = DateTime.Now.AddHours(-3);
 
         if (PlayerPrefs.HasKey("SupplyZamCoolTime"))
             DateTime.TryParse(PlayerPrefs.GetString("SupplyZamCoolTime"), out playerData.supplyZamCoolTime);
         else
-            playerData.supplyZamCoolTime = DateTime.Now;
+            playerData.supplyZamCoolTime = DateTime.Now.AddHours(-3);
+
+        if (PlayerPrefs.HasKey("SupplyZenCoolTime"))
+            DateTime.TryParse(PlayerPrefs.GetString("SupplyZenCoolTime"), out playerData.supplyZenCoolTime);
+        else
+            playerData.supplyZenCoolTime = DateTime.Now.AddHours(-3);
 
         if (PlayerPrefs.HasKey("PlayerLastConnectionTime"))
             DateTime.TryParse(PlayerPrefs.GetString("PlayerLastConnectionTime"), out playerData.playerLastConnectionTime);
@@ -276,21 +289,21 @@ public class DataManager : MonoBehaviour
 
         DateTime tempDate;
 
-        //여기서 부터 수정중
-        if (PlayerPrefs.HasKey("SupplyZenCoolTime"))
+        if (PlayerPrefs.HasKey("ZenCoolTime"))
         {
-            DateTime.TryParse(PlayerPrefs.GetString("SupplyZenCoolTime"), out playerData.supplyZenCoolTime);
-            tempDate = playerData.supplyZenCoolTime;
+            DateTime.TryParse(PlayerPrefs.GetString("ZenCoolTime"), out playerData.zenCoolTime);
+
+            tempDate = playerData.zenCoolTime;
 
             if(DateTime.Compare(tempDate, DateTime.Now) <= 0)
             {
-                playerData.supplyZenCoolTime = tempDate.Add(new TimeSpan(0, 0, spawnZenTime * ((spawnZenTime + (int)DateTime.Now.Subtract(tempDate).TotalSeconds) / spawnZenTime)));
+                playerData.zenCoolTime = tempDate.Add(new TimeSpan(0, 0, spawnZenTime * ((spawnZenTime + (int)DateTime.Now.Subtract(tempDate).TotalSeconds) / spawnZenTime)));
             }
         }
         else
         {
-            playerData.supplyZenCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, spawnZenTime));
-            tempDate = playerData.supplyZenCoolTime;
+            playerData.zenCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, spawnZenTime));
+            tempDate = playerData.zenCoolTime;
         }
 
         if (PlayerPrefs.HasKey("PlayerZen"))

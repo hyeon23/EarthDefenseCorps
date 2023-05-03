@@ -75,13 +75,21 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
             switch (_RewardType)
             {
-                case "Item":
-                    MainMenuController.Instance.SupplyItemButton();
-                    DataManager.Instance.playerData.supplyItemCoolTime = DateTime.Now;
+                case "Item1":
+                    MainMenuController.Instance.SupplyItem1Button();
+                    DataManager.Instance.playerData.supplyItem1CoolTime = DateTime.Now;
                     break;
                 case "Zam":
                     MainMenuController.Instance.SupplyZamButton();
                     DataManager.Instance.playerData.supplyZamCoolTime = DateTime.Now;
+                    break;
+                case "Item2":
+                    MainMenuController.Instance.SupplyItem2Button();
+                    DataManager.Instance.playerData.supplyItem2CoolTime = DateTime.Now;
+                    break;
+                case "Zen":
+                    MainMenuController.Instance.SupplyZenButton();
+                    DataManager.Instance.playerData.supplyZenCoolTime = DateTime.Now;
                     break;
             }
         }

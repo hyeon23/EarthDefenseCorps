@@ -13,8 +13,6 @@ public class GPGSBinder
     static GPGSBinder inst = new GPGSBinder();
     public static GPGSBinder Inst => inst;
 
-
-
     ISavedGameClient SavedGame =>
         PlayGamesPlatform.Instance.SavedGame;
 
