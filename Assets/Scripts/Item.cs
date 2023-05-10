@@ -3,7 +3,6 @@ using UnityEngine;
 public enum ItemPart { None, Weapon, Gloves, Shoes, Sheld, Helmat, Armor, Count }
 public enum ItemGrade { None, Normal, Rare, Epic, Unique, Legendary, Count }
 
-[Serializable]
 public class Item
 {
     public int itemID;//아이템 고유 번호
@@ -14,7 +13,6 @@ public class Item
     public string itemDesc;//아이템 설명
 
     public Sprite itemImage;//아이템 스프라이트
-    
 
     //스텟관련
     public int itemATK;//공격력

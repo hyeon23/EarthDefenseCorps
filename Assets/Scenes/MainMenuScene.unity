@@ -3090,7 +3090,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 76}
-  m_SizeDelta: {x: 145.34, y: 65}
+  m_SizeDelta: {x: 0, y: 65}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &192026223
 MonoBehaviour:
@@ -16426,7 +16426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 350.135, y: -42.1512}
+  m_AnchoredPosition: {x: 325.135, y: -40.6512}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &431960503
@@ -22143,25 +22143,6 @@ MonoBehaviour:
   gradeBackground: {fileID: 477488418}
   equipSlotPart: 0
   curLevelText: {fileID: 1026068709}
-  item:
-    itemID: 0
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCurLevel: 0
-    itemMaxLevel: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemDrawingWeight: 0
 --- !u!1 &485041287
 GameObject:
   m_ObjectHideFlags: 0
@@ -27853,7 +27834,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -42.1512}
+  m_AnchoredPosition: {x: 515, y: -40.6512}
   m_SizeDelta: {x: 279.73, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &541734245
@@ -28329,7 +28310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &560489790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30231,25 +30212,6 @@ MonoBehaviour:
   equipButtonTMP: {fileID: 1677079308}
   equipButton: {fileID: 1027002243}
   unEquipButton: {fileID: 1425654600}
-  curSelectedItem:
-    itemID: 0
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCurLevel: 0
-    itemMaxLevel: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemDrawingWeight: 0
   popUpAnime: {fileID: 705684672}
   PopUpTMP: {fileID: 1816890308}
   inventory: {fileID: 1087813222}
@@ -30885,10 +30847,10 @@ RectTransform:
   m_Father: {fileID: 192026222}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 95.17, y: -32.5}
-  m_SizeDelta: {x: 70.34, y: 45}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &695613415
 MonoBehaviour:
@@ -36455,25 +36417,6 @@ MonoBehaviour:
   gradeBackground: {fileID: 761147248}
   equipSlotPart: 1
   curLevelText: {fileID: 113844151}
-  item:
-    itemID: 0
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCurLevel: 0
-    itemMaxLevel: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemDrawingWeight: 0
 --- !u!1 &764483032
 GameObject:
   m_ObjectHideFlags: 0
@@ -39404,25 +39347,6 @@ MonoBehaviour:
   gradeBackground: {fileID: 911717373}
   equipSlotPart: 5
   curLevelText: {fileID: 1738154800}
-  item:
-    itemID: 0
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCurLevel: 0
-    itemMaxLevel: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemDrawingWeight: 0
 --- !u!1 &913849449
 GameObject:
   m_ObjectHideFlags: 0
@@ -41129,9 +41053,9 @@ RectTransform:
   m_Father: {fileID: 2053219380}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 375, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &998610823
@@ -41326,25 +41250,6 @@ MonoBehaviour:
   gradeBackground: {fileID: 1001476339}
   equipSlotPart: 2
   curLevelText: {fileID: 821877209}
-  item:
-    itemID: 0
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCurLevel: 0
-    itemMaxLevel: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemDrawingWeight: 0
 --- !u!1 &1004696722
 GameObject:
   m_ObjectHideFlags: 0
@@ -41416,10 +41321,10 @@ RectTransform:
   m_Father: {fileID: 192026222}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30, y: -32.5}
-  m_SizeDelta: {x: 8, y: 45}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1006778146
 MonoBehaviour:
@@ -42369,25 +42274,6 @@ MonoBehaviour:
   gradeBackground: {fileID: 1055793152}
   equipSlotPart: 4
   curLevelText: {fileID: 536118748}
-  item:
-    itemID: 0
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCurLevel: 0
-    itemMaxLevel: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemDrawingWeight: 0
 --- !u!1 &1062680506
 GameObject:
   m_ObjectHideFlags: 0
@@ -65260,7 +65146,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1710749404}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -73101,7 +72987,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1005, y: 80}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1723906373
 MonoBehaviour:
@@ -73431,7 +73317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1729525606
 RectTransform:
   m_ObjectHideFlags: 0
@@ -75726,25 +75612,6 @@ MonoBehaviour:
   gradeBackground: {fileID: 1832265017}
   equipSlotPart: 3
   curLevelText: {fileID: 636614580}
-  item:
-    itemID: 0
-    itemPart: 0
-    itemGrade: 0
-    isEquipped: 0
-    itemName: 
-    itemDesc: 
-    itemImage: {fileID: 0}
-    itemATK: 0
-    itemCriticalRate: 0
-    itemCriticalDamage: 0
-    itemHP: 0
-    itemSheldGager: 0
-    itemSpecialMoveGager: 0
-    itemCurLevel: 0
-    itemMaxLevel: 0
-    itemPrice: 0
-    itemUpgradeCost: 0
-    itemDrawingWeight: 0
 --- !u!1 &1835859655
 GameObject:
   m_ObjectHideFlags: 0
@@ -75897,7 +75764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1837818340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -76591,9 +76458,9 @@ RectTransform:
   m_Father: {fileID: 2053219380}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1868045037
@@ -84908,7 +84775,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 25}
-  m_SizeDelta: {x: 475, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2053219381
 MonoBehaviour:
@@ -86382,128 +86249,12 @@ MonoBehaviour:
     playerZam: 100000
     playerGold: 0
     playerZen: 0
-    curEquippedWeapon:
-      itemID: 0
-      itemPart: 0
-      itemGrade: 0
-      isEquipped: 0
-      itemName: 
-      itemDesc: 
-      itemImage: {fileID: 0}
-      itemATK: 0
-      itemCriticalRate: 0
-      itemCriticalDamage: 0
-      itemHP: 0
-      itemSheldGager: 0
-      itemSpecialMoveGager: 0
-      itemCurLevel: 0
-      itemMaxLevel: 0
-      itemPrice: 0
-      itemUpgradeCost: 0
-      itemDrawingWeight: 0
-    curEquippedGloves:
-      itemID: 0
-      itemPart: 0
-      itemGrade: 0
-      isEquipped: 0
-      itemName: 
-      itemDesc: 
-      itemImage: {fileID: 0}
-      itemATK: 0
-      itemCriticalRate: 0
-      itemCriticalDamage: 0
-      itemHP: 0
-      itemSheldGager: 0
-      itemSpecialMoveGager: 0
-      itemCurLevel: 0
-      itemMaxLevel: 0
-      itemPrice: 0
-      itemUpgradeCost: 0
-      itemDrawingWeight: 0
-    curEquippedShoes:
-      itemID: 0
-      itemPart: 0
-      itemGrade: 0
-      isEquipped: 0
-      itemName: 
-      itemDesc: 
-      itemImage: {fileID: 0}
-      itemATK: 0
-      itemCriticalRate: 0
-      itemCriticalDamage: 0
-      itemHP: 0
-      itemSheldGager: 0
-      itemSpecialMoveGager: 0
-      itemCurLevel: 0
-      itemMaxLevel: 0
-      itemPrice: 0
-      itemUpgradeCost: 0
-      itemDrawingWeight: 0
-    curEquippedSheld:
-      itemID: 0
-      itemPart: 0
-      itemGrade: 0
-      isEquipped: 0
-      itemName: 
-      itemDesc: 
-      itemImage: {fileID: 0}
-      itemATK: 0
-      itemCriticalRate: 0
-      itemCriticalDamage: 0
-      itemHP: 0
-      itemSheldGager: 0
-      itemSpecialMoveGager: 0
-      itemCurLevel: 0
-      itemMaxLevel: 0
-      itemPrice: 0
-      itemUpgradeCost: 0
-      itemDrawingWeight: 0
-    curEquippedHelmat:
-      itemID: 0
-      itemPart: 0
-      itemGrade: 0
-      isEquipped: 0
-      itemName: 
-      itemDesc: 
-      itemImage: {fileID: 0}
-      itemATK: 0
-      itemCriticalRate: 0
-      itemCriticalDamage: 0
-      itemHP: 0
-      itemSheldGager: 0
-      itemSpecialMoveGager: 0
-      itemCurLevel: 0
-      itemMaxLevel: 0
-      itemPrice: 0
-      itemUpgradeCost: 0
-      itemDrawingWeight: 0
-    curEquippedArmor:
-      itemID: 0
-      itemPart: 0
-      itemGrade: 0
-      isEquipped: 0
-      itemName: 
-      itemDesc: 
-      itemImage: {fileID: 0}
-      itemATK: 0
-      itemCriticalRate: 0
-      itemCriticalDamage: 0
-      itemHP: 0
-      itemSheldGager: 0
-      itemSpecialMoveGager: 0
-      itemCurLevel: 0
-      itemMaxLevel: 0
-      itemPrice: 0
-      itemUpgradeCost: 0
-      itemDrawingWeight: 0
     isStageClear: 
     curStage: 0
     isBGMOn: 0
     isSFXOn: 0
     Frames: 
     curFrameIndex: 0
-    playerItems: []
-  items: []
   itemParts:
   - itemSrpites:
     - {fileID: -53577432, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}

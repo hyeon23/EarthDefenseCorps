@@ -15,42 +15,18 @@ public class EquipSlot : MonoBehaviour
 
     private void Update()
     {
-        switch (equipSlotPart)
-        {
-            case EquipSlotPart.Weapon:
-                item = DataManager.Instance.playerData.CurEquippedWeapon;
-
-                if(DataManager.Instance.playerData.CurEquippedWeapon == null)
-                {
-                    item = null;
-                }
-                else
-                {
-                    item = DataManager.Instance.playerData.CurEquippedWeapon;
-                }
-                
-                break;
-            case EquipSlotPart.Gloves:
-                item = DataManager.Instance.playerData.CurEquippedGloves;
-                break;
-            case EquipSlotPart.Shoes:
-                item = DataManager.Instance.playerData.CurEquippedShoes;
-                break;
-            case EquipSlotPart.Sheld:
-                item = DataManager.Instance.playerData.CurEquippedSheld;
-                break;
-            case EquipSlotPart.Helmat:
-                item = DataManager.Instance.playerData.CurEquippedHelmat;
-                break;
-            case EquipSlotPart.Armor:
-                item = DataManager.Instance.playerData.CurEquippedArmor;
-                break;
-            default:
-                item = null;
-                break;
-        }
+        EquipItemLoad(equipSlotPart);
 
         EquippedItemPresentation(item);
+        
+        if (item == null)
+        {
+            Debug.Log("null");
+        }
+        else
+        {
+            Debug.Log("not null");
+        }
     }
 
     public void ItemSlotClicked()
@@ -85,6 +61,34 @@ public class EquipSlot : MonoBehaviour
             gameObject.GetComponent<Button>().interactable = false;
 
             gradeBackground.color = Color.white;
+        }
+    }
+
+    public void EquipItemLoad(EquipSlotPart equipSlotPart)
+    {
+        switch (equipSlotPart)
+        {
+            case EquipSlotPart.Weapon:
+                item = DataManager.Instance.playerData.CurEquippedWeapon;
+                break;
+            case EquipSlotPart.Gloves:
+                item = DataManager.Instance.playerData.CurEquippedGloves;
+                break;
+            case EquipSlotPart.Shoes:
+                item = DataManager.Instance.playerData.CurEquippedShoes;
+                break;
+            case EquipSlotPart.Sheld:
+                item = DataManager.Instance.playerData.CurEquippedSheld;
+                break;
+            case EquipSlotPart.Helmat:
+                item = DataManager.Instance.playerData.CurEquippedHelmat;
+                break;
+            case EquipSlotPart.Armor:
+                item = DataManager.Instance.playerData.CurEquippedArmor;
+                break;
+            default:
+                //item = null;
+                break;
         }
     }
 }

@@ -761,7 +761,6 @@ public class MainMenuController : MonoBehaviour
             unEquipButton.gameObject.SetActive(false);
         }
 
-
         equipLevelTMP.text = $"레벨: {_item.itemCurLevel.ToString()} / {_item.itemMaxLevel.ToString()}";
 
         switch (_item.itemPart)
@@ -785,7 +784,7 @@ public class MainMenuController : MonoBehaviour
         }
 
         equipPartTMP.text = _item.itemPart.ToString();
-        equipDescTMP.text = _item.itemDesc.ToString();
+        equipDescTMP.text = _item.itemDesc;
 
 
         if (_item.itemCurLevel == _item.itemMaxLevel)
@@ -796,8 +795,6 @@ public class MainMenuController : MonoBehaviour
         {
             equipUpgradeCostTMP.text = $"{NotateNumber.Transform(DataManager.Instance.playerData.PlayerGold)} / {NotateNumber.Transform(curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost)}";
         }
-
-
 
         equipmentInfoPanel.SetActive(true);
     }

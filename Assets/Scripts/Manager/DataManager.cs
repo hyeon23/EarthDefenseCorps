@@ -110,10 +110,13 @@ public class DataManager : MonoBehaviour
             instance = this;
 
             DontDestroyOnLoad(gameObject);
+
+            Debug.Log("1");
         }
         else
         {
             Destroy(gameObject);
+            Debug.Log("2");
         }
 
         playerData.isStageClear = new bool[3] { false, false, false };
@@ -145,28 +148,28 @@ public class DataManager : MonoBehaviour
         //여기서 기존 장비 불러와야 함
         //if (장비 존재시) {}
         //else {}
-        playerData.curEquippedWeapon = null;
-        playerData.curEquippedGloves = null;
-        playerData.curEquippedShoes = null;
-        playerData.curEquippedSheld = null;
-        playerData.curEquippedHelmat = null;
-        playerData.curEquippedArmor = null;
+        //playerData.curEquippedWeapon = null;
+        //playerData.curEquippedGloves = null;
+        //playerData.curEquippedShoes = null;
+        //playerData.curEquippedSheld = null;
+        //playerData.curEquippedHelmat = null;
+        //playerData.curEquippedArmor = null;
 
-        DataUpdate();
+        //DataUpdate();
     }
 
     private void Start()
     {
-        Debug.Log("DMStart");
+        Debug.Log("3");
 
         //여기서 기존에 가진 장비 불러와야 함
         //기존 장착 데이터 존재 시, 기존 데이터, 없으면 없는 데이터 사용
-        playerData.curEquippedWeapon = null;
-        playerData.curEquippedGloves = null;
-        playerData.curEquippedShoes = null;
-        playerData.curEquippedSheld = null;
-        playerData.curEquippedHelmat = null;
-        playerData.curEquippedArmor = null;
+        //playerData.curEquippedWeapon = null;
+        //playerData.curEquippedGloves = null;
+        //playerData.curEquippedShoes = null;
+        //playerData.curEquippedSheld = null;
+        //playerData.curEquippedHelmat = null;
+        //playerData.curEquippedArmor = null;
 
         DataUpdate();
     }
@@ -332,7 +335,7 @@ public class DataManager : MonoBehaviour
         if (PlayerPrefs.HasKey("WatchAdsCoolTime"))
             DateTime.TryParse(PlayerPrefs.GetString("WatchAdsCoolTime"), out playerData.watchAdsCoolTime);
         else
-            playerData.watchAdsCoolTime = DateTime.Now.Add(new TimeSpan(0, 5, 0));
+            playerData.watchAdsCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, 10));
     }
 
     public Sprite IDtoSprite(int _itemID)

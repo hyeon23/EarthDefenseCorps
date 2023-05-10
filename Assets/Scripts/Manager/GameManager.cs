@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
 
     public void GoToMenu()
     {
-        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+        //SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
         SceneManager.LoadScene("MainMenuScene");
         //LoadingSceneController.LoadScene("MainMenuScene");
