@@ -181,8 +181,6 @@ public class PlayerController : MonoBehaviour
             else if (specialEnemyHit.collider.tag == "BlockTrigger" || specialEnemyHit.collider.tag == "AlienTrigger")
             {
                 specialTargetEnemyCollider = specialEnemyHit.collider;
-
-                Debug.Log(specialEnemyHit.transform.position);
             }
 
             //Floor Collide
@@ -196,12 +194,9 @@ public class PlayerController : MonoBehaviour
 
                     float tempGravity = parentRigid.gravityScale;
 
-                    Debug.Log("TickTick");
-
                     parentRigid.gravityScale = 0;
                     parentRigid.velocity = Vector2.zero;
                     parentTransform.position = playerPos[positionIndex].position;
-                    Debug.Log("TickTackToe");
                     parentRigid.gravityScale = tempGravity;
 
                     return;

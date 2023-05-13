@@ -1,11 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class GPGSLoginTest : MonoBehaviour
 {
     string log;
-    
+
+    public Button loginButton;
+    public Button logoutButton;
+
+    private void Start()
+    {
+        loginButton.onClick.AddListener( delegate {
+            GPGSBinder.Inst.Login((success, localUser) =>
+            log = $"{success}, {localUser.userName}, {Social.localUser.id}, {localUser.state}, {localUser.underage}");
+        });
+        loginButton.onClick.AddListener( delegate { transform.parent.gameObject.SetActive(false); });
+        logoutButton.onClick.AddListener(GPGSBinder.Inst.Logout);
+    }
+
     //핸드폰에서만 표시됨
     void OnGUI()
     {
@@ -24,24 +39,23 @@ public class GPGSLoginTest : MonoBehaviour
         if (GUILayout.Button("Logout"))
             GPGSBinder.Inst.Logout();
 
-        if (GUILayout.Button("SaveCloud"))
+        //if (GUILayout.Button("SaveCloud"))
+        //    //원하는 파일 네임 & 원하는 데이터를 인자로 가짐, 성공시 -> 성공 표현
+        //    GPGSBinder.Inst.SaveCloud("mysave", "want data", success => log = $"{success}");
 
-            //원하는 파일 네임 & 원하는 데이터를 인자로 가짐, 성공시 -> 성공 표현
-            GPGSBinder.Inst.SaveCloud("mysave", "want data", success => log = $"{success}");
+        ////원하는 파일 네임을 인자로 가짐, 성공시 -> 데이터 전달
+        //if (GUILayout.Button("LoadCloud"))
+        //    GPGSBinder.Inst.LoadCloud("mysave", (success, data) => log = $"{success}, {data}");
 
-        //원하는 파일 네임을 인자로 가짐, 성공시 -> 데이터 전달
-        if (GUILayout.Button("LoadCloud"))
-            GPGSBinder.Inst.LoadCloud("mysave", (success, data) => log = $"{success}, {data}");
+        ////원하는 파일 네임을 인자로 가짐, 성공시 -> 파일 삭제
+        //if (GUILayout.Button("DeleteCloud"))
+        //    GPGSBinder.Inst.DeleteCloud("mysave", success => log = $"{success}");
 
-        //원하는 파일 네임을 인자로 가짐, 성공시 -> 파일 삭제
-        if (GUILayout.Button("DeleteCloud"))
-            GPGSBinder.Inst.DeleteCloud("mysave", success => log = $"{success}");
-
-        if (GUILayout.Button("ShowAchievementUI"))
-            GPGSBinder.Inst.ShowAchievementUI();
+        //if (GUILayout.Button("ShowAchievementUI"))
+        //    GPGSBinder.Inst.ShowAchievementUI();
 
 
-        /*여러 추가 기능[리더보드, 업적 등]*/
+        ///*여러 추가 기능[리더보드, 업적 등]*/
         //if (GUILayout.Button("UnlockAchievement_one"))
         //    GPGSBinder.Inst.UnlockAchievement(GPGSIds.achievement_one, success => log = $"{success}");
 

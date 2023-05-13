@@ -271,9 +271,6 @@ public class MainMenuController : MonoBehaviour
 
         FPSTMP.text = $"{Application.targetFrameRate}Hz";
 
-        //Debug.Log(DataManager.Instance.playerData.supplyItemCoolTime.ToString(@"hh\:mm\:ss"));
-        //Debug.Log(DataManager.Instance.playerData.supplyZamCoolTime.ToString(@"hh\:mm\:ss"));
-
         if ((DateTime.Now - DataManager.Instance.playerData.supplyItem1CoolTime).TotalMinutes >= 30)
         {
             supplyItem1Button.interactable = true;

@@ -31,10 +31,7 @@ public class PlayerTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "BlockTrigger")
-        {
-        }
-        else if (collision.transform.tag == "BlockBullet")
+        if (collision.transform.tag == "BlockBullet")
         {
             StartCoroutine(OnHit(collision.GetComponent<OneToOneBlock>().dmg));
         }
@@ -42,19 +39,19 @@ public class PlayerTrigger : MonoBehaviour
         {
             StartCoroutine(OnHit(collision.GetComponent<AlienBullet>().dmg));
         }
-        else if (collision.tag == "AssembleTip")
-        {
-            PlayerController.Instance.parentRigid.gravityScale = 0;
-        }
+        //else if (collision.tag == "AssembleTip")
+        //{
+        //    PlayerController.Instance.parentRigid.gravityScale = 0;
+        //}
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "AssembleTip")
-        {
-            PlayerController.Instance.parentRigid.gravityScale = 1;
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "AssembleTip")
+    //    {
+    //        PlayerController.Instance.parentRigid.gravityScale = 1;
+    //    }
+    //}
 
     public IEnumerator OnHit(float damage)
     {

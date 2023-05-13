@@ -18,15 +18,6 @@ public class EquipSlot : MonoBehaviour
         EquipItemLoad(equipSlotPart);
 
         EquippedItemPresentation(item);
-        
-        if (item == null)
-        {
-            Debug.Log("null");
-        }
-        else
-        {
-            Debug.Log("not null");
-        }
     }
 
     public void ItemSlotClicked()
