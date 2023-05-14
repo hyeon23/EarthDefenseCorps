@@ -92,7 +92,7 @@ public class DataManager : MonoBehaviour
 
     public int spawnZenTime;
 
-    private string localPlayerInfo;
+    public string[] localPlayerInfo;
 
     public static DataManager Instance
     {
@@ -124,15 +124,6 @@ public class DataManager : MonoBehaviour
 
         spawnZenTime = 300;//300
 
-        //PlayerPrefsDataDelete
-        PlayerPrefs.DeleteAll();
-
-        //DataLoad
-        PlayerPrefsLoad();
-
-        //Target Frame Rate 설정
-        Application.targetFrameRate = playerData.Frames[playerData.curFrameIndex];
-
         ItemDB = CSVReader.Read("ItemDB");
 
         for (int i = 0; i < ItemDB.Count; i++)
@@ -142,15 +133,17 @@ public class DataManager : MonoBehaviour
                 float.Parse(ItemDB[i]["itemCriticalDamage"].ToString()), float.Parse(ItemDB[i]["itemHP"].ToString()), float.Parse(ItemDB[i]["itemSheldGager"].ToString()), float.Parse(ItemDB[i]["itemSpecialMoveGager"].ToString())));
         }
 
+        //PlayerPrefsDataDelete
+        PlayerPrefs.DeleteAll();
+
+        //DataLoad
+        PlayerPrefsLoad();
+
+        //Target Frame Rate 설정
+        Application.targetFrameRate = playerData.Frames[playerData.curFrameIndex];
+
         GPGSBinder.Inst.Login((success, localUser) =>
-            localPlayerInfo = $"{success}, {localUser.userName}, {Social.localUser.id}, {localUser.state}, {localUser.underage}");
-
-        string[] str = localPlayerInfo.Split(',');
-
-        for (int i = 0; i < str.Length; i++)
-        {
-            Debug.Log(i + str[i]);
-        }
+            localPlayerInfo = $"{success}, {localUser.userName}, {Social.localUser.id}, {localUser.state}, {localUser.underage}".Split(','));
     }
 
     private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
@@ -164,7 +157,6 @@ public class DataManager : MonoBehaviour
         //playerData.curEquippedSheld = null;
         //playerData.curEquippedHelmat = null;
         //playerData.curEquippedArmor = null;
-
         //DataUpdate();
     }
 
@@ -179,7 +171,23 @@ public class DataManager : MonoBehaviour
         //playerData.curEquippedHelmat = null;
         //playerData.curEquippedArmor = null;
 
+        if (localPlayerInfo[0] == "True")//성공시, 
+        {
+            MainMenuController.Instance.TriggerPopUp("구글 로그인 성공");
+
+
+        }
+        else
+        {
+            Invoke("AppQuit", 1f);
+        }
+
         DataUpdate();
+    }
+
+    public void AppQuit()
+    {
+        Application.Quit();
     }
 
     public void GameStartDataUpdate()

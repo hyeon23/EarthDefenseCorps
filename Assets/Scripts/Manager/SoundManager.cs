@@ -7,7 +7,7 @@ public class SoundManager : MonoBehaviour
 {
     private static SoundManager instance = null;
 
-    public enum SMType { MainMenu, InGame, None }
+    public enum SMType { Start, MainMenu, InGame, None }
 
     public static SoundManager Instance
     {
@@ -120,6 +120,17 @@ public class SoundManager : MonoBehaviour
     {
         switch (smType)
         {
+            case SMType.Start:
+                switch (sfxType)
+                {
+                    case SFX.Button:
+                        sfxPlayer[sfxCursor].clip = sfxClip[0];
+                        break;
+                    case SFX.PopUP:
+                        sfxPlayer[sfxCursor].clip = sfxClip[1];
+                        break;
+                }
+                break;
             case SMType.MainMenu:
                 switch (sfxType)
                 {

@@ -44,7 +44,6 @@ public class GPGSBinder
         PlayGamesPlatform.Instance.SignOut();
     }
 
-
     //public void SaveCloud(string fileName, string saveData, Action<bool> onCloudSaved = null)
     //{
     //    SavedGame.OpenWithAutomaticConflictResolution(fileName, DataSource.ReadCacheOrNetwork,
