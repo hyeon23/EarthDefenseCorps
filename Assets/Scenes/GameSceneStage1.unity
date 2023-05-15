@@ -34135,7 +34135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee2c5a7be559cbb438587557516731c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smType: 1
+  smType: 2
   bgmPlayer: {fileID: 488965066}
   sfxPlayer:
   - {fileID: 188606067}

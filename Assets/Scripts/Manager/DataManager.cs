@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.Timeline;
 
 [System.Serializable]
 public class PlayerData
@@ -81,6 +84,11 @@ public class DataManager : MonoBehaviour
     private static DataManager instance = null;
     public PlayerData playerData = new PlayerData();
 
+    private string url = "http://18.218.174.80:8080/api/v1";
+    public string signupPath = "member/register";
+    public string signinPath = "v1/member/login";
+    public string getPath = "member/info";
+
     //Item DB
     List<Dictionary<string, object>> ItemDB;
 
@@ -92,7 +100,10 @@ public class DataManager : MonoBehaviour
 
     public int spawnZenTime;
 
-    public string[] localPlayerInfo;
+    public bool loginSuccessed = false;
+    public bool signinDBSuccessed = false;
+    public string localUserID = null;
+    public string[] localUserInfo = null;
 
     public static DataManager Instance
     {
@@ -141,23 +152,6 @@ public class DataManager : MonoBehaviour
 
         //Target Frame Rate 설정
         Application.targetFrameRate = playerData.Frames[playerData.curFrameIndex];
-
-        GPGSBinder.Inst.Login((success, localUser) =>
-            localPlayerInfo = $"{success}, {localUser.userName}, {Social.localUser.id}, {localUser.state}, {localUser.underage}".Split(','));
-    }
-
-    private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
-    {
-        //여기서 기존 장비 불러와야 함
-        //if (장비 존재시) {}
-        //else {}
-        //playerData.curEquippedWeapon = null;
-        //playerData.curEquippedGloves = null;
-        //playerData.curEquippedShoes = null;
-        //playerData.curEquippedSheld = null;
-        //playerData.curEquippedHelmat = null;
-        //playerData.curEquippedArmor = null;
-        //DataUpdate();
     }
 
     private void Start()
@@ -171,15 +165,16 @@ public class DataManager : MonoBehaviour
         //playerData.curEquippedHelmat = null;
         //playerData.curEquippedArmor = null;
 
-        if (localPlayerInfo[0] == "True")//성공시, 
+        if (loginSuccessed == true)//로그인 성공 시, 
         {
-            MainMenuController.Instance.TriggerPopUp("구글 로그인 성공");
+            //웹 통신,
 
+            //플레이어 데이터 로드
 
         }
-        else
+        else//로그인 실패 시: 로그인 실패 경우, 벤으로 인해, 고려하지 않아도 됨
         {
-            Invoke("AppQuit", 1f);
+            //
         }
 
         DataUpdate();
@@ -549,7 +544,7 @@ public class DataManager : MonoBehaviour
     {
         playerData.playerLastConnectionTime = DateTime.Now;
 
-        PlayerPrefsSave();
+        Save();
     }
 
     private void OnApplicationPause(bool pause)
@@ -558,11 +553,164 @@ public class DataManager : MonoBehaviour
         {
             playerData.playerLastConnectionTime = DateTime.Now;
 
-            PlayerPrefsSave();
+            Save();
         }
         else//정지 중단
         {
 
         }
+    }
+
+    //요청 보냄 -> 요청 값에 따라 코드 작성
+    //요청 승인 시, -> 해당 작업 수행
+    //요청 거절 시, -> 경고 메시지
+
+    //public string ObjectToJson<T>(T _object)
+    //{
+    //    //오브젝트(Item or PlayerData)를 Json 데이터로 변환
+
+    //    object obj = _object;
+    //    return JsonUtility.ToJson(obj);
+    //}
+
+    //public T JsonToObject<T>(string _jsonData)
+    //{
+    //    //Json 데이터를 오브젝트(Item or PlayerData)로 변환
+
+    //    return JsonUtility.FromJson<T>(_jsonData);
+    //}
+
+    public void Save()
+    {
+        PlayerPrefsSave();
+        //Server Save()
+    }
+
+    public void Load()
+    {
+        PlayerPrefsLoad();
+        //Server Load()
+    }
+
+    // GET 요청 보내기
+    public IEnumerator GetRequest(string path)
+    {
+        using (UnityWebRequest request = UnityWebRequest.Get(url + path + $"?{localUserID}"))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.Log/*err*/("Get Request 실패" + request.error);
+            }
+            else
+            {
+                Debug.Log("Get Request 성공" + request.downloadHandler.text);
+            }
+        }
+    }
+
+    // GET 요청 보내기
+    public IEnumerator GetRequest(string path, System.Action<string> callback)
+    {
+        using (UnityWebRequest request = UnityWebRequest.Get(url + path + $"?{localUserID}")) 
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.Log/*err*/("Error: " + request.error);
+            }
+            else
+            {
+                Debug.Log("Get Request 성공");
+                callback("MainMenuScene"/*request.downloadHandler.text*/);
+            }
+        }
+    }
+
+    //로그인 POST 요청 보내기
+    public IEnumerator PostRequest<T>(string path, T data)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+        Debug.Log(jsonData);
+        using (UnityWebRequest request = UnityWebRequest.Post(url + path, jsonData))
+        {
+            Debug.Log(url + path);
+
+            //디폴트 헤더
+            request.SetRequestHeader("Content-Type", "application/json");
+            //request.SetRequestHeader("User-Agent", "PostmanRuntime/7.32.2");
+            //request.SetRequestHeader("Accept-Encoding", "gzip, deflate, br");
+            //request.SetRequestHeader("Connection", "keep-alive");
+
+            //사용자 정의 헤더
+            //request.SetRequestHeader("Authorization", "Bearer your_token");
+            //request.SetRequestHeader("CustomHeader", "CustomValue");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("Error: " + request.error);
+            }
+            else
+            {
+                signinDBSuccessed = JsonUtility.FromJson<bool>(request.downloadHandler.text);
+            }
+        }
+    }
+
+    //POST 요청 보내기
+    public IEnumerator PostRequest<T>(string path, T data, System.Func<T, T> callback)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+
+        using (UnityWebRequest request = UnityWebRequest.Post(url/* + url + path*/, jsonData))
+        {
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("Error: " + request.error);
+            }
+            else
+            {
+                T responseData = JsonUtility.FromJson<T>(request.downloadHandler.text);
+                //playerData = responseData;
+                callback(responseData);
+            }
+        }
+    }
+
+    // POST 요청 보내기
+    public IEnumerator PostRequest<T>(string path, T data, System.Action<PlayerData> callback)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+
+        using (UnityWebRequest request = UnityWebRequest.Post(url + path, jsonData))
+        {
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("Error: " + request.error);
+            }
+            else
+            {
+                T responseData = JsonUtility.FromJson<T>(request.downloadHandler.text);
+                //playerData = responseData;
+                //callback(responseData);
+            }
+        }
+    }
+
+    public void SetData(string _data)
+    {
+        Debug.Log(_data);
     }
 }
