@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.Timeline;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 public class PlayerData
@@ -85,9 +87,11 @@ public class DataManager : MonoBehaviour
     public PlayerData playerData = new PlayerData();
 
     private string url = "http://18.218.174.80:8080/api/v1";
-    public string signupPath = "member/register";
-    public string signinPath = "v1/member/login";
-    public string getPath = "member/info";
+    public string signupPath = "/member/register";
+    public string signinPath = "/v1/member/login";
+    public string getUserInfoPath = "/member/info";
+    public string getStageListPath = "/stage/list";
+    public string putStageClearPath = "/stage/clear";
 
     //Item DB
     List<Dictionary<string, object>> ItemDB;
@@ -103,6 +107,7 @@ public class DataManager : MonoBehaviour
     public bool loginSuccessed = false;
     public bool signinDBSuccessed = false;
     public string localUserID = null;
+    public string localUserName = null;
     public string[] localUserInfo = null;
 
     public static DataManager Instance
@@ -593,124 +598,159 @@ public class DataManager : MonoBehaviour
     }
 
     // GET 요청 보내기
-    public IEnumerator GetRequest(string path)
+    public IEnumerator GetUserInfoRequest(string path)
     {
-        using (UnityWebRequest request = UnityWebRequest.Get(url + path + $"?{localUserID}"))
+        using (UnityWebRequest request = new UnityWebRequest(url + path + "?identifier=paramtest", "GET"))/*localuserid*/
         {
+            request.downloadHandler = new DownloadHandlerBuffer();
+            Debug.Log(url + path + "?identifier=paramtest");
+            request.SetRequestHeader("Content-Type", "application/json");
+
             yield return request.SendWebRequest();
 
-            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            if (request.result == UnityWebRequest.Result.ConnectionError)
             {
-                Debug.Log/*err*/("Get Request 실패" + request.error);
+                Debug.LogError("GetUserInfo CError: " + request.error);
+            }
+            else if (request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("GetUserInfo PError: " + request.error);
             }
             else
             {
-                Debug.Log("Get Request 성공" + request.downloadHandler.text);
+                Debug.Log("GetStageList 성공: " + request.downloadHandler.text);
             }
         }
     }
 
-    // GET 요청 보내기
-    public IEnumerator GetRequest(string path, System.Action<string> callback)
+    public IEnumerator GetStageListRequest(string path)
     {
-        using (UnityWebRequest request = UnityWebRequest.Get(url + path + $"?{localUserID}")) 
+        using (UnityWebRequest request = new UnityWebRequest(url + path + $"?identifier=paramtest", "GET"))/*localuserid*/
         {
+            Debug.Log(url + path + "?identifier=paramtest");
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+
             yield return request.SendWebRequest();
 
-            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            if (request.result == UnityWebRequest.Result.ConnectionError)
             {
-                Debug.Log/*err*/("Error: " + request.error);
+                Debug.LogError("GetStageList CError: " + request.error);
+            }
+            else if (request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("GetStageList PError: " + request.error);
             }
             else
             {
-                Debug.Log("Get Request 성공");
-                callback("MainMenuScene"/*request.downloadHandler.text*/);
+                Debug.Log("GetStageList 성공: " + request.downloadHandler.text);
             }
         }
     }
 
     //로그인 POST 요청 보내기
-    public IEnumerator PostRequest<T>(string path, T data)
-    {
-        string jsonData = JsonUtility.ToJson(data);
-        Debug.Log(jsonData);
-        using (UnityWebRequest request = UnityWebRequest.Post(url + path, jsonData))
-        {
-            Debug.Log(url + path);
-
-            //디폴트 헤더
-            request.SetRequestHeader("Content-Type", "application/json");
-            //request.SetRequestHeader("User-Agent", "PostmanRuntime/7.32.2");
-            //request.SetRequestHeader("Accept-Encoding", "gzip, deflate, br");
-            //request.SetRequestHeader("Connection", "keep-alive");
-
-            //사용자 정의 헤더
-            //request.SetRequestHeader("Authorization", "Bearer your_token");
-            //request.SetRequestHeader("CustomHeader", "CustomValue");
-
-            yield return request.SendWebRequest();
-
-            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
-            {
-                Debug.LogError("Error: " + request.error);
-            }
-            else
-            {
-                signinDBSuccessed = JsonUtility.FromJson<bool>(request.downloadHandler.text);
-            }
-        }
-    }
-
-    //POST 요청 보내기
-    public IEnumerator PostRequest<T>(string path, T data, System.Func<T, T> callback)
+    public IEnumerator PostSigninRequest/*<SigninClass>*/(string path, SigninClass data)
     {
         string jsonData = JsonUtility.ToJson(data);
 
-        using (UnityWebRequest request = UnityWebRequest.Post(url/* + url + path*/, jsonData))
+        //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
+        using (UnityWebRequest request = new UnityWebRequest(url + path, "POST"))
         {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
 
             yield return request.SendWebRequest();
 
-            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            if (request.result == UnityWebRequest.Result.ConnectionError)
             {
-                Debug.LogError("Error: " + request.error);
+                Debug.LogError("PostSignin CError: " + request.error);
+            }
+            else if (request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("PostSignin PError: " + request.error);
             }
             else
             {
-                T responseData = JsonUtility.FromJson<T>(request.downloadHandler.text);
-                //playerData = responseData;
-                callback(responseData);
+                string responseText = request.downloadHandler.text;
+                Debug.Log("PostSignin 성공: " + responseText);
+
+                SigninClass tt = JsonUtility.FromJson<SigninClass>(responseText);
+
+                //데이터 로드
+                signinDBSuccessed = tt.state;
+                // Handle the response as needed
             }
         }
     }
 
-    // POST 요청 보내기
-    public IEnumerator PostRequest<T>(string path, T data, System.Action<PlayerData> callback)
+
+    //회원가입 POST 요청: 로그인 POST와 동일하게 사용 가능할 수 있으나, 확인을 위해 임시 생성 => 후에 물어볼 것
+    public IEnumerator PostSignupRequest/*<SignupClass>*/(string path, SignupClass data)
     {
         string jsonData = JsonUtility.ToJson(data);
 
-        using (UnityWebRequest request = UnityWebRequest.Post(url + path, jsonData))
+        //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
+        using (UnityWebRequest request = new UnityWebRequest(url + path, "POST"))
         {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
 
             yield return request.SendWebRequest();
 
-            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            if (request.result == UnityWebRequest.Result.ConnectionError)
             {
-                Debug.LogError("Error: " + request.error);
+                Debug.LogError("PostSignup CError: " + request.error);
+            }
+            else if (request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("PostSignup PError: " + request.error);
             }
             else
             {
-                T responseData = JsonUtility.FromJson<T>(request.downloadHandler.text);
-                //playerData = responseData;
-                //callback(responseData);
+                string responseText = request.downloadHandler.text;
+                Debug.Log("PostSignup 성공: " + responseText);
+
+                SignupClass tt = JsonUtility.FromJson<SignupClass>(responseText);
+
+                //회원가입 처리
             }
         }
     }
 
-    public void SetData(string _data)
+    //Put
+    public IEnumerator PutStageClearRequest(string path, StageClearClass data)
     {
-        Debug.Log(_data);
+        string jsonData = JsonUtility.ToJson(data);
+
+        // UnityWebRequest 객체 생성
+        UnityWebRequest request = new UnityWebRequest(url + path, "PUT");
+
+        // PUT 요청 설정 (Content-Type 등)
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        // 요청 보내기
+        yield return request.SendWebRequest();
+
+        // 요청이 완료되었는지 확인
+        if (request.result == UnityWebRequest.Result.ConnectionError)
+        {
+            Debug.LogError("CError: " + request.error);
+        }
+        else if (request.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("PError: " + request.error);
+        }
+        else
+        {
+            // 요청에 대한 응답 데이터 처리
+            Debug.Log("PutStageClear 성공: " + request.downloadHandler.text);
+        }
     }
 }

@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "R3CT60E8X9X",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "R3CT60E8X9X",
+        "name": "com.devurim.earthdefensecorps",
+        "processId": 17510,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -16,27 +16,57 @@
         },
         {
             "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 27745,
+            "name": "com.google.android.youtube",
+            "processId": 19694,
             "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
-            "processId": 4152,
+            "processId": 24622,
             "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
-            "processId": 6874,
+            "processId": 25666,
             "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
-            "processId": 8148,
+            "processId": 3226,
             "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 5218,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 5704,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 15683,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 16798,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 17510,
+            "exited": false
         }
     ],
     "m_Tags": {
@@ -90,7 +120,7 @@
         "Behavior": 0
     },
     "m_FilterOptions": {
-        "m_Filter": "",
+        "m_Filter": "{",
         "m_UseRegularExpressions": false,
         "m_MatchCase": false
     },
