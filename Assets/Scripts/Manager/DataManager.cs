@@ -714,8 +714,6 @@ public class DataManager : MonoBehaviour
                 string responseText = request.downloadHandler.text;
                 Debug.Log("PostSignup 성공: " + responseText);
 
-                SignupClass tt = JsonUtility.FromJson<SignupClass>(responseText);
-
                 //회원가입 처리
             }
         }

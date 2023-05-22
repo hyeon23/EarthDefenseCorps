@@ -59,7 +59,7 @@ public class GPGSLoginComponent : MonoBehaviour
         GPGSLogin();
 
         //1. DB 자동 로그인 수행
-        DBLogin();
+        //DBLogin();
     }
 
     public void OnClickLoginBtn()
@@ -107,7 +107,8 @@ public class GPGSLoginComponent : MonoBehaviour
         if (!DataManager.Instance.signinDBSuccessed)
         {
             //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
-            StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.signinPath, new SigninClass(false, DataManager.Instance.localUserName, "paramtest")));
+            Debug.Log($"{DataManager.Instance.localUserName} : {DataManager.Instance.localUserID}");
+            StartCoroutine(DataManager.Instance.PostSignupRequest(DataManager.Instance.signupPath, new SignupClass(DataManager.Instance.localUserName, DataManager.Instance.localUserID)));
         }
     }
 

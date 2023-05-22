@@ -5,6 +5,7 @@ public enum ItemGrade { None, Normal, Rare, Epic, Unique, Legendary, Count }
 
 public class Item
 {
+    public int ID;//아이템 고유 번호
     public int itemID;//아이템 고유 번호
     public ItemPart itemPart;//아이템 타입
     public ItemGrade itemGrade;//아이템 등급
