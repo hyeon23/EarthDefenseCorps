@@ -1,83 +1,41 @@
 {
     "m_SelectedDeviceId": "R3CT60E8X9X",
     "m_SelectedPackage": {
-        "deviceId": "R3CT60E8X9X",
-        "name": "com.devurim.earthdefensecorps",
-        "processId": 25158,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
         {
             "deviceId": "R3CT60E8X9X",
-            "name": "com.sec.android.app.launcher",
-            "processId": 3522,
-            "exited": false
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.google.android.youtube",
-            "processId": 19694,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 24622,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 25666,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 3226,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 5218,
-            "exited": false
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 5704,
-            "exited": false
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 15683,
-            "exited": false
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 16798,
-            "exited": false
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
             "processId": 17510,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
             "processId": 24203,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
             "processId": 25158,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 25436,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.unity3d.mobileremote",
+            "processId": 26377,
             "exited": false
         }
     ],

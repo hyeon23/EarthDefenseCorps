@@ -1,3 +1,5 @@
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
 using System;
 using UnityEngine;
 public enum ItemPart { None, Weapon, Gloves, Shoes, Sheld, Helmat, Armor, Count }
@@ -7,8 +9,13 @@ public class Item
 {
     public int ID;//아이템 고유 번호
     public int itemID;//아이템 고유 번호
+
+    //[JsonConverter(typeof(StringEnumConverter))]
     public ItemPart itemPart;//아이템 타입
+
+    //[JsonConverter(typeof(StringEnumConverter))]
     public ItemGrade itemGrade;//아이템 등급
+
     public bool isEquipped;//장비 착용 상태
     public string itemName;//아이템 이름
     public string itemDesc;//아이템 설명

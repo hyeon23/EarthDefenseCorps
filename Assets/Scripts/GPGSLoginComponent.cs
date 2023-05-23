@@ -35,15 +35,37 @@ public class SignupClass
 
 public class StageClearClass
 {
-    public string phase;
+    public int stage;
     public string email;
 
-    public StageClearClass(string _phase = null, string _email = null)
+    public StageClearClass(int _stage = -1, string _email = null)
     {
-        phase = _phase;
+        stage = _stage;
         email = _email;
     }
 }
+
+public class ZamClass
+{
+    public int gem;
+
+    public ZamClass(int _gem = 0)
+    {
+        gem = _gem;
+    }
+}
+
+public class GoldClass
+{
+    public int gold;
+
+    public GoldClass(int _gold = 0)
+    {
+        gold = _gold;
+    }
+}
+
+
 
 public class GPGSLoginComponent : MonoBehaviour
 {
@@ -108,7 +130,7 @@ public class GPGSLoginComponent : MonoBehaviour
         {
             //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
             Debug.Log($"{DataManager.Instance.localUserName} : {DataManager.Instance.localUserID}");
-            StartCoroutine(DataManager.Instance.PostSignupRequest(DataManager.Instance.signupPath, new SignupClass(DataManager.Instance.localUserName, DataManager.Instance.localUserID)));
+            StartCoroutine(DataManager.Instance.PostSignupRequest(DataManager.Instance.postSigninPath, new SignupClass(DataManager.Instance.localUserName, DataManager.Instance.localUserID)));
         }
     }
 
@@ -164,7 +186,21 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new StageClearClass("PHASE_TWO", "paramtest")));
+        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new StageClearClass(2, "paramtest")));
+    }
+
+    public void OnClickPutZamUpdateBtn()
+    {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
+        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new ZamClass(50)));
+    }
+
+    public void OnClickPutGoldUpdateBtn()
+    {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
+        StartCoroutine(DataManager.Instance.PutGoldUpdateRequest(DataManager.Instance.putGoldUpdatePath, new GoldClass(2000)));
     }
 
     public void TriggerPopUp(string msg)
