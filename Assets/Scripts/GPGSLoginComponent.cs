@@ -66,7 +66,7 @@ public class GoldClass
 {
     [SerializeField] int gold;
 
-    public GoldClass(int _gold = 0, int _niam = 3)
+    public GoldClass(int _gold = 0)
     {
         gold = _gold;
     }
