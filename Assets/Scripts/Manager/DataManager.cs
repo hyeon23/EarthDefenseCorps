@@ -154,9 +154,18 @@ public class DataManager : MonoBehaviour
 
         for (int i = 0; i < ItemDB.Count; i++)
         {
-            items.Add(new Item(int.Parse(ItemDB[i]["itemID"].ToString()), (ItemPart)Enum.Parse(typeof(ItemPart), ItemDB[i]["itemPart"].ToString()), (ItemGrade)Enum.Parse(typeof(ItemGrade), ItemDB[i]["itemGrade"].ToString()), bool.Parse(ItemDB[i]["isEquipped"].ToString()),
-                ItemDB[i]["itemName"].ToString(), ItemDB[i]["itemDesc"].ToString(), int.Parse(ItemDB[i]["itemATK"].ToString()), float.Parse(ItemDB[i]["itemCriticalRate"].ToString()),
-                float.Parse(ItemDB[i]["itemCriticalDamage"].ToString()), float.Parse(ItemDB[i]["itemHP"].ToString()), float.Parse(ItemDB[i]["itemSheldGager"].ToString()), float.Parse(ItemDB[i]["itemSpecialMoveGager"].ToString())));
+            items.Add(new Item(
+                int.Parse(ItemDB[i]["itemID"].ToString()),
+                (ItemPart)Enum.Parse(typeof(ItemPart), ItemDB[i]["itemPart"].ToString().ToUpper()),
+                (ItemGrade)Enum.Parse(typeof(ItemGrade), ItemDB[i]["itemGrade"].ToString().ToUpper()),
+                bool.Parse(ItemDB[i]["isEquipped"].ToString()),
+                ItemDB[i]["itemName"].ToString(), ItemDB[i]["itemDesc"].ToString(),
+                int.Parse(ItemDB[i]["itemATK"].ToString()),
+                float.Parse(ItemDB[i]["itemCriticalRate"].ToString()),
+                float.Parse(ItemDB[i]["itemCriticalDamage"].ToString()),
+                float.Parse(ItemDB[i]["itemHP"].ToString()), 
+                float.Parse(ItemDB[i]["itemSheldGager"].ToString()), 
+                float.Parse(ItemDB[i]["itemSpecialMoveGager"].ToString())));
         }
 
         //PlayerPrefsDataDelete
@@ -675,7 +684,6 @@ public class DataManager : MonoBehaviour
         string jsonData = JsonUtility.ToJson(data);
         Debug.Log(jsonData);
 
-        //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
         using (UnityWebRequest request = new UnityWebRequest(url + path, "POST"))
         {
             byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
@@ -687,18 +695,16 @@ public class DataManager : MonoBehaviour
 
             if (request.result == UnityWebRequest.Result.ConnectionError)
             {
-                Debug.LogError("PostSignup CError: " + request.error);
+                Debug.LogError("PostItemSave CError: " + request.error);
             }
             else if (request.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.LogError("PostSignup PError: " + request.error);
+                Debug.LogError("PostItemSave PError: " + request.error);
             }
             else
             {
                 string responseText = request.downloadHandler.text;
-                Debug.Log("PostSignup 성공: " + responseText);
-
-                //회원가입 처리
+                Debug.Log("PostItemSave 성공: " + responseText);
             }
         }
     }
@@ -852,8 +858,6 @@ public class DataManager : MonoBehaviour
 
         // UnityWebRequest 객체 생성
         UnityWebRequest request = new UnityWebRequest(url + path + $"?memberId=1", "PUT");
-
-        Debug.Log(url + path + $"?memberId=1");
 
         // PUT 요청 설정 (Content-Type 등)
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
