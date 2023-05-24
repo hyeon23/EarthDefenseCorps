@@ -40,6 +40,18 @@ public class StageClearClass
     }
 }
 
+//public class MonetaryClass
+//{
+//    public int gem;
+//    public int gold;
+
+//    public MonetaryClass(int _gem = 0, int _gold = 0)
+//    {
+//        gem = _gem;
+//        gold = _gold;
+//    }
+//}
+
 public class ZamClass
 {
     [SerializeField] int gem;
@@ -54,9 +66,10 @@ public class GoldClass
 {
     [SerializeField] int gold;
 
-    public GoldClass(int _gold = 0)
+    public GoldClass(int _gold = 0, int _niam = 3)
     {
         gold = _gold;
+        niam = _niam;
     }
 }
 
