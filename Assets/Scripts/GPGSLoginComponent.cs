@@ -10,8 +10,8 @@ using UnityEngine.UI;
 public class SigninClass
 {
     public bool state;
-    string name;
-    string email;
+    public string name;
+    public string email;
 
     public SigninClass(bool _state = false, string _name = null, string _email = null)
     {
@@ -23,8 +23,8 @@ public class SigninClass
 
 public class SignupClass
 {
-    string name;
-    string email;
+    public string name;
+    public string email;
 
     public SignupClass(string _name = null, string _email = null)
     {
@@ -35,8 +35,8 @@ public class SignupClass
 
 public class StageClearClass
 {
-    int stage;
-    string email;
+    public int stage;
+    public string email;
 
     public StageClearClass(int _stage = -1, string _email = null)
     {
@@ -45,21 +45,9 @@ public class StageClearClass
     }
 }
 
-//public class MonetaryClass
-//{
-//    public int gem;
-//    public int gold;
-
-//    public MonetaryClass(int _gem = 0, int _gold = 0)
-//    {
-//        gem = _gem;
-//        gold = _gold;
-//    }
-//}
-
 public class ZamClass
 {
-    int gem;
+    public int gem;
 
     public ZamClass(int _gem = 0)
     {
@@ -69,54 +57,14 @@ public class ZamClass
 
 public class GoldClass
 {
-    int gold;
-    int niam;
+    public int gold;
 
-    public GoldClass(int _gold = 0, int _niam = 3)
+    public GoldClass(int _gold = 0)
     {
         gold = _gold;
-        niam = _niam;
     }
 }
 
-public class ItemSave
-{
-    int memberId;
-    bool isEquipped;
-    string name;
-    string itemGrade;
-    int price;
-    int itemUpgrade;
-    int attackDamage;
-    int criticalDamageProbability;
-    int criticalDamage;
-    int strength;
-    int defenseStrength;
-
-    public ItemSave()
-    {
-
-    }
-
-    public ItemSave(int memberId, bool isEquipped, string name, string itemGrade, int price, int itemUpgrade, int attackDamage, int criticalDamageProbability, int criticalDamage, int strength, int defenseStrength)
-    {
-        this.memberId = memberId;
-        this.isEquipped = isEquipped;
-        this.name = name;
-        this.itemGrade = itemGrade;
-        this.price = price;
-        this.itemUpgrade = itemUpgrade;
-        this.attackDamage = attackDamage;
-        this.criticalDamageProbability = criticalDamageProbability;
-        this.criticalDamage = criticalDamage;
-        this.strength = strength;
-        this.defenseStrength = defenseStrength;
-    }
-
-    public ItemSave(Item _item)
-    {
-    }
-}
 
 
 public class GPGSLoginComponent : MonoBehaviour
@@ -253,13 +201,6 @@ public class GPGSLoginComponent : MonoBehaviour
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
         StartCoroutine(DataManager.Instance.PutGoldUpdateRequest(DataManager.Instance.putGoldUpdatePath, new GoldClass(2000)));
-    }
-
-    public void OnClickItemSaveBtn()
-    {
-        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
-
-        //StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new Item()));
     }
 
     public void TriggerPopUp(string msg)

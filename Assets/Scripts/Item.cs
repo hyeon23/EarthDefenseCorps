@@ -2,8 +2,8 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
 using System;
 using UnityEngine;
-public enum ItemPart { NONE, WEAPON, GLOVES, SHOES, SHIELD, HELMET, ARMOR, COUNT }
-public enum ItemGrade { NONE, NORMAL, RARE, EPIC, UNIQUE, LEGENDARY, COUNT }
+public enum ItemPart { None, Weapon, Gloves, Shoes, Sheld, Helmat, Armor, Count }
+public enum ItemGrade { None, Normal, Rare, Epic, Unique, Legendary, Count }
 
 public class Item
 {
@@ -49,112 +49,110 @@ public class Item
     public Item(Item item)
 
     {
-        //DB 아이템 아이디는 통신을 통해 받아와서 설정[플레이어 데이터 로드 시, 사용]
-
-        itemPart = item.itemPart;
-        itemGrade = item.itemGrade;
-        isEquipped = false;
-        itemID = item.itemID;
-        itemName = item.itemName;
-        itemDesc = item.itemDesc;
-        itemImage = item.itemImage;
-        itemATK = item.itemATK;
-        itemHP = item.itemHP;
-        itemSheldGager = item.itemSheldGager;
-        itemSpecialMoveGager = item.itemSpecialMoveGager;
-        itemCriticalRate = item.itemCriticalRate;
-        itemCriticalDamage = item.itemCriticalDamage;
+        this.itemPart = item.itemPart;
+        this.itemGrade = item.itemGrade;
+        this.isEquipped = false;
+        this.itemID = item.itemID;
+        this.itemName = item.itemName;
+        this.itemDesc = item.itemDesc;
+        this.itemImage = item.itemImage;
+        this.itemATK = item.itemATK;
+        this.itemHP = item.itemHP;
+        this.itemSheldGager = item.itemSheldGager;
+        this.itemSpecialMoveGager = item.itemSpecialMoveGager;
+        this.itemCriticalRate = item.itemCriticalRate;
+        this.itemCriticalDamage = item.itemCriticalDamage;
 
         this.itemCurLevel = 1;
 
         switch (itemGrade)
         {
-            case ItemGrade.NORMAL:
-                itemPrice = 250;
-                itemMaxLevel = 10;
-                itemUpgradeCost = 1000;
-                itemDrawingWeight = 100;
+            case ItemGrade.Normal:
+                this.itemPrice = 250;
+                this.itemMaxLevel = 10;
+                this.itemUpgradeCost = 1000;
+                this.itemDrawingWeight = 100;
                 break;
-            case ItemGrade.RARE:
-                itemPrice = 1000;
-                itemMaxLevel = 20;
-                itemUpgradeCost = 2500;
-                itemDrawingWeight = 60;
+            case ItemGrade.Rare:
+                this.itemPrice = 1000;
+                this.itemMaxLevel = 20;
+                this.itemUpgradeCost = 2500;
+                this.itemDrawingWeight = 60;
                 break;
-            case ItemGrade.EPIC:
-                itemPrice = 4000;
-                itemMaxLevel = 30;
-                itemUpgradeCost = 5000;
-                itemDrawingWeight = 20;
+            case ItemGrade.Epic:
+                this.itemPrice = 4000;
+                this.itemMaxLevel = 30;
+                this.itemUpgradeCost = 5000;
+                this.itemDrawingWeight = 20;
                 break;
-            case ItemGrade.UNIQUE:
-                itemPrice = 16000;
-                itemMaxLevel = 40;
-                itemUpgradeCost = 15000;
-                itemDrawingWeight = 10;
+            case ItemGrade.Unique:
+                this.itemPrice = 16000;
+                this.itemMaxLevel = 40;
+                this.itemUpgradeCost = 15000;
+                this.itemDrawingWeight = 10;
                 break;
-            case ItemGrade.LEGENDARY:
-                itemPrice = 32000;
-                itemMaxLevel = 50;
-                itemUpgradeCost = 50000;
-                itemDrawingWeight = 5;
+            case ItemGrade.Legendary:
+                this.itemPrice = 32000;
+                this.itemMaxLevel = 50;
+                this.itemUpgradeCost = 50000;
+                this.itemDrawingWeight = 5;
                 break;
-            case ItemGrade.COUNT:
+            case ItemGrade.Count:
                 break;
         }
     }
 
     public Item(int _itemID, ItemPart _itemPart, ItemGrade _itemGrade, bool _isEquipped, string _itemName, string _itemDesc, int _itemATK, float _itemCriticalRate, float _itemCriticalDamage, float _itemHP, float _itemSheldGager, float _itemSpecialMoveGager)
     {
-        itemID = _itemID;
-        itemPart = _itemPart;
-        itemGrade = _itemGrade;
-        isEquipped = _isEquipped;
-        itemName = _itemName;
-        itemDesc = _itemDesc;
-        itemImage = DataManager.Instance.IDtoSprite(_itemID);
-        itemATK = _itemATK;
-        itemHP = _itemHP;
-        itemSheldGager = _itemSheldGager;
-        itemSpecialMoveGager = _itemSpecialMoveGager;
-        itemCriticalRate = _itemCriticalRate;
-        itemCriticalDamage = _itemCriticalDamage;
+        this.itemID = _itemID;
+        this.itemPart = _itemPart;
+        this.itemGrade = _itemGrade;
+        this.isEquipped = _isEquipped;
+        this.itemName = _itemName;
+        this.itemDesc = _itemDesc;
+        this.itemImage = DataManager.Instance.IDtoSprite(_itemID);
+        this.itemATK = _itemATK;
+        this.itemHP = _itemHP;
+        this.itemSheldGager = _itemSheldGager;
+        this.itemSpecialMoveGager = _itemSpecialMoveGager;
+        this.itemCriticalRate = _itemCriticalRate;
+        this.itemCriticalDamage = _itemCriticalDamage;
 
         this.itemCurLevel = 1;
 
         switch (itemGrade)
         {
-            case ItemGrade.NORMAL:
+            case ItemGrade.Normal:
                 this.itemPrice = 250;
                 this.itemMaxLevel = 10;
                 this.itemUpgradeCost = 1000;
                 this.itemDrawingWeight = 100;
                 break;
-            case ItemGrade.RARE:
+            case ItemGrade.Rare:
                 this.itemPrice = 1000;
                 this.itemMaxLevel = 20;
                 this.itemUpgradeCost = 2500;
                 this.itemDrawingWeight = 50;
                 break;
-            case ItemGrade.EPIC:
+            case ItemGrade.Epic:
                 this.itemPrice = 4000;
                 this.itemMaxLevel = 30;
                 this.itemUpgradeCost = 5000;
                 this.itemDrawingWeight = 20;
                 break;
-            case ItemGrade.UNIQUE:
+            case ItemGrade.Unique:
                 this.itemPrice = 16000;
                 this.itemMaxLevel = 40;
                 this.itemUpgradeCost = 10000;
                 this.itemDrawingWeight = 10;
                 break;
-            case ItemGrade.LEGENDARY:
+            case ItemGrade.Legendary:
                 this.itemPrice = 32000;
                 this.itemMaxLevel = 50;
                 this.itemUpgradeCost = 50000;
                 this.itemDrawingWeight = 5;
                 break;
-            case ItemGrade.COUNT:
+            case ItemGrade.Count:
                 break;
         }
     }
