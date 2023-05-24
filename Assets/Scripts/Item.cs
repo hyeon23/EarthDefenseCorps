@@ -65,7 +65,7 @@ public class Item
         itemCriticalRate = item.itemCriticalRate;
         itemCriticalDamage = item.itemCriticalDamage;
 
-        this.itemCurLevel = 1;
+        itemCurLevel = 1;
 
         switch (itemGrade)
         {
@@ -125,34 +125,34 @@ public class Item
         switch (itemGrade)
         {
             case ItemGrade.NORMAL:
-                this.itemPrice = 250;
-                this.itemMaxLevel = 10;
-                this.itemUpgradeCost = 1000;
-                this.itemDrawingWeight = 100;
+                itemPrice = 250;
+                itemMaxLevel = 10;
+                itemUpgradeCost = 1000;
+                itemDrawingWeight = 100;
                 break;
             case ItemGrade.RARE:
-                this.itemPrice = 1000;
-                this.itemMaxLevel = 20;
-                this.itemUpgradeCost = 2500;
-                this.itemDrawingWeight = 50;
+                itemPrice = 1000;
+                itemMaxLevel = 20;
+                itemUpgradeCost = 2500;
+                itemDrawingWeight = 50;
                 break;
             case ItemGrade.EPIC:
-                this.itemPrice = 4000;
-                this.itemMaxLevel = 30;
-                this.itemUpgradeCost = 5000;
-                this.itemDrawingWeight = 20;
+                itemPrice = 100000;
+                itemMaxLevel = 30;
+                itemUpgradeCost = 5000;
+                itemDrawingWeight = 20;
                 break;
             case ItemGrade.UNIQUE:
-                this.itemPrice = 16000;
-                this.itemMaxLevel = 40;
-                this.itemUpgradeCost = 10000;
-                this.itemDrawingWeight = 10;
+                itemPrice = 400000;
+                itemMaxLevel = 40;
+                itemUpgradeCost = 10000;
+                itemDrawingWeight = 10;
                 break;
             case ItemGrade.LEGENDARY:
-                this.itemPrice = 32000;
-                this.itemMaxLevel = 50;
-                this.itemUpgradeCost = 50000;
-                this.itemDrawingWeight = 5;
+                itemPrice = 1000000;
+                itemMaxLevel = 50;
+                itemUpgradeCost = 50000;
+                itemDrawingWeight = 5;
                 break;
             case ItemGrade.COUNT:
                 break;

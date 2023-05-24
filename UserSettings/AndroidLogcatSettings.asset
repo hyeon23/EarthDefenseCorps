@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "R3CT60E8X9X",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "R3CT60E8X9X",
+        "name": "com.devurim.earthdefensecorps",
+        "processId": 21816,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -36,6 +36,18 @@
             "deviceId": "R3CT60E8X9X",
             "name": "com.sec.android.app.launcher",
             "processId": 3479,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.android.chrome",
+            "processId": 17612,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 21816,
             "exited": false
         }
     ],

@@ -1,6 +1,69 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Purchasing;
 using UnityEngine.UI;
+
+public class StageClearClass
+{
+    [SerializeField] int stage;
+    [SerializeField] string email;
+
+    public StageClearClass(int _stage = -1, string _email = null)
+    {
+        stage = _stage;
+        email = _email;
+    }
+}
+
+public class ItemSave
+{
+    [SerializeField] int memberId;
+    [SerializeField] bool isEquipped;
+    [SerializeField] string name;
+    [SerializeField] string itemGrade;
+    [SerializeField] int price;
+    [SerializeField] int itemUpgrade;
+    [SerializeField] int attackDamage;
+    [SerializeField] int criticalDamageProbability;
+    [SerializeField] int criticalDamage;
+    [SerializeField] int strength;
+    [SerializeField] int defenseStrength;
+
+    public ItemSave()
+    {
+
+    }
+
+    public ItemSave(int _memberId, bool _isEquipped, string _name, string _itemGrade, int _price, int _itemUpgrade, int _attackDamage, int _criticalDamageProbability, int _criticalDamage, int _strength, int _defenseStrength)
+    {
+        memberId = _memberId;
+        isEquipped = _isEquipped;
+        name = _name;
+        itemGrade = _itemGrade;
+        price = _price;
+        itemUpgrade = _itemUpgrade;
+        attackDamage = _attackDamage;
+        criticalDamageProbability = _criticalDamageProbability;
+        criticalDamage = _criticalDamage;
+        strength = _strength;
+        defenseStrength = _defenseStrength;
+    }
+
+    public ItemSave(Item _item)
+    {
+        memberId = 0;
+        isEquipped = _item.isEquipped;
+        name = _item.itemName;
+        itemGrade = _item.itemGrade.ToString();
+        price = _item.itemPrice;
+        itemUpgrade = 
+        attackDamage = 
+        criticalDamageProbability = 
+        criticalDamage = 
+        strength = 
+        defenseStrength = 
+    }
+}
 
 public class SigninClass
 {
@@ -28,30 +91,6 @@ public class SignupClass
     }
 }
 
-public class StageClearClass
-{
-    [SerializeField] int stage;
-    [SerializeField] string email;
-
-    public StageClearClass(int _stage = -1, string _email = null)
-    {
-        stage = _stage;
-        email = _email;
-    }
-}
-
-//public class MonetaryClass
-//{
-//    public int gem;
-//    public int gold;
-
-//    public MonetaryClass(int _gem = 0, int _gold = 0)
-//    {
-//        gem = _gem;
-//        gold = _gold;
-//    }
-//}
-
 public class ZamClass
 {
     [SerializeField] int gem;
@@ -69,45 +108,6 @@ public class GoldClass
     public GoldClass(int _gold = 0)
     {
         gold = _gold;
-    }
-}
-
-public class ItemSave
-{
-    int memberId;
-    bool isEquipped;
-    string name;
-    string itemGrade;
-    int price;
-    int itemUpgrade;
-    int attackDamage;
-    int criticalDamageProbability;
-    int criticalDamage;
-    int strength;
-    int defenseStrength;
-
-    public ItemSave()
-    {
-
-    }
-
-    public ItemSave(int memberId, bool isEquipped, string name, string itemGrade, int price, int itemUpgrade, int attackDamage, int criticalDamageProbability, int criticalDamage, int strength, int defenseStrength)
-    {
-        this.memberId = memberId;
-        this.isEquipped = isEquipped;
-        this.name = name;
-        this.itemGrade = itemGrade;
-        this.price = price;
-        this.itemUpgrade = itemUpgrade;
-        this.attackDamage = attackDamage;
-        this.criticalDamageProbability = criticalDamageProbability;
-        this.criticalDamage = criticalDamage;
-        this.strength = strength;
-        this.defenseStrength = defenseStrength;
-    }
-
-    public ItemSave(Item _item)
-    {
     }
 }
 
@@ -252,7 +252,7 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        //StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new Item()));
+        StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, ));
     }
 
     public void TriggerPopUp(string msg)
