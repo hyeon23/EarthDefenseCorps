@@ -69,7 +69,6 @@ public class GoldClass
     public GoldClass(int _gold = 0, int _niam = 3)
     {
         gold = _gold;
-        niam = _niam;
     }
 }
 
