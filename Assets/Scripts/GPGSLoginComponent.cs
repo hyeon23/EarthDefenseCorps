@@ -1,17 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class SigninClass
 {
     public bool state;
-    public string name;
-    public string email;
+    [SerializeField] string name;
+    [SerializeField] string email;
 
     public SigninClass(bool _state = false, string _name = null, string _email = null)
     {
@@ -23,8 +18,8 @@ public class SigninClass
 
 public class SignupClass
 {
-    public string name;
-    public string email;
+    [SerializeField] string name;
+    [SerializeField] string email;
 
     public SignupClass(string _name = null, string _email = null)
     {
@@ -35,8 +30,8 @@ public class SignupClass
 
 public class StageClearClass
 {
-    public int stage;
-    public string email;
+    [SerializeField] int stage;
+    [SerializeField] string email;
 
     public StageClearClass(int _stage = -1, string _email = null)
     {
@@ -47,7 +42,7 @@ public class StageClearClass
 
 public class ZamClass
 {
-    public int gem;
+    [SerializeField] int gem;
 
     public ZamClass(int _gem = 0)
     {
@@ -57,7 +52,7 @@ public class ZamClass
 
 public class GoldClass
 {
-    public int gold;
+    [SerializeField] int gold;
 
     public GoldClass(int _gold = 0)
     {
@@ -65,6 +60,44 @@ public class GoldClass
     }
 }
 
+public class ItemSave
+{
+    int memberId;
+    bool isEquipped;
+    string name;
+    string itemGrade;
+    int price;
+    int itemUpgrade;
+    int attackDamage;
+    int criticalDamageProbability;
+    int criticalDamage;
+    int strength;
+    int defenseStrength;
+
+    public ItemSave()
+    {
+
+    }
+
+    public ItemSave(int memberId, bool isEquipped, string name, string itemGrade, int price, int itemUpgrade, int attackDamage, int criticalDamageProbability, int criticalDamage, int strength, int defenseStrength)
+    {
+        this.memberId = memberId;
+        this.isEquipped = isEquipped;
+        this.name = name;
+        this.itemGrade = itemGrade;
+        this.price = price;
+        this.itemUpgrade = itemUpgrade;
+        this.attackDamage = attackDamage;
+        this.criticalDamageProbability = criticalDamageProbability;
+        this.criticalDamage = criticalDamage;
+        this.strength = strength;
+        this.defenseStrength = defenseStrength;
+    }
+
+    public ItemSave(Item _item)
+    {
+    }
+}
 
 
 public class GPGSLoginComponent : MonoBehaviour
@@ -193,7 +226,7 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new ZamClass(50)));
+        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new ZamClass(500)));
     }
 
     public void OnClickPutGoldUpdateBtn()
@@ -201,6 +234,13 @@ public class GPGSLoginComponent : MonoBehaviour
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
         StartCoroutine(DataManager.Instance.PutGoldUpdateRequest(DataManager.Instance.putGoldUpdatePath, new GoldClass(2000)));
+    }
+
+    public void OnClickItemSaveBtn()
+    {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
+        //StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new Item()));
     }
 
     public void TriggerPopUp(string msg)
