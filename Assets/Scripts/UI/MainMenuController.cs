@@ -602,42 +602,42 @@ public class MainMenuController : MonoBehaviour
 
         switch (curSelectedItem.itemPart)
         {
-            case ItemPart.Weapon:
+            case ItemPart.WEAPON:
                 if (DataManager.Instance.playerData.CurEquippedWeapon != null)
                     DataManager.Instance.playerData.CurEquippedWeapon.isEquipped = false;
                 curSelectedItem.isEquipped = true;
 
                 DataManager.Instance.playerData.CurEquippedWeapon = curSelectedItem;
                 break;
-            case ItemPart.Gloves:
+            case ItemPart.GLOVES:
                 if (DataManager.Instance.playerData.CurEquippedGloves != null)
                     DataManager.Instance.playerData.CurEquippedGloves.isEquipped = false;
                 curSelectedItem.isEquipped = true;
 
                 DataManager.Instance.playerData.CurEquippedGloves = curSelectedItem;
                 break;
-            case ItemPart.Shoes:
+            case ItemPart.SHOES:
                 if (DataManager.Instance.playerData.CurEquippedShoes != null)
                     DataManager.Instance.playerData.CurEquippedShoes.isEquipped = false;
                 curSelectedItem.isEquipped = true;
 
                 DataManager.Instance.playerData.CurEquippedShoes = curSelectedItem;
                 break;
-            case ItemPart.Sheld:
+            case ItemPart.SHIELD:
                 if (DataManager.Instance.playerData.CurEquippedSheld != null)
                     DataManager.Instance.playerData.CurEquippedSheld.isEquipped = false;
                 curSelectedItem.isEquipped = true;
 
                 DataManager.Instance.playerData.CurEquippedSheld = curSelectedItem;
                 break;
-            case ItemPart.Helmat:
+            case ItemPart.HELMET:
                 if (DataManager.Instance.playerData.CurEquippedHelmat != null)
                     DataManager.Instance.playerData.CurEquippedHelmat.isEquipped = false;
                 curSelectedItem.isEquipped = true;
 
                 DataManager.Instance.playerData.CurEquippedHelmat = curSelectedItem;
                 break;
-            case ItemPart.Armor:
+            case ItemPart.ARMOR:
                 if (DataManager.Instance.playerData.CurEquippedArmor != null)
                     DataManager.Instance.playerData.CurEquippedArmor.isEquipped = false;
                 curSelectedItem.isEquipped = true;
@@ -664,22 +664,22 @@ public class MainMenuController : MonoBehaviour
 
         switch (curSelectedItem.itemPart)
         {
-            case ItemPart.Weapon:
+            case ItemPart.WEAPON:
                 DataManager.Instance.playerData.CurEquippedWeapon = null;
                 break;
-            case ItemPart.Gloves:
+            case ItemPart.GLOVES:
                 DataManager.Instance.playerData.CurEquippedGloves = null;
                 break;
-            case ItemPart.Shoes:
+            case ItemPart.SHOES:
                 DataManager.Instance.playerData.CurEquippedShoes = null;
                 break;
-            case ItemPart.Sheld:
+            case ItemPart.SHIELD:
                 DataManager.Instance.playerData.CurEquippedSheld = null;
                 break;
-            case ItemPart.Helmat:
+            case ItemPart.HELMET:
                 DataManager.Instance.playerData.CurEquippedHelmat = null;
                 break;
-            case ItemPart.Armor:
+            case ItemPart.ARMOR:
                 DataManager.Instance.playerData.CurEquippedArmor = null;
                 break;
         }
@@ -762,19 +762,19 @@ public class MainMenuController : MonoBehaviour
 
         switch (_item.itemPart)
         {
-            case ItemPart.Weapon:
-            case ItemPart.Gloves:
-            case ItemPart.Shoes:
+            case ItemPart.WEAPON:
+            case ItemPart.GLOVES:
+            case ItemPart.SHOES:
                 statTMP.text = "ATK";
                 equipStatTMP.text = NotateNumber.Transform(_item.itemATK + (int)_item.itemGrade * _item.itemCurLevel);
                 break;
-            case ItemPart.Sheld:
-            case ItemPart.Armor:
-            case ItemPart.Helmat:
+            case ItemPart.SHIELD:
+            case ItemPart.ARMOR:
+            case ItemPart.HELMET:
                 statTMP.text = "HP";
                 equipStatTMP.text = NotateNumber.Transform((int)_item.itemHP + (int)_item.itemGrade * _item.itemCurLevel);
                 break;
-            case ItemPart.Count:
+            case ItemPart.COUNT:
                 break;
             default:
                 break;
@@ -802,19 +802,19 @@ public class MainMenuController : MonoBehaviour
 
         switch (_item.itemGrade)
         {
-            case ItemGrade.Normal:
+            case ItemGrade.NORMAL:
                 retColor = new Color(0.75f, 0.75f, 0.75f, 1f);
                 break;
-            case ItemGrade.Rare:
+            case ItemGrade.RARE:
                 retColor = new Color(0, 0.5f, 1f, 1f);
                 break;
-            case ItemGrade.Epic:
+            case ItemGrade.EPIC:
                 retColor = new Color(0.65f, 0f, 1f, 1f);
                 break;
-            case ItemGrade.Unique:
+            case ItemGrade.UNIQUE:
                 retColor = Color.yellow;
                 break;
-            case ItemGrade.Legendary:
+            case ItemGrade.LEGENDARY:
                 retColor = Color.red;
                 break;
             default:
@@ -958,7 +958,7 @@ public class MainMenuController : MonoBehaviour
         {
             ItemGrade curItemGrade = DataManager.Instance.items[i].itemGrade;
 
-            if (curItemGrade == ItemGrade.Normal || curItemGrade == ItemGrade.Rare || curItemGrade == ItemGrade.Epic)
+            if (curItemGrade == ItemGrade.NORMAL || curItemGrade == ItemGrade.RARE || curItemGrade == ItemGrade.EPIC)
             {
                 gachaList.Add(DataManager.Instance.items[i]);
                 total += DataManager.Instance.items[i].itemDrawingWeight;
@@ -1009,7 +1009,7 @@ public class MainMenuController : MonoBehaviour
         {
             ItemGrade curItemGrade = DataManager.Instance.items[i].itemGrade;
 
-            if (curItemGrade == ItemGrade.Normal || curItemGrade == ItemGrade.Rare || curItemGrade == ItemGrade.Epic)
+            if (curItemGrade == ItemGrade.NORMAL || curItemGrade == ItemGrade.RARE || curItemGrade == ItemGrade.EPIC)
             {
                 gachaList.Add(DataManager.Instance.items[i]);
                 total += DataManager.Instance.items[i].itemDrawingWeight;
@@ -1183,19 +1183,19 @@ public class MainMenuController : MonoBehaviour
     {
         switch (_item.itemGrade)
         {
-            case ItemGrade.Normal:
+            case ItemGrade.NORMAL:
                 SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemNormal);
                 break;
-            case ItemGrade.Rare:
+            case ItemGrade.RARE:
                 SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemRare);
                 break;
-            case ItemGrade.Epic:
+            case ItemGrade.EPIC:
                 SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemEpic);
                 break;
-            case ItemGrade.Unique:
+            case ItemGrade.UNIQUE:
                 SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemUnique);
                 break;
-            case ItemGrade.Legendary:
+            case ItemGrade.LEGENDARY:
                 SoundManager.Instance.SFXPlay(SoundManager.SFX.GetItemLegendary);
                 break;
         }
@@ -1205,15 +1205,15 @@ public class MainMenuController : MonoBehaviour
     {
         switch (_item.itemGrade)
         {
-            case ItemGrade.Normal:
+            case ItemGrade.NORMAL:
                 return 0.3f;
-            case ItemGrade.Rare:
+            case ItemGrade.RARE:
                 return 0.3f;
-            case ItemGrade.Epic:
+            case ItemGrade.EPIC:
                 return 0.5f;
-            case ItemGrade.Unique:
+            case ItemGrade.UNIQUE:
                 return 0.75f;
-            case ItemGrade.Legendary:
+            case ItemGrade.LEGENDARY:
                 return 1f;
             default:
                 return 1f;
