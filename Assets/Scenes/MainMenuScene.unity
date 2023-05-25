@@ -86181,6 +86181,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d64b6fad0837341a6e6d4b768d1a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loginSuccessed: 0
+  signinDBSuccessed: 0
+  localUserID: 
+  localUserName: 
+  getStageListPath: /stage/list
+  putStageClearPath: /stage/clear
+  postItemSavePath: /item/weapon
+  postItemListLoadPath: /item/inventory
+  postItemUpgradePath: /item
+  postItemDeletePath: /item
+  postSignupPath: /member/register
+  getUserInfoPath: /member/info
+  postSigninPath: /member/login
+  putZamUpdatePath: /member/gem
+  putGoldUpdatePath: /member/gold
   playerData:
     playerATK: 1
     playerHP: 100
@@ -86200,17 +86215,6 @@ MonoBehaviour:
     isSFXOn: 1
     Frames: 1e0000003c00000078000000
     curFrameIndex: 1
-  getStageListPath: /stage/list
-  putStageClearPath: /stage/clear
-  postItemSavePath: /item/weapon
-  postItemListLoadPath: /item/inventory
-  postItemUpgradePath: /item
-  postItemDeletePath: /item
-  postSignupPath: /member/register
-  getUserInfoPath: /member/info
-  postSigninPath: /member/login
-  putZamUpdatePath: /member/gem
-  putGoldUpdatePath: /member/gold
   itemParts:
   - itemSrpites:
     - {fileID: -53577432, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
@@ -86309,11 +86313,6 @@ MonoBehaviour:
     - {fileID: -978890735, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
     - {fileID: -1495909672, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
   spawnZenTime: 0
-  loginSuccessed: 0
-  signinDBSuccessed: 0
-  localUserID: 
-  localUserName: 
-  localUserInfo: []
 --- !u!4 &2146515956
 Transform:
   m_ObjectHideFlags: 0

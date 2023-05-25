@@ -646,7 +646,7 @@ public class DataManager : MonoBehaviour
     }
 
     //스테이지 클리어[PUT 요청]
-    public IEnumerator PutStageClearRequest(string path, StageClearClass data)
+    public IEnumerator PutStageClearRequest(string path, PUTReqStageClear data)
     {
         string jsonData = JsonUtility.ToJson(data);
 
@@ -721,7 +721,7 @@ public class DataManager : MonoBehaviour
 
     //회원 API 통신
     //회원가입[POST 요청]
-    public IEnumerator PostSignupRequest/*<SignupClass>*/(string path, SignupClass data)
+    public IEnumerator PostSignupRequest/*<SignupClass>*/(string path, POSTReqSignup data)
     {
         string jsonData = JsonUtility.ToJson(data);
 
@@ -782,7 +782,7 @@ public class DataManager : MonoBehaviour
     }
 
     //로그인[POST 요청]
-    public IEnumerator PostSigninRequest/*<SigninClass>*/(string path, SigninClass data)
+    public IEnumerator PostSigninRequest/*<SigninClass>*/(string path, POSTReqSignin data)
     {
         string jsonData = JsonUtility.ToJson(data);
 
@@ -811,13 +811,13 @@ public class DataManager : MonoBehaviour
                 string responseText = request.downloadHandler.text;
                 Debug.Log("PostSignin 성공: " + responseText);
 
-                SigninClass jtcData = JsonUtility.FromJson<SigninClass>(responseText);
+                POSTResSignin jtcData = JsonUtility.FromJson<POSTResSignin>(responseText);
 
                 //데이터 로드
                 if (jtcData.email == localUserID && jtcData.header.status == 400)//로그인 실패
                 {
                     //[★]회원가입 수행
-                    StartCoroutine(PostSignupRequest(postSignupPath, new SignupClass(localUserName, localUserID)));
+                    StartCoroutine(PostSignupRequest(postSignupPath, new POSTReqSignup(localUserName, localUserID)));
                 }
                 else if (jtcData.email == localUserID && jtcData.header.status == 200)//로그인 성공
                 {
@@ -831,7 +831,7 @@ public class DataManager : MonoBehaviour
     }
 
     //잼 변경[PUT 요청]
-    public IEnumerator PutZamUpdateRequest(string path, ZamClass data)
+    public IEnumerator PutZamUpdateRequest(string path, PUTReqZam data)
     {
         string jsonData = JsonUtility.ToJson(data);
 
@@ -868,7 +868,7 @@ public class DataManager : MonoBehaviour
     }
 
     //골드 변경[PUT 요청]
-    public IEnumerator PutGoldUpdateRequest(string path, GoldClass data)
+    public IEnumerator PutGoldUpdateRequest(string path, PUTReqGold data)
     {
         string jsonData = JsonUtility.ToJson(data);
 

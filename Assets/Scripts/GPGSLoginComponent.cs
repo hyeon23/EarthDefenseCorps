@@ -4,19 +4,26 @@ using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.UI;
 
-public class StageClearClass
+[Serializable]
+public class Header
+{
+    public int status;
+    public string message;
+}
+
+public class PUTReqStageClear
 {
     public int stage;
     public string email;
 
-    public StageClearClass(int _stage = -1, string _email = null)
+    public PUTReqStageClear(int _stage = -1, string _email = null)
     {
         stage = _stage;
         email = _email;
     }
 }
 
-public class ItemSave
+public class POSTReqItemSave
 {
     public int memberId;
     public int itemSN;//같은 종류의 아이템마다 필요한 변수[추가요망]
@@ -36,12 +43,12 @@ public class ItemSave
     public float defenseStrength;//방어 추가 게이지 float임 수정 요망
     public float specialMoveGage;//필살기 추가 게이지 float임[추가요망]
 
-    public ItemSave()
+    public POSTReqItemSave()
     {
 
     }
 
-    public ItemSave(int _memberId, bool _isEquipped, string _name, string _itemGrade, int _price, int _itemUpgrade, int _attackDamage, int _criticalDamageProbability, int _criticalDamage, int _strength, int _defenseStrength)
+    public POSTReqItemSave(int _memberId, bool _isEquipped, string _name, string _itemGrade, int _price, int _itemUpgrade, int _attackDamage, int _criticalDamageProbability, int _criticalDamage, int _strength, int _defenseStrength)
     {
         memberId = _memberId;
         isEquipped = _isEquipped;
@@ -56,7 +63,7 @@ public class ItemSave
         defenseStrength = _defenseStrength;
     }
 
-    public ItemSave(Item _item)
+    public POSTReqItemSave(Item _item)
     {
         memberId = _item.ID;
         itemSN = _item.itemID;
@@ -74,51 +81,49 @@ public class ItemSave
     }
 }
 
-public class SignupClass
+public class POSTReqSignup
 {
     public string name;
     public string email;
 
-    public SignupClass(string _name = null, string _email = null)
+    public POSTReqSignup(string _name = null, string _email = null)
     {
         name = _name;
         email = _email;
     }
 }
 
-public class SigninClass
+public class POSTReqSignin
 {
     public string email;
-    public Header header;
 
-    public SigninClass(string _email = null)
+    public POSTReqSignin(string _email = null)
     {
         email = _email;
     }
 }
 
-[Serializable]
-public class Header
+public class POSTResSignin
 {
-    public int status;
-    public string message;
+    public string email;
+    public Header header;
 }
 
-public class ZamClass
+public class PUTReqZam
 {
     public int gem;
 
-    public ZamClass(int _gem = 0)
+    public PUTReqZam(int _gem = 0)
     {
         gem = _gem;
     }
 }
 
-public class GoldClass
+public class PUTReqGold
 {
     public int gold;
 
-    public GoldClass(int _gold = 0)
+    public PUTReqGold(int _gold = 0)
     {
         gold = _gold;
     }
@@ -194,7 +199,7 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
         Debug.Log($"{DataManager.Instance.localUserName} : {DataManager.Instance.localUserID}");
-        StartCoroutine(DataManager.Instance.PostSignupRequest(DataManager.Instance.postSignupPath, new SignupClass(DataManager.Instance.localUserName, DataManager.Instance.localUserID)));
+        StartCoroutine(DataManager.Instance.PostSignupRequest(DataManager.Instance.postSignupPath, new POSTReqSignup(DataManager.Instance.localUserName, DataManager.Instance.localUserID)));
     }
 
     public void DBLogin()
@@ -204,7 +209,7 @@ public class GPGSLoginComponent : MonoBehaviour
         {
             //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
             Debug.Log($"{DataManager.Instance.localUserName} : {DataManager.Instance.localUserID}");
-            StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new SigninClass(DataManager.Instance.localUserID)));
+            StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin(DataManager.Instance.localUserID)));
         }
     }
 
@@ -248,21 +253,21 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new StageClearClass(2, "paramtest")));
+        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new PUTReqStageClear(2, "paramtest")));
     }
 
     public void OnClickPutZamUpdateBtn()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new ZamClass(500)));
+        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new PUTReqZam(500)));
     }
 
     public void OnClickPutGoldUpdateBtn()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutGoldUpdateRequest(DataManager.Instance.putGoldUpdatePath, new GoldClass(2000)));
+        StartCoroutine(DataManager.Instance.PutGoldUpdateRequest(DataManager.Instance.putGoldUpdatePath, new PUTReqGold(2000)));
     }
 
     public void OnClickItemSaveBtn()

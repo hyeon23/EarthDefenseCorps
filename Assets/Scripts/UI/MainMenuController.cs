@@ -741,11 +741,11 @@ public class MainMenuController : MonoBehaviour
             return;
         }
 
+        //[★]아이템 업그레이드 request[골드 수정은 알아서 DB에서 계산]
+
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Upgrade);
 
-        StartCoroutine(Count(playerGoldText, DataManager.Instance.playerData.PlayerGold, DataManager.Instance.playerData.PlayerGold - curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost));
-
-        DataManager.Instance.playerData.PlayerGold -= curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost;
+        MinusGold(curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost);
 
         curSelectedItem.itemCurLevel++;
 
@@ -757,14 +757,17 @@ public class MainMenuController : MonoBehaviour
     public void SellButton()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.SellButton);
+
         inventory.deleteItem(curSelectedItem);
+
+        //[★]아이템 판매 request[골드 수정은 알아서 DB에서 계산]
 
         PlusGold(Mathf.RoundToInt((curSelectedItem.itemPrice + (curSelectedItem.itemCurLevel - 1) * curSelectedItem.itemUpgradeCost) * 0.5f));
 
         //해당 아이템 삭제
         if (curSelectedItem.isEquipped)
         {
-            UnequipButton();
+            UnequipButton();//[★]여기서 자동으로 아이템 해제 request 수행[이미 삭제된 아이템인데 DB 통신할 이유가 없음 -> 후에 수정 or 조정 필요]
         }
         else
         {
@@ -790,7 +793,6 @@ public class MainMenuController : MonoBehaviour
         }
         else
         {
-
             equipButton.gameObject.SetActive(true);
             unEquipButton.gameObject.SetActive(false);
         }
@@ -905,6 +907,9 @@ public class MainMenuController : MonoBehaviour
         SubtractZam(zamPrice);
 
         PlusGold(goldNumber);
+
+        //[★]젬 변동 request
+        //[★]골드 변동 request
     }
 
     public void BuyZam(int ZamNumber)
@@ -952,14 +957,15 @@ public class MainMenuController : MonoBehaviour
 
     public void MinusGold(int goldNumber)
     {
-        StartCoroutine(Count(playerZamText, DataManager.Instance.playerData.PlayerZam, DataManager.Instance.playerData.PlayerZam - goldNumber));
-        DataManager.Instance.playerData.playerZam -= goldNumber;
+        StartCoroutine(Count(playerGoldText, DataManager.Instance.playerData.PlayerGold, DataManager.Instance.playerData.PlayerGold - goldNumber));
+        DataManager.Instance.playerData.PlayerGold -= goldNumber;
     }
 
     public void PlusZam(int zamNumber)
     {
         StartCoroutine(Count(playerZamText, DataManager.Instance.playerData.PlayerZam, DataManager.Instance.playerData.PlayerZam + zamNumber));
         DataManager.Instance.playerData.playerZam += zamNumber;
+
     }
 
     public void SubtractZam(int zamPrice)
@@ -1022,6 +1028,9 @@ public class MainMenuController : MonoBehaviour
             }
         }
 
+        //[★]아이템 저장 request
+        //[★]젬 변동 request
+
         SubtractZam(zamPrice);
     }
 
@@ -1074,6 +1083,8 @@ public class MainMenuController : MonoBehaviour
 
         StartCoroutine(Producing10Items(SelectedItemList));
 
+        //[★]아이템 저장 request
+        //[★]젬 변동 request
         SubtractZam(zamPrice);
     }
 
@@ -1113,6 +1124,9 @@ public class MainMenuController : MonoBehaviour
                 break;
             }
         }
+
+        //[★]아이템 저장 request
+        //[★]젬 변동 request
         SubtractZam(zamPrice);
     }
 
@@ -1158,6 +1172,8 @@ public class MainMenuController : MonoBehaviour
 
         StartCoroutine(Producing10Items(SelectedItemList));
 
+        //[★]아이템 저장 request
+        //[★]젬 변동 request
         SubtractZam(zamPrice);
     }
 
@@ -1300,8 +1316,6 @@ public class MainMenuController : MonoBehaviour
         Application.targetFrameRate = DataManager.Instance.playerData.Frames[DataManager.Instance.playerData.curFrameIndex];
     }
 
-
-
     public void BGMOnOff()
     {
         if (BGMToggle.isOn)
@@ -1388,16 +1402,20 @@ public class MainMenuController : MonoBehaviour
     public void SupplyItem1Button()
     {
         NormalDrawing1RandItem(0);
+        //[★]아이템 저장 request
+        
     }
 
     public void SupplyItem2Button()
     {
         PremiumDrawing1RandItem(0);
+        //[★]아이템 저장 request
     }
 
     public void SupplyZamButton()
     {
         BuyZam(200);
+        //[★]젬 변동 request
     }
 
     public void SupplyZenButton()

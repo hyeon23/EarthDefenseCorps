@@ -92,8 +92,7 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.SFXPlay(SoundManager.SFX.GameOver);
         DataManager.Instance.playerData.PlayerGold += gold;
 
-        //SAVE
-
+        //[★]골드 변동 request
     }
 
     public void StageClear()
@@ -101,8 +100,10 @@ public class GameManager : MonoBehaviour
         InGameTextViewer.Instance.StageClear();
         DataManager.Instance.playerData.PlayerGold += gold;
         SoundManager.Instance.SFXPlay(SoundManager.SFX.GameClear);
-        //SAVE
         DataManager.Instance.playerData.isStageClear[DataManager.Instance.playerData.curStage - 1] = true;
+
+        //[★]골드 변동 request
+        //[★]스테이지 정보 변동 request
     }
 
     public void GoToMenu()
