@@ -83,7 +83,12 @@ public class ItemPartList
 public class DataManager : MonoBehaviour
 {
     private static DataManager instance = null;
-    public PlayerData playerData = new PlayerData();
+
+    //DB
+    public bool loginSuccessed = false;
+    public bool signinDBSuccessed = false;
+    public string localUserID = null;
+    public string localUserName = null;
 
     private string url = "http://18.218.174.80:8080/api/v1";
 
@@ -102,6 +107,8 @@ public class DataManager : MonoBehaviour
     public string putZamUpdatePath = "/member/gem";//?memberId=1
     public string putGoldUpdatePath = "/member/gold";//?memberId=1
 
+    public PlayerData playerData = new PlayerData();
+
     //Item DB
     List<Dictionary<string, object>> ItemDB;
 
@@ -112,12 +119,6 @@ public class DataManager : MonoBehaviour
     public ItemPartList[] itemParts;
 
     public int spawnZenTime;
-
-    public bool loginSuccessed = false;
-    public bool signinDBSuccessed = false;
-    public string localUserID = null;
-    public string localUserName = null;
-    public string[] localUserInfo = null;
 
     public static DataManager Instance
     {
@@ -810,11 +811,21 @@ public class DataManager : MonoBehaviour
                 string responseText = request.downloadHandler.text;
                 Debug.Log("PostSignin 성공: " + responseText);
 
-                //SigninClass tt = JsonUtility.FromJson<SigninClass>(responseText);
+                SigninClass jtcData = JsonUtility.FromJson<SigninClass>(responseText);
 
                 //데이터 로드
-                //signinDBSuccessed = tt.state;
-                // Handle the response as needed
+                if (jtcData.email == localUserID && jtcData.header.status == 400)//로그인 실패
+                {
+                    //[★]회원가입 수행
+                    StartCoroutine(PostSignupRequest(postSignupPath, new SignupClass(localUserName, localUserID)));
+                }
+                else if (jtcData.email == localUserID && jtcData.header.status == 200)//로그인 성공
+                {
+                    //로그인
+                    signinDBSuccessed = true;
+
+                    //[★]플레이어 DB 데이터 로드 request
+                }
             }
         }
     }

@@ -1,37 +1,13 @@
 {
     "m_SelectedDeviceId": "R3CT60E8X9X",
     "m_SelectedPackage": {
-        "deviceId": "R3CT60E8X9X",
-        "name": "com.devurim.earthdefensecorps",
-        "processId": 21816,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 25158,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 25436,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.unity3d.mobileremote",
-            "processId": 26377,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 18717,
-            "exited": true
-        },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.sec.android.app.launcher",
@@ -40,14 +16,32 @@
         },
         {
             "deviceId": "R3CT60E8X9X",
-            "name": "com.android.chrome",
-            "processId": 17612,
-            "exited": false
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 22448,
+            "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
-            "processId": 21816,
+            "processId": 26532,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 27382,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 27961,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.unity3d.mobileremote",
+            "processId": 26957,
             "exited": false
         }
     ],
@@ -102,8 +96,8 @@
         "Behavior": 0
     },
     "m_FilterOptions": {
-        "m_Filter": "{",
-        "m_UseRegularExpressions": false,
+        "m_Filter": "post",
+        "m_UseRegularExpressions": true,
         "m_MatchCase": false
     },
     "m_SymbolPaths": [],

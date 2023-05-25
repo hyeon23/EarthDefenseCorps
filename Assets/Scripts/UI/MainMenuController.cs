@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEditor.PackageManager.Requests;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -600,51 +601,79 @@ public class MainMenuController : MonoBehaviour
 
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Equip);
 
+        //[★]아이템 장착 해제 request[방법에 따라 요청하는 코드를 분기별로 둘지, 아니면 여기에서 하나만 둬도 되는지 물어봐야함]
+
         switch (curSelectedItem.itemPart)
         {
             case ItemPart.WEAPON:
                 if (DataManager.Instance.playerData.CurEquippedWeapon != null)
+                {
+                    //[★]무기 아이템 장착 해제 request
                     DataManager.Instance.playerData.CurEquippedWeapon.isEquipped = false;
+                }
+
                 curSelectedItem.isEquipped = true;
 
                 DataManager.Instance.playerData.CurEquippedWeapon = curSelectedItem;
                 break;
             case ItemPart.GLOVES:
                 if (DataManager.Instance.playerData.CurEquippedGloves != null)
+                {
+                    //[★]장갑 아이템 장착 해제 request
                     DataManager.Instance.playerData.CurEquippedGloves.isEquipped = false;
+                }
+                    
                 curSelectedItem.isEquipped = true;
 
                 DataManager.Instance.playerData.CurEquippedGloves = curSelectedItem;
                 break;
             case ItemPart.SHOES:
                 if (DataManager.Instance.playerData.CurEquippedShoes != null)
+                {
+                    //[★]신발 아이템 장착 해제 request
                     DataManager.Instance.playerData.CurEquippedShoes.isEquipped = false;
+                }
+                    
                 curSelectedItem.isEquipped = true;
 
                 DataManager.Instance.playerData.CurEquippedShoes = curSelectedItem;
                 break;
             case ItemPart.SHIELD:
                 if (DataManager.Instance.playerData.CurEquippedSheld != null)
+                {
+                    //[★]방패 아이템 장착 해제 request
                     DataManager.Instance.playerData.CurEquippedSheld.isEquipped = false;
+                }
+                    
                 curSelectedItem.isEquipped = true;
 
                 DataManager.Instance.playerData.CurEquippedSheld = curSelectedItem;
                 break;
             case ItemPart.HELMET:
                 if (DataManager.Instance.playerData.CurEquippedHelmat != null)
+                {
+                    //[★]모자 아이템 장착 해제 request
                     DataManager.Instance.playerData.CurEquippedHelmat.isEquipped = false;
+                }
+                    
                 curSelectedItem.isEquipped = true;
 
                 DataManager.Instance.playerData.CurEquippedHelmat = curSelectedItem;
                 break;
             case ItemPart.ARMOR:
                 if (DataManager.Instance.playerData.CurEquippedArmor != null)
+                {
+                    //[★]갑옷 아이템 장착 해제 request
                     DataManager.Instance.playerData.CurEquippedArmor.isEquipped = false;
+                }
+                    
                 curSelectedItem.isEquipped = true;
 
                 DataManager.Instance.playerData.CurEquippedArmor = curSelectedItem;
                 break;
         }
+
+        //[★] 아이템 장착 request
 
         DataManager.Instance.DataUpdate();
 
@@ -657,6 +686,8 @@ public class MainMenuController : MonoBehaviour
         //아이템 장착 해제
         curSelectedItem.isEquipped = false;
 
+        //[★]아이템 장착 해제 request[방법에 따라 요청하는 코드를 분기별로 둘지, 아니면 여기에서 하나만 둬도 되는지 물어봐야함]
+
         equipButton.gameObject.SetActive(true);
         unEquipButton.gameObject.SetActive(false);
 
@@ -665,21 +696,27 @@ public class MainMenuController : MonoBehaviour
         switch (curSelectedItem.itemPart)
         {
             case ItemPart.WEAPON:
+                //[★]무기 아이템 장착 해제 request
                 DataManager.Instance.playerData.CurEquippedWeapon = null;
                 break;
             case ItemPart.GLOVES:
+                //[★]장갑 아이템 장착 해제 request
                 DataManager.Instance.playerData.CurEquippedGloves = null;
                 break;
             case ItemPart.SHOES:
+                //[★]신발 아이템 장착 해제 request
                 DataManager.Instance.playerData.CurEquippedShoes = null;
                 break;
             case ItemPart.SHIELD:
+                //[★]방패 아이템 장착 해제 request
                 DataManager.Instance.playerData.CurEquippedSheld = null;
                 break;
             case ItemPart.HELMET:
+                //[★]모자 아이템 장착 해제 request
                 DataManager.Instance.playerData.CurEquippedHelmat = null;
                 break;
             case ItemPart.ARMOR:
+                //[★]갑옷 아이템 장착 해제 request
                 DataManager.Instance.playerData.CurEquippedArmor = null;
                 break;
         }

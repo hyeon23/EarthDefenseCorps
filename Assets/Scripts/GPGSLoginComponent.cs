@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Purchasing;
@@ -5,8 +6,8 @@ using UnityEngine.UI;
 
 public class StageClearClass
 {
-    [SerializeField] int stage;
-    [SerializeField] string email;
+    public int stage;
+    public string email;
 
     public StageClearClass(int _stage = -1, string _email = null)
     {
@@ -17,24 +18,23 @@ public class StageClearClass
 
 public class ItemSave
 {
+    public int memberId;
+    public int itemSN;//같은 종류의 아이템마다 필요한 변수[추가요망]
+    public bool isEquipped;
+    public string name;
+    public string itemPart;//아이템 파트[헤더에서 없애고 바디에 넣도록 수정요망]
+    public string itemGrade;
+    public string itemDesc;//아이템 설명[추가 요망]
 
-    [SerializeField] int memberId;
-    [SerializeField] int itemSN;//같은 종류의 아이템마다 필요한 변수[추가요망]
-    [SerializeField] bool isEquipped;
-    [SerializeField] string name;
-    [SerializeField] string itemPart;//아이템 파트[헤더에서 없애고 바디에 넣도록 수정요망]
-    [SerializeField] string itemGrade;
-    [SerializeField] string itemDesc;//아이템 설명[추가 요망]
-
-    [SerializeField] int itemUpgrade;//현재레벨
-    [SerializeField] int price;//아이템 판매 가격: 내가 최총 판매 가격 계산해서 보내는 걸로]
-    [SerializeField] int upgradePrice;//아이템 업글 가격[내가 최총 판매 가격 계산해서 보내는 걸로]
-    [SerializeField] int attackDamage;
-    [SerializeField] float criticalDamageProbability;//크확 float임 수정 요망
-    [SerializeField] float criticalDamage;//크뎀 float임 수정 요망
-    [SerializeField] float strength;//HP float임 수정 요망
-    [SerializeField] float defenseStrength;//방어 추가 게이지 float임 수정 요망
-    [SerializeField] float specialMoveGage;//필살기 추가 게이지 float임[추가요망]
+    public int itemUpgrade;//현재레벨
+    public int price;//아이템 판매 가격: 내가 최총 판매 가격 계산해서 보내는 걸로]
+    public int upgradePrice;//아이템 업글 가격[내가 최총 판매 가격 계산해서 보내는 걸로]
+    public int attackDamage;
+    public float criticalDamageProbability;//크확 float임 수정 요망
+    public float criticalDamage;//크뎀 float임 수정 요망
+    public float strength;//HP float임 수정 요망
+    public float defenseStrength;//방어 추가 게이지 float임 수정 요망
+    public float specialMoveGage;//필살기 추가 게이지 float임[추가요망]
 
     public ItemSave()
     {
@@ -76,8 +76,8 @@ public class ItemSave
 
 public class SignupClass
 {
-    [SerializeField] string name;
-    [SerializeField] string email;
+    public string name;
+    public string email;
 
     public SignupClass(string _name = null, string _email = null)
     {
@@ -88,7 +88,8 @@ public class SignupClass
 
 public class SigninClass
 {
-    [SerializeField] string email;
+    public string email;
+    public Header header;
 
     public SigninClass(string _email = null)
     {
@@ -96,9 +97,16 @@ public class SigninClass
     }
 }
 
+[Serializable]
+public class Header
+{
+    public int status;
+    public string message;
+}
+
 public class ZamClass
 {
-    [SerializeField] int gem;
+    public int gem;
 
     public ZamClass(int _gem = 0)
     {
@@ -108,7 +116,7 @@ public class ZamClass
 
 public class GoldClass
 {
-    [SerializeField] int gold;
+    public int gold;
 
     public GoldClass(int _gold = 0)
     {
@@ -123,6 +131,9 @@ public class GPGSLoginComponent : MonoBehaviour
     public Button loginButton;
 
     public TextMeshProUGUI popupTMP;
+
+    public TextMeshProUGUI loginTMP;
+
     public Animator popupAnime;
 
     private void Start()
@@ -146,8 +157,7 @@ public class GPGSLoginComponent : MonoBehaviour
 
         if (!DataManager.Instance.loginSuccessed)//2. 로그인 실패
         {
-            Debug.Log($"{DataManager.Instance.loginSuccessed} {DataManager.Instance.signinDBSuccessed}");
-            TriggerPopUp("Google 로그인은 필수입니다.");
+            Debug.Log($"GPGS Login: {DataManager.Instance.loginSuccessed} DB Login: {DataManager.Instance.signinDBSuccessed}");
 
             //GPGS 재로그인
             GPGSLogin();
@@ -155,9 +165,12 @@ public class GPGSLoginComponent : MonoBehaviour
         else if (!DataManager.Instance.signinDBSuccessed)
         {
             Debug.Log($"GPGS Login: {DataManager.Instance.loginSuccessed} DB Login: {DataManager.Instance.signinDBSuccessed}");
-            TriggerPopUp("DB 로그인은 필수입니다.");
 
+            loginTMP.text = "데이터 로드를 위해 탭하세요";
+
+            //DB 재로그인
             DBLogin();
+
         }
         else//1. 로그인 성공
         {
@@ -177,7 +190,7 @@ public class GPGSLoginComponent : MonoBehaviour
             });
     }
 
-    public void DBSingup()
+    public void DBSignup()
     {
         //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
         Debug.Log($"{DataManager.Instance.localUserName} : {DataManager.Instance.localUserID}");
@@ -187,7 +200,7 @@ public class GPGSLoginComponent : MonoBehaviour
     public void DBLogin()
     {
         //0-2. DB 로그인 수행
-        if (!DataManager.Instance.signinDBSuccessed)
+        if (DataManager.Instance.loginSuccessed && !DataManager.Instance.signinDBSuccessed)
         {
             //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
             Debug.Log($"{DataManager.Instance.localUserName} : {DataManager.Instance.localUserID}");
@@ -199,17 +212,6 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
         LoadingSceneController.LoadScene("MainMenuScene");
-
-        //if (로그인 성공 시)
-        //{
-        //   화면 전환
-        //   LoadingSceneController.LoadScene("MainMenuScene");
-        //}
-        //else (로그인 실패 시)
-        //{
-        //   경고 출력
-        //   TriggerPopUp("로그인을 실패했습니다.");
-        //}
     }
 
     public void OnClickLogoutBtn()
@@ -220,7 +222,6 @@ public class GPGSLoginComponent : MonoBehaviour
         DataManager.Instance.signinDBSuccessed = false;
         DataManager.Instance.loginSuccessed = false;
         DataManager.Instance.localUserName = null;
-        DataManager.Instance.localUserInfo = null;
         DataManager.Instance.localUserID = null;
 
         startButton.gameObject.SetActive(false);
