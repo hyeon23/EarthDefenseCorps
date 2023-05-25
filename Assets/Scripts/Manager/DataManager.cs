@@ -154,6 +154,7 @@ public class DataManager : MonoBehaviour
         for (int i = 0; i < ItemDB.Count; i++)
         {
             items.Add(new Item(
+                0,
                 int.Parse(ItemDB[i]["itemID"].ToString()),
                 (ItemPart)Enum.Parse(typeof(ItemPart), ItemDB[i]["itemPart"].ToString().ToUpper()),
                 (ItemGrade)Enum.Parse(typeof(ItemGrade), ItemDB[i]["itemGrade"].ToString().ToUpper()),
@@ -809,10 +810,10 @@ public class DataManager : MonoBehaviour
                 string responseText = request.downloadHandler.text;
                 Debug.Log("PostSignin 성공: " + responseText);
 
-                SigninClass tt = JsonUtility.FromJson<SigninClass>(responseText);
+                //SigninClass tt = JsonUtility.FromJson<SigninClass>(responseText);
 
                 //데이터 로드
-                signinDBSuccessed = tt.state;
+                //signinDBSuccessed = tt.state;
                 // Handle the response as needed
             }
         }

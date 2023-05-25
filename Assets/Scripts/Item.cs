@@ -1,5 +1,3 @@
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json;
 using System;
 using UnityEngine;
 public enum ItemPart { NONE, WEAPON, GLOVES, SHOES, SHIELD, HELMET, ARMOR, COUNT }
@@ -8,7 +6,7 @@ public enum ItemGrade { NONE, NORMAL, RARE, EPIC, UNIQUE, LEGENDARY, COUNT }
 public class Item
 {
     public int ID;//아이템 고유 번호
-    public int itemID;//아이템 고유 번호
+    public int itemID;//아이템 종류별 고유 번호
 
     //[JsonConverter(typeof(StringEnumConverter))]
     public ItemPart itemPart;//아이템 타입
@@ -50,7 +48,7 @@ public class Item
 
     {
         //DB 아이템 아이디는 통신을 통해 받아와서 설정[플레이어 데이터 로드 시, 사용]
-
+        ID = item.ID;
         itemPart = item.itemPart;
         itemGrade = item.itemGrade;
         isEquipped = false;
@@ -104,8 +102,9 @@ public class Item
         }
     }
 
-    public Item(int _itemID, ItemPart _itemPart, ItemGrade _itemGrade, bool _isEquipped, string _itemName, string _itemDesc, int _itemATK, float _itemCriticalRate, float _itemCriticalDamage, float _itemHP, float _itemSheldGager, float _itemSpecialMoveGager)
+    public Item(int _ID, int _itemID, ItemPart _itemPart, ItemGrade _itemGrade, bool _isEquipped, string _itemName, string _itemDesc, int _itemATK, float _itemCriticalRate, float _itemCriticalDamage, float _itemHP, float _itemSheldGager, float _itemSpecialMoveGager)
     {
+        ID = _ID;
         itemID = _itemID;
         itemPart = _itemPart;
         itemGrade = _itemGrade;
@@ -120,7 +119,7 @@ public class Item
         itemCriticalRate = _itemCriticalRate;
         itemCriticalDamage = _itemCriticalDamage;
 
-        this.itemCurLevel = 1;
+        itemCurLevel = 1;
 
         switch (itemGrade)
         {
@@ -137,19 +136,19 @@ public class Item
                 itemDrawingWeight = 50;
                 break;
             case ItemGrade.EPIC:
-                itemPrice = 100000;
+                itemPrice = 4000;
                 itemMaxLevel = 30;
                 itemUpgradeCost = 5000;
                 itemDrawingWeight = 20;
                 break;
             case ItemGrade.UNIQUE:
-                itemPrice = 400000;
+                itemPrice = 16000;
                 itemMaxLevel = 40;
                 itemUpgradeCost = 10000;
                 itemDrawingWeight = 10;
                 break;
             case ItemGrade.LEGENDARY:
-                itemPrice = 1000000;
+                itemPrice = 32000;
                 itemMaxLevel = 50;
                 itemUpgradeCost = 50000;
                 itemDrawingWeight = 5;

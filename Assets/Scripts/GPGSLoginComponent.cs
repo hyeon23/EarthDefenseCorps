@@ -17,17 +17,24 @@ public class StageClearClass
 
 public class ItemSave
 {
+
     [SerializeField] int memberId;
+    [SerializeField] int itemSN;//같은 종류의 아이템마다 필요한 변수[추가요망]
     [SerializeField] bool isEquipped;
     [SerializeField] string name;
+    [SerializeField] string itemPart;//아이템 파트[헤더에서 없애고 바디에 넣도록 수정요망]
     [SerializeField] string itemGrade;
-    [SerializeField] int price;
-    [SerializeField] int itemUpgrade;
+    [SerializeField] string itemDesc;//아이템 설명[추가 요망]
+
+    [SerializeField] int itemUpgrade;//현재레벨
+    [SerializeField] int price;//아이템 판매 가격: 내가 최총 판매 가격 계산해서 보내는 걸로]
+    [SerializeField] int upgradePrice;//아이템 업글 가격[내가 최총 판매 가격 계산해서 보내는 걸로]
     [SerializeField] int attackDamage;
-    [SerializeField] int criticalDamageProbability;
-    [SerializeField] int criticalDamage;
-    [SerializeField] int strength;
-    [SerializeField] int defenseStrength;
+    [SerializeField] float criticalDamageProbability;//크확 float임 수정 요망
+    [SerializeField] float criticalDamage;//크뎀 float임 수정 요망
+    [SerializeField] float strength;//HP float임 수정 요망
+    [SerializeField] float defenseStrength;//방어 추가 게이지 float임 수정 요망
+    [SerializeField] float specialMoveGage;//필살기 추가 게이지 float임[추가요망]
 
     public ItemSave()
     {
@@ -51,31 +58,19 @@ public class ItemSave
 
     public ItemSave(Item _item)
     {
-        memberId = 0;
+        memberId = _item.ID;
+        itemSN = _item.itemID;
         isEquipped = _item.isEquipped;
         name = _item.itemName;
         itemGrade = _item.itemGrade.ToString();
         price = _item.itemPrice;
-        itemUpgrade = 
-        attackDamage = 
-        criticalDamageProbability = 
-        criticalDamage = 
-        strength = 
-        defenseStrength = 
-    }
-}
-
-public class SigninClass
-{
-    public bool state;
-    [SerializeField] string name;
-    [SerializeField] string email;
-
-    public SigninClass(bool _state = false, string _name = null, string _email = null)
-    {
-        state = _state;
-        name = _name;
-        email = _email;
+        itemUpgrade = _item.itemCurLevel;
+        attackDamage = _item.itemATK;
+        criticalDamageProbability = _item.itemCriticalRate;
+        criticalDamage = _item.itemCriticalDamage;
+        strength = _item.itemHP;
+        defenseStrength = _item.itemSheldGager;
+        specialMoveGage = _item.itemSpecialMoveGager;
     }
 }
 
@@ -87,6 +82,16 @@ public class SignupClass
     public SignupClass(string _name = null, string _email = null)
     {
         name = _name;
+        email = _email;
+    }
+}
+
+public class SigninClass
+{
+    [SerializeField] string email;
+
+    public SigninClass(string _email = null)
+    {
         email = _email;
     }
 }
@@ -126,7 +131,7 @@ public class GPGSLoginComponent : MonoBehaviour
         GPGSLogin();
 
         //1. DB 자동 로그인 수행
-        //DBLogin();
+        DBLogin();
     }
 
     public void OnClickLoginBtn()
@@ -139,14 +144,18 @@ public class GPGSLoginComponent : MonoBehaviour
         //=3. 회원가입 성공
         //=4. 회원가입 실패
 
-        if (!DataManager.Instance.loginSuccessed || !DataManager.Instance.signinDBSuccessed)//2. 로그인 실패
+        if (!DataManager.Instance.loginSuccessed)//2. 로그인 실패
         {
             Debug.Log($"{DataManager.Instance.loginSuccessed} {DataManager.Instance.signinDBSuccessed}");
-            TriggerPopUp("로그인은 필수입니다.");
+            TriggerPopUp("Google 로그인은 필수입니다.");
 
-            //회원가입
-
+            //GPGS 재로그인
             GPGSLogin();
+        }
+        else if (!DataManager.Instance.signinDBSuccessed)
+        {
+            Debug.Log($"GPGS Login: {DataManager.Instance.loginSuccessed} DB Login: {DataManager.Instance.signinDBSuccessed}");
+            TriggerPopUp("DB 로그인은 필수입니다.");
 
             DBLogin();
         }
@@ -168,6 +177,13 @@ public class GPGSLoginComponent : MonoBehaviour
             });
     }
 
+    public void DBSingup()
+    {
+        //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
+        Debug.Log($"{DataManager.Instance.localUserName} : {DataManager.Instance.localUserID}");
+        StartCoroutine(DataManager.Instance.PostSignupRequest(DataManager.Instance.postSignupPath, new SignupClass(DataManager.Instance.localUserName, DataManager.Instance.localUserID)));
+    }
+
     public void DBLogin()
     {
         //0-2. DB 로그인 수행
@@ -175,7 +191,7 @@ public class GPGSLoginComponent : MonoBehaviour
         {
             //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
             Debug.Log($"{DataManager.Instance.localUserName} : {DataManager.Instance.localUserID}");
-            StartCoroutine(DataManager.Instance.PostSignupRequest(DataManager.Instance.postSigninPath, new SignupClass(DataManager.Instance.localUserName, DataManager.Instance.localUserID)));
+            StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new SigninClass(DataManager.Instance.localUserID)));
         }
     }
 
@@ -252,7 +268,7 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, ));
+        StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new Item()));
     }
 
     public void TriggerPopUp(string msg)
