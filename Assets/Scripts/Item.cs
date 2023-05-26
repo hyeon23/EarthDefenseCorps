@@ -3,6 +3,7 @@ using UnityEngine;
 public enum ItemPart { NONE, WEAPON, GLOVES, SHOES, SHIELD, HELMET, ARMOR, COUNT }
 public enum ItemGrade { NONE, NORMAL, RARE, EPIC, UNIQUE, LEGENDARY, COUNT }
 
+[Serializable]//[★]
 public class Item
 {
     public int ID;//아이템 고유 번호

@@ -183,12 +183,14 @@ public class DataManager : MonoBehaviour
     {
         //여기서 기존에 가진 장비 불러와야 함
         //기존 장착 데이터 존재 시, 기존 데이터, 없으면 없는 데이터 사용
-        //playerData.curEquippedWeapon = null;
-        //playerData.curEquippedGloves = null;
-        //playerData.curEquippedShoes = null;
-        //playerData.curEquippedSheld = null;
-        //playerData.curEquippedHelmat = null;
-        //playerData.curEquippedArmor = null;
+
+        //[★][Serializable] 클래스의 경우, 초기화되지 않으면 초기 값에 기본 값이 들어가 원하는 대로 작동하지 않음
+        playerData.curEquippedWeapon = null;
+        playerData.curEquippedGloves = null;
+        playerData.curEquippedShoes = null;
+        playerData.curEquippedSheld = null;
+        playerData.curEquippedHelmat = null;
+        playerData.curEquippedArmor = null;
 
         if (loginSuccessed == true)//로그인 성공 시, 
         {
@@ -622,7 +624,7 @@ public class DataManager : MonoBehaviour
     //스테이지 리스트 불러오기[GET 요청]
     public IEnumerator GetStageListRequest(string path)
     {
-        using (UnityWebRequest request = new UnityWebRequest(url + path + $"?identifier=paramtest", "GET"))/*localuserid*/
+        using (UnityWebRequest request = new UnityWebRequest(url + path + $"?identifier=gpgsIdTest", "GET"))/*localuserid*/
         {
             Debug.Log(url + path + "?identifier=paramtest");
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -640,7 +642,13 @@ public class DataManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("GetStageList 성공: " + request.downloadHandler.text);
+                string tempJson = "{\"stages\":" + request.downloadHandler.text + "}";
+
+                Debug.Log("GetStageList 성공: " + tempJson);
+
+                GETResStage jtcData = JsonUtility.FromJson<GETResStage>(tempJson);
+
+                Debug.Log(jtcData);
             }
         }
     }
@@ -677,6 +685,10 @@ public class DataManager : MonoBehaviour
         {
             // 요청에 대한 응답 데이터 처리
             Debug.Log("PutStageClear 성공: " + request.downloadHandler.text);
+
+            PUTResStageClear jtcData = JsonUtility.FromJson<PUTResStageClear>(request.downloadHandler.text);
+
+            Debug.Log(jtcData);
         }
     }
 
@@ -808,10 +820,9 @@ public class DataManager : MonoBehaviour
             }
             else
             {
-                string responseText = request.downloadHandler.text;
-                Debug.Log("PostSignin 성공: " + responseText);
+                Debug.Log("PostSignin 성공: " + request.downloadHandler.text);
 
-                POSTResSignin jtcData = JsonUtility.FromJson<POSTResSignin>(responseText);
+                POSTResSignin jtcData = JsonUtility.FromJson<POSTResSignin>(request.downloadHandler.text);
 
                 //데이터 로드
                 if (jtcData.email == localUserID && jtcData.header.status == 400)//로그인 실패

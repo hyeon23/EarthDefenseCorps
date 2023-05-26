@@ -1,7 +1,7 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Purchasing;
 using UnityEngine.UI;
 
 [Serializable]
@@ -9,6 +9,50 @@ public class Header
 {
     public int status;
     public string message;
+
+    Header() { 
+        
+    }
+
+    Header(int _status, string _message)
+    {
+        status = _status;
+        message = _message;
+    }
+
+    Header(Header _header)
+    {
+        status = _header.status;
+        message = _header.message;
+    }
+}
+
+[Serializable]
+public class Member
+{
+    public int id;
+    public string gpgsId;
+    public string name;
+    public int possessingGold;
+    public int possessingJem;//스펠링?
+    public string characterName;
+    public List<Item> items;
+}
+
+[Serializable]
+public class Stage
+{
+    public int id;
+    public Member member;
+    public string phase;
+    public int stage;
+    public bool clear;
+}
+
+public class GETResStage
+{
+    //이부분 POST MAN JSON 형식 수정 가능한지 요청
+    public List<Stage> stages;
 }
 
 public class PUTReqStageClear
@@ -20,6 +64,18 @@ public class PUTReqStageClear
     {
         stage = _stage;
         email = _email;
+    }
+}
+
+public class PUTResStageClear
+{
+    public int id;
+    public Header header;
+
+    public PUTResStageClear(int id, Header header)
+    {
+        this.id = id;
+        this.header = header;
     }
 }
 
@@ -253,7 +309,7 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new PUTReqStageClear(2, "paramtest")));
+        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new PUTReqStageClear(2, "gpgsIdTest")));
     }
 
     public void OnClickPutZamUpdateBtn()

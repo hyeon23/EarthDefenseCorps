@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "R3CT60E8X9X",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "R3CT60E8X9X",
+        "name": "com.devurim.earthdefensecorps",
+        "processId": 32761,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -13,18 +13,6 @@
             "name": "com.sec.android.app.launcher",
             "processId": 3479,
             "exited": false
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 22448,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 26532,
-            "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
@@ -42,6 +30,18 @@
             "deviceId": "R3CT60E8X9X",
             "name": "com.unity3d.mobileremote",
             "processId": 26957,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.unity3d.mobileremote",
+            "processId": 28483,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 32761,
             "exited": false
         }
     ],
@@ -96,7 +96,7 @@
         "Behavior": 0
     },
     "m_FilterOptions": {
-        "m_Filter": "post",
+        "m_Filter": "",
         "m_UseRegularExpressions": true,
         "m_MatchCase": false
     },
