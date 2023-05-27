@@ -10,10 +10,6 @@ public class Header
     public int status;
     public string message;
 
-    Header() { 
-        
-    }
-
     Header(int _status, string _message)
     {
         status = _status;
@@ -28,13 +24,13 @@ public class Header
 }
 
 [Serializable]
-public class Member
+public class Member//[Question]Get Stage에 멤버가 존재하는 이유가 궁금?
 {
     public int id;
     public string gpgsId;
     public string name;
     public int possessingGold;
-    public int possessingJem;//스펠링?
+    public int possessingGem;
     public string characterName;
     public List<Item> items;
 }
@@ -58,12 +54,12 @@ public class GETResStage
 public class PUTReqStageClear
 {
     public int stage;
-    public string email;
+    public string gpgsId;
 
-    public PUTReqStageClear(int _stage = -1, string _email = null)
+    public PUTReqStageClear(int _stage = -1, string _gpgsId = null)
     {
         stage = _stage;
-        email = _email;
+        gpgsId = _gpgsId;
     }
 }
 
@@ -71,21 +67,15 @@ public class PUTResStageClear
 {
     public int id;
     public Header header;
-
-    public PUTResStageClear(int id, Header header)
-    {
-        this.id = id;
-        this.header = header;
-    }
 }
 
 public class POSTReqItemSave
 {
-    public int memberId;
-    public int itemSN;//같은 종류의 아이템마다 필요한 변수[추가요망]
+    public string gpgsId;//gpgsId로 후에 바뀔 예정
     public bool isEquipped;
     public string name;
-    public string itemPart;//아이템 파트[헤더에서 없애고 바디에 넣도록 수정요망]
+    public int itemSN;//같은 종류의 아이템마다 필요한 변수[추가요망]
+    public string itemType;//아이템 파트[헤더에서 없애고 바디에 넣도록 수정요망]
     public string itemGrade;
     public string itemDesc;//아이템 설명[추가 요망]
 
@@ -99,35 +89,38 @@ public class POSTReqItemSave
     public float defenseStrength;//방어 추가 게이지 float임 수정 요망
     public float specialMoveGage;//필살기 추가 게이지 float임[추가요망]
 
-    public POSTReqItemSave()
+    public POSTReqItemSave(bool _isEquipped, string _name, int _itemSN, string _itemType, string _itemGrade, /*string _itemDesc,*/ int _itemUpgrade, int _price, int _upgradePrice, int _attackDamage, float _criticalDamageProbability, float _criticalDamage, float _strength, float _defenseStrength, float _specialMoveGage)
     {
-
-    }
-
-    public POSTReqItemSave(int _memberId, bool _isEquipped, string _name, string _itemGrade, int _price, int _itemUpgrade, int _attackDamage, int _criticalDamageProbability, int _criticalDamage, int _strength, int _defenseStrength)
-    {
-        memberId = _memberId;
+        gpgsId = DataManager.Instance.localUserID;
         isEquipped = _isEquipped;
         name = _name;
+        itemSN = _itemSN;
+        itemType = _itemType;
         itemGrade = _itemGrade;
-        price = _price;
+        //itemDesc = _itemDesc; //[Question]아이템 설명
         itemUpgrade = _itemUpgrade;
+        price = _price;//수정 필요[판매 비용 수식 적용]
+        upgradePrice = _upgradePrice;//수정 필요[업그레이드 비용 수식 적용]
         attackDamage = _attackDamage;
         criticalDamageProbability = _criticalDamageProbability;
         criticalDamage = _criticalDamage;
         strength = _strength;
         defenseStrength = _defenseStrength;
+        specialMoveGage = _specialMoveGage;
     }
 
     public POSTReqItemSave(Item _item)
     {
-        memberId = _item.ID;
-        itemSN = _item.itemID;
+        gpgsId = DataManager.Instance.localUserID;//아이템의 아이디가 아니였다?
         isEquipped = _item.isEquipped;
         name = _item.itemName;
+        itemSN = _item.itemID;
+        itemType = _item.itemPart.ToString();
         itemGrade = _item.itemGrade.ToString();
-        price = _item.itemPrice;
+        //itemDesc = _item.itemDesc;
         itemUpgrade = _item.itemCurLevel;
+        price = _item.itemPrice;//수정 필요[판매 비용 수식 적용]
+        upgradePrice = _item.itemUpgradeCost;//수정 필요[업그레이드 비용 수식 적용]
         attackDamage = _item.itemATK;
         criticalDamageProbability = _item.itemCriticalRate;
         criticalDamage = _item.itemCriticalDamage;
@@ -137,25 +130,111 @@ public class POSTReqItemSave
     }
 }
 
+public class POSTResItemSave
+{
+    Header header;
+    public int itemId;//아이템마다 고유하게 가지고 있는 아이디
+}
+
+public class GETResItemList
+{
+    Header header;
+    List<Item> items;
+}
+
+public class PUTReqItemUpgrade
+{
+    public int price;//판매가격
+    /*public int upgradePrice*/
+    //[Question]없는 이유
+    public int itemUpgrade;
+    public int attackDamage;
+    public float criticalDamageProbability;
+    public float criticalDamage;
+    public float strength;
+    public float defenseStrength;
+    /*public float specialMoveGage*/
+    //[Question]없는 이유
+
+    public PUTReqItemUpgrade()
+    {
+
+    }
+
+    public PUTReqItemUpgrade(int _price, int _itemUpgrade, int _upgradePrice, int _attackDamage, float _criticalDamageProbability, float _criticalDamage, float _strength, float _defenseStrength, float _specialMoveGage)
+    {
+        price = _price;
+        itemUpgrade = _itemUpgrade;
+        /*upgradePrice = _upgradePrice;*/
+        attackDamage = _attackDamage;
+        criticalDamageProbability = _criticalDamageProbability;
+        criticalDamage = _criticalDamage;
+        strength = _strength;
+        defenseStrength = _defenseStrength;
+        /*specialMoveGage = _specialMoveGage;*/
+    }
+
+    public PUTReqItemUpgrade(Item _item)
+    {
+        itemUpgrade = _item.itemCurLevel;
+        price = _item.itemPrice;
+        /*upgradePrice = _upgradePrice;*/
+        attackDamage = _item.itemATK;
+        criticalDamageProbability = _item.itemCriticalRate;
+        criticalDamage = _item.itemCriticalDamage;
+        strength = _item.itemHP;
+        defenseStrength = _item.itemSheldGager;
+        /*specialMoveGage = _item.itemSpecialMoveGager;*/
+    }
+}
+
+public class PUTResItemUpgrade
+{
+
+}
+
+public class DELResItemSell
+{
+
+}
+
 public class POSTReqSignup
 {
     public string name;
-    public string email;
+    public string gpgsId;
 
-    public POSTReqSignup(string _name = null, string _email = null)
+    public POSTReqSignup(string _name = null, string _gpgsId = null)
     {
         name = _name;
-        email = _email;
+        gpgsId = _gpgsId;
     }
+}
+
+public class POSTResSignup
+{
+    public string name;
+    public string gpgsId;//[Question]gpgsId로 통일 가능한지
+    public Header header;
+}
+
+public class GETResUserInfo//[Question]PUT Gold & PUT Gem에도 사용할지, 아니면 별도로 생성해 사용할지
+{
+    public int id;
+    public string name;
+    public string gpgsId;
+    public string character_name;
+    public int possesing_gold;
+    public int possesing_gem;
+    public Header header;
 }
 
 public class POSTReqSignin
 {
-    public string email;
+    public string gpgsId;
 
-    public POSTReqSignin(string _email = null)
+    public POSTReqSignin(string _gpgsId = null)
     {
-        email = _email;
+        gpgsId = _gpgsId;
     }
 }
 
@@ -175,6 +254,17 @@ public class PUTReqZam
     }
 }
 
+public class PUTResZam
+{
+    public int id;
+    public string name;
+    public string gpgsId;
+    public string character_name;
+    public int possesing_gold;
+    public int possesing_gem;
+    public Header header;
+}
+
 public class PUTReqGold
 {
     public int gold;
@@ -183,6 +273,17 @@ public class PUTReqGold
     {
         gold = _gold;
     }
+}
+
+public class PUTResGold
+{
+    public int id;
+    public string name;
+    public string gpgsId;
+    public string character_name;
+    public int possesing_gold;
+    public int possesing_gem;
+    public Header header;
 }
 
 
@@ -203,7 +304,7 @@ public class GPGSLoginComponent : MonoBehaviour
         GPGSLogin();
 
         //1. DB 자동 로그인 수행
-        DBLogin();
+        //DBLogin();
     }
 
     public void OnClickLoginBtn()
@@ -231,10 +332,11 @@ public class GPGSLoginComponent : MonoBehaviour
 
             //DB 재로그인
             DBLogin();
-
         }
         else//1. 로그인 성공
         {
+            loginTMP.text = "게임을 시작하기 위해 탭하세요";
+            Debug.Log("시작");
             startButton.gameObject.SetActive(true);
             loginButton.gameObject.SetActive(false);
         }
@@ -251,22 +353,10 @@ public class GPGSLoginComponent : MonoBehaviour
             });
     }
 
-    public void DBSignup()
-    {
-        //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
-        Debug.Log($"{DataManager.Instance.localUserName} : {DataManager.Instance.localUserID}");
-        StartCoroutine(DataManager.Instance.PostSignupRequest(DataManager.Instance.postSignupPath, new POSTReqSignup(DataManager.Instance.localUserName, DataManager.Instance.localUserID)));
-    }
-
     public void DBLogin()
     {
         //0-2. DB 로그인 수행
-        if (DataManager.Instance.loginSuccessed && !DataManager.Instance.signinDBSuccessed)
-        {
-            //PostRequest 함수 성공 시, 플레이어 데이터 로드[post 함수 내부에 포함]
-            Debug.Log($"{DataManager.Instance.localUserName} : {DataManager.Instance.localUserID}");
-            StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin(DataManager.Instance.localUserID)));
-        }
+        StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin(DataManager.Instance.localUserID)));
     }
 
     public void OnClickStartBtn()

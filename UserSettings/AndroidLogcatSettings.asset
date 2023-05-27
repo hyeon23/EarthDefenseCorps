@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "R3CT60E8X9X",
         "name": "com.devurim.earthdefensecorps",
-        "processId": 32761,
+        "processId": 9799,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -17,31 +17,31 @@
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
-            "processId": 27382,
+            "processId": 32435,
             "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
-            "processId": 27961,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.unity3d.mobileremote",
-            "processId": 26957,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.unity3d.mobileremote",
-            "processId": 28483,
+            "processId": 3207,
             "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
-            "processId": 32761,
+            "processId": 5583,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 8486,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 9799,
             "exited": false
         }
     ],

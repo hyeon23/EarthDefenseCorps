@@ -1354,7 +1354,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &88041591
 GameObject:
@@ -22130,6 +22130,26 @@ MonoBehaviour:
   gradeBackground: {fileID: 477488418}
   equipSlotPart: 0
   curLevelText: {fileID: 1026068709}
+  item:
+    ID: 0
+    itemID: 0
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCurLevel: 0
+    itemMaxLevel: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemDrawingWeight: 0
 --- !u!1 &485041287
 GameObject:
   m_ObjectHideFlags: 0
@@ -22570,7 +22590,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519560369
 GameObject:
@@ -30060,7 +30080,7 @@ RectTransform:
   - {fileID: 587163340}
   - {fileID: 705684669}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -30156,6 +30176,26 @@ MonoBehaviour:
   equipButtonTMP: {fileID: 1677079308}
   equipButton: {fileID: 1027002243}
   unEquipButton: {fileID: 1425654600}
+  curSelectedItem:
+    ID: 0
+    itemID: 0
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCurLevel: 0
+    itemMaxLevel: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemDrawingWeight: 0
   popUpAnime: {fileID: 705684672}
   PopUpTMP: {fileID: 1816890308}
   inventory: {fileID: 1087813222}
@@ -36361,6 +36401,26 @@ MonoBehaviour:
   gradeBackground: {fileID: 761147248}
   equipSlotPart: 1
   curLevelText: {fileID: 113844151}
+  item:
+    ID: 0
+    itemID: 0
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCurLevel: 0
+    itemMaxLevel: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemDrawingWeight: 0
 --- !u!1 &764483032
 GameObject:
   m_ObjectHideFlags: 0
@@ -39291,6 +39351,26 @@ MonoBehaviour:
   gradeBackground: {fileID: 911717373}
   equipSlotPart: 5
   curLevelText: {fileID: 1738154800}
+  item:
+    ID: 0
+    itemID: 0
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCurLevel: 0
+    itemMaxLevel: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemDrawingWeight: 0
 --- !u!1 &913849449
 GameObject:
   m_ObjectHideFlags: 0
@@ -41059,6 +41139,26 @@ MonoBehaviour:
   gradeBackground: {fileID: 1001476339}
   equipSlotPart: 2
   curLevelText: {fileID: 821877209}
+  item:
+    ID: 0
+    itemID: 0
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCurLevel: 0
+    itemMaxLevel: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemDrawingWeight: 0
 --- !u!1 &1004696722
 GameObject:
   m_ObjectHideFlags: 0
@@ -42083,6 +42183,26 @@ MonoBehaviour:
   gradeBackground: {fileID: 1055793152}
   equipSlotPart: 4
   curLevelText: {fileID: 536118748}
+  item:
+    ID: 0
+    itemID: 0
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCurLevel: 0
+    itemMaxLevel: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemDrawingWeight: 0
 --- !u!1 &1062680506
 GameObject:
   m_ObjectHideFlags: 0
@@ -66814,7 +66934,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1631278838
 MonoBehaviour:
@@ -75557,6 +75677,26 @@ MonoBehaviour:
   gradeBackground: {fileID: 1832265017}
   equipSlotPart: 3
   curLevelText: {fileID: 636614580}
+  item:
+    ID: 0
+    itemID: 0
+    itemPart: 0
+    itemGrade: 0
+    isEquipped: 0
+    itemName: 
+    itemDesc: 
+    itemImage: {fileID: 0}
+    itemATK: 0
+    itemCriticalRate: 0
+    itemCriticalDamage: 0
+    itemHP: 0
+    itemSheldGager: 0
+    itemSpecialMoveGager: 0
+    itemCurLevel: 0
+    itemMaxLevel: 0
+    itemPrice: 0
+    itemUpgradeCost: 0
+    itemDrawingWeight: 0
 --- !u!1 &1835859655
 GameObject:
   m_ObjectHideFlags: 0
@@ -86152,182 +86292,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142506059}
   m_CullTransparentMesh: 1
---- !u!1 &2146515954
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2146515956}
-  - component: {fileID: 2146515955}
-  m_Layer: 0
-  m_Name: DataManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2146515955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146515954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27d64b6fad0837341a6e6d4b768d1a8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loginSuccessed: 0
-  signinDBSuccessed: 0
-  localUserID: 
-  localUserName: 
-  getStageListPath: /stage/list
-  putStageClearPath: /stage/clear
-  postItemSavePath: /item/weapon
-  postItemListLoadPath: /item/inventory
-  postItemUpgradePath: /item
-  postItemDeletePath: /item
-  postSignupPath: /member/register
-  getUserInfoPath: /member/info
-  postSigninPath: /member/login
-  putZamUpdatePath: /member/gem
-  putGoldUpdatePath: /member/gold
-  playerData:
-    playerATK: 1
-    playerHP: 100
-    playerShledGage: 100
-    playerSpecialMoveGage: 100
-    playerCriticalRate: 0
-    playerCriticalDamage: 100
-    curHp: 0
-    curSheldGage: 0
-    curSpecialMoveGage: 0
-    playerZam: 10000
-    playerGold: 10000
-    playerZen: 30
-    isStageClear: 000000
-    curStage: 1
-    isBGMOn: 1
-    isSFXOn: 1
-    Frames: 1e0000003c00000078000000
-    curFrameIndex: 1
-  itemParts:
-  - itemSrpites:
-    - {fileID: -53577432, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 67814399, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: -975079872, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: -1559905423, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: -249569043, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: -1068156454, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 710242630, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 1328762629, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 401173628, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 1359966967, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: -1893359071, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 1516331453, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 1676644112, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 1299662014, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 427294558, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-  - itemSrpites:
-    - {fileID: -21888399, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1098093972, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 1237738505, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -717942757, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 1345660797, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1171284260, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -514112114, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1595146343, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1989401127, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -353646202, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1415096958, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1258632121, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1960457264, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 1596071277, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 2015093597, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-  - itemSrpites:
-    - {fileID: -910275654, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1100526703, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 1759771290, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 257429013, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1712835242, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 2106209091, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1257280648, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -2097109141, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1357390470, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 1738085491, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 893877617, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 541210604, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1851517031, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 1367765016, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1682874443, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-  - itemSrpites:
-    - {fileID: 1874681707, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 446271905, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: -678852583, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 204504329, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 1247714603, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 145749301, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 853021954, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 577875259, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: -1222532790, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: -894245232, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 1966352940, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 620151592, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 90337784, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: 1570935834, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-    - {fileID: -1508334338, guid: 537e615ed4c39804a859be96fb24c0a2, type: 3}
-  - itemSrpites:
-    - {fileID: 1717901069, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -199786959, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -349625686, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 1284492919, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1923297763, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -2041286320, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 236097349, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 970300062, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1418696953, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 978276458, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1719904321, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1053730353, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1260841486, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1811630278, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1596995862, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-  - itemSrpites:
-    - {fileID: -428674941, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1888135682, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 122010486, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 1941112424, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1831098983, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 1738205400, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 1753236090, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 928580709, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1345465840, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 140529008, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 1053811750, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1517641446, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: 560083106, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -978890735, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-    - {fileID: -1495909672, guid: 831ec0384a9a7bf47ae53c26f7cd2164, type: 3}
-  spawnZenTime: 0
---- !u!4 &2146515956
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146515954}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7010569419724107786
 PrefabInstance:
   m_ObjectHideFlags: 0

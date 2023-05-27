@@ -192,18 +192,7 @@ public class DataManager : MonoBehaviour
         playerData.curEquippedHelmat = null;
         playerData.curEquippedArmor = null;
 
-        if (loginSuccessed == true)//로그인 성공 시, 
-        {
-            //웹 통신,
-
-            //플레이어 데이터 로드
-
-        }
-        else//로그인 실패 시: 로그인 실패 경우, 벤으로 인해, 고려하지 않아도 됨
-        {
-            //
-        }
-
+        //[★][Serializable] 해당 함수도 같이 플레이어 데이터 로드 후, 같이 호출해줘야 함
         DataUpdate();
     }
 
@@ -588,25 +577,6 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    //요청 보냄 -> 요청 값에 따라 코드 작성
-    //요청 승인 시, -> 해당 작업 수행
-    //요청 거절 시, -> 경고 메시지
-
-    //public string ObjectToJson<T>(T _object)
-    //{
-    //    //오브젝트(Item or PlayerData)를 Json 데이터로 변환
-
-    //    object obj = _object;
-    //    return JsonUtility.ToJson(obj);
-    //}
-
-    //public T JsonToObject<T>(string _jsonData)
-    //{
-    //    //Json 데이터를 오브젝트(Item or PlayerData)로 변환
-
-    //    return JsonUtility.FromJson<T>(_jsonData);
-    //}
-
     public void Save()
     {
         PlayerPrefsSave();
@@ -648,7 +618,9 @@ public class DataManager : MonoBehaviour
 
                 GETResStage jtcData = JsonUtility.FromJson<GETResStage>(tempJson);
 
-                Debug.Log(jtcData);
+                Debug.Log($"Stage1\n{jtcData.stages[0].id}\n{jtcData.stages[0].member}\n{jtcData.stages[0].phase}\n{jtcData.stages[0].stage}\n{jtcData.stages[0].clear}");
+                Debug.Log($"Stage2\n{jtcData.stages[1].id}\n{jtcData.stages[1].member}\n{jtcData.stages[1].phase}\n{jtcData.stages[1].stage}\n{jtcData.stages[1].clear}");
+                Debug.Log($"Stage3\n{jtcData.stages[2].id}\n{jtcData.stages[2].member}\n{jtcData.stages[2].phase}\n{jtcData.stages[2].stage}\n{jtcData.stages[2].clear}");
             }
         }
     }
@@ -694,7 +666,7 @@ public class DataManager : MonoBehaviour
 
     //아이템 API 통신
     //아이템 저장[POST 요청]
-    public IEnumerator PostItemSaveRequest/*<SignupClass>*/(string path, Item data)
+    public IEnumerator PostItemSaveRequest(string path, Item data)
     {
         string jsonData = JsonUtility.ToJson(data);
 
@@ -733,7 +705,7 @@ public class DataManager : MonoBehaviour
 
     //회원 API 통신
     //회원가입[POST 요청]
-    public IEnumerator PostSignupRequest/*<SignupClass>*/(string path, POSTReqSignup data)
+    public IEnumerator PostSignupRequest(string path, POSTReqSignup data)
     {
         string jsonData = JsonUtility.ToJson(data);
 
@@ -759,10 +731,15 @@ public class DataManager : MonoBehaviour
             }
             else
             {
+                //회원가입 처리
+
                 string responseText = request.downloadHandler.text;
+
                 Debug.Log("PostSignup 성공: " + responseText);
 
-                //회원가입 처리
+                POSTResSignup jtcData = JsonUtility.FromJson<POSTResSignup>(responseText);
+
+                Debug.Log(jtcData);
             }
         }
     }
@@ -789,12 +766,14 @@ public class DataManager : MonoBehaviour
             else
             {
                 Debug.Log("GetUserInfo 성공: " + request.downloadHandler.text);
+
+                GETResUserInfo jtcData = JsonUtility.FromJson<GETResUserInfo>(request.downloadHandler.text);
             }
         }
     }
 
     //로그인[POST 요청]
-    public IEnumerator PostSigninRequest/*<SigninClass>*/(string path, POSTReqSignin data)
+    public IEnumerator PostSigninRequest(string path, POSTReqSignin data)
     {
         string jsonData = JsonUtility.ToJson(data);
 
@@ -825,18 +804,25 @@ public class DataManager : MonoBehaviour
                 POSTResSignin jtcData = JsonUtility.FromJson<POSTResSignin>(request.downloadHandler.text);
 
                 //데이터 로드
-                if (jtcData.email == localUserID && jtcData.header.status == 400)//로그인 실패
+                if (jtcData.header.status == 400)//로그인 실패
                 {
                     //[★]회원가입 수행
+                    Debug.Log("0");
                     StartCoroutine(PostSignupRequest(postSignupPath, new POSTReqSignup(localUserName, localUserID)));
                 }
                 else if (jtcData.email == localUserID && jtcData.header.status == 200)//로그인 성공
                 {
-                    //로그인
+                    Debug.Log("1");
+
                     signinDBSuccessed = true;
 
                     //[★]플레이어 DB 데이터 로드 request
+                    //
+                    //현재 장착된 장비 갱신
+
                 }
+
+                Debug.Log("2");
             }
         }
     }
@@ -850,8 +836,6 @@ public class DataManager : MonoBehaviour
 
         // UnityWebRequest 객체 생성
         UnityWebRequest request = new UnityWebRequest(url + path + $"?memberId=1", "PUT");
-
-        Debug.Log(url + path + $"?memberId=1");
 
         // PUT 요청 설정 (Content-Type 등)
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
@@ -875,6 +859,8 @@ public class DataManager : MonoBehaviour
         {
             // 요청에 대한 응답 데이터 처리
             Debug.Log("PutZamUpdate 성공: " + request.downloadHandler.text);
+
+            PUTResZam jtcData = JsonUtility.FromJson<PUTResZam>(request.downloadHandler.text);
         }
     }
 
@@ -910,6 +896,8 @@ public class DataManager : MonoBehaviour
         {
             // 요청에 대한 응답 데이터 처리
             Debug.Log("PutGoldUpdate 성공: " + request.downloadHandler.text);
+
+            PUTResGold jtcData = JsonUtility.FromJson<PUTResGold>(request.downloadHandler.text);
         }
     }
 }
