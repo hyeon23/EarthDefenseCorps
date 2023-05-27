@@ -95,10 +95,11 @@ public class DataManager : MonoBehaviour
     public string getStageListPath = "/stage/list";//?identifier=paramtest
     public string putStageClearPath = "/stage/clear";
 
-    public string postItemSavePath = "/item/weapon";
-    public string postItemListLoadPath = "/item/inventory";//?memberId=1
-    public string postItemUpgradePath = "/item";//?itemId=1
-    public string postItemDeletePath = "/item";//?itemId=1
+    public string postItemSavePath = "/item";
+    public string getItemListLoadPath = "/item/inventory/all";//?memberId=1
+    public string putItemUpgradePath = "/item?itemId=";//?itemId=1
+    public string delItemDeletePath = "/item?itemId=";//?itemId=1
+    public string putItemEquipUnequipPath = "/item/status?itemId=";//?itemId=1
 
     public string postSignupPath = "/member/register";
     public string getUserInfoPath = "/member/info";//?identifier=paramtest
@@ -590,7 +591,7 @@ public class DataManager : MonoBehaviour
     }
 
 
-//스테이지 API 통신
+    //스테이지 API 통신
     //스테이지 리스트 불러오기[GET 요청]
     public IEnumerator GetStageListRequest(string path)
     {
@@ -612,15 +613,15 @@ public class DataManager : MonoBehaviour
             }
             else
             {
-                string tempJson = "{\"stages\":" + request.downloadHandler.text + "}";
+                string tempJson = request.downloadHandler.text;
 
                 Debug.Log("GetStageList 성공: " + tempJson);
 
                 GETResStage jtcData = JsonUtility.FromJson<GETResStage>(tempJson);
 
-                Debug.Log($"Stage1\n{jtcData.stages[0].id}\n{jtcData.stages[0].member}\n{jtcData.stages[0].phase}\n{jtcData.stages[0].stage}\n{jtcData.stages[0].clear}");
-                Debug.Log($"Stage2\n{jtcData.stages[1].id}\n{jtcData.stages[1].member}\n{jtcData.stages[1].phase}\n{jtcData.stages[1].stage}\n{jtcData.stages[1].clear}");
-                Debug.Log($"Stage3\n{jtcData.stages[2].id}\n{jtcData.stages[2].member}\n{jtcData.stages[2].phase}\n{jtcData.stages[2].stage}\n{jtcData.stages[2].clear}");
+                Debug.Log($"Stage1\n{jtcData.stageList[0].phase}\n{jtcData.stageList[0].stage}\n{jtcData.stageList[0].clear}");
+                Debug.Log($"Stage2\n{jtcData.stageList[1].phase}\n{jtcData.stageList[1].stage}\n{jtcData.stageList[1].clear}");
+                Debug.Log($"Stage3\n{jtcData.stageList[2].phase}\n{jtcData.stageList[2].stage}\n{jtcData.stageList[2].clear}");
             }
         }
     }
@@ -629,6 +630,203 @@ public class DataManager : MonoBehaviour
     public IEnumerator PutStageClearRequest(string path, PUTReqStageClear data)
     {
         string jsonData = JsonUtility.ToJson(data);
+
+        Debug.Log(jsonData);
+
+        // UnityWebRequest 객체 생성
+        UnityWebRequest request = new UnityWebRequest(url + path, "PUT");
+
+        // PUT 요청 설정 (Content-Type 등)
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        // 요청 보내기
+        yield return request.SendWebRequest();
+
+        // 요청이 완료되었는지 확인
+        if (request.result == UnityWebRequest.Result.ConnectionError)
+        {
+            Debug.LogError("PutStageClear CError: " + request.error);
+        }
+        else if (request.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("PutStageClear PError: " + request.error);
+        }
+        else
+        {
+            // 요청에 대한 응답 데이터 처리
+            Debug.Log("PutStageClear 성공: " + request.downloadHandler.text);
+
+            PUTResStageClear jtcData = JsonUtility.FromJson<PUTResStageClear>(request.downloadHandler.text);
+
+            Debug.Log(jtcData);
+        }
+    }
+
+    //아이템 API 통신
+    //아이템 저장[POST 요청]
+    public IEnumerator PostItemSaveRequest(string path, POSTReqItemSave data)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+
+        Debug.Log(jsonData);
+
+        using (UnityWebRequest request = new UnityWebRequest(url + path, "POST"))
+        {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.LogError("PostItemSave CError: " + request.error);
+            }
+            else if (request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("PostItemSave PError: " + request.error);
+            }
+            else
+            {
+                string responseText = request.downloadHandler.text;
+
+                Debug.Log("PostItemSave 성공: " + responseText);
+
+                POSTResItemSave jtcData = JsonUtility.FromJson<POSTResItemSave>(request.downloadHandler.text);
+
+                Debug.Log(jtcData);
+            }
+        }
+    }
+
+    //아이템 리스트 불러오기[GET 요청]
+    public IEnumerator GetItemListRequest(string path)
+    {
+        using (UnityWebRequest request = new UnityWebRequest(url + path + $"?gpgsId=gpgsIdTest", "GET"))/*localuserid*/
+        {
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.LogError("GetItemList CError: " + request.error);
+            }
+            else if (request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("GetItemList PError: " + request.error);
+            }
+            else
+            {
+                string tempJson = request.downloadHandler.text;
+
+                Debug.Log("GetItemList 성공: " + tempJson);
+
+                GETResItemList jtcData = JsonUtility.FromJson<GETResItemList>(tempJson);
+
+                for(int i = 0; i < jtcData.items.Count; ++i)
+                {
+                    Debug.Log($"Item" + i +
+                        $"\n{jtcData.items[i].id}" +
+                        $"\n{jtcData.items[i].itemSN}" +
+                        $"\n{jtcData.items[i].itemDesc}" +
+                        $"\n{jtcData.items[i].name}" +
+                        $"\n{jtcData.items[i].price}" +
+                        $"\n{jtcData.items[i].upgradePrice}" +
+                        $"\n{jtcData.items[i].itemGrade}" +
+                        $"\n{jtcData.items[i].type}" +
+                        $"\n{jtcData.items[i].itemUpgrade}" +
+                        $"\n{jtcData.items[i].member}" +
+                        $"\n{jtcData.items[i].attackDamage}" +
+                        $"\n{jtcData.items[i].criticalDamageProbability}" +
+                        $"\n{jtcData.items[i].criticalDamage}" +
+                        $"\n{jtcData.items[i].strength}" +
+                        $"\n{jtcData.items[i].defenseStrength}" +
+                        $"\n{jtcData.items[i].specialMoveGage}" +
+                        $"\n{jtcData.items[i].equipped}"
+                        );
+                }
+
+                
+            }
+        }
+    }
+
+
+    //아이템 강화[PUT 요청]
+    public IEnumerator PutItemUpgradeRequest(string path, PUTReqItemUpgrade data)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+
+        Debug.Log(jsonData);
+
+        // UnityWebRequest 객체 생성
+        UnityWebRequest request = new UnityWebRequest(url + path, "PUT");
+
+        // PUT 요청 설정 (Content-Type 등)
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        // 요청 보내기
+        yield return request.SendWebRequest();
+
+        // 요청이 완료되었는지 확인
+        if (request.result == UnityWebRequest.Result.ConnectionError)
+        {
+            Debug.LogError("PutItemUpgrade CError: " + request.error);
+        }
+        else if (request.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("PutItemUpgrade PError: " + request.error);
+        }
+        else
+        {
+            // 요청에 대한 응답 데이터 처리
+            Debug.Log("PutItemUpgrade 성공: " + request.downloadHandler.text);
+
+            PUTResItemUpgrade jtcData = JsonUtility.FromJson<PUTResItemUpgrade>(request.downloadHandler.text);
+
+            Debug.Log(jtcData);
+        }
+    }
+    //아이템 삭제[DEL 요청]
+    public IEnumerator DelItemDeleteRequest(string path)
+    {
+        using (UnityWebRequest request = new UnityWebRequest(url + path, "DELETE"))/*localuserid*/
+        {
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.LogError("DeleteItem CError: " + request.error);
+            }
+            else if (request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("DeleteItem PError: " + request.error);
+            }
+            else
+            {
+                Debug.Log("DeleteItem 성공: " + request.downloadHandler.text);
+
+                DELResItemSell jtcData = JsonUtility.FromJson<DELResItemSell>(request.downloadHandler.text);
+            }
+        }
+    }
+
+    //아이템 장착/해제[PUT 요청]
+    public IEnumerator PutItemEquipUnequipRequest(string path)
+    {
+        string jsonData = null;
 
         Debug.Log(jsonData);
 
@@ -658,50 +856,12 @@ public class DataManager : MonoBehaviour
             // 요청에 대한 응답 데이터 처리
             Debug.Log("PutStageClear 성공: " + request.downloadHandler.text);
 
-            PUTResStageClear jtcData = JsonUtility.FromJson<PUTResStageClear>(request.downloadHandler.text);
+            PUTResItemEquipUnequip jtcData = JsonUtility.FromJson<PUTResItemEquipUnequip>(request.downloadHandler.text);
 
             Debug.Log(jtcData);
         }
     }
 
-    //아이템 API 통신
-    //아이템 저장[POST 요청]
-    public IEnumerator PostItemSaveRequest(string path, Item data)
-    {
-        string jsonData = JsonUtility.ToJson(data);
-
-        Debug.Log(jsonData);
-
-        using (UnityWebRequest request = new UnityWebRequest(url + path, "POST"))
-        {
-            byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
-            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-            request.downloadHandler = new DownloadHandlerBuffer();
-            request.SetRequestHeader("Content-Type", "application/json");
-
-            yield return request.SendWebRequest();
-
-            if (request.result == UnityWebRequest.Result.ConnectionError)
-            {
-                Debug.LogError("PostItemSave CError: " + request.error);
-            }
-            else if (request.result == UnityWebRequest.Result.ProtocolError)
-            {
-                Debug.LogError("PostItemSave PError: " + request.error);
-            }
-            else
-            {
-                string responseText = request.downloadHandler.text;
-                Debug.Log("PostItemSave 성공: " + responseText);
-            }
-        }
-    }
-
-    //아이템 리스트 불러오기[GET 요청]
-
-    //아이템 강화[PUT 요청]
-
-    //아이템 삭제[DEL 요청]
 
     //회원 API 통신
     //회원가입[POST 요청]
@@ -810,7 +970,7 @@ public class DataManager : MonoBehaviour
                     Debug.Log("0");
                     StartCoroutine(PostSignupRequest(postSignupPath, new POSTReqSignup(localUserName, localUserID)));
                 }
-                else if (jtcData.email == localUserID && jtcData.header.status == 200)//로그인 성공
+                else if (jtcData.gpgsId == localUserID && jtcData.header.status == 200)//로그인 성공
                 {
                     Debug.Log("1");
 
