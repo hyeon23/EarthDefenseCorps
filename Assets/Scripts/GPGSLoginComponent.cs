@@ -31,24 +31,42 @@ public class Member//[Question]Get Stage에 멤버가 존재하는 이유가 궁금?
     public string name;
     public int possessingGold;
     public int possessingGem;
-    public string characterName;
-    public List<Item> items;
 }
 
 [Serializable]
-public class Stage
+public class DBStage
 {
-    public int id;
-    public Member member;
     public string phase;
     public int stage;
     public bool clear;
 }
 
+[Serializable]
+public class DBItem
+{
+    public int id;//Item ID
+    public int itemSN;
+    public string itemDesc;
+    public string name;
+    public int price;
+    public int upgradePrice;
+    public string itemGrade;
+    public string type;
+    public int itemUpgrade;
+    public Member member;
+    public int attackDamage;
+    public float criticalDamageProbability;
+    public float criticalDamage;
+    public float strength;
+    public float defenseStrength;
+    public float specialMoveGage;
+    public bool equipped;
+}
+
 public class GETResStage
 {
-    //이부분 POST MAN JSON 형식 수정 가능한지 요청
-    public List<Stage> stages;
+    public Header header;
+    public List<DBStage> stageList;
 }
 
 public class PUTReqStageClear
@@ -71,25 +89,44 @@ public class PUTResStageClear
 
 public class POSTReqItemSave
 {
-    public string gpgsId;//gpgsId로 후에 바뀔 예정
+    public string gpgsId;
     public bool isEquipped;
     public string name;
-    public int itemSN;//같은 종류의 아이템마다 필요한 변수[추가요망]
-    public string itemType;//아이템 파트[헤더에서 없애고 바디에 넣도록 수정요망]
+    public int itemSN;
+    public string itemType;
     public string itemGrade;
     public string itemDesc;//아이템 설명[추가 요망]
-
-    public int itemUpgrade;//현재레벨
-    public int price;//아이템 판매 가격: 내가 최총 판매 가격 계산해서 보내는 걸로]
-    public int upgradePrice;//아이템 업글 가격[내가 최총 판매 가격 계산해서 보내는 걸로]
+    public int price;
+    public int itemUpgrade;
+    public int upgradePrice;
     public int attackDamage;
-    public float criticalDamageProbability;//크확 float임 수정 요망
-    public float criticalDamage;//크뎀 float임 수정 요망
-    public float strength;//HP float임 수정 요망
-    public float defenseStrength;//방어 추가 게이지 float임 수정 요망
-    public float specialMoveGage;//필살기 추가 게이지 float임[추가요망]
+    public float criticalDamageProbability;
+    public float criticalDamage;
+    public float strength;
+    public float defenseStrength;
+    public float specialMoveGage;
 
-    public POSTReqItemSave(bool _isEquipped, string _name, int _itemSN, string _itemType, string _itemGrade, /*string _itemDesc,*/ int _itemUpgrade, int _price, int _upgradePrice, int _attackDamage, float _criticalDamageProbability, float _criticalDamage, float _strength, float _defenseStrength, float _specialMoveGage)
+    public POSTReqItemSave()
+    {
+        gpgsId = "gpgsIdTest";
+        isEquipped = false;
+        name = "NONE";
+        itemSN = 0;
+        itemType = "WEAPON";
+        itemGrade = "RARE";
+        itemDesc = "My Desc";
+        price = 0;
+        itemUpgrade = 1;
+        upgradePrice = 0;
+        attackDamage = 0;
+        criticalDamageProbability = 0;
+        criticalDamage = 0;
+        strength = 0;
+        defenseStrength = 0;
+        specialMoveGage = 0;
+    }
+
+    public POSTReqItemSave(bool _isEquipped, string _name, int _itemSN, string _itemType, string _itemGrade, string _itemDesc, int _itemUpgrade, int _price, int _upgradePrice, int _attackDamage, float _criticalDamageProbability, float _criticalDamage, float _strength, float _defenseStrength, float _specialMoveGage)
     {
         gpgsId = DataManager.Instance.localUserID;
         isEquipped = _isEquipped;
@@ -97,7 +134,7 @@ public class POSTReqItemSave
         itemSN = _itemSN;
         itemType = _itemType;
         itemGrade = _itemGrade;
-        //itemDesc = _itemDesc; //[Question]아이템 설명
+        itemDesc = _itemDesc; //[Question]아이템 설명
         itemUpgrade = _itemUpgrade;
         price = _price;//수정 필요[판매 비용 수식 적용]
         upgradePrice = _upgradePrice;//수정 필요[업그레이드 비용 수식 적용]
@@ -117,7 +154,7 @@ public class POSTReqItemSave
         itemSN = _item.itemID;
         itemType = _item.itemPart.ToString();
         itemGrade = _item.itemGrade.ToString();
-        //itemDesc = _item.itemDesc;
+        itemDesc = _item.itemDesc;
         itemUpgrade = _item.itemCurLevel;
         price = _item.itemPrice;//수정 필요[판매 비용 수식 적용]
         upgradePrice = _item.itemUpgradeCost;//수정 필요[업그레이드 비용 수식 적용]
@@ -132,22 +169,32 @@ public class POSTReqItemSave
 
 public class POSTResItemSave
 {
-    Header header;
-    public int itemId;//아이템마다 고유하게 가지고 있는 아이디
+    public Header header;
+    public int itemId;
 }
+
 
 public class GETResItemList
 {
-    Header header;
-    List<Item> items;
+    public Header header;
+    public List<DBItem> items;
+}
+
+public class DELResItemDelete
+{
+    public Header header;
+}
+
+public class PUTResItemEquipUnEquip
+{
+    public DBItem item;
 }
 
 public class PUTReqItemUpgrade
 {
     public int price;//판매가격
-    /*public int upgradePrice*/
-    //[Question]없는 이유
     public int itemUpgrade;
+    public int upgradePrice;
     public int attackDamage;
     public float criticalDamageProbability;
     public float criticalDamage;
@@ -158,14 +205,20 @@ public class PUTReqItemUpgrade
 
     public PUTReqItemUpgrade()
     {
-
+        price = 300;
+        itemUpgrade = 300;
+        attackDamage = 300;
+        criticalDamageProbability = 300;
+        criticalDamage = 300;
+        strength = 300;
+        defenseStrength = 300;
     }
 
     public PUTReqItemUpgrade(int _price, int _itemUpgrade, int _upgradePrice, int _attackDamage, float _criticalDamageProbability, float _criticalDamage, float _strength, float _defenseStrength, float _specialMoveGage)
     {
         price = _price;
         itemUpgrade = _itemUpgrade;
-        /*upgradePrice = _upgradePrice;*/
+        upgradePrice = _upgradePrice;
         attackDamage = _attackDamage;
         criticalDamageProbability = _criticalDamageProbability;
         criticalDamage = _criticalDamage;
@@ -176,9 +229,9 @@ public class PUTReqItemUpgrade
 
     public PUTReqItemUpgrade(Item _item)
     {
-        itemUpgrade = _item.itemCurLevel;
         price = _item.itemPrice;
-        /*upgradePrice = _upgradePrice;*/
+        itemUpgrade = _item.itemCurLevel;
+        upgradePrice = _item.itemUpgradeCost;
         attackDamage = _item.itemATK;
         criticalDamageProbability = _item.itemCriticalRate;
         criticalDamage = _item.itemCriticalDamage;
@@ -190,12 +243,37 @@ public class PUTReqItemUpgrade
 
 public class PUTResItemUpgrade
 {
+    public Header header;
+    public int itemId;
 
 }
 
 public class DELResItemSell
 {
+    public Header header;
+}
 
+public class PUTResItemEquipUnequip
+{
+    public int id;//Item ID
+    public int itemSN;
+    public string itemDesc;
+    public string name;
+    public int price;
+    public int upgradePrice;
+    public string itemGrade;
+    public string type;
+    public int itemUpgrade;
+    public Member member;
+    public int attackDamage;
+    public float criticalDamageProbability;
+    public float criticalDamage;
+    public float strength;
+    public float defenseStrength;
+    public float specialMoveGage;
+    public bool equipped;
+
+    //or DBItem item;
 }
 
 public class POSTReqSignup
@@ -222,9 +300,9 @@ public class GETResUserInfo//[Question]PUT Gold & PUT Gem에도 사용할지, 아니면 �
     public int id;
     public string name;
     public string gpgsId;
-    public string character_name;
-    public int possesing_gold;
-    public int possesing_gem;
+    public string characterName;
+    public int possesingGold;
+    public int possesingGem;
     public Header header;
 }
 
@@ -240,7 +318,7 @@ public class POSTReqSignin
 
 public class POSTResSignin
 {
-    public string email;
+    public string gpgsId;
     public Header header;
 }
 
@@ -259,9 +337,9 @@ public class PUTResZam
     public int id;
     public string name;
     public string gpgsId;
-    public string character_name;
-    public int possesing_gold;
-    public int possesing_gem;
+    public string characterName;
+    public int possesingGold;
+    public int possesingGem;
     public Header header;
 }
 
@@ -280,9 +358,9 @@ public class PUTResGold
     public int id;
     public string name;
     public string gpgsId;
-    public string character_name;
-    public int possesing_gold;
-    public int possesing_gem;
+    public string characterName;
+    public int possesingGold;
+    public int possesingGem;
     public Header header;
 }
 
@@ -399,7 +477,7 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new PUTReqStageClear(2, "gpgsIdTest")));
+        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new PUTReqStageClear(1, "gpgsIdTest")));
     }
 
     public void OnClickPutZamUpdateBtn()
@@ -416,11 +494,39 @@ public class GPGSLoginComponent : MonoBehaviour
         StartCoroutine(DataManager.Instance.PutGoldUpdateRequest(DataManager.Instance.putGoldUpdatePath, new PUTReqGold(2000)));
     }
 
-    public void OnClickItemSaveBtn()
+    public void OnClickPostItemSaveBtn()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new Item()));
+        StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave()));
+    }
+
+    public void OnClickGetItemListBtn()
+    {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
+        StartCoroutine(DataManager.Instance.GetItemListRequest(DataManager.Instance.getItemListLoadPath));
+    }
+
+    public void OnClickItemUpgradeBtn()
+    {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
+        StartCoroutine(DataManager.Instance.PutItemUpgradeRequest(DataManager.Instance.putItemUpgradePath + 15, new PUTReqItemUpgrade()));
+    }
+
+    public void OnClickItemDeleteBtn()
+    {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
+        StartCoroutine(DataManager.Instance.DelItemDeleteRequest(DataManager.Instance.delItemDeletePath + 15));
+    }
+
+    public void OnClickItemEquipUnequipBtn()
+    {
+        SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
+
+        StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + 15));
     }
 
     public void TriggerPopUp(string msg)
