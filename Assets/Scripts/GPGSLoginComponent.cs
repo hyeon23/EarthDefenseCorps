@@ -95,13 +95,13 @@ public class POSTReqItemSave
     public int itemSN;
     public string itemType;
     public string itemGrade;
-    public string itemDesc;//아이템 설명[추가 요망]
+    public string itemDesc;
     public int price;
     public int itemUpgrade;
     public int upgradePrice;
     public int attackDamage;
     public float criticalDamageProbability;
-    public float criticalDamage;
+    public float criticalDamage ;
     public float strength;
     public float defenseStrength;
     public float specialMoveGage;
@@ -148,7 +148,7 @@ public class POSTReqItemSave
 
     public POSTReqItemSave(Item _item)
     {
-        gpgsId = DataManager.Instance.localUserID;//아이템의 아이디가 아니였다?
+        gpgsId = "gpgsIdTest";//DataManager.Instance.localUserID;
         isEquipped = _item.isEquipped;
         name = _item.itemName;
         itemSN = _item.itemID;
@@ -230,9 +230,9 @@ public class PUTReqItemUpgrade
 
     public PUTReqItemUpgrade(Item _item)
     {
-        price = _item.itemPrice;
+        price = _item.itemPrice;// * 현재레벨 * ... 등 반영해줘야 함
         itemUpgrade = _item.itemCurLevel;
-        upgradePrice = _item.itemUpgradeCost;
+        upgradePrice = _item.itemUpgradeCost;// * 현재레벨 * ... 등 반영해줘야 함
         attackDamage = _item.itemATK;
         criticalDamageProbability = _item.itemCriticalRate;
         criticalDamage = _item.itemCriticalDamage;
@@ -498,7 +498,7 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave()));
+        StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new Item()));
     }
 
     public void OnClickGetItemListBtn()

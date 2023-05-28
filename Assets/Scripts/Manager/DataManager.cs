@@ -671,9 +671,9 @@ public class DataManager : MonoBehaviour
 
     //아이템 API 통신
     //아이템 저장[POST 요청]
-    public IEnumerator PostItemSaveRequest(string path, POSTReqItemSave data)
+    public IEnumerator PostItemSaveRequest(string path, Item newItem)
     {
-        string jsonData = JsonUtility.ToJson(data);
+        string jsonData = JsonUtility.ToJson(new POSTReqItemSave(newItem));
 
         Debug.Log(jsonData);
 
@@ -700,9 +700,9 @@ public class DataManager : MonoBehaviour
 
                 Debug.Log("PostItemSave 성공: " + responseText);
 
-                POSTResItemSave jtcData = JsonUtility.FromJson<POSTResItemSave>(request.downloadHandler.text);
+                POSTResItemSave jtcData = JsonUtility.FromJson<POSTResItemSave>(responseText);
 
-                Debug.Log(jtcData);
+                newItem.ID = jtcData.itemId;
             }
         }
     }
@@ -934,8 +934,8 @@ public class DataManager : MonoBehaviour
 
                 if (jtcData.header.status == 200)
                 {
-                    playerData.PlayerGold = jtcData.possesingGold;
-                    playerData.playerZam = jtcData.possesingGem;
+                    playerData.PlayerGold = 100000;//jtcData.possesingGold;
+                    playerData.playerZam = 10000;//jtcData.possesingGem;
                 }
             }
         }

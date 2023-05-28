@@ -698,27 +698,21 @@ public class MainMenuController : MonoBehaviour
         switch (curSelectedItem.itemPart)
         {
             case ItemPart.WEAPON:
-                //[★]무기 아이템 장착 해제 request
                 DataManager.Instance.playerData.CurEquippedWeapon = null;
                 break;
             case ItemPart.GLOVES:
-                //[★]장갑 아이템 장착 해제 request
                 DataManager.Instance.playerData.CurEquippedGloves = null;
                 break;
             case ItemPart.SHOES:
-                //[★]신발 아이템 장착 해제 request
                 DataManager.Instance.playerData.CurEquippedShoes = null;
                 break;
             case ItemPart.SHIELD:
-                //[★]방패 아이템 장착 해제 request
                 DataManager.Instance.playerData.CurEquippedSheld = null;
                 break;
             case ItemPart.HELMET:
-                //[★]모자 아이템 장착 해제 request
                 DataManager.Instance.playerData.CurEquippedHelmat = null;
                 break;
             case ItemPart.ARMOR:
-                //[★]갑옷 아이템 장착 해제 request
                 DataManager.Instance.playerData.CurEquippedArmor = null;
                 break;
         }
@@ -751,6 +745,8 @@ public class MainMenuController : MonoBehaviour
 
         curSelectedItem.itemCurLevel++;
 
+        StartCoroutine(DataManager.Instance.PutItemUpgradeRequest(DataManager.Instance.putItemUpgradePath + $"{curSelectedItem.ID}", new PUTReqItemUpgrade(curSelectedItem)));
+
         DataManager.Instance.DataUpdate();
 
         EquipInfoUpdate(curSelectedItem);
@@ -763,13 +759,47 @@ public class MainMenuController : MonoBehaviour
         inventory.deleteItem(curSelectedItem);
 
         //[★]아이템 판매 request[골드 수정은 알아서 DB에서 계산]
+        StartCoroutine(DataManager.Instance.DelItemDeleteRequest(DataManager.Instance.delItemDeletePath + $"{curSelectedItem.ID}"));
 
         PlusGold(Mathf.RoundToInt((curSelectedItem.itemPrice + (curSelectedItem.itemCurLevel - 1) * curSelectedItem.itemUpgradeCost) * 0.5f));
 
         //해당 아이템 삭제
         if (curSelectedItem.isEquipped)
         {
-            UnequipButton();//[★]여기서 자동으로 아이템 해제 request 수행[이미 삭제된 아이템인데 DB 통신할 이유가 없음 -> 후에 수정 or 조정 필요]
+            //아이템 장착 해제
+            curSelectedItem.isEquipped = false;
+
+            equipButton.gameObject.SetActive(true);
+            unEquipButton.gameObject.SetActive(false);
+
+            SoundManager.Instance.SFXPlay(SoundManager.SFX.UnEquip);
+
+            switch (curSelectedItem.itemPart)
+            {
+                case ItemPart.WEAPON:
+                    DataManager.Instance.playerData.CurEquippedWeapon = null;
+                    break;
+                case ItemPart.GLOVES:
+                    DataManager.Instance.playerData.CurEquippedGloves = null;
+                    break;
+                case ItemPart.SHOES:
+                    DataManager.Instance.playerData.CurEquippedShoes = null;
+                    break;
+                case ItemPart.SHIELD:
+                    DataManager.Instance.playerData.CurEquippedSheld = null;
+                    break;
+                case ItemPart.HELMET:
+                    DataManager.Instance.playerData.CurEquippedHelmat = null;
+                    break;
+                case ItemPart.ARMOR:
+                    DataManager.Instance.playerData.CurEquippedArmor = null;
+                    break;
+            }
+
+            DataManager.Instance.DataUpdate();
+
+            curSelectedItem = null;
+            equipmentInfoPanel.SetActive(false);
         }
         else
         {
@@ -908,15 +938,17 @@ public class MainMenuController : MonoBehaviour
 
         SubtractZam(zamPrice);
 
+        //[★]젬 변동 request
+        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new PUTReqZam(DataManager.Instance.playerData.playerZam)));
+
         PlusGold(goldNumber);
 
-        //[★]젬 변동 request
         //[★]골드 변동 request
+        StartCoroutine(DataManager.Instance.PutGoldUpdateRequest(DataManager.Instance.putGoldUpdatePath, new PUTReqGold(DataManager.Instance.playerData.PlayerGold)));
     }
 
     public void BuyZam(int ZamNumber)
     {
-
         switch (ZamNumber)
         {
             case 300:
@@ -949,6 +981,9 @@ public class MainMenuController : MonoBehaviour
         SoundManager.Instance.SFXPlay(SoundManager.SFX.SellButton);
 
         PlusZam(ZamNumber);
+
+        //[★]젬 변동 request
+        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new PUTReqZam(DataManager.Instance.playerData.playerZam)));
     }
 
     public void PlusGold(int goldNumber)
@@ -988,15 +1023,16 @@ public class MainMenuController : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        int total = 0;
-        int weight = 0;
-        int selectNum = 0;
-        List<Item> gachaList = new List<Item>();
         if (zamPrice > DataManager.Instance.playerData.PlayerZam)
         {
             TriggerPopUp("젬이 부족합니다.");
             return;
         }
+
+        int total = 0;
+        int weight = 0;
+        int selectNum = 0;
+        List<Item> gachaList = new List<Item>();
 
         //가차리스트 생성 및 초기화
         for (int i = 0; i < DataManager.Instance.items.Count; i++)
@@ -1012,6 +1048,12 @@ public class MainMenuController : MonoBehaviour
 
         selectNum = Mathf.RoundToInt(total * UnityEngine.Random.Range(0.0f, 1.0f));
 
+        //젬 차감
+        SubtractZam(zamPrice);
+
+        //[★]젬 변동 request
+        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new PUTReqZam(DataManager.Instance.playerData.playerZam)));
+
         for (int i = 0; i < gachaList.Count; i++)
         {
             weight += gachaList[i].itemDrawingWeight;
@@ -1021,6 +1063,9 @@ public class MainMenuController : MonoBehaviour
                 //아이템 선언
                 Item newItem = new Item(gachaList[i]);
 
+                //[★]아이템 저장 request
+                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, newItem));
+
                 //아이템 추가
                 inventory.AddItem(newItem);
 
@@ -1029,28 +1074,23 @@ public class MainMenuController : MonoBehaviour
                 break;
             }
         }
-
-        //[★]아이템 저장 request
-        //[★]젬 변동 request
-
-        SubtractZam(zamPrice);
     }
 
     public void NormalDrawing10RandItem(int zamPrice)
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        int total = 0;
-        int weight = 0;
-        int selectNum = 0;
-        List<Item> gachaList = new List<Item>();
-        List<Item> SelectedItemList = new List<Item>();
-
         if (zamPrice > DataManager.Instance.playerData.PlayerZam)
         {
             TriggerPopUp("젬이 부족합니다.");
             return;
         }
+
+        int total = 0;
+        int weight = 0;
+        int selectNum = 0;
+        List<Item> gachaList = new List<Item>();
+        List<Item> SelectedItemList = new List<Item>();
 
         //가차리스트 생성 및 초기화
         for (int i = 0; i < DataManager.Instance.items.Count; i++)
@@ -1063,6 +1103,12 @@ public class MainMenuController : MonoBehaviour
                 total += DataManager.Instance.items[i].itemDrawingWeight;
             }
         }
+
+        //젬 차감
+        SubtractZam(zamPrice);
+
+        //[★]젬 변동 request
+        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new PUTReqZam(DataManager.Instance.playerData.playerZam)));
 
         for (int j = 0; j < 10; j++)
         {
@@ -1076,33 +1122,32 @@ public class MainMenuController : MonoBehaviour
                 if (selectNum <= weight)
                 {
                     Item newItem = new Item(gachaList[i]);
+
+                    //[★]아이템 저장 request
+                    StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, newItem));
+
                     inventory.AddItem(newItem);
                     SelectedItemList.Add(newItem);
                     break;
                 }
             }
         }
-
         StartCoroutine(Producing10Items(SelectedItemList));
-
-        //[★]아이템 저장 request
-        //[★]젬 변동 request
-        SubtractZam(zamPrice);
     }
 
     public void PremiumDrawing1RandItem(int zamPrice)
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        int total = 0;
-        int weight = 0;
-        int selectNum = 0;
-
         if (zamPrice > DataManager.Instance.playerData.PlayerZam)
         {
             TriggerPopUp("젬이 부족합니다.");
             return;
         }
+
+        int total = 0;
+        int weight = 0;
+        int selectNum = 0;
 
         //가차리스트 생성 및 초기화
         for (int i = 0; i < DataManager.Instance.items.Count; i++)
@@ -1112,6 +1157,12 @@ public class MainMenuController : MonoBehaviour
 
         selectNum = Mathf.RoundToInt(total * UnityEngine.Random.Range(0.0f, 1.0f));
 
+        //젬 차감
+        SubtractZam(zamPrice);
+
+        //[★]젬 변동 request
+        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new PUTReqZam(DataManager.Instance.playerData.playerZam)));
+
         for (int i = 0; i < DataManager.Instance.items.Count; i++)
         {
             weight += DataManager.Instance.items[i].itemDrawingWeight;
@@ -1119,6 +1170,10 @@ public class MainMenuController : MonoBehaviour
             if (selectNum <= weight)
             {
                 Item newItem = new Item(DataManager.Instance.items[i]);
+
+                //[★]아이템 저장 request
+                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, newItem));
+
                 inventory.AddItem(newItem);
 
                 //연출
@@ -1126,20 +1181,11 @@ public class MainMenuController : MonoBehaviour
                 break;
             }
         }
-
-        //[★]아이템 저장 request
-        //[★]젬 변동 request
-        SubtractZam(zamPrice);
     }
 
     public void PremiumDrawing10RandItem(int zamPrice)
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
-
-        int total = 0;
-        int weight = 0;
-        int selectNum = 0;
-        List<Item> SelectedItemList = new List<Item>();
 
         if (zamPrice > DataManager.Instance.playerData.PlayerZam)
         {
@@ -1147,11 +1193,22 @@ public class MainMenuController : MonoBehaviour
             return;
         }
 
+        int total = 0;
+        int weight = 0;
+        int selectNum = 0;
+        List<Item> SelectedItemList = new List<Item>();
+
         //가차리스트 생성 및 초기화
         for (int i = 0; i < DataManager.Instance.items.Count; i++)
         {
             total += DataManager.Instance.items[i].itemDrawingWeight;
         }
+
+        //젬 차감
+        SubtractZam(zamPrice);
+
+        //[★]젬 변동 request
+        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new PUTReqZam(DataManager.Instance.playerData.playerZam)));
 
         for (int j = 0; j < 10; j++)
         {
@@ -1165,18 +1222,17 @@ public class MainMenuController : MonoBehaviour
                 if (selectNum <= weight)
                 {
                     Item newItem = new Item(DataManager.Instance.items[i]);
+                    StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, newItem));
+
+                    //[★]아이템 저장 request
+
                     inventory.AddItem(newItem);
                     SelectedItemList.Add(newItem);
                     break;
                 }
             }
         }
-
         StartCoroutine(Producing10Items(SelectedItemList));
-
-        //[★]아이템 저장 request
-        //[★]젬 변동 request
-        SubtractZam(zamPrice);
     }
 
     public IEnumerator Producing1Item(Item item)
