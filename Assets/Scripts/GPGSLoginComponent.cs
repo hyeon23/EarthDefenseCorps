@@ -207,7 +207,6 @@ public class PUTReqItemUpgrade
     {
         price = 300;
         itemUpgrade = 300;
-        upgradePrice = 300;
         attackDamage = 300;
         criticalDamageProbability = 300;
         criticalDamage = 300;
@@ -398,18 +397,19 @@ public class GPGSLoginComponent : MonoBehaviour
 
         if (!DataManager.Instance.loginSuccessed)//2. 로그인 실패
         {
+            Debug.Log($"GPGS Login: {DataManager.Instance.loginSuccessed} DB Login: {DataManager.Instance.signinDBSuccessed}");
+
             //GPGS 재로그인
             GPGSLogin();
         }
         else if (!DataManager.Instance.signinDBSuccessed)
         {
+            Debug.Log($"GPGS Login: {DataManager.Instance.loginSuccessed} DB Login: {DataManager.Instance.signinDBSuccessed}");
+
             loginTMP.text = "데이터 로드를 위해 탭하세요";
 
             //DB 재로그인
-            if (DataManager.Instance.signinDBSuccessing)
-                TriggerPopUp("DB 로그인 중입니다.");
-            else
-                DBLogin();
+            DBLogin();
         }
         else//1. 로그인 성공
         {
@@ -434,7 +434,7 @@ public class GPGSLoginComponent : MonoBehaviour
     public void DBLogin()
     {
         //0-2. DB 로그인 수행
-        StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin("gpgsIdTest")));
+        StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin(DataManager.Instance.localUserID)));
     }
 
     public void OnClickStartBtn()
@@ -505,28 +505,28 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.GetItemListRequest(DataManager.Instance.getItemListPath));
+        StartCoroutine(DataManager.Instance.GetItemListRequest(DataManager.Instance.getItemListLoadPath));
     }
 
     public void OnClickItemUpgradeBtn()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutItemUpgradeRequest(DataManager.Instance.putItemUpgradePath, new PUTReqItemUpgrade()));
+        StartCoroutine(DataManager.Instance.PutItemUpgradeRequest(DataManager.Instance.putItemUpgradePath + 15, new PUTReqItemUpgrade()));
     }
 
     public void OnClickItemDeleteBtn()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.DelItemDeleteRequest(DataManager.Instance.delItemDeletePath));
+        StartCoroutine(DataManager.Instance.DelItemDeleteRequest(DataManager.Instance.delItemDeletePath + 15));
     }
 
     public void OnClickItemEquipUnequipBtn()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + 3));
+        StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + 15));
     }
 
     public void TriggerPopUp(string msg)

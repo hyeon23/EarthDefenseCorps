@@ -5036,8 +5036,8 @@ MonoBehaviour:
     curHp: 0
     curSheldGage: 0
     curSpecialMoveGage: 0
-    playerZam: 0
-    playerGold: 0
+    playerZam: 10000
+    playerGold: 10000
     playerZen: 30
     isStageClear: 000000
     curStage: 1

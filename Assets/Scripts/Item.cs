@@ -9,7 +9,11 @@ public class Item
 {
     public int ID;//아이템 고유 번호
     public int itemID;//아이템 종류별 고유 번호
+
+    //[JsonConverter(typeof(StringEnumConverter))]
     public ItemPart itemPart;//아이템 타입
+
+    //[JsonConverter(typeof(StringEnumConverter))]
     public ItemGrade itemGrade;//아이템 등급
 
     public bool isEquipped;//장비 착용 상태
@@ -62,61 +66,6 @@ public class Item
         itemCriticalDamage = item.itemCriticalDamage;
 
         itemCurLevel = 1;
-
-        switch (itemGrade)
-        {
-            case ItemGrade.NORMAL:
-                itemPrice = 250;
-                itemMaxLevel = 10;
-                itemUpgradeCost = 1000;
-                itemDrawingWeight = 100;
-                break;
-            case ItemGrade.RARE:
-                itemPrice = 1000;
-                itemMaxLevel = 20;
-                itemUpgradeCost = 2500;
-                itemDrawingWeight = 60;
-                break;
-            case ItemGrade.EPIC:
-                itemPrice = 4000;
-                itemMaxLevel = 30;
-                itemUpgradeCost = 5000;
-                itemDrawingWeight = 20;
-                break;
-            case ItemGrade.UNIQUE:
-                itemPrice = 16000;
-                itemMaxLevel = 40;
-                itemUpgradeCost = 15000;
-                itemDrawingWeight = 10;
-                break;
-            case ItemGrade.LEGENDARY:
-                itemPrice = 32000;
-                itemMaxLevel = 50;
-                itemUpgradeCost = 50000;
-                itemDrawingWeight = 5;
-                break;
-            case ItemGrade.COUNT:
-                break;
-        }
-    }
-
-    public Item(DBItem _DBitem)
-    {
-        ID = _DBitem.id;
-        itemPart = (ItemPart)Enum.Parse(typeof(ItemPart), _DBitem.type);
-        itemGrade = (ItemGrade)Enum.Parse(typeof(ItemGrade), _DBitem.itemGrade);
-        isEquipped = _DBitem.equipped;
-        itemID = _DBitem.itemSN;
-        itemName = _DBitem.name;
-        itemDesc = _DBitem.itemDesc;
-        itemImage = DataManager.Instance.IDtoSprite(itemID);
-        itemATK = _DBitem.attackDamage;
-        itemHP = _DBitem.strength;
-        itemSheldGager = _DBitem.defenseStrength;
-        itemSpecialMoveGager = _DBitem.specialMoveGage;
-        itemCriticalRate = _DBitem.criticalDamageProbability;
-        itemCriticalDamage = _DBitem.criticalDamage;
-        itemCurLevel = _DBitem.itemUpgrade;
 
         switch (itemGrade)
         {

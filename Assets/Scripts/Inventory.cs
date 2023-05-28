@@ -42,4 +42,8 @@ public class Inventory : MonoBehaviour
         slots.RemoveAt(DataManager.Instance.playerData.playerItems.IndexOf(item));
         DataManager.Instance.playerData.playerItems.Remove(item);
     }
+
+    //아이템 초기화
+    //1. 게임 시작 시[게임 매니저?], 자신이 가지고 있는 아이템을 초기화.
+    //-진행
 }

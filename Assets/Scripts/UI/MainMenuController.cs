@@ -185,9 +185,9 @@ public class MainMenuController : MonoBehaviour
 
         StartCoroutine(StageChange());
 
-        for (int i = 0; i < DataManager.Instance.playerData.playerItems.Count; i++)
+        for (int j = 0; j < DataManager.Instance.playerData.playerItems.Count; j++)
         {
-            inventory.InitItem(DataManager.Instance.playerData.playerItems[i]);
+            inventory.InitItem(DataManager.Instance.playerData.playerItems[j]);
         }
     }
 
@@ -592,13 +592,15 @@ public class MainMenuController : MonoBehaviour
 
     public void EquipButton()
     {
-        //[★] 아이템 장착 request
-        StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + $"{curSelectedItem.ID}"));
+        //가존 장착된 장비를 찾아 정보를 받아 반환하는 과정이 필요
+        //인벤토리 내 모든 items 중에서 
 
         equipButton.gameObject.SetActive(false);
         unEquipButton.gameObject.SetActive(true);
-        
+
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Equip);
+
+        //[★]아이템 장착 해제 request[방법에 따라 요청하는 코드를 분기별로 둘지, 아니면 여기에서 하나만 둬도 되는지 물어봐야함]
 
         switch (curSelectedItem.itemPart)
         {
@@ -607,7 +609,6 @@ public class MainMenuController : MonoBehaviour
                 {
                     //[★]무기 아이템 장착 해제 request
                     DataManager.Instance.playerData.CurEquippedWeapon.isEquipped = false;
-                    StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + $"{DataManager.Instance.playerData.CurEquippedWeapon.ID}"));
                 }
 
                 curSelectedItem.isEquipped = true;
@@ -619,7 +620,6 @@ public class MainMenuController : MonoBehaviour
                 {
                     //[★]장갑 아이템 장착 해제 request
                     DataManager.Instance.playerData.CurEquippedGloves.isEquipped = false;
-                    StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + $"{DataManager.Instance.playerData.CurEquippedGloves.ID}"));
                 }
                     
                 curSelectedItem.isEquipped = true;
@@ -631,7 +631,6 @@ public class MainMenuController : MonoBehaviour
                 {
                     //[★]신발 아이템 장착 해제 request
                     DataManager.Instance.playerData.CurEquippedShoes.isEquipped = false;
-                    StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + $"{DataManager.Instance.playerData.CurEquippedShoes.ID}"));
                 }
                     
                 curSelectedItem.isEquipped = true;
@@ -643,7 +642,6 @@ public class MainMenuController : MonoBehaviour
                 {
                     //[★]방패 아이템 장착 해제 request
                     DataManager.Instance.playerData.CurEquippedSheld.isEquipped = false;
-                    StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + $"{DataManager.Instance.playerData.CurEquippedSheld.ID}"));
                 }
                     
                 curSelectedItem.isEquipped = true;
@@ -655,7 +653,6 @@ public class MainMenuController : MonoBehaviour
                 {
                     //[★]모자 아이템 장착 해제 request
                     DataManager.Instance.playerData.CurEquippedHelmat.isEquipped = false;
-                    StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + $"{DataManager.Instance.playerData.CurEquippedHelmat.ID}"));
                 }
                     
                 curSelectedItem.isEquipped = true;
@@ -667,7 +664,6 @@ public class MainMenuController : MonoBehaviour
                 {
                     //[★]갑옷 아이템 장착 해제 request
                     DataManager.Instance.playerData.CurEquippedArmor.isEquipped = false;
-                    StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + $"{DataManager.Instance.playerData.CurEquippedArmor.ID}"));
                 }
                     
                 curSelectedItem.isEquipped = true;
@@ -675,6 +671,8 @@ public class MainMenuController : MonoBehaviour
                 DataManager.Instance.playerData.CurEquippedArmor = curSelectedItem;
                 break;
         }
+
+        //[★] 아이템 장착 request
 
         DataManager.Instance.DataUpdate();
 
@@ -688,7 +686,6 @@ public class MainMenuController : MonoBehaviour
         curSelectedItem.isEquipped = false;
 
         //[★]아이템 장착 해제 request[방법에 따라 요청하는 코드를 분기별로 둘지, 아니면 여기에서 하나만 둬도 되는지 물어봐야함]
-        StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + $"{curSelectedItem.ID}"));
 
         equipButton.gameObject.SetActive(true);
         unEquipButton.gameObject.SetActive(false);
