@@ -200,18 +200,19 @@ public class PUTReqItemUpgrade
     public float criticalDamage;
     public float strength;
     public float defenseStrength;
-    /*public float specialMoveGage*/
-    //[Question]없는 이유
+    public float specialMoveGage;
 
     public PUTReqItemUpgrade()
     {
         price = 300;
         itemUpgrade = 300;
+        upgradePrice = 300;
         attackDamage = 300;
         criticalDamageProbability = 300;
         criticalDamage = 300;
         strength = 300;
         defenseStrength = 300;
+        specialMoveGage = 300;
     }
 
     public PUTReqItemUpgrade(int _price, int _itemUpgrade, int _upgradePrice, int _attackDamage, float _criticalDamageProbability, float _criticalDamage, float _strength, float _defenseStrength, float _specialMoveGage)
@@ -224,7 +225,7 @@ public class PUTReqItemUpgrade
         criticalDamage = _criticalDamage;
         strength = _strength;
         defenseStrength = _defenseStrength;
-        /*specialMoveGage = _specialMoveGage;*/
+        specialMoveGage = _specialMoveGage;
     }
 
     public PUTReqItemUpgrade(Item _item)
@@ -237,7 +238,7 @@ public class PUTReqItemUpgrade
         criticalDamage = _item.itemCriticalDamage;
         strength = _item.itemHP;
         defenseStrength = _item.itemSheldGager;
-        /*specialMoveGage = _item.itemSpecialMoveGager;*/
+        specialMoveGage = _item.itemSpecialMoveGager;
     }
 }
 
@@ -397,19 +398,18 @@ public class GPGSLoginComponent : MonoBehaviour
 
         if (!DataManager.Instance.loginSuccessed)//2. 로그인 실패
         {
-            Debug.Log($"GPGS Login: {DataManager.Instance.loginSuccessed} DB Login: {DataManager.Instance.signinDBSuccessed}");
-
             //GPGS 재로그인
             GPGSLogin();
         }
         else if (!DataManager.Instance.signinDBSuccessed)
         {
-            Debug.Log($"GPGS Login: {DataManager.Instance.loginSuccessed} DB Login: {DataManager.Instance.signinDBSuccessed}");
-
             loginTMP.text = "데이터 로드를 위해 탭하세요";
 
             //DB 재로그인
-            DBLogin();
+            if (DataManager.Instance.signinDBSuccessing)
+                TriggerPopUp("DB 로그인 진행중입니다.");
+            else
+                DBLogin();
         }
         else//1. 로그인 성공
         {
@@ -434,7 +434,7 @@ public class GPGSLoginComponent : MonoBehaviour
     public void DBLogin()
     {
         //0-2. DB 로그인 수행
-        StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin(DataManager.Instance.localUserID)));
+        StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin("gpgsIdTest")));
     }
 
     public void OnClickStartBtn()
@@ -505,28 +505,28 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.GetItemListRequest(DataManager.Instance.getItemListLoadPath));
+        StartCoroutine(DataManager.Instance.GetItemListRequest(DataManager.Instance.getItemListPath));
     }
 
     public void OnClickItemUpgradeBtn()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutItemUpgradeRequest(DataManager.Instance.putItemUpgradePath + 15, new PUTReqItemUpgrade()));
+        StartCoroutine(DataManager.Instance.PutItemUpgradeRequest(DataManager.Instance.putItemUpgradePath, new PUTReqItemUpgrade()));
     }
 
     public void OnClickItemDeleteBtn()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.DelItemDeleteRequest(DataManager.Instance.delItemDeletePath + 15));
+        StartCoroutine(DataManager.Instance.DelItemDeleteRequest(DataManager.Instance.delItemDeletePath));
     }
 
     public void OnClickItemEquipUnequipBtn()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + 15));
+        StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath));
     }
 
     public void TriggerPopUp(string msg)

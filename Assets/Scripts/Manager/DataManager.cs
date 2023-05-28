@@ -87,8 +87,9 @@ public class DataManager : MonoBehaviour
     //DB
     public bool loginSuccessed = false;
     public bool signinDBSuccessed = false;
-    public string localUserID = null;
-    public string localUserName = null;
+    public bool signinDBSuccessing = false;
+    public string localUserID;
+    public string localUserName;
 
     private string url = "http://18.218.174.80:8080/api/v1";
 
@@ -96,7 +97,7 @@ public class DataManager : MonoBehaviour
     public string putStageClearPath = "/stage/clear";
 
     public string postItemSavePath = "/item";
-    public string getItemListLoadPath = "/item/inventory/all";//?memberId=1
+    public string getItemListPath = "/item/inventory/all";//?memberId=1
     public string putItemUpgradePath = "/item?itemId=";//?itemId=1
     public string delItemDeletePath = "/item?itemId=";//?itemId=1
     public string putItemEquipUnequipPath = "/item/status?itemId=";//?itemId=1
@@ -146,7 +147,7 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        playerData.isStageClear = new bool[3] { false, false, false };
+        //playerData.isStageClear = new bool[3] { false, false, false };
         playerData.Frames = new int[3] { 30, 60, 120 };
 
         spawnZenTime = 300;//300
@@ -156,10 +157,10 @@ public class DataManager : MonoBehaviour
         for (int i = 0; i < ItemDB.Count; i++)
         {
             items.Add(new Item(
-                0,
+                -1,
                 int.Parse(ItemDB[i]["itemID"].ToString()),
-                (ItemPart)Enum.Parse(typeof(ItemPart), ItemDB[i]["itemPart"].ToString().ToUpper()),
-                (ItemGrade)Enum.Parse(typeof(ItemGrade), ItemDB[i]["itemGrade"].ToString().ToUpper()),
+                (ItemPart)Enum.Parse(typeof(ItemPart), ItemDB[i]["itemPart"].ToString()),
+                (ItemGrade)Enum.Parse(typeof(ItemGrade), ItemDB[i]["itemGrade"].ToString()),
                 bool.Parse(ItemDB[i]["isEquipped"].ToString()),
                 ItemDB[i]["itemName"].ToString(), ItemDB[i]["itemDesc"].ToString(),
                 int.Parse(ItemDB[i]["itemATK"].ToString()),
@@ -182,10 +183,6 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        //여기서 기존에 가진 장비 불러와야 함
-        //기존 장착 데이터 존재 시, 기존 데이터, 없으면 없는 데이터 사용
-
-        //[★][Serializable] 클래스의 경우, 초기화되지 않으면 초기 값에 기본 값이 들어가 원하는 대로 작동하지 않음
         playerData.curEquippedWeapon = null;
         playerData.curEquippedGloves = null;
         playerData.curEquippedShoes = null;
@@ -619,6 +616,13 @@ public class DataManager : MonoBehaviour
 
                 GETResStage jtcData = JsonUtility.FromJson<GETResStage>(tempJson);
 
+                playerData.isStageClear = new bool[jtcData.stageList.Count];
+
+                for (int i = 0; i < jtcData.stageList.Count; i++)
+                {
+                    playerData.isStageClear[i] = jtcData.stageList[i].clear;
+                }
+
                 Debug.Log($"Stage1\n{jtcData.stageList[0].phase}\n{jtcData.stageList[0].stage}\n{jtcData.stageList[0].clear}");
                 Debug.Log($"Stage2\n{jtcData.stageList[1].phase}\n{jtcData.stageList[1].stage}\n{jtcData.stageList[1].clear}");
                 Debug.Log($"Stage3\n{jtcData.stageList[2].phase}\n{jtcData.stageList[2].stage}\n{jtcData.stageList[2].clear}");
@@ -731,32 +735,38 @@ public class DataManager : MonoBehaviour
 
                 for(int i = 0; i < jtcData.items.Count; ++i)
                 {
-                    Debug.Log($"Item" + i +
-                        $"\n{jtcData.items[i].id}" +
-                        $"\n{jtcData.items[i].itemSN}" +
-                        $"\n{jtcData.items[i].itemDesc}" +
-                        $"\n{jtcData.items[i].name}" +
-                        $"\n{jtcData.items[i].price}" +
-                        $"\n{jtcData.items[i].upgradePrice}" +
-                        $"\n{jtcData.items[i].itemGrade}" +
-                        $"\n{jtcData.items[i].type}" +
-                        $"\n{jtcData.items[i].itemUpgrade}" +
-                        $"\n{jtcData.items[i].member}" +
-                        $"\n{jtcData.items[i].attackDamage}" +
-                        $"\n{jtcData.items[i].criticalDamageProbability}" +
-                        $"\n{jtcData.items[i].criticalDamage}" +
-                        $"\n{jtcData.items[i].strength}" +
-                        $"\n{jtcData.items[i].defenseStrength}" +
-                        $"\n{jtcData.items[i].specialMoveGage}" +
-                        $"\n{jtcData.items[i].equipped}"
-                        );
-                }
+                    Item loadItem = new Item(jtcData.items[i]);
 
-                
+                    playerData.playerItems.Add(loadItem);
+
+                    if (loadItem.isEquipped)
+                    {
+                        switch (playerData.playerItems[i].itemPart)
+                        {
+                            case ItemPart.WEAPON:
+                                playerData.CurEquippedWeapon = loadItem;
+                                break;
+                            case ItemPart.GLOVES:
+                                playerData.CurEquippedGloves = loadItem;
+                                break;
+                            case ItemPart.SHOES:
+                                playerData.CurEquippedShoes = loadItem;
+                                break;
+                            case ItemPart.SHIELD:
+                                playerData.CurEquippedSheld = loadItem;
+                                break;
+                            case ItemPart.HELMET:
+                                playerData.CurEquippedHelmat = loadItem;
+                                break;
+                            case ItemPart.ARMOR:
+                                playerData.CurEquippedArmor = loadItem;
+                                break;
+                        }
+                    }
+                }
             }
         }
     }
-
 
     //아이템 강화[PUT 요청]
     public IEnumerator PutItemUpgradeRequest(string path, PUTReqItemUpgrade data)
@@ -826,16 +836,10 @@ public class DataManager : MonoBehaviour
     //아이템 장착/해제[PUT 요청]
     public IEnumerator PutItemEquipUnequipRequest(string path)
     {
-        string jsonData = null;
-
-        Debug.Log(jsonData);
-
         // UnityWebRequest 객체 생성
         UnityWebRequest request = new UnityWebRequest(url + path, "PUT");
 
         // PUT 요청 설정 (Content-Type 등)
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
 
@@ -907,10 +911,9 @@ public class DataManager : MonoBehaviour
     // 회원정보 가져오기[GET 요청]
     public IEnumerator GetUserInfoRequest(string path)
     {
-        using (UnityWebRequest request = new UnityWebRequest(url + path + "?identifier=paramtest", "GET"))/*localuserid*/
+        using (UnityWebRequest request = new UnityWebRequest(url + path + "?gpgsId=gpgsIdTest", "GET"))/*localuserid*/
         {
             request.downloadHandler = new DownloadHandlerBuffer();
-            Debug.Log(url + path + "?identifier=paramtest");
             request.SetRequestHeader("Content-Type", "application/json");
 
             yield return request.SendWebRequest();
@@ -928,6 +931,12 @@ public class DataManager : MonoBehaviour
                 Debug.Log("GetUserInfo 성공: " + request.downloadHandler.text);
 
                 GETResUserInfo jtcData = JsonUtility.FromJson<GETResUserInfo>(request.downloadHandler.text);
+
+                if (jtcData.header.status == 200)
+                {
+                    playerData.PlayerGold = jtcData.possesingGold;
+                    playerData.playerZam = jtcData.possesingGem;
+                }
             }
         }
     }
@@ -935,6 +944,8 @@ public class DataManager : MonoBehaviour
     //로그인[POST 요청]
     public IEnumerator PostSigninRequest(string path, POSTReqSignin data)
     {
+        signinDBSuccessing = true;
+
         string jsonData = JsonUtility.ToJson(data);
 
         Debug.Log(jsonData);
@@ -967,24 +978,33 @@ public class DataManager : MonoBehaviour
                 if (jtcData.header.status == 400)//로그인 실패
                 {
                     //[★]회원가입 수행
-                    Debug.Log("0");
-                    StartCoroutine(PostSignupRequest(postSignupPath, new POSTReqSignup(localUserName, localUserID)));
+                    StartCoroutine(PostSignupRequest(postSignupPath, new POSTReqSignup("gpgsIdTest"/*localUserName*/, "gpgsIdTest"/*localUserID*/)));
                 }
-                else if (jtcData.gpgsId == localUserID && jtcData.header.status == 200)//로그인 성공
+                else if (jtcData.header.status == 200)//로그인 성공
                 {
-                    Debug.Log("1");
-
-                    signinDBSuccessed = true;
+                    Debug.Log($"jtc gpgsId = {jtcData.gpgsId} & localID = {localUserID}");
 
                     //[★]플레이어 DB 데이터 로드 request
-                    //
-                    //현재 장착된 장비 갱신
 
+                    //1. 아이템 리스트 Load[양이 많으므로 먼저 수행]
+                    StartCoroutine(GetItemListRequest(getItemListPath));
+
+                    //2. 유저 정보 Load
+                    StartCoroutine(GetUserInfoRequest(getUserInfoPath));
+
+                    //3. 스테이지 정보 Load
+                    StartCoroutine(GetStageListRequest(getStageListPath));
+
+
+                    //4. 현재 장착된 장비 갱신
+                    DataUpdate();
+
+                    signinDBSuccessed = true;
                 }
-
-                Debug.Log("2");
             }
         }
+
+        signinDBSuccessing = false;
     }
 
     //잼 변경[PUT 요청]
@@ -995,7 +1015,7 @@ public class DataManager : MonoBehaviour
         Debug.Log(jsonData);
 
         // UnityWebRequest 객체 생성
-        UnityWebRequest request = new UnityWebRequest(url + path + $"?memberId=1", "PUT");
+        UnityWebRequest request = new UnityWebRequest(url + path + $"?gpgsId=gpgsIdTest", "PUT");
 
         // PUT 요청 설정 (Content-Type 등)
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
@@ -1032,7 +1052,7 @@ public class DataManager : MonoBehaviour
         Debug.Log(jsonData);
 
         // UnityWebRequest 객체 생성
-        UnityWebRequest request = new UnityWebRequest(url + path + $"?memberId=1", "PUT");
+        UnityWebRequest request = new UnityWebRequest(url + path + $"?gpgsId=gpgsIdTest", "PUT");
 
         // PUT 요청 설정 (Content-Type 등)
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);

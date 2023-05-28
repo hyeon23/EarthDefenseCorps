@@ -73,39 +73,39 @@ public class IAPManager : MonoBehaviour
         Debug.Log($"{product.definition.id} {product.metadata.GetGoogleProductMetadata()}");
 
         //에디터용
-        if (product.definition.id == zam300)
-        {
-            IAPTexts[0].text = $"{product.metadata.localizedPrice} {product.metadata.isoCurrencyCode}";
-        }
-        else if (product.definition.id == zam1000)
-        {
-            IAPTexts[1].text = $"{product.metadata.localizedPrice} {product.metadata.isoCurrencyCode}";
-        }
-        else if (product.definition.id == zam3000)
-        {
-            IAPTexts[2].text = $"{product.metadata.localizedPrice} {product.metadata.isoCurrencyCode}";
-        }
-        else if (product.definition.id == zam10000)
-        {
-            IAPTexts[3].text = $"{product.metadata.localizedPrice} {product.metadata.isoCurrencyCode}";
-        }
-
-        //모바일용
         //if (product.definition.id == zam300)
         //{
-        //    IAPTexts[0].text = $"{product.metadata.GetGoogleProductMetadata().localizedPrice} {product.metadata.GetGoogleProductMetadata().isoCurrencyCode}";
+        //    IAPTexts[0].text = $"{product.metadata.localizedPrice} {product.metadata.isoCurrencyCode}";
         //}
         //else if (product.definition.id == zam1000)
         //{
-        //    IAPTexts[1].text = $"{product.metadata.GetGoogleProductMetadata().localizedPrice} {product.metadata.GetGoogleProductMetadata().isoCurrencyCode}";
+        //    IAPTexts[1].text = $"{product.metadata.localizedPrice} {product.metadata.isoCurrencyCode}";
         //}
         //else if (product.definition.id == zam3000)
         //{
-        //    IAPTexts[2].text = $"{product.metadata.GetGoogleProductMetadata().localizedPrice} {product.metadata.GetGoogleProductMetadata().isoCurrencyCode}";
+        //    IAPTexts[2].text = $"{product.metadata.localizedPrice} {product.metadata.isoCurrencyCode}";
         //}
         //else if (product.definition.id == zam10000)
         //{
-        //    IAPTexts[3].text = $"{product.metadata.GetGoogleProductMetadata().localizedPrice} {product.metadata.GetGoogleProductMetadata().isoCurrencyCode}";
+        //    IAPTexts[3].text = $"{product.metadata.localizedPrice} {product.metadata.isoCurrencyCode}";
         //}
+
+        //모바일용
+        if (product.definition.id == zam300)
+        {
+            IAPTexts[0].text = $"{product.metadata.GetGoogleProductMetadata().localizedPrice} {product.metadata.GetGoogleProductMetadata().isoCurrencyCode}";
+        }
+        else if (product.definition.id == zam1000)
+        {
+            IAPTexts[1].text = $"{product.metadata.GetGoogleProductMetadata().localizedPrice} {product.metadata.GetGoogleProductMetadata().isoCurrencyCode}";
+        }
+        else if (product.definition.id == zam3000)
+        {
+            IAPTexts[2].text = $"{product.metadata.GetGoogleProductMetadata().localizedPrice} {product.metadata.GetGoogleProductMetadata().isoCurrencyCode}";
+        }
+        else if (product.definition.id == zam10000)
+        {
+            IAPTexts[3].text = $"{product.metadata.GetGoogleProductMetadata().localizedPrice} {product.metadata.GetGoogleProductMetadata().isoCurrencyCode}";
+        }
     }
 }
