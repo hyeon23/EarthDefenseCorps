@@ -60,8 +60,7 @@ public class EquipSlot : MonoBehaviour
         switch (equipSlotPart)
         {
             case EquipSlotPart.Weapon:
-                if(DataManager.Instance.playerData.curEquippedWeapon != null)
-                    item = DataManager.Instance.playerData.CurEquippedWeapon;
+                item = DataManager.Instance.playerData.CurEquippedWeapon;
                 break;
             case EquipSlotPart.Gloves:
                 item = DataManager.Instance.playerData.CurEquippedGloves;
