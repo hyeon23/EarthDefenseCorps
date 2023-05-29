@@ -1064,7 +1064,7 @@ public class MainMenuController : MonoBehaviour
                 Item newItem = new Item(gachaList[i]);
 
                 //[★]아이템 저장 request
-                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, newItem));
+                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem)));
 
                 //아이템 추가
                 inventory.AddItem(newItem);
@@ -1124,7 +1124,7 @@ public class MainMenuController : MonoBehaviour
                     Item newItem = new Item(gachaList[i]);
 
                     //[★]아이템 저장 request
-                    StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, newItem));
+                    StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem)));
 
                     inventory.AddItem(newItem);
                     SelectedItemList.Add(newItem);
@@ -1172,7 +1172,7 @@ public class MainMenuController : MonoBehaviour
                 Item newItem = new Item(DataManager.Instance.items[i]);
 
                 //[★]아이템 저장 request
-                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, newItem));
+                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem)));
 
                 inventory.AddItem(newItem);
 
@@ -1222,9 +1222,9 @@ public class MainMenuController : MonoBehaviour
                 if (selectNum <= weight)
                 {
                     Item newItem = new Item(DataManager.Instance.items[i]);
-                    StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, newItem));
 
                     //[★]아이템 저장 request
+                    StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem)));
 
                     inventory.AddItem(newItem);
                     SelectedItemList.Add(newItem);

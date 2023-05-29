@@ -2105,10 +2105,10 @@ RectTransform:
   m_Father: {fileID: 460226999}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.1, y: 0.2}
-  m_AnchorMax: {x: 0.1, y: 0.2}
+  m_AnchorMin: {x: 0.15, y: 0.2}
+  m_AnchorMax: {x: 0.15, y: 0.2}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 180}
+  m_SizeDelta: {x: 300, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &958951779
 MonoBehaviour:
@@ -2510,7 +2510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 300.00006}
+  m_AnchoredPosition: {x: 0, y: 300}
   m_SizeDelta: {x: -80, y: 125}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!95 &979643581
@@ -3588,10 +3588,10 @@ RectTransform:
   m_Father: {fileID: 460226999}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.1, y: 0.4}
-  m_AnchorMax: {x: 0.1, y: 0.4}
+  m_AnchorMin: {x: 0.15, y: 0.4}
+  m_AnchorMax: {x: 0.15, y: 0.4}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 180}
+  m_SizeDelta: {x: 300, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1207464962
 MonoBehaviour:
@@ -5012,12 +5012,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loginSuccessed: 0
   signinDBSuccessed: 0
+  signinDBSuccessing: 0
   localUserID: 
   localUserName: 
   getStageListPath: /stage/list
   putStageClearPath: /stage/clear
   postItemSavePath: /item
-  getItemListLoadPath: /item/inventory/all
+  getItemListPath: /item/inventory/all
   putItemUpgradePath: /item?itemId=
   delItemDeletePath: /item?itemId=
   putItemEquipUnequipPath: /item/status?itemId=
@@ -5193,10 +5194,10 @@ RectTransform:
   m_Father: {fileID: 460226999}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.1, y: 0.3}
-  m_AnchorMax: {x: 0.1, y: 0.3}
+  m_AnchorMin: {x: 0.15, y: 0.3}
+  m_AnchorMax: {x: 0.15, y: 0.3}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 180}
+  m_SizeDelta: {x: 300, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2073726772
 MonoBehaviour:

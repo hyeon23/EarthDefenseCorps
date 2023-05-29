@@ -5,6 +5,7 @@ public enum ItemGrade { NONE, NORMAL, RARE, EPIC, UNIQUE, LEGENDARY, COUNT }
 
 //[Serializable]//[★]키고 끔에 따라, 데이터의 통신 전달이 가능해짐 근데 우린 임시 데이터 클래스 만들어서 이걸로 통신 안해도 되지 않음?
 //맞다 통신용 Item 클래스 만들고, 그것만 직렬화시켜서 사용하고, 이건 직렬화하지 않아 데이터가 씬간 이동에도 유지되도록 설정하면 됨
+
 public class Item
 {
     public int ID;//아이템 고유 번호

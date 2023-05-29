@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "R3CT60E8X9X",
     "m_SelectedPackage": {
-        "deviceId": "R3CT60E8X9X",
-        "name": "com.devurim.earthdefensecorps",
-        "processId": 21517,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -17,37 +17,43 @@
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
-            "processId": 12025,
+            "processId": 14888,
             "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
-            "processId": 13352,
+            "processId": 15923,
             "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
-            "processId": 14462,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.android.chrome",
-            "processId": 13099,
+            "processId": 16987,
             "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
-            "processId": 19909,
+            "processId": 17564,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 17993,
             "exited": false
         },
         {
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
-            "processId": 21517,
+            "processId": 18737,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 28160,
             "exited": false
         }
     ],

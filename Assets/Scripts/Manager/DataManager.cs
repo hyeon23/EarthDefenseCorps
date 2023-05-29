@@ -671,9 +671,9 @@ public class DataManager : MonoBehaviour
 
     //아이템 API 통신
     //아이템 저장[POST 요청]
-    public IEnumerator PostItemSaveRequest(string path, Item newItem)
+    public IEnumerator PostItemSaveRequest(string path, POSTReqItemSave newItem)
     {
-        string jsonData = JsonUtility.ToJson(new POSTReqItemSave(newItem));
+        string jsonData = JsonUtility.ToJson(newItem);
 
         Debug.Log(jsonData);
 
@@ -702,7 +702,7 @@ public class DataManager : MonoBehaviour
 
                 POSTResItemSave jtcData = JsonUtility.FromJson<POSTResItemSave>(responseText);
 
-                newItem.ID = jtcData.itemId;
+                //newItem.ID = jtcData.itemId;
             }
         }
     }

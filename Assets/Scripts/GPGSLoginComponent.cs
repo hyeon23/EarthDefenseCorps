@@ -101,7 +101,7 @@ public class POSTReqItemSave
     public int upgradePrice;
     public int attackDamage;
     public float criticalDamageProbability;
-    public float criticalDamage ;
+    public float criticalDamage;
     public float strength;
     public float defenseStrength;
     public float specialMoveGage;
@@ -124,26 +124,6 @@ public class POSTReqItemSave
         strength = 0;
         defenseStrength = 0;
         specialMoveGage = 0;
-    }
-
-    public POSTReqItemSave(bool _isEquipped, string _name, int _itemSN, string _itemType, string _itemGrade, string _itemDesc, int _itemUpgrade, int _price, int _upgradePrice, int _attackDamage, float _criticalDamageProbability, float _criticalDamage, float _strength, float _defenseStrength, float _specialMoveGage)
-    {
-        gpgsId = DataManager.Instance.localUserID;
-        isEquipped = _isEquipped;
-        name = _name;
-        itemSN = _itemSN;
-        itemType = _itemType;
-        itemGrade = _itemGrade;
-        itemDesc = _itemDesc; //[Question]아이템 설명
-        itemUpgrade = _itemUpgrade;
-        price = _price;//수정 필요[판매 비용 수식 적용]
-        upgradePrice = _upgradePrice;//수정 필요[업그레이드 비용 수식 적용]
-        attackDamage = _attackDamage;
-        criticalDamageProbability = _criticalDamageProbability;
-        criticalDamage = _criticalDamage;
-        strength = _strength;
-        defenseStrength = _defenseStrength;
-        specialMoveGage = _specialMoveGage;
     }
 
     public POSTReqItemSave(Item _item)
@@ -498,7 +478,7 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new Item()));
+        StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave()));
     }
 
     public void OnClickGetItemListBtn()
@@ -512,21 +492,21 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutItemUpgradeRequest(DataManager.Instance.putItemUpgradePath, new PUTReqItemUpgrade()));
+        StartCoroutine(DataManager.Instance.PutItemUpgradeRequest(DataManager.Instance.putItemUpgradePath + "23", new PUTReqItemUpgrade()));
     }
 
     public void OnClickItemDeleteBtn()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.DelItemDeleteRequest(DataManager.Instance.delItemDeletePath));
+        StartCoroutine(DataManager.Instance.DelItemDeleteRequest(DataManager.Instance.delItemDeletePath + "23"));
     }
 
     public void OnClickItemEquipUnequipBtn()
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath));
+        StartCoroutine(DataManager.Instance.PutItemEquipUnequipRequest(DataManager.Instance.putItemEquipUnequipPath + "23"));
     }
 
     public void TriggerPopUp(string msg)
