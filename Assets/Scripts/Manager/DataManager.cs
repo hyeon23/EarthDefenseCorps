@@ -189,9 +189,6 @@ public class DataManager : MonoBehaviour
         playerData.curEquippedSheld = null;
         playerData.curEquippedHelmat = null;
         playerData.curEquippedArmor = null;
-
-        //[★][Serializable] 해당 함수도 같이 플레이어 데이터 로드 후, 같이 호출해줘야 함
-        //DataUpdate();
     }
 
     public void AppQuit()
@@ -644,10 +641,6 @@ public class DataManager : MonoBehaviour
                 {
                     playerData.isStageClear[i] = jtcData.stageList[i].clear;
                 }
-
-                Debug.Log($"Stage1\n{jtcData.stageList[0].phase}\n{jtcData.stageList[0].stage}\n{jtcData.stageList[0].clear}");
-                Debug.Log($"Stage2\n{jtcData.stageList[1].phase}\n{jtcData.stageList[1].stage}\n{jtcData.stageList[1].clear}");
-                Debug.Log($"Stage3\n{jtcData.stageList[2].phase}\n{jtcData.stageList[2].stage}\n{jtcData.stageList[2].clear}");
             }
         }
     }
@@ -963,8 +956,8 @@ public class DataManager : MonoBehaviour
 
                 if (jtcData.header.status == 200)
                 {
-                    playerData.PlayerGold = 100000;//jtcData.possesingGold;
-                    playerData.playerZam = 10000;//jtcData.possesingGem;
+                    playerData.PlayerGold = jtcData.possesingGold;
+                    playerData.playerZam = jtcData.possesingGem;
                 }
             }
         }

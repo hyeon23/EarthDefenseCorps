@@ -1048,11 +1048,14 @@ public class MainMenuController : MonoBehaviour
 
         selectNum = Mathf.RoundToInt(total * UnityEngine.Random.Range(0.0f, 1.0f));
 
-        //젬 차감
-        SubtractZam(zamPrice);
+        if(zamPrice != 0)
+        {
+            //젬 차감
+            SubtractZam(zamPrice);
 
-        //[★]젬 변동 request
-        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new PUTReqZam(DataManager.Instance.playerData.playerZam)));
+            //[★]젬 변동 request
+            StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new PUTReqZam(DataManager.Instance.playerData.playerZam)));
+        }
 
         for (int i = 0; i < gachaList.Count; i++)
         {
@@ -1121,17 +1124,21 @@ public class MainMenuController : MonoBehaviour
 
                 if (selectNum <= weight)
                 {
+                    //아이템 선언
                     Item newItem = new Item(gachaList[i]);
 
                     //[★]아이템 저장 request
-                    //StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem)));
+                    StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, newItem));
 
+                    //아이템 추가
                     inventory.AddItem(newItem);
                     SelectedItemList.Add(newItem);
                     break;
                 }
             }
         }
+
+        //연출
         StartCoroutine(Producing10Items(SelectedItemList));
     }
 
@@ -1157,11 +1164,14 @@ public class MainMenuController : MonoBehaviour
 
         selectNum = Mathf.RoundToInt(total * UnityEngine.Random.Range(0.0f, 1.0f));
 
-        //젬 차감
-        SubtractZam(zamPrice);
+        if(zamPrice != 0)
+        {
+            //젬 차감
+            SubtractZam(zamPrice);
 
-        //[★]젬 변동 request
-        StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new PUTReqZam(DataManager.Instance.playerData.playerZam)));
+            //[★]젬 변동 request
+            StartCoroutine(DataManager.Instance.PutZamUpdateRequest(DataManager.Instance.putZamUpdatePath, new PUTReqZam(DataManager.Instance.playerData.playerZam)));
+        }
 
         for (int i = 0; i < DataManager.Instance.items.Count; i++)
         {
@@ -1169,8 +1179,13 @@ public class MainMenuController : MonoBehaviour
 
             if (selectNum <= weight)
             {
+                //아이템 선언
                 Item newItem = new Item(DataManager.Instance.items[i]);
 
+                //[★]아이템 저장 request
+                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, newItem));
+                
+                //아이템 추가
                 inventory.AddItem(newItem);
 
                 //연출
@@ -1218,17 +1233,21 @@ public class MainMenuController : MonoBehaviour
 
                 if (selectNum <= weight)
                 {
+                    //아이템 선언
                     Item newItem = new Item(DataManager.Instance.items[i]);
 
                     //[★]아이템 저장 request
-                    //StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem)));
+                    StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, newItem));
 
+                    //아이템 추가
                     inventory.AddItem(newItem);
                     SelectedItemList.Add(newItem);
                     break;
                 }
             }
         }
+
+        //연출
         StartCoroutine(Producing10Items(SelectedItemList));
     }
 
@@ -1458,20 +1477,16 @@ public class MainMenuController : MonoBehaviour
     public void SupplyItem1Button()
     {
         NormalDrawing1RandItem(0);
-        //[★]아이템 저장 request
-        
     }
 
     public void SupplyItem2Button()
     {
         PremiumDrawing1RandItem(0);
-        //[★]아이템 저장 request
     }
 
     public void SupplyZamButton()
     {
         BuyZam(200);
-        //[★]젬 변동 request
     }
 
     public void SupplyZenButton()

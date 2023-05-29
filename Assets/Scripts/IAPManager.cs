@@ -28,32 +28,36 @@ public class IAPManager : MonoBehaviour
         {
             //reward your players
             Debug.Log("You've Gained 300 Zam");
+
+            //[¡Ú]Áª º¯µ¿ request[Æ÷ÇÔ]
             MainMenuController.Instance.BuyZam(300);
-            //[¡Ú]Áª º¯µ¿ request
         }
 
         if (product.definition.id == zam1000)
         {
             //reward your players
             Debug.Log("You've Gained 1000 Zam");
+
+            //[¡Ú]Áª º¯µ¿ request[Æ÷ÇÔ]
             MainMenuController.Instance.BuyZam(1000);
-            //[¡Ú]Áª º¯µ¿ request
         }
 
         if (product.definition.id == zam3000)
         {
             //reward your players
             Debug.Log("You've Gained 3000 Zam");
+
+            //[¡Ú]Áª º¯µ¿ request[Æ÷ÇÔ]
             MainMenuController.Instance.BuyZam(3000);
-            //[¡Ú]Áª º¯µ¿ request
         }
 
         if (product.definition.id == zam10000)
         {
             //reward your players
             Debug.Log("You've Gained 10000 Zam");
+
+            //[¡Ú]Áª º¯µ¿ request[Æ÷ÇÔ]
             MainMenuController.Instance.BuyZam(10000);
-            //[¡Ú]Áª º¯µ¿ request
         }
 
         if (product.definition.id == removeAds)
