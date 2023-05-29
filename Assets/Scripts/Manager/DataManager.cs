@@ -212,15 +212,15 @@ public class DataManager : MonoBehaviour
     {
         //ATK
         playerData.playerATK = 1/*플레이어 기본 공격력*/
-            + ((playerData.CurEquippedWeapon != null) ? (playerData.CurEquippedWeapon.itemATK + ((int)playerData.CurEquippedWeapon.itemGrade) * playerData.CurEquippedWeapon.itemCurLevel) : 0)
-            + ((playerData.CurEquippedGloves != null) ? (playerData.CurEquippedGloves.itemATK + ((int)playerData.CurEquippedGloves.itemGrade) * playerData.CurEquippedGloves.itemCurLevel) : 0)
-            + ((playerData.CurEquippedShoes != null) ? (playerData.CurEquippedShoes.itemATK + ((int)playerData.CurEquippedShoes.itemGrade) * playerData.CurEquippedShoes.itemCurLevel) : 0);
+            + ((playerData.CurEquippedWeapon != null) ? (playerData.CurEquippedWeapon.itemATK + ((int)playerData.CurEquippedWeapon.itemGrade) * (playerData.CurEquippedWeapon.itemCurLevel - 1)) : 0)
+            + ((playerData.CurEquippedGloves != null) ? (playerData.CurEquippedGloves.itemATK + ((int)playerData.CurEquippedGloves.itemGrade) * (playerData.CurEquippedGloves.itemCurLevel - 1)) : 0)
+            + ((playerData.CurEquippedShoes != null) ? (playerData.CurEquippedShoes.itemATK + ((int)playerData.CurEquippedShoes.itemGrade) * (playerData.CurEquippedShoes.itemCurLevel - 1)) : 0);
 
         //HP
         playerData.playerHP = 100/*플레이어 기본 체력*/
-            + ((playerData.CurEquippedSheld != null) ? (playerData.CurEquippedSheld.itemHP + ((int)playerData.CurEquippedSheld.itemGrade) * playerData.CurEquippedSheld.itemCurLevel) : 0)
-            + ((playerData.CurEquippedHelmat != null) ? (playerData.CurEquippedHelmat.itemHP + ((int)playerData.CurEquippedHelmat.itemGrade) * playerData.CurEquippedHelmat.itemCurLevel) : 0)
-            + ((playerData.CurEquippedArmor != null) ? (playerData.CurEquippedArmor.itemHP + ((int)playerData.CurEquippedArmor.itemGrade) * playerData.CurEquippedArmor.itemCurLevel) : 0);
+            + ((playerData.CurEquippedSheld != null) ? (playerData.CurEquippedSheld.itemHP + ((int)playerData.CurEquippedSheld.itemGrade) * (playerData.CurEquippedSheld.itemCurLevel - 1)) : 0)
+            + ((playerData.CurEquippedHelmat != null) ? (playerData.CurEquippedHelmat.itemHP + ((int)playerData.CurEquippedHelmat.itemGrade) * (playerData.CurEquippedHelmat.itemCurLevel - 1)) : 0)
+            + ((playerData.CurEquippedArmor != null) ? (playerData.CurEquippedArmor.itemHP + ((int)playerData.CurEquippedArmor.itemGrade) * (playerData.CurEquippedArmor.itemCurLevel - 1)) : 0);
 
         //CR
         playerData.playerCriticalRate = 10/*플레이어 기본 크확[신발]*/

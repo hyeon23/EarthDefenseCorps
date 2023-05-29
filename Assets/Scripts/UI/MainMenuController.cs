@@ -837,13 +837,13 @@ public class MainMenuController : MonoBehaviour
             case ItemPart.GLOVES:
             case ItemPart.SHOES:
                 statTMP.text = "ATK";
-                equipStatTMP.text = NotateNumber.Transform(_item.itemATK + (int)_item.itemGrade * _item.itemCurLevel);
+                equipStatTMP.text = NotateNumber.Transform(_item.itemATK + (int)_item.itemGrade * (_item.itemCurLevel - 1));
                 break;
             case ItemPart.SHIELD:
             case ItemPart.ARMOR:
             case ItemPart.HELMET:
                 statTMP.text = "HP";
-                equipStatTMP.text = NotateNumber.Transform((int)_item.itemHP + (int)_item.itemGrade * _item.itemCurLevel);
+                equipStatTMP.text = NotateNumber.Transform((int)_item.itemHP + (int)_item.itemGrade * (_item.itemCurLevel - 1));
                 break;
             case ItemPart.COUNT:
                 break;
@@ -1064,7 +1064,8 @@ public class MainMenuController : MonoBehaviour
                 Item newItem = new Item(gachaList[i]);
 
                 //[★]아이템 저장 request
-                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem)));
+                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave()));
+                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem.isEquipped, newItem.itemName, newItem.itemID/*, newItem.itemPart.ToString(), newItem.itemGrade.ToString()*/, newItem.itemDesc, newItem.itemCurLevel, newItem.itemPrice, newItem.itemUpgradeCost, newItem.itemATK, newItem.itemCriticalRate, newItem.itemCriticalDamage, newItem.itemHP, newItem.itemSheldGager, newItem.itemSpecialMoveGager)));
 
                 //아이템 추가
                 inventory.AddItem(newItem);
@@ -1171,9 +1172,6 @@ public class MainMenuController : MonoBehaviour
             {
                 Item newItem = new Item(DataManager.Instance.items[i]);
 
-                //[★]아이템 저장 request
-                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem)));
-
                 inventory.AddItem(newItem);
 
                 //연출
@@ -1236,7 +1234,8 @@ public class MainMenuController : MonoBehaviour
     }
 
     public IEnumerator Producing1Item(Item item)
-    {
+    {   
+
         DRItemGradeText.text = item.itemGrade.ToString();
         DRItemGradeText.color = SetGradeColorBackground(item);
         DRItemNameText.text = item.itemName.ToString();
