@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
         DataManager.Instance.playerData.PlayerGold += gold;
 
         //[★]골드 변동 request
+        StartCoroutine(DataManager.Instance.PutGoldUpdateRequest(DataManager.Instance.putGoldUpdatePath, new PUTReqGold(DataManager.Instance.playerData.PlayerGold)));
     }
 
     public void StageClear()
@@ -103,7 +104,10 @@ public class GameManager : MonoBehaviour
         DataManager.Instance.playerData.isStageClear[DataManager.Instance.playerData.curStage - 1] = true;
 
         //[★]골드 변동 request
+        StartCoroutine(DataManager.Instance.PutGoldUpdateRequest(DataManager.Instance.putGoldUpdatePath, new PUTReqGold(DataManager.Instance.playerData.PlayerGold)));
+
         //[★]스테이지 정보 변동 request
+        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putGoldUpdatePath, new PUTReqStageClear(DataManager.Instance.playerData.curStage)));
     }
 
     public void GoToMenu()
@@ -128,6 +132,5 @@ public class GameManager : MonoBehaviour
 
         DataManager.Instance.GameStartDataUpdate();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        //LoadingSceneController.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

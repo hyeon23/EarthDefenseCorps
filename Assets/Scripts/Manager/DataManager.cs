@@ -680,6 +680,9 @@ public class DataManager : MonoBehaviour
 
             PUTResStageClear jtcData = JsonUtility.FromJson<PUTResStageClear>(request.downloadHandler.text);
 
+            if (jtcData.header.status == 200)
+                playerData.isStageClear[data.stage - 1] = true;
+
             Debug.Log(jtcData);
         }
     }
