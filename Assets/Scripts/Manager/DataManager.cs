@@ -191,7 +191,7 @@ public class DataManager : MonoBehaviour
         playerData.curEquippedArmor = null;
 
         //[★][Serializable] 해당 함수도 같이 플레이어 데이터 로드 후, 같이 호출해줘야 함
-        DataUpdate();
+        //DataUpdate();
     }
 
     public void AppQuit()
@@ -554,6 +554,28 @@ public class DataManager : MonoBehaviour
         return null;
     }
 
+    public string IDtoName(int _itemID)
+    {
+        for(int i = 0; i < items.Count; ++i)
+        {
+            if (items[i].itemID == _itemID)
+                return items[i].itemName;
+        }
+
+        return null;
+    }
+
+    public string IDtoDesc(int _itemID)
+    {
+        for (int i = 0; i < items.Count; ++i)
+        {
+            if (items[i].itemID == _itemID)
+                return items[i].itemDesc;
+        }
+
+        return null;
+    }
+
     private void OnApplicationQuit()
     {
         playerData.playerLastConnectionTime = DateTime.Now;
@@ -671,9 +693,11 @@ public class DataManager : MonoBehaviour
 
     //아이템 API 통신
     //아이템 저장[POST 요청]
-    public IEnumerator PostItemSaveRequest(string path, POSTReqItemSave newItem)
+    public IEnumerator PostItemSaveRequest(string path, Item newItem)
     {
-        string jsonData = JsonUtility.ToJson(newItem);
+        POSTReqItemSave reqItem = new POSTReqItemSave(newItem);
+
+        string jsonData = JsonUtility.ToJson(reqItem);
 
         Debug.Log(jsonData);
 
@@ -702,10 +726,12 @@ public class DataManager : MonoBehaviour
 
                 POSTResItemSave jtcData = JsonUtility.FromJson<POSTResItemSave>(responseText);
 
-                //newItem.ID = jtcData.itemId;
+                newItem.ID = jtcData.itemId;
             }
         }
     }
+
+
 
     //아이템 리스트 불러오기[GET 요청]
     public IEnumerator GetItemListRequest(string path)
@@ -764,6 +790,9 @@ public class DataManager : MonoBehaviour
                         }
                     }
                 }
+
+                //4. 현재 장착된 장비 갱신
+                DataUpdate();
             }
         }
     }
@@ -994,10 +1023,6 @@ public class DataManager : MonoBehaviour
 
                     //3. 스테이지 정보 Load
                     StartCoroutine(GetStageListRequest(getStageListPath));
-
-
-                    //4. 현재 장착된 장비 갱신
-                    DataUpdate();
 
                     signinDBSuccessed = true;
                 }

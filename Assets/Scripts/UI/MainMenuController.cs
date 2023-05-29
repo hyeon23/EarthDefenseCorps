@@ -1064,8 +1064,7 @@ public class MainMenuController : MonoBehaviour
                 Item newItem = new Item(gachaList[i]);
 
                 //[★]아이템 저장 request
-                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave()));
-                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem.isEquipped, newItem.itemName, newItem.itemID/*, newItem.itemPart.ToString(), newItem.itemGrade.ToString()*/, newItem.itemDesc, newItem.itemCurLevel, newItem.itemPrice, newItem.itemUpgradeCost, newItem.itemATK, newItem.itemCriticalRate, newItem.itemCriticalDamage, newItem.itemHP, newItem.itemSheldGager, newItem.itemSpecialMoveGager)));
+                StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, newItem));
 
                 //아이템 추가
                 inventory.AddItem(newItem);
@@ -1125,7 +1124,7 @@ public class MainMenuController : MonoBehaviour
                     Item newItem = new Item(gachaList[i]);
 
                     //[★]아이템 저장 request
-                    StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem)));
+                    //StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem)));
 
                     inventory.AddItem(newItem);
                     SelectedItemList.Add(newItem);
@@ -1222,7 +1221,7 @@ public class MainMenuController : MonoBehaviour
                     Item newItem = new Item(DataManager.Instance.items[i]);
 
                     //[★]아이템 저장 request
-                    StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem)));
+                    //StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave(newItem)));
 
                     inventory.AddItem(newItem);
                     SelectedItemList.Add(newItem);

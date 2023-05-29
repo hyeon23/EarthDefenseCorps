@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Android Logcat
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 350}
   m_MaxSize: {x: 10000, y: 10000}
@@ -69,8 +69,8 @@ MonoBehaviour:
     y: 0
     width: 707
     height: 643
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 1
-  controlID: 438
+  controlID: 28
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 439
+  controlID: 29
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 440
+  controlID: 30
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 441
+  controlID: 31
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 147
+  controlID: 71
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: AndroidLogcatConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -319,15 +319,15 @@ MonoBehaviour:
     height: 304
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 20}
+  m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 20}
   - {fileID: 21}
   - {fileID: 22}
   - {fileID: 23}
   - {fileID: 17}
-  m_Selected: 0
-  m_LastSelected: 4
+  m_Selected: 4
+  m_LastSelected: 0
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -910,7 +910,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: fef2ffff48f3ffff14f5ffffb0f5ffffb8f7ffffd6f7fffffafaffff6ac0000000c10000
+      m_ExpandedIDs: 0e0cffff5a0cffff260effffc20effff9c10ffffba10ffffcc12ffffa815ffff8e18ffffda18ffffa61affff421bfffff21cffff141dffffe023ffff2c24ffff7024ffffee24ffff9c26ffffba26ffff3a29ffff8629ffff522bffffee2bffff9c2dffffbe2dffff6634ffffb234ffff7e36ffff1a37ffffc838ffffea38ffffc240ffff0e41ffffda42ffff7643ffff2445ffff4645ffff324affff7e4affff4a4cffffe64cffff944effffb64effff9e52ffffea52ffffb654ffff5255ffff0057ffff2257ffff0a5bffff565bffff225dffffbe5dffff6c5fffff8e5fffff1066ffff5c66ffff2868ffffc468ffff726affff946affff7c6effffc86effff9470ffff3071ffffde72ffff0073ffff4278ffff8e78ffff5a7afffff67affffa47cffffc67cffff9682ffffe682ffffca84ffff8685ffff2688ffffae88ffffbe8effff0e8fffffee90ffffa691ffff4294ffffc694ffff109bffff509cffff9c9cffff689effff049fffffdea0fffffca0ffff62a4ffffaea4ffff8ea6ffff46a7ffff0eaaffff2caaffffd6adffffb2b0ffffacb3fffff8b3ffffc4b5ffff60b6ffff0eb8ffff30b8ffff50bcffff9cbcffffe0bcffff5ebdffff0cbfffff2abfffff5ac6ffffa6c7fffff2c7ffffbec9ffff5acaffff60ccffff7eccffff92d1ffffded1ffffaad3ffff46d4ffff4cd6ffff6ad6ffffccd9ffff18daffffe4dbffff80dcffff86deffffa4deffff52e1ffff9ee1ffff6ae3ffff06e4ffff0ce6ffff2ae6ffff9ce9ffffe8e9ffffb4ebffff50ecffff56eeffff74eeffff12f1ffff5ef1ffff2af3ffffc6f3ffffcef5ffffecf5fffffafaffffd82b01007c2d01005e2f01002630010074310100923101009c3501009a3701009aec0100caec010028ed01006aee0100acee01003aef0100c2f00100e0f00100d6f30100e0f60100e8f60100400f0200ee1002001e110200641602002a3902007e390200543a02000e3b02005c3b02009e3b02000a3d02003a3d0200b43d02002640020090400200804202003a430200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -994,7 +994,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 241532
+  m_LastSelectedObjectID: 278912
 --- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1281,7 +1281,7 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_SearchFilter:
-    m_NameFilter: Login
+    m_NameFilter: 
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -1295,7 +1295,7 @@ MonoBehaviour:
     m_Folders:
     - Assets/Scenes
     m_Globs: []
-    m_OriginalText: Login
+    m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 69
   m_LastFolders:

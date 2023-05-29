@@ -112,8 +112,8 @@ public class POSTReqItemSave
         isEquipped = false;
         name = "NONE";
         itemSN = 1000;
-        itemType = "WEAPON";
-        itemGrade = "RARE";
+        itemType = "GLOVES";
+        itemGrade = "NORMAL";
         itemDesc = "My Desc";
         price = 0;
         itemUpgrade = 1;
@@ -128,13 +128,13 @@ public class POSTReqItemSave
 
     public POSTReqItemSave(Item _item)
     {
-        gpgsId = "gpgsIdTest";//DataManager.Instance.localUserID;
+        gpgsId = "gpgsIdTest";   
         isEquipped = _item.isEquipped;
-        name = _item.itemName;
+        name = "t";//_item.itemName;
         itemSN = _item.itemID;
         itemType = _item.itemPart.ToString();
         itemGrade = _item.itemGrade.ToString();
-        itemDesc = _item.itemDesc;
+        itemDesc = "t";//_item.itemDesc;
         itemUpgrade = _item.itemCurLevel;
         price = _item.itemPrice;//수정 필요[판매 비용 수식 적용]
         upgradePrice = _item.itemUpgradeCost;//수정 필요[업그레이드 비용 수식 적용]
@@ -514,7 +514,7 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new POSTReqItemSave()));
+        StartCoroutine(DataManager.Instance.PostItemSaveRequest(DataManager.Instance.postItemSavePath, new Item()));
     }
 
     public void OnClickGetItemListBtn()
