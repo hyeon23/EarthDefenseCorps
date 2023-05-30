@@ -105,30 +105,10 @@ public class POSTReqItemSave
     public float strength;
     public float defenseStrength;
     public float specialMoveGage;
-    
-    public POSTReqItemSave()
-    {
-        gpgsId = "gpgsIdTest";
-        isEquipped = false;
-        name = "NONE";
-        itemSN = 1000;
-        itemType = "GLOVES";
-        itemGrade = "NORMAL";
-        itemDesc = "My Desc";
-        price = 0;
-        itemUpgrade = 1;
-        upgradePrice = 0;
-        attackDamage = 0;
-        criticalDamageProbability = 0;
-        criticalDamage = 0;
-        strength = 0;
-        defenseStrength = 0;
-        specialMoveGage = 0;
-    }
 
     public POSTReqItemSave(Item _item)
     {
-        gpgsId = "gpgsIdTest";   
+        gpgsId = DataManager.Instance.localUserID;
         isEquipped = _item.isEquipped;
         name = "t";//_item.itemName;
         itemSN = _item.itemID;
@@ -137,49 +117,13 @@ public class POSTReqItemSave
         itemDesc = "t";//_item.itemDesc;
         itemUpgrade = _item.itemCurLevel;
         price = _item.itemPrice;//수정 필요[판매 비용 수식 적용]
-        upgradePrice = _item.itemUpgradeCost;//수정 필요[업그레이드 비용 수식 적용]
+        upgradePrice = itemUpgrade * _item.itemUpgradeCost;//수정 필요[업그레이드 비용 수식 적용]
         attackDamage = _item.itemATK;
         criticalDamageProbability = _item.itemCriticalRate;
         criticalDamage = _item.itemCriticalDamage;
         strength = _item.itemHP;
         defenseStrength = _item.itemSheldGager;
         specialMoveGage = _item.itemSpecialMoveGager;
-    }
-
-    public POSTReqItemSave(
-        bool _isEquipped, 
-        string _itemName, 
-        int _itemID, 
-        //string _itemPart, 
-        //string _itemGrade, 
-        string _itemDesc, 
-        int _itemCurLevel, 
-        int _itemPrice, 
-        int _itemUpgradeCost, 
-        int _itemATK,
-        float _itemCriticalRate,
-        float _itemCriticalDamage,
-        float _itemHP,
-        float _itemSheldGager,
-        float _itemSpecialMoveGager
-        )
-    {
-        gpgsId = "gpgsIdTest";
-        isEquipped = _isEquipped;
-        name = _itemName;
-        itemSN = _itemID;
-        itemType = "WEAPON";/*_itemPart.ToString();*/
-        itemGrade = "NORMAL";/*_itemGrade.ToString();*/
-        itemDesc = _itemDesc;
-        itemUpgrade = _itemCurLevel;
-        price = _itemPrice;//수정 필요[판매 비용 수식 적용]
-        upgradePrice = _itemUpgradeCost;//수정 필요[업그레이드 비용 수식 적용]
-        attackDamage = _itemATK;
-        criticalDamageProbability = _itemCriticalRate;
-        criticalDamage = _itemCriticalDamage;
-        strength = _itemHP;
-        defenseStrength = _itemSheldGager;
-        specialMoveGage = _itemSpecialMoveGager;
     }
 }
 
@@ -450,7 +394,7 @@ public class GPGSLoginComponent : MonoBehaviour
     public void DBLogin()
     {
         //0-2. DB 로그인 수행
-        StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin("gpgsIdTest")));
+        StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin(DataManager.Instance.localUserID)));
     }
 
     public void OnClickStartBtn()
@@ -493,7 +437,7 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new PUTReqStageClear(1, "gpgsIdTest")));
+        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new PUTReqStageClear(1, DataManager.Instance.localUserID)));
     }
 
     public void OnClickPutZamUpdateBtn()

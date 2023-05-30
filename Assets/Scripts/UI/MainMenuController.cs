@@ -737,14 +737,14 @@ public class MainMenuController : MonoBehaviour
             return;
         }
 
-        //[★]아이템 업그레이드 request[골드 수정은 알아서 DB에서 계산]
 
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Upgrade);
 
         MinusGold(curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost);
 
         curSelectedItem.itemCurLevel++;
-
+        
+        //[★]아이템 업그레이드 request[골드 수정은 알아서 DB에서 계산]
         StartCoroutine(DataManager.Instance.PutItemUpgradeRequest(DataManager.Instance.putItemUpgradePath + $"{curSelectedItem.ID}", new PUTReqItemUpgrade(curSelectedItem)));
 
         DataManager.Instance.DataUpdate();
