@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 [Serializable]
@@ -108,7 +109,7 @@ public class POSTReqItemSave
 
     public POSTReqItemSave(Item _item)
     {
-        gpgsId = DataManager.Instance.localUserID;
+        gpgsId = "gpgsIdTest";//DataManager.Instance.localUserID
         isEquipped = _item.isEquipped;
         name = "t";//_item.itemName;
         itemSN = _item.itemID;
@@ -116,8 +117,8 @@ public class POSTReqItemSave
         itemGrade = _item.itemGrade.ToString();
         itemDesc = "t";//_item.itemDesc;
         itemUpgrade = _item.itemCurLevel;
-        price = _item.itemPrice;//수정 필요[판매 비용 수식 적용]
-        upgradePrice = itemUpgrade * _item.itemUpgradeCost;//수정 필요[업그레이드 비용 수식 적용]
+        price = Mathf.RoundToInt((_item.itemPrice + (_item.itemCurLevel - 1) * _item.itemUpgradeCost) * 0.5f);
+        upgradePrice = _item.itemCurLevel * _item.itemUpgradeCost;
         attackDamage = _item.itemATK;
         criticalDamageProbability = _item.itemCriticalRate;
         criticalDamage = _item.itemCriticalDamage;
@@ -175,24 +176,11 @@ public class PUTReqItemUpgrade
         specialMoveGage = 300;
     }
 
-    public PUTReqItemUpgrade(int _price, int _itemUpgrade, int _upgradePrice, int _attackDamage, float _criticalDamageProbability, float _criticalDamage, float _strength, float _defenseStrength, float _specialMoveGage)
-    {
-        price = _price;
-        itemUpgrade = _itemUpgrade;
-        upgradePrice = _upgradePrice;
-        attackDamage = _attackDamage;
-        criticalDamageProbability = _criticalDamageProbability;
-        criticalDamage = _criticalDamage;
-        strength = _strength;
-        defenseStrength = _defenseStrength;
-        specialMoveGage = _specialMoveGage;
-    }
-
     public PUTReqItemUpgrade(Item _item)
     {
-        price = _item.itemPrice;// * 현재레벨 * ... 등 반영해줘야 함
+        price = Mathf.RoundToInt((_item.itemPrice + (_item.itemCurLevel - 1) * _item.itemUpgradeCost) * 0.5f);
         itemUpgrade = _item.itemCurLevel;
-        upgradePrice = _item.itemUpgradeCost;// * 현재레벨 * ... 등 반영해줘야 함
+        upgradePrice = _item.itemCurLevel * _item.itemUpgradeCost;
         attackDamage = _item.itemATK;
         criticalDamageProbability = _item.itemCriticalRate;
         criticalDamage = _item.itemCriticalDamage;
@@ -252,7 +240,7 @@ public class POSTReqSignup
 public class POSTResSignup
 {
     public string name;
-    public string gpgsId;//[Question]gpgsId로 통일 가능한지
+    public string gpgsId;
     public Header header;
 }
 
@@ -394,7 +382,7 @@ public class GPGSLoginComponent : MonoBehaviour
     public void DBLogin()
     {
         //0-2. DB 로그인 수행
-        StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin(DataManager.Instance.localUserID)));
+        StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin("gpgsIdTest")));//localUserID
     }
 
     public void OnClickStartBtn()
@@ -437,7 +425,7 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new PUTReqStageClear(1, DataManager.Instance.localUserID)));
+        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new PUTReqStageClear(1, "gpgsIdTest")));//DataManager.Instance.localUserID
     }
 
     public void OnClickPutZamUpdateBtn()
