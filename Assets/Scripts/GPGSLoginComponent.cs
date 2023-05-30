@@ -109,13 +109,13 @@ public class POSTReqItemSave
 
     public POSTReqItemSave(Item _item)
     {
-        gpgsId = "gpgsIdTest";//DataManager.Instance.localUserID
+        gpgsId = DataManager.Instance.localUserID;
         isEquipped = _item.isEquipped;
-        name = "t";//_item.itemName;
+        name = "";//_item.itemName;
         itemSN = _item.itemID;
         itemType = _item.itemPart.ToString();
         itemGrade = _item.itemGrade.ToString();
-        itemDesc = "t";//_item.itemDesc;
+        itemDesc = "";//_item.itemDesc;
         itemUpgrade = _item.itemCurLevel;
         price = Mathf.RoundToInt((_item.itemPrice + (_item.itemCurLevel - 1) * _item.itemUpgradeCost) * 0.5f);
         upgradePrice = _item.itemCurLevel * _item.itemUpgradeCost;
@@ -382,7 +382,7 @@ public class GPGSLoginComponent : MonoBehaviour
     public void DBLogin()
     {
         //0-2. DB 로그인 수행
-        StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin("gpgsIdTest")));//localUserID
+        StartCoroutine(DataManager.Instance.PostSigninRequest(DataManager.Instance.postSigninPath, new POSTReqSignin(DataManager.Instance.localUserID)));
     }
 
     public void OnClickStartBtn()
@@ -425,7 +425,7 @@ public class GPGSLoginComponent : MonoBehaviour
     {
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Button);
 
-        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new PUTReqStageClear(1, "gpgsIdTest")));//DataManager.Instance.localUserID
+        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new PUTReqStageClear(1, DataManager.Instance.localUserID)));
     }
 
     public void OnClickPutZamUpdateBtn()

@@ -610,7 +610,7 @@ public class DataManager : MonoBehaviour
     //스테이지 리스트 불러오기[GET 요청]
     public IEnumerator GetStageListRequest(string path)
     {
-        using (UnityWebRequest request = new UnityWebRequest(url + path + $"?identifier=gpgsIdTest", "GET"))//{localUserID}
+        using (UnityWebRequest request = new UnityWebRequest(url + path + $"?identifier={localUserID}", "GET"))
         {
             Debug.Log(url + path + "?identifier=paramtest");
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -731,7 +731,7 @@ public class DataManager : MonoBehaviour
     //아이템 리스트 불러오기[GET 요청]
     public IEnumerator GetItemListRequest(string path)
     {
-        using (UnityWebRequest request = new UnityWebRequest(url + path + $"?gpgsId=gpgsIdTest", "GET"))//{localUserID}
+        using (UnityWebRequest request = new UnityWebRequest(url + path + $"?gpgsId={localUserID}", "GET"))
         {
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
@@ -935,7 +935,7 @@ public class DataManager : MonoBehaviour
     // 회원정보 가져오기[GET 요청]
     public IEnumerator GetUserInfoRequest(string path)
     {
-        using (UnityWebRequest request = new UnityWebRequest(url + path + $"?gpgsId=gpgsIdTest", "GET"))//{localUserID}
+        using (UnityWebRequest request = new UnityWebRequest(url + path + $"?gpgsId={localUserID}", "GET"))
         {
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
@@ -1002,7 +1002,7 @@ public class DataManager : MonoBehaviour
                 if (jtcData.header.status == 400)//로그인 실패
                 {
                     //[★]회원가입 수행
-                    StartCoroutine(PostSignupRequest(postSignupPath, new POSTReqSignup($"gpgsIdTest", $"gpgsIdTest")));//{localUserName} {localUserID}
+                    StartCoroutine(PostSignupRequest(postSignupPath, new POSTReqSignup($"{localUserName} ", $"{localUserID}")));
                 }
                 else if (jtcData.header.status == 200)//로그인 성공
                 {
@@ -1033,7 +1033,7 @@ public class DataManager : MonoBehaviour
         Debug.Log(jsonData);
 
         // UnityWebRequest 객체 생성
-        UnityWebRequest request = new UnityWebRequest(url + path + $"?gpgsId=gpgsIdTest", "PUT");//{localUserID}
+        UnityWebRequest request = new UnityWebRequest(url + path + $"?gpgsId={localUserID}", "PUT");
 
         // PUT 요청 설정 (Content-Type 등)
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
@@ -1070,7 +1070,7 @@ public class DataManager : MonoBehaviour
         Debug.Log(jsonData);
 
         // UnityWebRequest 객체 생성
-        UnityWebRequest request = new UnityWebRequest(url + path + $"?gpgsId=gpgsIdTest", "PUT");//{localUserID}
+        UnityWebRequest request = new UnityWebRequest(url + path + $"?gpgsId={localUserID}", "PUT");
 
         // PUT 요청 설정 (Content-Type 등)
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
