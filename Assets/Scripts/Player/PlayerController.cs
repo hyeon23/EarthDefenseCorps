@@ -404,7 +404,7 @@ public class PlayerController : MonoBehaviour
         isSpecial = true;
 
         float start = 0;
-        float end = 0.25f;
+        float end = 0.2f;
 
         float percent = 0;
 
@@ -415,7 +415,7 @@ public class PlayerController : MonoBehaviour
 
         specialAfterEffect.SetActive(true);
 
-        parentTransform.position = specialTargetEnemyCollider.transform.position + Vector3.down * 1.5f;
+        parentTransform.position = new Vector3(parentTransform.position.x, specialTargetEnemyCollider.transform.position.y - 1.5f, parentTransform.position.z);
         gameObject.GetComponent<Collider2D>().enabled = false;
 
         while (percent <= 1)
@@ -431,10 +431,10 @@ public class PlayerController : MonoBehaviour
 
                 if(specialTargetEnemyCollider != null)
                 {
-                    parentTransform.position = specialTargetEnemyCollider.transform.position + Vector3.down * 1.5f;
+                    parentTransform.position = new Vector3(parentTransform.position.x, specialTargetEnemyCollider.transform.position.y - 1.5f, parentTransform.position.z);
                 }
 
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.01f);
 
                 specialTrigger.enabled = false;
             }
