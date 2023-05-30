@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "R3CT60E8X9X",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "R3CT60E8X9X",
+        "name": "com.devurim.earthdefensecorps",
+        "processId": 28063,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -13,18 +13,6 @@
             "name": "com.sec.android.app.launcher",
             "processId": 3479,
             "exited": false
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 17564,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CT60E8X9X",
-            "name": "com.devurim.earthdefensecorps",
-            "processId": 17993,
-            "exited": true
         },
         {
             "deviceId": "R3CT60E8X9X",
@@ -42,6 +30,18 @@
             "deviceId": "R3CT60E8X9X",
             "name": "com.devurim.earthdefensecorps",
             "processId": 5380,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 24996,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CT60E8X9X",
+            "name": "com.devurim.earthdefensecorps",
+            "processId": 28063,
             "exited": false
         }
     ],

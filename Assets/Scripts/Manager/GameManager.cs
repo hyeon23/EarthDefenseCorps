@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DataManager.Instance.PutGoldUpdateRequest(DataManager.Instance.putGoldUpdatePath, new PUTReqGold(DataManager.Instance.playerData.PlayerGold)));
 
         //[★]스테이지 정보 변동 request
-        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putGoldUpdatePath, new PUTReqStageClear(DataManager.Instance.playerData.curStage, DataManager.Instance.localUserID)));
+        StartCoroutine(DataManager.Instance.PutStageClearRequest(DataManager.Instance.putStageClearPath, new PUTReqStageClear(DataManager.Instance.playerData.curStage, DataManager.Instance.localUserID)));
     }
 
     public void GoToMenu()

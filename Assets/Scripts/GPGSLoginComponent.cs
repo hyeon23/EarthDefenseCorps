@@ -353,6 +353,8 @@ public class GPGSLoginComponent : MonoBehaviour
         {
             loginTMP.text = "데이터 로드를 위해 탭하세요";
 
+            Debug.Log(DataManager.Instance.localUserID);
+
             //DB 재로그인
             if (DataManager.Instance.signinDBSuccessing)
                 TriggerPopUp("DB 로그인 진행중입니다.");
