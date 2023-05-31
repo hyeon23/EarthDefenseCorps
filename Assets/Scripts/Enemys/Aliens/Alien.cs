@@ -19,6 +19,9 @@ public class Alien : Enemy
 
     public GameObject afterEffectObj;
 
+    private int[] followYPos = { 5, 7, 9 };
+    private int[] followYSpeed = { 3, 4, 5 };
+
     protected Quaternion GetRotFromVectors(Vector2 posStart, Vector2 posEnd)
     {
         return Quaternion.Euler(0, 0, -Mathf.Atan2(posEnd.x - posStart.x, posEnd.y - posStart.y) * Mathf.Rad2Deg);
@@ -40,9 +43,9 @@ public class Alien : Enemy
     protected void FollowPlayer()
     {
         // target 위치 찾기
-        Vector3 targetPosition = new Vector3(transform.position.x, PlayerController.Instance.transform.position.y + 6, transform.position.z);
+        Vector3 targetPosition = new Vector3(transform.position.x, PlayerController.Instance.transform.position.y + followYPos[Random.Range(0, 3)], transform.position.z);
         // target 위치로 카메라 속도에 맞게 이동
-        parentGameObject.transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 3);
+        parentGameObject.transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followYSpeed[Random.Range(0, 3)]);
     }
 
     protected void FollowPlayerBoss()
@@ -50,7 +53,7 @@ public class Alien : Enemy
         // target 위치 찾기
         Vector3 targetPosition = new Vector3(transform.position.x, PlayerController.Instance.transform.position.y + 12, transform.position.z);
         // target 위치로 카메라 속도에 맞게 이동
-        parentGameObject.transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 3);
+        parentGameObject.transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 4);
     }
 
     private IEnumerator DodgeMove(float dodgePos)

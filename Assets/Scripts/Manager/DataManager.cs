@@ -171,7 +171,7 @@ public class DataManager : MonoBehaviour
         }
 
         //PlayerPrefsDataDelete
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
 
         //DataLoad
         PlayerPrefsLoad();
@@ -274,7 +274,7 @@ public class DataManager : MonoBehaviour
         if (PlayerPrefs.HasKey("CurFrameIndex"))
             playerData.curFrameIndex = PlayerPrefs.GetInt("CurFrameIndex");
         else
-            playerData.curFrameIndex = 1;
+            playerData.curFrameIndex = 2;
 
         if (PlayerPrefs.HasKey("IsBGMOn"))
             Boolean.TryParse(PlayerPrefs.GetString("IsBGMOn"), out playerData.isBGMOn);

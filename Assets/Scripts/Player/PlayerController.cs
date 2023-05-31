@@ -341,7 +341,7 @@ public class PlayerController : MonoBehaviour
         anime.SetBool("isJump", isJump);
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Jump);
         EffectManager.Instance.SpawnEffect(new int[] { 35 }, transform.position + new Vector3(0, -0.5f, 0));
-        parentRigid.AddForce(new Vector2(0, 20f), ForceMode2D.Impulse);
+        parentRigid.AddForce(new Vector2(0, 30f), ForceMode2D.Impulse);
 
         yield return null;
     }
@@ -391,7 +391,7 @@ public class PlayerController : MonoBehaviour
         if (isJump)
         {
             parentRigid.velocity = Vector2.zero;
-            parentRigid.AddForce(Vector2.down * 35f, ForceMode2D.Impulse);
+            parentRigid.AddForce(Vector2.down * 50f, ForceMode2D.Impulse);
         }
 
         SheldToX();
@@ -404,7 +404,7 @@ public class PlayerController : MonoBehaviour
         isSpecial = true;
 
         float start = 0;
-        float end = 0.2f;
+        float end = 0.1f;
 
         float percent = 0;
 
@@ -425,21 +425,17 @@ public class PlayerController : MonoBehaviour
 
             if(percent % 0.1f >= 0)
             {
-                
                 specialTrigger.enabled = true;
-
 
                 if(specialTargetEnemyCollider != null)
                 {
                     parentTransform.position = new Vector3(parentTransform.position.x, specialTargetEnemyCollider.transform.position.y - 1.5f, parentTransform.position.z);
                 }
 
-                yield return new WaitForSeconds(0.01f);
+                yield return new WaitForSeconds(0.1f);
 
                 specialTrigger.enabled = false;
             }
-
-            
 
             yield return null;
         }
@@ -451,6 +447,9 @@ public class PlayerController : MonoBehaviour
         specialAxis.SetActive(false);
 
         isSpecial = false;
+
+        if (specialTargetEnemyCollider == null)
+            yield break;
     }
 
     private void SheldToX()
