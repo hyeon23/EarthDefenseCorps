@@ -171,7 +171,7 @@ public class DataManager : MonoBehaviour
         }
 
         //PlayerPrefsDataDelete
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
         //DataLoad
         PlayerPrefsLoad();
