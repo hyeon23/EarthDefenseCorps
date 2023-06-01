@@ -1021,7 +1021,6 @@ public class DataManager : MonoBehaviour
                 }
             }
         }
-
         signinDBSuccessing = false;
     }
 
