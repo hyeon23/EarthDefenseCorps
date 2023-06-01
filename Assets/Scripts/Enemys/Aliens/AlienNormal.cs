@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class AlienNormal : Alien
@@ -28,7 +29,7 @@ public class AlienNormal : Alien
             case AlienState.Idle:
                 Fire();
                 Reload();
-                FollowPlayer();
+                FollowPlayer(new Vector3(transform.position.x, PlayerController.Instance.transform.position.y + 8, transform.position.z));
                 break;
             case AlienState.HitMove:
                 //Dodge Move ผ๖วเ

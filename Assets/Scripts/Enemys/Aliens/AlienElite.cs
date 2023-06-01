@@ -28,7 +28,7 @@ public class AlienElite : Alien
             case AlienState.Idle:
                 Fire();
                 Reload();
-                FollowPlayer();
+                FollowPlayer(new Vector3(transform.position.x, PlayerController.Instance.transform.position.y + 9, transform.position.z));
                 break;
             case AlienState.HitMove:
                 //Dodge Move ผ๖วเ

@@ -37,12 +37,10 @@ public class Alien : Enemy
     //플레이어를 따라갈 때,
     //피격당해 이동할 때,
     //Idle 상태 --> 공격 가능
-    protected void FollowPlayer()
+    protected void FollowPlayer(Vector3 _targetPos)
     {
-        // target 위치 찾기
-        Vector3 targetPosition = new Vector3(transform.position.x, PlayerController.Instance.transform.position.y + 5, transform.position.z);
         // target 위치로 카메라 속도에 맞게 이동
-        parentGameObject.transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 3);
+        parentGameObject.transform.position = Vector3.Lerp(transform.position, _targetPos, Time.deltaTime * 3);
     }
 
     protected void FollowPlayerBoss()
