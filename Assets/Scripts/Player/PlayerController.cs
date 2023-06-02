@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         ChangeState(PlayerState.Idle);
 
@@ -174,13 +174,17 @@ public class PlayerController : MonoBehaviour
             }
 
             //Special Collide
-            if (specialEnemyHit.collider == null)
-            {
-                specialTargetEnemyCollider = null;
-            }
-            else if (specialEnemyHit.collider.tag == "BlockTrigger" || specialEnemyHit.collider.tag == "AlienTrigger")
+            //if (specialEnemyHit.collider == null)
+            //{
+            //    specialTargetEnemyCollider = null;
+            //}
+            if (specialEnemyHit.collider.tag == "BlockTrigger" || specialEnemyHit.collider.tag == "AlienTrigger")
             {
                 specialTargetEnemyCollider = specialEnemyHit.collider;
+            }
+            else
+            {
+                specialTargetEnemyCollider = null;
             }
 
             //Floor Collide
@@ -241,10 +245,12 @@ public class PlayerController : MonoBehaviour
                     }
                     else if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x))
                     {
-                        if ((isJump && specialTargetEnemyCollider != null && !isSpecial))
+                        if (isJump && !isSpecial)
                         {
                             //Special Move
-                            if (DataManager.Instance.playerData.curSpecialMoveGage < DataManager.Instance.playerData.playerSpecialMoveGage) return;
+                            if (DataManager.Instance.playerData.curSpecialMoveGage < 100) return;
+
+                            if (specialTargetEnemyCollider == null) return;
 
                             DataManager.Instance.playerData.curSpecialMoveGage -= 100f;
                             
@@ -423,22 +429,17 @@ public class PlayerController : MonoBehaviour
             start += Time.deltaTime;
             percent = start / end;
 
-            if(percent % 0.1f >= 0)
+            if(percent % 0.1f >= 0 && specialTargetEnemyCollider != null)
             {
                 specialTrigger.enabled = true;
-
-                if(specialTargetEnemyCollider != null)
-                {
-                    parentTransform.position = new Vector3(parentTransform.position.x, specialTargetEnemyCollider.transform.position.y - 1.5f, parentTransform.position.z);
-                }
-
-                yield return new WaitForSeconds(0.1f);
-
+                parentTransform.position = new Vector3(parentTransform.position.x, specialTargetEnemyCollider.transform.position.y - 1.5f, parentTransform.position.z);
+                yield return new WaitForSeconds(0.075f);
                 specialTrigger.enabled = false;
             }
 
             yield return null;
         }
+
         gameObject.GetComponent<Collider2D>().enabled = true;
         parentRigid.velocity = Vector2.zero;
         parentTransform.position = playerPos[positionIndex].position;
@@ -447,9 +448,6 @@ public class PlayerController : MonoBehaviour
         specialAxis.SetActive(false);
 
         isSpecial = false;
-
-        if (specialTargetEnemyCollider == null)
-            yield break;
     }
 
     private void SheldToX()

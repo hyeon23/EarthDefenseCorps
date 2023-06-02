@@ -927,7 +927,8 @@ public class DataManager : MonoBehaviour
 
                 POSTResSignup jtcData = JsonUtility.FromJson<POSTResSignup>(responseText);
 
-                Debug.Log(jtcData);
+                //[¡Ú]Áª º¯µ¿ request
+                StartCoroutine(PutZamUpdateRequest(putZamUpdatePath, new PUTReqZam(2700)));
             }
         }
     }
