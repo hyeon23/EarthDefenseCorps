@@ -365,9 +365,9 @@ public class MainMenuController : MonoBehaviour
         {
             if (targetIndex == n)
             {
-                //adsManager.GetComponent<InterstitialAds>().ShowAd();
+                adsManager.GetComponent<InterstitialAds>().ShowAd();
 
-                DataManager.Instance.playerData.watchAdsCoolTime = DateTime.Now.AddSeconds(3601);
+                DataManager.Instance.playerData.watchAdsCoolTime = DateTime.Now.AddSeconds(1201);
             }
         }
     }

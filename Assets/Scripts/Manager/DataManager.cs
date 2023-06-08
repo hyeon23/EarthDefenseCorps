@@ -353,7 +353,7 @@ public class DataManager : MonoBehaviour
         if (PlayerPrefs.HasKey("WatchAdsCoolTime"))
             DateTime.TryParse(PlayerPrefs.GetString("WatchAdsCoolTime"), out playerData.watchAdsCoolTime);
         else
-            playerData.watchAdsCoolTime = DateTime.Now.Add(new TimeSpan(0, 0, 10));
+            playerData.watchAdsCoolTime = DateTime.Now.Add(new TimeSpan(0, 10, 0));
     }
 
     public Sprite IDtoSprite(int _itemID)
