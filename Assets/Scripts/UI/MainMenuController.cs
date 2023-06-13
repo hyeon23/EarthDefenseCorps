@@ -78,6 +78,7 @@ public class MainMenuController : MonoBehaviour
 
     public Button equipButton;
     public Button unEquipButton;
+    public Button upgradeButton;
 
     public Item curSelectedItem = null;
 
@@ -737,7 +738,6 @@ public class MainMenuController : MonoBehaviour
             return;
         }
 
-
         SoundManager.Instance.SFXPlay(SoundManager.SFX.Upgrade);
 
         MinusGold(curSelectedItem.itemCurLevel * curSelectedItem.itemUpgradeCost);
@@ -745,7 +745,7 @@ public class MainMenuController : MonoBehaviour
         curSelectedItem.itemCurLevel++;
         
         //[★]아이템 업그레이드 request[골드 수정은 알아서 DB에서 계산]
-        StartCoroutine(DataManager.Instance.PutItemUpgradeRequest(DataManager.Instance.putItemUpgradePath + $"{curSelectedItem.ID}", new PUTReqItemUpgrade(curSelectedItem)));
+        StartCoroutine(DataManager.Instance.PutItemUpgradeRequest(DataManager.Instance.putItemUpgradePath + $"{curSelectedItem.ID}", new PUTReqItemUpgrade(curSelectedItem), upgradeButton));
 
         DataManager.Instance.DataUpdate();
 
