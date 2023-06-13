@@ -2528,7 +2528,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4124,12 +4124,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
+  m_fontSize: 55
   m_fontSizeBase: 56
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 55
+  m_fontSizeMax: 55
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -16548,7 +16548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 294.2519, y: -43.66304}
+  m_AnchoredPosition: {x: 325.135, y: -40.6512}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &431960503
@@ -27821,7 +27821,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 484.11688, y: -43.66304}
+  m_AnchoredPosition: {x: 515, y: -40.6512}
   m_SizeDelta: {x: 279.73, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &541734245
@@ -30156,6 +30156,7 @@ MonoBehaviour:
   equipButtonTMP: {fileID: 1677079308}
   equipButton: {fileID: 1027002243}
   unEquipButton: {fileID: 1425654600}
+  upgradeButton: {fileID: 171440047}
   popUpAnime: {fileID: 705684672}
   PopUpTMP: {fileID: 1816890308}
   inventory: {fileID: 1087813222}
@@ -31015,7 +31016,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 315}
+  m_AnchoredPosition: {x: 0, y: 315.00006}
   m_SizeDelta: {x: -80, y: 125}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &705684670

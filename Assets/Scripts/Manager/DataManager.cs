@@ -1101,7 +1101,7 @@ public class DataManager : MonoBehaviour
     public IEnumerator PutItemUpgradeRequest(string path, PUTReqItemUpgrade data, Button btn)
     {
         string jsonData = JsonUtility.ToJson(data);
-        btn.enabled = false;
+        btn.interactable = false;
         Debug.Log(jsonData);
 
         // UnityWebRequest °´Ã¼ »ý¼º
@@ -1132,7 +1132,7 @@ public class DataManager : MonoBehaviour
 
             PUTResItemUpgrade jtcData = JsonUtility.FromJson<PUTResItemUpgrade>(request.downloadHandler.text);
 
-            btn.enabled = true;
+            btn.interactable = true;
 
             Debug.Log(jtcData);
         }
