@@ -27,7 +27,7 @@
 
 </br>
 
-## ⚽ 프로젝트 목표 및 의의
+## 🚩 프로젝트 목표 및 의의
 
 -**1. 첫번째로,** 협업이 원활한 게임업계에서 원활히 협업하기 위해 타 분야 작업의 고충을 경험해보고, 공감하는 것입니다.
 
@@ -75,7 +75,7 @@
 
 </br>
 
-## ⚽ 게임 목표
+## 🎯 게임 목표
 -3 단계의 Phase를 통과하고, 스테이지를 클리어하세요
 
 -**Phase1:** Block Breaking
@@ -86,12 +86,12 @@
 
 </br>
 
-## 🔚 종료 조건
+## 🏴 종료 조건
 -플레이어의 HP가 0이 되면 게임이 종료됩니다.
 
 </br>
 
-## ▶ 세부기능 & 인게임 플레이
+## 🔗 세부기능 & 인게임 플레이
 -❗ 세부 기능은 [wiki](https://github.com/hyeon23/EarthDefenseCorps/wiki/EARTH-DEFENSE-CORPS-Game-%F0%9F%91%BE-%EC%84%B8%EB%B6%80-%EA%B8%B0%EB%8A%A5%E2%9A%94)에서 확인하실 수 있습니다.
 ![전체 사진1](https://github.com/hyeon23/hyeon23/assets/77566434/1ca0b928-2fc8-4bdd-af0a-844bfb5c3474)
 ![전체 사진2](https://github.com/hyeon23/hyeon23/assets/77566434/a7e4bda5-e130-4281-af81-ad542d07eb9b)
