@@ -90,7 +90,9 @@
 </br>
 
 ## ▶ 인게임 플레이
-![전체 사진](https://user-images.githubusercontent.com/77582221/177265891-0e181d28-33c8-4518-8854-9ef44591db96.png)
+![전체 사진1](https://github.com/hyeon23/hyeon23/assets/77566434/1ca0b928-2fc8-4bdd-af0a-844bfb5c3474)
+![전체 사진2](https://github.com/hyeon23/hyeon23/assets/77566434/a7e4bda5-e130-4281-af81-ad542d07eb9b)
+![전체 사진3](https://github.com/hyeon23/hyeon23/assets/77566434/d1cfdd14-adfd-4e0b-984e-725758257041)
 -세부 기능은 [wiki](https://github.com/hyeon23/EarthDefenseCorps/wiki/EARTH-DEFENSE-CORPS-Game-%F0%9F%91%BE-%EC%84%B8%EB%B6%80-%EA%B8%B0%EB%8A%A5%E2%9A%94)에서 확인하실 수 있습니다. 
 
 </br>
@@ -102,6 +104,8 @@
 - **target platform** : Mobile(Android)
 
 - **Publishing** : Google Play Store
+
+- **Design Tool** : Aseprite
 
 - **Advertisement(광고)** : Unity Ads / 보상형 광고, 전면 광고
 
