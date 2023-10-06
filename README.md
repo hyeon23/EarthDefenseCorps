@@ -116,6 +116,8 @@
 
 - **IAP 가격 Localization** : GPGS IAP Price Localization
 
+- **Local Save(PlayerPrefs)** : 주기적 잼 수급 시스템 & 광고 재생 가능 시간 계산 시스템
+
 - **DB** : **MySql** / **Spring Boot** 2.6.3 Frame Work / **AWS** EC2
 
 - **Version Contorl** : Github
