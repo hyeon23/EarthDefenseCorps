@@ -130,7 +130,7 @@
 </br>
 
 ## 👥 참여 인원 및 역할 분담 👥
-| **Individual(기획, 디자인, 개발)** |
+| **Individual(기획, 개발, 디자인)** |
 |:------------:|
 | <img src="https://avatars.githubusercontent.com/u/77566434?v=4" width=250px alt="강동현"/> |
 |[강동현](https://github.com/hyeon23) |
