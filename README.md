@@ -87,10 +87,11 @@
 
 </br>
 
+</br>
+
 ## ▶ 인게임 플레이
-
-<img width="100%" alt="Waggles" src="https://github.com/hyeon23/hyeon23/assets/77566434/a927f84f-b99d-40fa-aee5-a593a71a6356">
-
+![전체 사진](https://user-images.githubusercontent.com/77582221/177265891-0e181d28-33c8-4518-8854-9ef44591db96.png)
+-세부 기능은 [wiki](https://github.com/hyeon23/EarthDefenseCorps/wiki/EARTH-DEFENSE-CORPS-Game-%F0%9F%91%BE-%EC%84%B8%EB%B6%80-%EA%B8%B0%EB%8A%A5%E2%9A%94)에서 확인하실 수 있습니다. 
 
 </br>
 
