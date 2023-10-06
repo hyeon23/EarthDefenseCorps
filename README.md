@@ -58,19 +58,20 @@
 </br>
 
 ## 🥅 게임 목표
--최대한 오래 버티며 높은 점수를 획득하세요.
+-3 단계의 Phase를 통과하고, 스테이지를 클리어하세요
+
+-**Phase1:** Block Breaking
+
+-**Phase2:** Block + ALIENS Breaking
+
+-**Phase3:** Block + ALIENS + BOSS Breaking
 
 </br>
-
-## 😈 적
--하나의 불렛을 뱉어대는(단발, 점사, 연발) **두들즈(초록색)** 와 여러개의 불렛을 뱉어대는 **스마일리(노란색)** 로 구성됩니다.
-
--탭을 통해 적을 빠르게 제거하지 않으면, 불렛이 쌓여 게임오버 됩니다.
 
 </br>
 
 ## 🔚 종료 조건
--두들 중 하나라도 일정 시간 이상, Finish Line 위에 위치하면 게임이 종료됩니다.
+-플레이어의 HP가 0이 되면 게임이 종료됩니다.
 
 </br>
 
@@ -87,7 +88,38 @@
 
 - **target platform** : Mobile(Android)
 
+- **Publishing** : Google Play Store
+
+- **Advertisement(광고)** : Unity Ads / 보상형 광고, 전면 광고
+
+- **Combo 시스템**
+
+- **Parrying 시스템**
+
+- **인벤토리 시스템**
+
+- **장비 시스템** : 장착(On/Off) / 강화 / 판매
+
+- **가중치 랜덤 가챠 시스템**
+
+- **Time.x Shader**
+
+- **Particle Attracter**
+
+- **UI Particle 시스템**
+
+- **Particle 시스템**
+
+- **HUD**
+
+- **IAP(인-앱 결제)** : GPGS IAP
+
+- **IAP 가격 Localization** : GPGS IAP Price Localization
+
+- **DB** : **MySql** / **Spring Boot** 2.6.3 Frame Work / **AWS** EC2
+
 - **Version Contorl** : Github
+
   
 </br>
 
