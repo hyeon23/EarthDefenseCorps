@@ -80,12 +80,8 @@
 
 </br>
 
-</br>
-
 ## 🔚 종료 조건
 -플레이어의 HP가 0이 되면 게임이 종료됩니다.
-
-</br>
 
 </br>
 
@@ -94,7 +90,6 @@
 ![전체 사진2](https://github.com/hyeon23/hyeon23/assets/77566434/a7e4bda5-e130-4281-af81-ad542d07eb9b)
 ![전체 사진3](https://github.com/hyeon23/hyeon23/assets/77566434/d1cfdd14-adfd-4e0b-984e-725758257041)
 -세부 기능은 [wiki](https://github.com/hyeon23/EarthDefenseCorps/wiki/EARTH-DEFENSE-CORPS-Game-%F0%9F%91%BE-%EC%84%B8%EB%B6%80-%EA%B8%B0%EB%8A%A5%E2%9A%94)에서 확인하실 수 있습니다. 
-
 </br>
 
 ## 🛠 사용 기술
@@ -107,38 +102,9 @@
 
 - **Design Tool** : Aseprite
 
-- **Advertisement(광고)** : Unity Ads / 보상형 광고, 전면 광고
-
-- **Combo 시스템**
-
-- **Parrying 시스템**
-
-- **인벤토리 시스템**
-
-- **장비 시스템** : 장착(On/Off) / 강화 / 판매
-
-- **가중치 랜덤 가챠 시스템**
-
-- **Time.x Shader**
-
-- **Particle Attracter**
-
-- **UI Particle 시스템**
-
-- **Particle 시스템**
-
-- **HUD**
-
-- **IAP(인-앱 결제)** : GPGS IAP
-
-- **IAP 가격 Localization** : GPGS IAP Price Localization
-
-- **Local Save(PlayerPrefs)** : 주기적 잼 수급 시스템 & 광고 재생 가능 시간 계산 시스템
-
 - **DB** : **MySql** / **Spring Boot** 2.6.3 Frame Work / **AWS** EC2
 
 - **Version Contorl** : Github
-
   
 </br>
 
