@@ -23,9 +23,11 @@
 
 ## 🎮 게임 소개 
 
--**EarthDefenseCorps**은 **1인 개발 게임**으로 언제 어디서나 가볍게 즐길 수 있는 **Hyper Casual Mobile Game**입니다.
+-**EarthDefenseCorps**은 **1인 개발 게임**입니다.
 
--Waggles는 여행과 자유로움을 컨셉으로하고 있습니다.
+-언제 어디서나 가볍게 즐길 수 있는 **Hyper Casual Mobile Game**입니다.
+
+-블럭과 우주 해적을 깨부수며 진행되고, 세로 방향으로 액션이 이뤄지는 **Block Breaking 종스크롤 Action Game**입니다.
 
 </br>
 
