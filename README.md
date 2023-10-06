@@ -1,4 +1,4 @@
-# 👾 지구를 지켜라! EARTH DEFENSE CORPS 🌏
+# 👾 지구를 지켜라! EARTH DEFENSE CORPS 🌏🌕
 <p align="middle" >
 <img width="60%" alt="EarthDefenseCorps" src="https://github.com/hyeon23/hyeon23/assets/77566434/713a4909-9cc2-43bf-83a1-b527294ecd6d">
 </p>
