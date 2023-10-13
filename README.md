@@ -111,11 +111,11 @@
 
 - **Publishing** : Google Play Store
 
-- **Design Tool** : Aseprite
+- **Design Tool** : Aseprite & Figma
 
 - **DB** : **MySql** / **Spring Boot** 2.6.3 Frame Work / **AWS** EC2
 
-- **Version Contorl** : Github
+- **Version Contorl** : Github & Git Desktop
   
 </br>
 
