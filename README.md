@@ -12,6 +12,10 @@
 </br>
 
 ## 드림학기제 (🏆 우수 프로젝트 '우수상' 선정 🏅)
+<p align="middle" >
+<img width="60%" alt="EarthDefenseCorps" src="https://github.com/hyeon23/hyeon23/assets/77566434/4bba41b3-9f2f-40dd-9597-a3d569020efc">
+</p>
+
 
 -본 프로젝트는 한 학기동안 건국대학교 **드림학기제**를 통해 진행한 프로젝트입니다.
 
