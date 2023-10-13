@@ -5,6 +5,9 @@
 <p align="middle" >
 <img src="https://img.shields.io/badge/Unity-000000?style=flat&logo=Unity&logoColor=white"/>
 <img src="https://img.shields.io/badge/C Sharp-239120?style=flat&logo=CSharp&logoColor=white"/>
+<img src="https://img.shields.io/badge/Google Play-414141?style=flat&logo=GooglePlay&logoColor=yellow"/>
+
+  #4285F4
 </p>
 
 </br>
