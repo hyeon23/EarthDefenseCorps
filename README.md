@@ -7,6 +7,11 @@
 <img src="https://img.shields.io/badge/C Sharp-6600FF?style=flat&logo=CSharp&logoColor=white"/>
 <img src="https://img.shields.io/badge/Google Play-00FF99?style=flat&logo=GooglePlay&logoColor=white"/>
 
+<div align="center">
+  
+  ###### [1. Individual github repository](https://github.com/hyeon23/EarthDefenseCorps) | [2. DB Team's github repository](https://github.com/EarthDefenseCorps/earth-defense-corps-backend) | [3. Earth Defense Corps Google Play Store](https://play.google.com/store/apps/details?id=com.devurim.earthdefensecorps&hl=en-KR)
+  
+</div>
 </p>
 
 </br>
@@ -126,7 +131,7 @@
 </br>
 
 ## 👥 참여 인원 및 역할 분담 👥
-| **Individual(기획, 개발, 디자인)** |
+| **Individual(기획, 디자인, 개발, 서비스)** |
 |:------------:|
 | <img src="https://avatars.githubusercontent.com/u/77566434?v=4" width=250px alt="강동현"/> |
 |[강동현](https://github.com/hyeon23) |
