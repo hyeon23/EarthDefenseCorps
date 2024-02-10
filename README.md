@@ -35,7 +35,7 @@
 ## 📼 EarthDefenseCorps Play Video
 <div align="center">
   
-[![Steelz-EarthDefenseCorps-PlayVideo](http://img.youtube.com/vi/jRBRrgoNVqM/0.jpg)](https://youtu.be/jRBRrgoNVqM=qs)</br>
+[![Steelz-EarthDefenseCorps-PV](http://img.youtube.com/vi/jRBRrgoNVqM/0.jpg)](https://youtu.be/jRBRrgoNVqM=qs)</br>
 click here
 </div>
 
