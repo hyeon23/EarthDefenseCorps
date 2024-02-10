@@ -32,6 +32,15 @@
 
 </br>
 
+## 📼 EarthDefenseCorps Play Video
+<div align="center">
+  
+[![Steelz-EarthDefenseCorps-PlayVideo](http://img.youtube.com/vi/jRBRrgoNVqM/0.jpg)](https://youtu.be/jRBRrgoNVqM=qs)</br>
+click here
+</div>
+
+</br>
+
 ## 🚩 프로젝트 목표 및 의의
 
 -**1.** 게임업계에서 원활히 협업하기 위해 타 분야 작업의 고충을 경험해보고, 공감하는 것입니다.
