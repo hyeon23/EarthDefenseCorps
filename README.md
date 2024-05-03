@@ -10,6 +10,8 @@
 <div align="center">
   
   ###### [1. Individual github repository](https://github.com/hyeon23/EarthDefenseCorps) | [2. DB Team's github repository](https://github.com/EarthDefenseCorps/earth-defense-corps-backend) | [3. Earth Defense Corps Google Play Store](https://play.google.com/store/apps/details?id=com.devurim.earthdefensecorps&hl=en-KR)
+  ※주의: 아마존 free tier 요금정책의 만료로, 서버비 재정 측면에서 게임을 구글 플레이스토어에서 내린 상태입니다.
+  ※Note: Due to the expiration of the Amazon free tier rate policy, the game has been removed from the Google Play Store in terms of server cost finance.
   
 </div>
 </p>
